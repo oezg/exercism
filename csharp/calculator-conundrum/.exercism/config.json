@@ -1,0 +1,28 @@
+{
+  "authors": [
+    "archrisV"
+  ],
+  "contributors": [
+    "valentin-p",
+    "yzAlvin",
+    "sanderploegsma"
+  ],
+  "files": {
+    "solution": [
+      "CalculatorConundrum.cs"
+    ],
+    "test": [
+      "CalculatorConundrumTests.cs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.cs"
+    ],
+    "editor": [
+      "SimpleOperation.cs"
+    ],
+    "invalidator": [
+      "CalculatorConundrum.csproj"
+    ]
+  },
+  "blurb": "Learn about error handling by working on a simple calculator."
+}
