@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj": {}
+    "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj": {
+    "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj",
+        "projectUniqueName": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
         "projectName": "CalculatorConundrum",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj",
-        "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\obj\\",
+        "projectPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
+        "packagesPath": "/Users/oezg/.nuget/packages/",
+        "outputPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/oezg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.305/RuntimeIdentifierGraph.json"
         }
       }
     }

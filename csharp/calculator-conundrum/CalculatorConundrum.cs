@@ -3,33 +3,13 @@ using System;
 public static class SimpleCalculator
 {
     public static string Calculate(int operand1, int operand2, string operation)
-    {
-        int result;
-        switch (operation)
-        {
-            case "+":
-                result = SimpleOperation.Addition(operand1, operand2);
-                break;
-            case "/":
-                try
-                {
-                    result = SimpleOperation.Division(operand1, operand2);
-                }
-                catch (DivideByZeroException e)
-                {
-                    return "Division by zero is not allowed.";
-                }
-                break;
-            case "*":
-                result = SimpleOperation.Multiplication(operand1, operand2);
-                break;
-            case null:
-                throw new ArgumentNullException();
-            case "":
-                throw new ArgumentException();
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-        return $"{operand1} {operation} {operand2} = {result}";
-    }
+        => operation switch {
+            "+" => $"{operand1} {operation} {operand2} = {SimpleOperation.Addition(operand1, operand2)}",
+            "*" => $"{operand1} {operation} {operand2} = {SimpleOperation.Multiplication(operand1, operand2)}",
+            "/" when operand2 == 0 => "Division by zero is not allowed.",
+            "/" => $"{operand1} {operation} {operand2} = {SimpleOperation.Division(operand1, operand2)}",
+            null => throw new ArgumentNullException(),
+            "" => throw new ArgumentException(),
+            _ => throw new ArgumentOutOfRangeException()
+        };
 }
