@@ -18,9 +18,7 @@ public enum AlertLevel
 public static class Appointment
 {
     public static DateTime ShowLocalTime(DateTime dtUtc)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.ShowLocalTime() method");
-    }
+        => TimeZoneInfo.ConvertTimeFromUtc(dtUtc, TimeZoneInfo.Local);
 
     public static DateTime Schedule(string appointmentDateDescription, Location location)
     {
