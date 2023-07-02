@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj": {}
+    "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {}
   },
   "projects": {
-    "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj": {
+    "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
-        "projectName": "CalculatorConundrum",
-        "projectPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
+        "projectUniqueName": "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
+        "projectName": "BeautySalonGoesGlobal",
+        "projectPath": "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
         "packagesPath": "/Users/oezg/.nuget/packages/",
-        "outputPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/obj/",
+        "outputPath": "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/oezg/.nuget/NuGet/NuGet.Config"
@@ -71,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.305/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     }

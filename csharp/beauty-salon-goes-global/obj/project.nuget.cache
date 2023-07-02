@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "goun1jNhU9FhM7qu08+uOFEp4dia3O6LvBgYCICy1k0W0hvIhmDemQ4VvyGNAM7DxUWd2H08DAq2vwtoLlcGsQ==",
+  "dgSpecHash": "2edA7pAcX6fdqxgRoVyHArI1JTgCtI6Ee3Mmiroz0/iv4VzcIGSfrVV2acMRbuv67bTAvPwjjGo8/9viyIDeRw==",
   "success": true,
-  "projectFilePath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
+  "projectFilePath": "/Users/oezg/code/exercism/csharp/beauty-salon-goes-global/BeautySalonGoesGlobal.csproj",
   "expectedPackageFiles": [
     "/Users/oezg/.nuget/packages/exercism.tests/0.1.0-beta1/exercism.tests.0.1.0-beta1.nupkg.sha512",
     "/Users/oezg/.nuget/packages/microsoft.codecoverage/16.8.3/microsoft.codecoverage.16.8.3.nupkg.sha512",
