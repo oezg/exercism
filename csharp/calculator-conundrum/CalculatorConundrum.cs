@@ -10,15 +10,10 @@ public static class SimpleCalculator
             case "+":
                 result = SimpleOperation.Addition(operand1, operand2);
                 break;
+            case "/" when operand2 == 0:
+                return "Division by zero is not allowed.";
             case "/":
-                try
-                {
-                    result = SimpleOperation.Division(operand1, operand2);
-                }
-                catch (DivideByZeroException e)
-                {
-                    return "Division by zero is not allowed.";
-                }
+                result = SimpleOperation.Division(operand1, operand2);
                 break;
             case "*":
                 result = SimpleOperation.Multiplication(operand1, operand2);

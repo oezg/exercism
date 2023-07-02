@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = HyperOptimizedTelemetry
-build_property.ProjectDir = C:\Users\b45089\Exercism\csharp\hyper-optimized-telemetry\
+build_property.ProjectDir = /Users/oezg/code/exercism/csharp/hyper-optimized-telemetry/
