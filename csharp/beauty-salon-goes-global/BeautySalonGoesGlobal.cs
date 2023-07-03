@@ -36,23 +36,15 @@ public static class Appointment
         return timeZone.IsDaylightSavingTime(weekAgo) != timeZone.IsDaylightSavingTime(dt);
     }
 
-    public static DateTime NormalizeDateTime(string dtStr, Location location)
-    {
-        try
-        {
-            return DateTime.Parse(dtStr, location.Culture());
-        }
-        catch
-        {
-            return new DateTime(1, 1, 1);
-        }
-    } 
-
+    public static DateTime NormalizeDateTime(string dtStr, Location location) => 
+        DateTime.TryParse(dtStr, location.Culture(), DateTimeStyles.None, out var dateTime) 
+            ? dateTime 
+            : new DateTime(1,1,1);
 
     public static CultureInfo Culture(this Location location)
         => location switch
         {
-            Location.London => new CultureInfo("en-UK"),
+            Location.London => new CultureInfo("en-GB"),
             Location.Paris => new CultureInfo("fr-FR"),
             Location.NewYork => new CultureInfo("en-US"),
         };
