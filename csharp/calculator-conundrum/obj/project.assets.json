@@ -5788,24 +5788,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/oezg/.nuget/packages/": {}
+    "C:\\Users\\b45089\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
+      "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj",
       "projectName": "CalculatorConundrum",
-      "projectPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/CalculatorConundrum.csproj",
-      "packagesPath": "/Users/oezg/.nuget/packages/",
-      "outputPath": "/Users/oezg/code/exercism/csharp/calculator-conundrum/obj/",
+      "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\CalculatorConundrum.csproj",
+      "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\calculator-conundrum\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/oezg/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5857,7 +5859,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.305/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

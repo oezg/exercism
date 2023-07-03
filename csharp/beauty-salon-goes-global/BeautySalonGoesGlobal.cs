@@ -1,4 +1,7 @@
 using System;
+using System.Globalization;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 
 public enum Location
@@ -10,9 +13,9 @@ public enum Location
 
 public enum AlertLevel
 {
-    Early,
-    Standard,
-    Late
+    Early = 60 * 24,
+    Standard = 60 + 45,
+    Late = 30
 }
 
 public static class Appointment
@@ -20,23 +23,52 @@ public static class Appointment
     public static DateTime ShowLocalTime(DateTime dtUtc)
         => TimeZoneInfo.ConvertTimeFromUtc(dtUtc, TimeZoneInfo.Local);
 
-    public static DateTime Schedule(string appointmentDateDescription, Location location)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.Schedule() method");
-    }
-
+    public static DateTime Schedule(string appointmentDateDescription, Location location) 
+        => TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), location.TimeZone());
+    
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.GetAlertTime() method");
-    }
+        => appointment.Add(- TimeSpan.FromMinutes((int)alertLevel));
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.HasDaylightSavingChanged() method");
+        var timeZone = location.TimeZone();
+        var weekAgo = dt.AddDays(-7);
+        return timeZone.IsDaylightSavingTime(weekAgo) != timeZone.IsDaylightSavingTime(dt);
     }
 
     public static DateTime NormalizeDateTime(string dtStr, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.NormalizeDateTime() method");
-    }
+        try
+        {
+            return DateTime.Parse(dtStr, location.Culture());
+        }
+        catch
+        {
+            return new DateTime(1, 1, 1);
+        }
+    } 
+
+
+    public static CultureInfo Culture(this Location location)
+        => location switch
+        {
+            Location.London => new CultureInfo("en-UK"),
+            Location.Paris => new CultureInfo("fr-FR"),
+            Location.NewYork => new CultureInfo("en-US"),
+        };
+
+    public static TimeZoneInfo TimeZone(this Location location)
+        => TimeZoneInfo.FindSystemTimeZoneById(location.TimeZoneId());
+
+    public static string TimeZoneId(this Location location)
+        => (RuntimeInformation.IsOSPlatform(OSPlatform.Windows), location) switch
+        {
+            (true, Location.London) =>  "GMT Standard Time",
+            (true, Location.Paris) => "W. Europe Standard Time",
+            (true, Location.NewYork) => "Eastern Standard Time",
+            (false, Location.London) => "Europe/London",
+            (false, Location.Paris) => "Europe/Paris",
+            (false, Location.NewYork) => "America/New_York",
+        };
+    
 }
