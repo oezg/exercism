@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "mikedamay"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "yzAlvin"
+  ],
+  "files": {
+    "solution": [
+      "SecureMunchesterUnited.cs"
+    ],
+    "test": [
+      "SecureMunchesterUnitedTests.cs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.cs"
+    ],
+    "invalidator": [
+      "SecureMunchesterUnited.csproj"
+    ]
+  },
+  "blurb": "Learn about casting by creating security passes."
+}
