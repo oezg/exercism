@@ -46,7 +46,7 @@ public static class Appointment
     public static DateTime NormalizeDateTime(string dtStr, Location location) => 
         DateTime.TryParse(dtStr, location.Culture(), DateTimeStyles.None, out var dateTime) 
             ? dateTime 
-            : new DateTime(1,1,1);
+            : DateTime.MinValue;
 
     public static CultureInfo Culture(this Location location)
         => location switch
