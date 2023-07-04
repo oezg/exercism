@@ -1,6 +1,6 @@
 using System;
 
-public class Orm
+public class Orm : IDisposable
 {
     private Database database;
 
@@ -11,16 +11,42 @@ public class Orm
 
     public void Begin()
     {
-        throw new NotImplementedException($"Please implement the Orm.Begin() method");
+        try
+        {
+            database.BeginTransaction();
+        }
+        catch (InvalidOperationException e)
+        {
+            database.Dispose();
+        }
     }
 
     public void Write(string data)
     {
-        throw new NotImplementedException($"Please implement the Orm.Write() method");
+        try
+        {
+            database.Write(data);
+        }
+        catch (InvalidOperationException e)
+        {
+            database.Dispose();
+        }
     }
 
     public void Commit()
     {
-        throw new NotImplementedException($"Please implement the Orm.Commit() method");
+        try
+        {
+            database.EndTransaction();
+        }
+        catch (InvalidOperationException e)
+        {
+            database.Dispose();
+        }
+    }
+
+    public void Dispose()
+    {
+        database.Dispose();
     }
 }
