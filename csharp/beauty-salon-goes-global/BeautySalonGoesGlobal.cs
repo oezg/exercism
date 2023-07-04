@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 
@@ -13,9 +12,9 @@ public enum Location
 
 public enum AlertLevel
 {
-    Early = 60 * 24,
-    Standard = 60 + 45,
-    Late = 30
+    Early,
+    Standard,
+    Late,
 }
 
 public static class Appointment
@@ -27,7 +26,7 @@ public static class Appointment
         => TimeZoneInfo.ConvertTimeToUtc(DateTime.Parse(appointmentDateDescription), location.TimeZone());
     
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
-        => appointment.Add(- TimeSpan.FromMinutes((int)alertLevel));
+        => appointment.Add(alertLevel.Interval());
 
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
@@ -35,6 +34,14 @@ public static class Appointment
         var weekAgo = dt.AddDays(-7);
         return timeZone.IsDaylightSavingTime(weekAgo) != timeZone.IsDaylightSavingTime(dt);
     }
+
+    public static TimeSpan Interval(this AlertLevel alertLevel)
+        => alertLevel switch
+        {
+            AlertLevel.Early => - TimeSpan.FromDays(1),
+            AlertLevel.Standard => - TimeSpan.FromHours(1.75),
+            AlertLevel.Late => - TimeSpan.FromMinutes(30),
+        };
 
     public static DateTime NormalizeDateTime(string dtStr, Location location) => 
         DateTime.TryParse(dtStr, location.Culture(), DateTimeStyles.None, out var dateTime) 

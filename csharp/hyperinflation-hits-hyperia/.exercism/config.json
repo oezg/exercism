@@ -1,0 +1,27 @@
+{
+  "authors": [
+    "mikedamay"
+  ],
+  "contributors": [
+    "ihid",
+    "sleeplessbyte",
+    "saschamann",
+    "ErikSchierboom",
+    "yzAlvin"
+  ],
+  "files": {
+    "solution": [
+      "HyperinflationHitsHyperia.cs"
+    ],
+    "test": [
+      "HyperinflationHitsHyperiaTests.cs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.cs"
+    ],
+    "invalidator": [
+      "HyperinflationHitsHyperia.csproj"
+    ]
+  },
+  "blurb": "Learn about arithmetic overflow by dealing with hyperinflation."
+}
