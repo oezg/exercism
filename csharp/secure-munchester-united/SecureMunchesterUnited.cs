@@ -3,14 +3,13 @@ using System;
 public class SecurityPassMaker
 {
     public string GetDisplayName(TeamSupport support)
-    {
-        string result = "Too Important for a Security Pass";
-        if (support is Staff)
-            result = support.Title;
-        if (support.GetType() == typeof(Security))
-            result += " Priority Personnel";
-        return result;
-    }
+        => support switch
+        {
+            SecurityJunior or SecurityIntern or PoliceLiaison => support.Title,
+            Security => $"{support.Title} Priority Personnel",
+            Staff => support.Title,
+            _ => "Too Important for a Security Pass",
+        };
 }
 
 /**** Please do not alter the code below ****/
