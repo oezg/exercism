@@ -13,8 +13,8 @@ enum Permission
 {
     None = 0,
     Read = 1,
-    Write = 2,
-    Delete = 4,
+    Write = 1 << 1,
+    Delete = 1 << 2,
     All = 7,
 }
 
@@ -22,7 +22,7 @@ static class Permissions
 {
     public static Permission Default(AccountType accountType)
     {
-        if (accountType != AccountType.Guest && accountType != AccountType.User && accountType != AccountType.Moderator)
+        if (!Enum.IsDefined(typeof(AccountType), accountType))
         {
             accountType = AccountType.Other;
         }
