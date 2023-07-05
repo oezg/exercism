@@ -3,127 +3,53 @@ using System.Collections.Generic;
 
 public class WeatherStation
 {
-    private Reading reading;
-    private List<DateTime> recordDates = new List<DateTime>();
-    private List<decimal> temperatures = new List<decimal>();
+    private Reading _reading;
+    private readonly List<DateTime> _recordDates = new();
+    public static List<decimal> Temperatures => new();
 
     public void AcceptReading(Reading reading)
     {
-        this.reading = reading;
-        recordDates.Add(DateTime.Now);
-        temperatures.Add(reading.Temperature);
+        this._reading = reading;
+        _recordDates.Add(DateTime.Now);
+        Temperatures.Add(reading.Temperature);
     }
 
     public void ClearAll()
     {
-        reading = new Reading();
-        recordDates.Clear();
-        temperatures.Clear();
+        _reading = new Reading();
+        _recordDates.Clear();
+        Temperatures.Clear();
     }
 
-    public decimal LatestTemperature
-    {
-        get
-        {
-            return reading.Temperature;
-        }
-    }
+    public decimal LatestTemperature => _reading.Temperature;
 
-    public decimal LatestPressure
-    {
-        get
-        {
-            return reading.Pressure;
-        }
-    }
+    public decimal LatestPressure => _reading.Pressure;
 
-    public decimal LatestRainfall
-    {
-        get
-        {
-            return reading.Rainfall;
-        }
-    }
+    public decimal LatestRainfall => _reading.Rainfall;
 
-    public bool HasHistory
-    {
-        get
-        {
-            if (recordDates.Count > 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
+    public bool HasHistory => _recordDates.Count > 1;
 
-    public Outlook ShortTermOutlook
+    public Outlook ShortTermOutlook => _reading.Temperature switch
     {
-        get
-        {
-            if (reading.Equals(new Reading()))
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                if (reading.Pressure < 10m && reading.Temperature < 30m)
-                {
-                    return Outlook.Cool;
-                }
-                else if (reading.Temperature > 50)
-                {
-                    return Outlook.Good;
-                }
-                else
-                {
-                    return Outlook.Warm;
-                }
-            }
-        }
-    }
+        _ when _reading.Equals(new Reading()) => throw new ArgumentException(),
+        < 30m when _reading.Pressure < 10m => Outlook.Cool,
+        > 50 => Outlook.Good,
+        _ => Outlook.Warm
 
-    public Outlook LongTermOutlook
-    {
-        get
-        {
-            if (reading.WindDirection == WindDirection.Southerly
-                || reading.WindDirection == WindDirection.Easterly
-                && reading.Temperature > 20)
-            {
-                return Outlook.Good;
-            }
-            if (reading.WindDirection == WindDirection.Northerly)
-            {
-                return Outlook.Cool;
-            }
-            if (reading.WindDirection == WindDirection.Easterly
-                && reading.Temperature <= 20)
-            {
-                return Outlook.Warm;
-            }
-            if (reading.WindDirection == WindDirection.Westerly)
-            {
-                return Outlook.Rainy;
-            }
-            throw new ArgumentException();
-        }
-    }
+    };
 
-    public State RunSelfTest()
-    {
-        if (reading.Equals(new Reading()))
+    public Outlook LongTermOutlook =>
+        _reading.WindDirection switch
         {
-            return State.Bad;
-        }
-        else
-        {
-            return State.Good;
-        }
-    }
+            WindDirection.Southerly => Outlook.Good,
+            WindDirection.Easterly when _reading.Temperature > 20 => Outlook.Good,
+            WindDirection.Northerly => Outlook.Cool,
+            WindDirection.Easterly when _reading.Temperature <= 20 => Outlook.Warm,
+            WindDirection.Westerly => Outlook.Rainy,
+            _ => throw new ArgumentException()
+        };
+
+    public State RunSelfTest() => _reading.Equals(new Reading()) ? State.Bad : State.Good;
 }
 
 /*** Please do not modify this struct ***/
