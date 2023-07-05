@@ -35,5 +35,5 @@ static class Permissions
         => ~revoke & current;
 
     public static bool Check(Permission current, Permission check) 
-        => Revoke(check, current) == Permission.None;
+        => current.HasFlag(check);
 }
