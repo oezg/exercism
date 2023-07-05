@@ -2,7 +2,6 @@ using System;
 
 enum AccountType
 {
-    Other = 0,
     Guest = 1,
     User = 3,
     Moderator = 7,
@@ -24,7 +23,7 @@ static class Permissions
     {
         if (!Enum.IsDefined(typeof(AccountType), accountType))
         {
-            accountType = AccountType.Other;
+            return Permission.None;
         }
         return (Permission)accountType;
 
