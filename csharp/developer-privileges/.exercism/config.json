@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "mikedamay"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "yzAlvin"
+  ],
+  "files": {
+    "solution": [
+      "DeveloperPrivileges.cs"
+    ],
+    "test": [
+      "DeveloperPrivilegesTests.cs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.cs"
+    ],
+    "invalidator": [
+      "DeveloperPrivileges.csproj"
+    ]
+  },
+  "blurb": "Learn about object initialisers by adding functionality to an authentication system."
+}
