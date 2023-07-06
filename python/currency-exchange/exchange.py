@@ -1,3 +1,6 @@
+"""Functions for exchanging money"""
+
+
 def exchange_money(budget, exchange_rate):
     """
 

@@ -5,20 +5,20 @@ public class WeatherStation
 {
     private Reading _reading;
     private readonly List<DateTime> _recordDates = new();
-    public static List<decimal> Temperatures => new();
+    private static readonly List<decimal> _temperatures = new();
 
     public void AcceptReading(Reading reading)
     {
         this._reading = reading;
         _recordDates.Add(DateTime.Now);
-        Temperatures.Add(reading.Temperature);
+        _temperatures.Add(reading.Temperature);
     }
 
     public void ClearAll()
     {
         _reading = new Reading();
         _recordDates.Clear();
-        Temperatures.Clear();
+        _temperatures.Clear();
     }
 
     public decimal LatestTemperature => _reading.Temperature;
@@ -44,7 +44,7 @@ public class WeatherStation
             WindDirection.Southerly => Outlook.Good,
             WindDirection.Easterly when _reading.Temperature > 20 => Outlook.Good,
             WindDirection.Northerly => Outlook.Cool,
-            WindDirection.Easterly when _reading.Temperature <= 20 => Outlook.Warm,
+            WindDirection.Easterly => Outlook.Warm,
             WindDirection.Westerly => Outlook.Rainy,
             _ => throw new ArgumentException()
         };
