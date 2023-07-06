@@ -8,7 +8,7 @@ public interface IRemoteControlCar
     void Drive();
 }
 
-public class ProductionRemoteControlCar : IRemoteControlCar, IComparable
+public class ProductionRemoteControlCar : IRemoteControlCar, IComparable<ProductionRemoteControlCar>
 {
     public int DistanceTravelled { get; private set; }
     public int NumberOfVictories { get; set; }
@@ -18,11 +18,8 @@ public class ProductionRemoteControlCar : IRemoteControlCar, IComparable
         DistanceTravelled += 10;
     }
 
-    public int CompareTo(object obj)
-    {
-        var other = obj as ProductionRemoteControlCar;
-        return this.NumberOfVictories - other.NumberOfVictories;
-    }
+    public int CompareTo(ProductionRemoteControlCar other) 
+    => NumberOfVictories - other.NumberOfVictories;
 }
 
 public class ExperimentalRemoteControlCar : IRemoteControlCar
@@ -42,7 +39,8 @@ public static class TestTrack
         car.Drive();
     }
 
-    public static List<ProductionRemoteControlCar> GetRankedCars(ProductionRemoteControlCar prc1,
+    public static List<ProductionRemoteControlCar> GetRankedCars(
+        ProductionRemoteControlCar prc1,
         ProductionRemoteControlCar prc2)
         => prc1.CompareTo(prc2) < 0 
             ? new List<ProductionRemoteControlCar>() { null, prc2, prc1 } 
