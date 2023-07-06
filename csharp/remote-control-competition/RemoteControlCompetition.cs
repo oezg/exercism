@@ -42,8 +42,10 @@ public static class TestTrack
     public static List<ProductionRemoteControlCar> GetRankedCars(
         ProductionRemoteControlCar prc1,
         ProductionRemoteControlCar prc2)
-        => prc1.CompareTo(prc2) < 0 
-            ? new List<ProductionRemoteControlCar>() { null, prc2, prc1 } 
-            : new List<ProductionRemoteControlCar>() { null, prc1, prc2 };
+    {
+        List<ProductionRemoteControlCar> rankings = new List<ProductionRemoteControlCar>{prc1, prc2};
+        rankings.Sort();
+        return rankings;
+    }
 
 }
