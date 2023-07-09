@@ -12,33 +12,26 @@ public class Orm
     public void Write(string data)
     {
         using var db = database;
-        try
-        {
-            db.BeginTransaction();
-            db.Write(data);
-            db.EndTransaction();
-        }
-        catch (InvalidOperationException e)
-        {
-            db.Dispose();
-            throw e;
-        }
+        db.BeginTransaction();
+        db.Write(data);
+        db.EndTransaction();
     }
 
     public bool WriteSafely(string data)
     {
+        bool result = true;
         using var db = database;
         try
         {
             db.BeginTransaction();
             db.Write(data);
             db.EndTransaction();
-            return true;
         }
         catch (InvalidOperationException e)
         {
-            db.Dispose();
-            return false;
+            result = false;
         }
+
+        return result;
     }
 }
