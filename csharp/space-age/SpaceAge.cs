@@ -2,7 +2,7 @@ using System;
 
 public class SpaceAge
 {
-    private int _seconds;
+    private readonly int _seconds;
 
     public SpaceAge(int seconds) => _seconds = seconds;
 
