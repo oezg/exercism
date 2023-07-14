@@ -12,8 +12,8 @@ public class FacialFeatures
         PhiltrumWidth = philtrumWidth;
     }
     
-    public override bool Equals(object obj) 
-        => obj is FacialFeatures other && (EyeColor == other.EyeColor && PhiltrumWidth == other.PhiltrumWidth);
+    public bool Equals(FacialFeatures obj) 
+        => obj != null && (EyeColor == obj.EyeColor && PhiltrumWidth == obj.PhiltrumWidth);
 
     public override int GetHashCode() 
         => HashCode.Combine(EyeColor, PhiltrumWidth);

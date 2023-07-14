@@ -5793,11 +5793,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
+      "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
       "projectName": "InstrumentsOfTexas",
-      "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
+      "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
       "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\instruments-of-texas\\obj\\",
+      "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\instruments-of-texas\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",

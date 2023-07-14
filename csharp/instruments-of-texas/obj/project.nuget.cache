@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "N8wcDVGs2EDI3MVmlvDSbohmDTu6R3CDkb3Z5RmIxAYs4vyCgRRUZVuy1lj5aIwP87j2anHETkEcQp8nOPAk3g==",
+  "dgSpecHash": "CtgQ20YXg233EBRV1z72+KpdI45FA64TcPwioK3K20nueFpm26HnFUZA2rqwHTwhnED4X6Ns3VYMCjK2K85phg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\Exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\instruments-of-texas\\InstrumentsOfTexas.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",

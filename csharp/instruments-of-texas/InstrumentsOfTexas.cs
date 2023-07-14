@@ -28,13 +28,13 @@ public class CalculatorTestHarness
             Multiply(x, y);
             return "Multiply succeeded";
         }
+        catch (CalculationException e) when (e.Operand1 < 0 || e.Operand2 < 0) 
+        {
+            return "Multiply failed for negative operands. " + e.InnerException.Message;
+        }
         catch (CalculationException e)
         {
-            if (e.Operand1 > 0 || e.Operand2 > 0)
-            {
-                return "Multiply failed for mixed or positive operands. " + e.InnerException.Message;
-            }
-            return "Multiply failed for negative operands. " + e.InnerException.Message;
+            return "Multiply failed for mixed or positive operands. " + e.InnerException.Message;
         }
     }
 
@@ -46,7 +46,7 @@ public class CalculatorTestHarness
         }
         catch (OverflowException e)
         {
-            throw new CalculationException(x, y, "123", e);
+            throw new CalculationException(x, y, "Overflow", e);
         }
     }
 }
