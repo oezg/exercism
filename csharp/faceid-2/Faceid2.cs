@@ -11,13 +11,18 @@ public class FacialFeatures
         EyeColor = eyeColor;
         PhiltrumWidth = philtrumWidth;
     }
-    
-    public bool Equals(FacialFeatures obj) 
-        => obj != null && (EyeColor == obj.EyeColor && PhiltrumWidth == obj.PhiltrumWidth);
+
+    public override bool Equals(object obj) => Equals(obj as FacialFeatures);
+
+    public bool Equals(FacialFeatures other)
+        => ReferenceEquals(this, other) 
+        || other is not null 
+            && GetType() == other.GetType() 
+            && EyeColor == other.EyeColor
+            && PhiltrumWidth == other.PhiltrumWidth;
 
     public override int GetHashCode() 
-        => HashCode.Combine(EyeColor, PhiltrumWidth);
-    
+        => (EyeColor, PhiltrumWidth).GetHashCode();    
 }
 
 public class Identity
@@ -31,11 +36,16 @@ public class Identity
         FacialFeatures = facialFeatures;
     }
 
-    public override bool Equals(object obj)
-    => obj is Identity other && Email == other.Email && FacialFeatures.Equals(other.FacialFeatures);
+    public override bool Equals(object obj) => Equals(obj as Identity);
+    
+    public bool Equals(Identity other) 
+        => other is null ? false
+        : ReferenceEquals(this, other) ? true
+        : GetType() != other.GetType() ? false
+        : Email == other.Email && this.FacialFeatures.Equals(other.FacialFeatures);
 
     public override int GetHashCode()
-        => HashCode.Combine(Email, FacialFeatures);
+        => (Email, FacialFeatures).GetHashCode();
 }
 
 public class Authenticator
