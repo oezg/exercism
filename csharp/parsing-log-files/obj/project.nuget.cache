@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xsY5u3x/oqco58UY9iGVqpQiNyNZJoyrX+kitEZW7dKK6RxvGK//YYyOnvOh8T+UJcSJc8TZs/EL755m6c0mtg==",
+  "dgSpecHash": "ZmwYmatBd73sbT4Lwn+1Af9jOe5O5BVYq/GUNLu848qvV1ARaptzVO18o0ffNCqCeyWAsKOHICKGLiz4XSoxfQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\Exercism\\csharp\\parsing-log-files\\ParsingLogFiles.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\parsing-log-files\\ParsingLogFiles.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
