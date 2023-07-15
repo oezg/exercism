@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\two-fer\\TwoFer.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\two-fer\\TwoFer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\two-fer\\TwoFer.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\two-fer\\TwoFer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\two-fer\\TwoFer.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\two-fer\\TwoFer.csproj",
         "projectName": "TwoFer",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\two-fer\\TwoFer.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\two-fer\\TwoFer.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\two-fer\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\two-fer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",

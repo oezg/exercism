@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\leap\\Leap.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\leap\\Leap.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\leap\\Leap.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\leap\\Leap.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\leap\\Leap.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\leap\\Leap.csproj",
         "projectName": "Leap",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\leap\\Leap.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\leap\\Leap.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\leap\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\leap\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
