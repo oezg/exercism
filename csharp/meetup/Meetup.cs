@@ -31,12 +31,12 @@ public class Meetup
 
     public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule) => schedule switch
     {
-        Schedule.Teenth => firstOccurrenceAfterOffset(dayOfWeek, 12),
-        Schedule.First => firstOccurrenceAfterOffset(dayOfWeek, 0 * WeekLength),
-        Schedule.Second => firstOccurrenceAfterOffset(dayOfWeek, 1 * WeekLength),
-        Schedule.Third => firstOccurrenceAfterOffset(dayOfWeek, 2 * WeekLength),
-        Schedule.Fourth => firstOccurrenceAfterOffset(dayOfWeek, 3 * WeekLength),
-        Schedule.Last => firstOccurrenceAfterOffset(dayOfWeek, DateTime.DaysInMonth(Year, Month) - WeekLength),
+        Schedule.Teenth => Dates.Where(date => date.DayOfWeek == dayOfWeek).First(date => date.Day > 12), 
+        Schedule.First => Dates.First(date => date.DayOfWeek == dayOfWeek), 
+        Schedule.Second => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(1), 
+        Schedule.Third => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(2),
+        Schedule.Fourth => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(3),
+        Schedule.Last => Dates.Last(date => date.DayOfWeek == dayOfWeek), 
         _ => throw new ArgumentException(),
     };
 
