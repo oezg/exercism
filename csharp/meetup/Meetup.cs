@@ -25,42 +25,19 @@ public class Meetup
 
     public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule) => schedule switch
     {
-        Schedule.Teenth => teenthOccurrence(dayOfWeek),
-        Schedule.First => firstOccurrence(dayOfWeek),
-        Schedule.Second => firstOccurrence(dayOfWeek).AddDays(7),
-        Schedule.Third => firstOccurrence(dayOfWeek).AddDays(14),
-        Schedule.Fourth => firstOccurrence(dayOfWeek).AddDays(21),
-        Schedule.Last => lastOccurrence(dayOfWeek),
+        Schedule.Teenth => firstOccurrenceAfterOffset(dayOfWeek, 13),
+        Schedule.First => firstOccurrenceAfterOffset(dayOfWeek),
+        Schedule.Second => firstOccurrenceAfterOffset(dayOfWeek, 8),
+        Schedule.Third => firstOccurrenceAfterOffset(dayOfWeek, 15),
+        Schedule.Fourth => firstOccurrenceAfterOffset(dayOfWeek, 22),
+        Schedule.Last => firstOccurrenceAfterOffset(dayOfWeek, DateTime.DaysInMonth(Year, Month) - 6),
         _ => throw new ArgumentException(),
     };
 
-    private DateTime firstOccurrence(DayOfWeek dayOfWeek)
+    private DateTime firstOccurrenceAfterOffset(DayOfWeek dayOfWeek, int offset = 1)
     {
-        DateTime dt = new DateTime(Year, Month, 1);
-        while (dt.DayOfWeek != dayOfWeek) 
-        {
-            dt = dt.AddDays(1);
-        }
-        return dt;
-    }
-
-    private DateTime lastOccurrence(DayOfWeek dayOfWeek)
-    {
-        DateTime dt = new DateTime(Year, Month, DateTime.DaysInMonth(Year, Month));
-        while (dt.DayOfWeek != dayOfWeek)
-        {
-            dt = dt.AddDays(-1);
-        }
-        return dt;
-    }
-
-    private DateTime teenthOccurrence(DayOfWeek dayOfWeek)
-    {
-        DateTime dt = new DateTime(Year, Month, 13);
-        while (dt.DayOfWeek != dayOfWeek)
-        {
-            dt = dt.AddDays(1);
-        }
+        DateTime dt = new DateTime(Year, Month, offset);
+        dt = dt.AddDays(((dayOfWeek - dt.DayOfWeek) % 7 + 7) % 7);
         return dt;
     }
 }
