@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\resistor-color\\ResistorColor.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\resistor-color\\ResistorColor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\resistor-color\\ResistorColor.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\resistor-color\\ResistorColor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\resistor-color\\ResistorColor.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\resistor-color\\ResistorColor.csproj",
         "projectName": "ResistorColor",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\resistor-color\\ResistorColor.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\resistor-color\\ResistorColor.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\resistor-color\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\resistor-color\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
