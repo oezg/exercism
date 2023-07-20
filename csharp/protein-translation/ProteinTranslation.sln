@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProteinTranslation", "ProteinTranslation.csproj", "{6A1E70CC-0DD5-4594-9F35-F2FC02FF01FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A1E70CC-0DD5-4594-9F35-F2FC02FF01FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A1E70CC-0DD5-4594-9F35-F2FC02FF01FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A1E70CC-0DD5-4594-9F35-F2FC02FF01FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A1E70CC-0DD5-4594-9F35-F2FC02FF01FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4ACE1A6E-BF88-4F86-96D9-F47679278212}
+	EndGlobalSection
+EndGlobal
