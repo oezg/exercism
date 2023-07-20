@@ -1,8 +1,8 @@
+using Exercism.Tests;
+using FsCheck;
+using FsCheck.Xunit;
 using System;
 using Xunit;
-using FsCheck.Xunit;
-using FsCheck;
-using Exercism.Tests;
 
 public class HyperiaForexTests
 {

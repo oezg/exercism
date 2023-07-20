@@ -11,42 +11,28 @@ public struct CurrencyAmount
         this.currency = currency;
     }
 
-    private static void validateComparison(CurrencyAmount lhs, CurrencyAmount rhs)
-    {
-        if (lhs.currency != rhs.currency)
-        {
-            throw new ArgumentException();
-        }
-    }
+    private static bool AssertSameCurrency(CurrencyAmount lhs, CurrencyAmount rhs)
+        => lhs.currency == rhs.currency ? true : throw new ArgumentException("Currencies must be the same.");
 
     public static bool operator ==(CurrencyAmount lhs, CurrencyAmount rhs)
-    {
-        validateComparison(lhs, rhs);
-        return lhs.amount == rhs.amount;
-    }
+        => AssertSameCurrency(lhs, rhs) && lhs.amount == rhs.amount;
 
-    public static bool operator !=(CurrencyAmount lhs, CurrencyAmount rhs) 
+    public static bool operator !=(CurrencyAmount lhs, CurrencyAmount rhs)
         => !(lhs == rhs);
 
     public static bool operator <(CurrencyAmount lhs, CurrencyAmount rhs)
-    {
-        validateComparison(lhs, rhs);
-        return lhs.amount < rhs.amount;
-    }
+        => AssertSameCurrency(lhs, rhs) && lhs.amount < rhs.amount;
 
     public static bool operator >(CurrencyAmount lhs, CurrencyAmount rhs)
         => !(lhs == rhs || lhs < rhs);
 
     public static CurrencyAmount operator +(CurrencyAmount lhs, CurrencyAmount rhs)
-    {
-        validateComparison(lhs, rhs);
-        return new CurrencyAmount(lhs.amount + rhs.amount, rhs.currency);
-    }
+        => AssertSameCurrency(lhs, rhs) ? new CurrencyAmount(lhs.amount + rhs.amount, rhs.currency) : default;
 
     public static CurrencyAmount operator -(CurrencyAmount lhs, CurrencyAmount rhs)
         => lhs + new CurrencyAmount(-rhs.amount, rhs.currency);
 
-    public static CurrencyAmount operator *(decimal factor, CurrencyAmount ca) 
+    public static CurrencyAmount operator *(decimal factor, CurrencyAmount ca)
         => new(factor * ca.amount, ca.currency);
 
     public static CurrencyAmount operator *(CurrencyAmount ca, decimal factor)
@@ -58,6 +44,6 @@ public struct CurrencyAmount
     public static explicit operator double(CurrencyAmount ca)
         => (double)ca.amount;
 
-    public static implicit operator decimal(CurrencyAmount ca) 
+    public static implicit operator decimal(CurrencyAmount ca)
         => ca.amount;
 }
