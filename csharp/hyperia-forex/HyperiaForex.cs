@@ -2,48 +2,49 @@ using System;
 
 public struct CurrencyAmount
 {
-    private decimal amount;
-    private string currency;
+    private decimal _amount { get; }
+
+    private string _currency { get; }
 
     public CurrencyAmount(decimal amount, string currency)
     {
-        this.amount = amount;
-        this.currency = currency;
+        _amount = amount;
+        _currency = currency;
     }
 
-    private static bool AssertSameCurrency(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? true : throw new ArgumentException("Currencies must be the same.");
+    private static bool s_assertSameCurrency(CurrencyAmount lhs, CurrencyAmount rhs)
+        => lhs._currency == rhs._currency ? true : throw new ArgumentException("Currencies must be the same.");
 
     public static bool operator ==(CurrencyAmount lhs, CurrencyAmount rhs)
-        => AssertSameCurrency(lhs, rhs) && lhs.amount == rhs.amount;
+        => s_assertSameCurrency(lhs, rhs) && lhs._amount == rhs._amount;
 
     public static bool operator !=(CurrencyAmount lhs, CurrencyAmount rhs)
         => !(lhs == rhs);
 
     public static bool operator <(CurrencyAmount lhs, CurrencyAmount rhs)
-        => AssertSameCurrency(lhs, rhs) && lhs.amount < rhs.amount;
+        => s_assertSameCurrency(lhs, rhs) && lhs._amount < rhs._amount;
 
     public static bool operator >(CurrencyAmount lhs, CurrencyAmount rhs)
         => !(lhs == rhs || lhs < rhs);
 
     public static CurrencyAmount operator +(CurrencyAmount lhs, CurrencyAmount rhs)
-        => AssertSameCurrency(lhs, rhs) ? new CurrencyAmount(lhs.amount + rhs.amount, rhs.currency) : default;
+        => s_assertSameCurrency(lhs, rhs) ? new CurrencyAmount(lhs._amount + rhs._amount, rhs._currency) : default;
 
     public static CurrencyAmount operator -(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs + new CurrencyAmount(-rhs.amount, rhs.currency);
+        => lhs + new CurrencyAmount(-rhs._amount, rhs._currency);
 
     public static CurrencyAmount operator *(decimal factor, CurrencyAmount ca)
-        => new(factor * ca.amount, ca.currency);
+        => new(factor * ca._amount, ca._currency);
 
     public static CurrencyAmount operator *(CurrencyAmount ca, decimal factor)
         => factor * ca;
 
     public static CurrencyAmount operator /(CurrencyAmount ca, decimal divisor)
-        => new(ca.amount / divisor, ca.currency);
+        => new(ca._amount / divisor, ca._currency);
 
     public static explicit operator double(CurrencyAmount ca)
-        => (double)ca.amount;
+        => (double)ca._amount;
 
     public static implicit operator decimal(CurrencyAmount ca)
-        => ca.amount;
+        => ca._amount;
 }
