@@ -11,28 +11,40 @@ public struct CurrencyAmount
         this.currency = currency;
     }
 
+    private static void validateComparison(CurrencyAmount lhs, CurrencyAmount rhs)
+    {
+        if (lhs.currency != rhs.currency)
+        {
+            throw new ArgumentException();
+        }
+    }
+
     public static bool operator ==(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? lhs.amount == rhs.amount 
-        : throw new ArgumentException();
+    {
+        validateComparison(lhs, rhs);
+        return lhs.amount == rhs.amount;
+    }
 
     public static bool operator !=(CurrencyAmount lhs, CurrencyAmount rhs) 
         => !(lhs == rhs);
 
     public static bool operator <(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? lhs.amount < rhs.amount 
-        : throw new ArgumentException();
+    {
+        validateComparison(lhs, rhs);
+        return lhs.amount < rhs.amount;
+    }
 
     public static bool operator >(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? lhs.amount > rhs.amount 
-        : throw new ArgumentException();
+        => !(lhs == rhs || lhs < rhs);
 
     public static CurrencyAmount operator +(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? new CurrencyAmount(lhs.amount + rhs.amount, rhs.currency)
-        : throw new ArgumentException();
+    {
+        validateComparison(lhs, rhs);
+        return new CurrencyAmount(lhs.amount + rhs.amount, rhs.currency);
+    }
 
     public static CurrencyAmount operator -(CurrencyAmount lhs, CurrencyAmount rhs)
-        => lhs.currency == rhs.currency ? new CurrencyAmount(lhs.amount - rhs.amount, rhs.currency) 
-        : throw new ArgumentException();
+        => lhs + new CurrencyAmount(-rhs.amount, rhs.currency);
 
     public static CurrencyAmount operator *(decimal factor, CurrencyAmount ca) 
         => new(factor * ca.amount, ca.currency);
