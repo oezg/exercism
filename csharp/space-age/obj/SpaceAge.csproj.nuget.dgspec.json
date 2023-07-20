@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\space-age\\SpaceAge.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\space-age\\SpaceAge.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\space-age\\SpaceAge.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\space-age\\SpaceAge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\space-age\\SpaceAge.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\space-age\\SpaceAge.csproj",
         "projectName": "SpaceAge",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\space-age\\SpaceAge.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\space-age\\SpaceAge.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\space-age\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\space-age\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
