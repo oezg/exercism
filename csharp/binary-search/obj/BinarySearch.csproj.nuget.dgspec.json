@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\HighScores.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\BinarySearch.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\HighScores.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\BinarySearch.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\HighScores.csproj",
-        "projectName": "HighScores",
-        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\HighScores.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\BinarySearch.csproj",
+        "projectName": "BinarySearch",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\BinarySearch.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",

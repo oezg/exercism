@@ -4,22 +4,24 @@ using System.Linq;
 
 public class HighScores
 {
-    public List<int> ScoresList { get; }
+    private List<int> _scoresList { get; }
 
-    public HighScores(List<int> list) => ScoresList = list;
+    public HighScores(List<int> list) => _scoresList = list;
 
-    public List<int> Scores() => ScoresList;
+    public List<int> Scores() => _scoresList;
 
-    public int Latest() => ScoresList[^1];
+    public int Latest() => _scoresList.Last();
 
-    public int PersonalBest() => ScoresList.Max();
+    public int PersonalBest() => _scoresList.Max();
 
     public List<int> PersonalTopThree()
-    {
-        var result = ScoresList.GetRange(0, ScoresList.Count);
-        result.Sort();
-        result.Reverse();
-        int count = Math.Min(3, result.Count);
-        return result.GetRange(0, count);
-    }
+    => _scoresList.OrderDescending().Take(3).ToList();
+    
+    //{
+    //    var result = _scoresList.GetRange(0, _scoresList.Count);
+    //    result.Sort();
+    //    result.Reverse();
+    //    int count = Math.Min(3, result.Count);
+    //    return result.GetRange(0, count);
+    //}
 }

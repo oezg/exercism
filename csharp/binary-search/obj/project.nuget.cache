@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xOTRqP2LFWH/x/bGpiL2JzDevCIiDJQ7v5u4SoaigotWt4Lvi0OcFeklZaAqwt4xLVsnRftWRvCL9kXCsOqQFg==",
+  "dgSpecHash": "Cf3qdeAmcPJeRP6V2ujBuZHmD9+fCUvfJDyp0LR79zGdYlozAOxw8D8RmzDYpsMuJUf8dS1aVvzN50+KvEhxJA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\high-scores\\HighScores.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\binary-search\\BinarySearch.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
