@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class NucleotideCount
 {
-    public static IDictionary<char, int> Count(string sequence)
-    {
-        Dictionary<char, int> nucleotideCounts = new() { { 'A', 0}, { 'T', 0}, { 'G', 0}, { 'C', 0} };
+    private const string _nucleotides = "ATGC";
 
-        foreach (var item in sequence)
-        {
-            if (!nucleotideCounts.ContainsKey(item)) throw new ArgumentException(nameof(sequence));
-            nucleotideCounts[item] += 1;
-        }
-        return nucleotideCounts;
-    }
+    public static IDictionary<char, int> Count(string sequence)
+        => sequence.All(_nucleotides.Contains) 
+        ? sequence.Concat(_nucleotides).GroupBy(c => c).ToDictionary(c => c.Key, c => c.Count() - 1)
+        : throw new ArgumentException(s_message(sequence));
+
+    private static string s_message(string sequence)
+        => $"{string.Join(", ", sequence.Where(c => !_nucleotides.Contains(c)))} are not nucleotides!";
 }

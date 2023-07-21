@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj",
         "projectName": "NucleotideCount",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\nucleotide-count\\NucleotideCount.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\nucleotide-count\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\nucleotide-count\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
