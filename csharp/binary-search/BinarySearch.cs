@@ -4,12 +4,10 @@ public static class BinarySearch
 {
     public static int Find(int[] input, int value)
     {
-        int upper = input.Length;
-        int lower = 0;
-        int middle = upper / 2;
+        int lower = 0, upper = input.Length, middle;
         while(lower < upper)
         {
-            middle = lower + (upper - lower) / 2;
+            middle = (upper + lower) / 2;
             if (input[middle] == value)
             {
                 return middle;
