@@ -11,16 +11,24 @@ public enum Plant
 
 public class KindergartenGarden
 {
-    private string[] _strings;
-
     public KindergartenGarden(string diagram)
     {
-        _strings = diagram.Split('\n');
+        string[] rows = diagram.Split('\n');
+        _plants = new Plant[rows.Length, rows[0].Length];
+        for (int i = 0; i < rows.Length; i++)
+        {
+            for (int j = 0; j < rows[i].Length; j++)
+            {
+                _plants[i,j] = (Plant)rows[i][j];
+            }
+        }
     }
+
+    private Plant[,] _plants { get; }
 
     public IEnumerable<Plant> Plants(string student)
     {
-        int n = student[0] - 'A';
-        return new Plant[] { (Plant)_strings[0][n * 2], (Plant)_strings[0][n * 2 + 1], (Plant)_strings[1][n * 2], (Plant)_strings[1][n * 2 + 1] };
+        int n = 2 * (student[0] - 'A');
+        return new Plant[] { _plants[0, n], _plants[0, n+1], _plants[1, n], _plants[1, n+1] };
     }
 }
