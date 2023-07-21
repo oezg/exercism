@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\Hamming.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\Hamming.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\Hamming.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\Hamming.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\Hamming.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\Hamming.csproj",
         "projectName": "Hamming",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\Hamming.csproj",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\Hamming.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",

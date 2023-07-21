@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/2j9p7Aj/MCtFIFy7oU2D5xlb65YeMu8BhzRgLrue8rs0EY6A2cD2X3LOTrI1Xl+XZNBm3GO4c7uLEA7yfQujA==",
+  "dgSpecHash": "N9QkwjdeC/5b+lXbjsSrR3sdXAA+mI6I76IKYAh7hxB0GVdek4OS+rvo/Cz2W+QJqSHd/YW52XlhFxjAK4p/mg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\Exercism\\csharp\\hamming\\Hamming.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\hamming\\Hamming.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
