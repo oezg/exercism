@@ -13,7 +13,7 @@ public struct Coord
     public ushort X { get; }
     public ushort Y { get; }
 
-    public readonly bool Equals(Coord other) 
+    public readonly bool Equals(Coord other)
         => X == other.X && Y == other.Y;
 
     public readonly double SideLength(Coord other) 
@@ -27,18 +27,18 @@ public struct Plot
 
     public Coord[] Coords { get; }
 
-    public readonly bool Equals(Plot p)
-    {
-        for (int i = 0; i < Coords.Length; i++)
-        {
-            if (Coords[i].Equals(p.Coords[i]))
-            {
-                continue;
-            }
-            return false;
-        }
-        return true;
-    }
+    //public readonly bool Equals(Plot p)
+    //{
+    //    for (int i = 0; i < Coords.Length; i++)
+    //    {
+    //        if (Coords[i].Equals(p.Coords[i]))
+    //        {
+    //            continue;
+    //        }
+    //        return false;
+    //    }
+    //    return true;
+    //}
 
     public readonly double[] SideLengths
     {
@@ -72,16 +72,17 @@ public class ClaimsHandler
     }
 
     public bool IsClaimStaked(Plot plot)
-    {
-        foreach (var item in Plots)
-        {
-            if (plot.Equals(item))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
+        => Plots.Contains(plot);
+    //{
+    //    foreach (var item in Plots)
+    //    {
+    //        if (plot.Equals(item))
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
     public bool IsLastClaim(Plot plot)
         => Plots.Count != 0 && plot.Equals(Plots[^1]);
