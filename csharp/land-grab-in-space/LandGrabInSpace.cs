@@ -13,80 +13,48 @@ public struct Coord
     public ushort X { get; }
     public ushort Y { get; }
 
-    public readonly bool Equals(Coord other)
-        => X == other.X && Y == other.Y;
-
     public readonly double SideLength(Coord other) 
         => Math.Sqrt(Math.Pow((X - other.X), 2) + Math.Pow((Y - other.Y), 2));
 }
 
 public struct Plot
 {
-    public Plot(Coord coord1, Coord coord2, Coord coord3, Coord coord4) 
-        => Coords = new Coord[] { coord1, coord2, coord3, coord4 };
-
-    public Coord[] Coords { get; }
-
-    //public readonly bool Equals(Plot p)
-    //{
-    //    for (int i = 0; i < Coords.Length; i++)
-    //    {
-    //        if (Coords[i].Equals(p.Coords[i]))
-    //        {
-    //            continue;
-    //        }
-    //        return false;
-    //    }
-    //    return true;
-    //}
-
-    public readonly double[] SideLengths
+    private readonly Coord _coord1, _coord2, _coord3, _coord4;
+    public Plot(Coord coord1, Coord coord2, Coord coord3, Coord coord4)
     {
-        get
-        {
-            var sideLengths = new double[Coords.Length];
-            for (int i = 0; i < sideLengths.Length; i++)
-            {
-                var nextCoord = Coords[(i + 1) % Coords.Length];
-                var sideLength = Coords[i].SideLength(nextCoord);
-                sideLengths[i] = sideLength;
-            }
-            return sideLengths;
-        }
+        _coord1 = coord1;
+        _coord2 = coord2;
+        _coord3 = coord3;
+        _coord4 = coord4;
     }
 
-    public readonly double LongestSide => SideLengths.Max();
+    public readonly double LongestSide 
+        => new Coord[] { _coord1, _coord2, _coord3, _coord4 }
+        .Zip(new Coord[] { _coord4, _coord1, _coord2, _coord3 })
+        .Select(pair => pair.First.SideLength(pair.Second))
+        .Max();
 }
 
 
 public class ClaimsHandler
 {
-    public List<Plot> Plots { get; } = new List<Plot>();
+    private HashSet<Plot> _plots { get; } = new();
+    private Plot _lastClaim { get; set; }
 
     public void StakeClaim(Plot plot)
     {
-        if (!IsClaimStaked(plot))
+        if (_plots.Add(plot))
         {
-            Plots.Add(plot);
+            _lastClaim = plot;
         }
     }
 
     public bool IsClaimStaked(Plot plot)
-        => Plots.Contains(plot);
-    //{
-    //    foreach (var item in Plots)
-    //    {
-    //        if (plot.Equals(item))
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
-    //}
+        => _plots.Contains(plot);
 
     public bool IsLastClaim(Plot plot)
-        => Plots.Count != 0 && plot.Equals(Plots[^1]);
+        =>  plot.Equals(_lastClaim);
 
     public Plot GetClaimWithLongestSide() 
-        => Plots.OrderByDescending(x => x.LongestSide).FirstOrDefault();
+        => _plots.MaxBy(p => p.LongestSide);
 }
