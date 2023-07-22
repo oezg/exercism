@@ -1,36 +1,48 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 public class Robot
 {
-    private static readonly HashSet<string> s_names = new HashSet<string>();
-
     public string Name { get; private set; }
-    public Robot() 
-    {
-        Reset();
-    }
 
-    public void Reset()
-    {
-        Name = GenerateNewName();
-    }
+    public Robot() => Reset();
 
-    private static string GenerateName()
-    {
-        var random = new Random();
-        return string.Join("", Enumerable.Range(0, 5).Select(n => n < 2 ? random.Next('A', 'Z' + 1) : '0' + random.Next(10)).Select(n => (char)n));
-    }
+    public void Reset() => Name = NameGenerator.s_nextAvailableRandomName();
+}
 
-    private static string GenerateNewName()
+static class NameGenerator
+{
+    #region private_bindings
+    private static readonly Random s_random = new();
+    private static readonly string[] s_allNames = s_generateAllRandomNames();
+    private static int s_current = 0;
+    #endregion private_bindings
+
+    internal static string s_nextAvailableRandomName()
+        => s_allNames[s_current++];
+
+    private static string[] s_generateAllRandomNames()
     {
-        string name = GenerateName();
-        while (s_names.Contains(name))
+        var list = new List<string>();
+        StringBuilder stringBuilder = new StringBuilder();
+        for (char i = 'A'; i <= 'Z'; i++)
         {
-            name = GenerateName();
+            stringBuilder.Append(i);
+            for (char j = 'A';  j <= 'Z'; j++)
+            {
+                stringBuilder.Append(j);
+                for (int k = 0; k < 1000; k++)
+                {
+                    stringBuilder.AppendFormat("{0:D3}", k);
+                    list.Add(stringBuilder.ToString());
+                    stringBuilder.Length = 2;
+                }
+                stringBuilder.Length--;
+            }
+            stringBuilder.Length--;
         }
-        s_names.Add(name);
-        return name;
+        return list.OrderBy(s => s_random.Next()).ToArray();
     }
 }
