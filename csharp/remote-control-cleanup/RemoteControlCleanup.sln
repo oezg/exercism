@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteControlCleanup", "RemoteControlCleanup.csproj", "{270AA506-B0F1-4122-A7AD-F95E906ED757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteControlCleanup", "RemoteControlCleanup.csproj", "{4B7F896B-B942-49DF-BF9C-0AF6AB1CF322}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{270AA506-B0F1-4122-A7AD-F95E906ED757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{270AA506-B0F1-4122-A7AD-F95E906ED757}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{270AA506-B0F1-4122-A7AD-F95E906ED757}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{270AA506-B0F1-4122-A7AD-F95E906ED757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B7F896B-B942-49DF-BF9C-0AF6AB1CF322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B7F896B-B942-49DF-BF9C-0AF6AB1CF322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B7F896B-B942-49DF-BF9C-0AF6AB1CF322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B7F896B-B942-49DF-BF9C-0AF6AB1CF322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {BC6291B2-FC65-43AD-B52D-58EAECB61C82}
+		SolutionGuid = {73CD2D22-05AB-4EE0-93BA-4C28FD7C0A0D}
 	EndGlobalSection
 EndGlobal

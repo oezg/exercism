@@ -1,24 +1,25 @@
 public class RemoteControlCar
 {
+
     public string CurrentSponsor { get; private set; }
 
-    private Speed _currentSpeed;
+    public TelemetryClass Telemetry { get; }
 
-    public Telemetry MyTelemetry { get; }
+    private Speed currentSpeed;
 
-    public RemoteControlCar() 
-        => MyTelemetry = new Telemetry(this);
-
-    // TODO encapsulate the methods suffixed with "_Telemetry" in their own class
-    // dropping the suffix from the method name
-    public class Telemetry
+    public RemoteControlCar()
     {
-        private readonly RemoteControlCar _car;
-        
-        public Telemetry(RemoteControlCar remoteControlCar)
+        Telemetry = new TelemetryClass(this);
+    }
+
+    public class TelemetryClass
+    {
+        public TelemetryClass(RemoteControlCar remoteControlCar)
         {
-            _car = remoteControlCar;
+            RemoteControlCar = remoteControlCar;
         }
+
+        public RemoteControlCar RemoteControlCar { get; }
 
         public void Calibrate()
         {
@@ -32,7 +33,7 @@ public class RemoteControlCar
 
         public void ShowSponsor(string sponsorName)
         {
-            _car.SetSponsor(sponsorName);
+            RemoteControlCar.SetSponsor(sponsorName);
         }
 
         public void SetSpeed(decimal amount, string unitsString)
@@ -43,13 +44,13 @@ public class RemoteControlCar
                 speedUnits = SpeedUnits.CentimetersPerSecond;
             }
 
-            _car.SetSpeed(new Speed(amount, speedUnits));
+            RemoteControlCar.SetSpeed(new Speed(amount, speedUnits));
         }
     }
 
     public string GetSpeed()
     {
-        return _currentSpeed.ToString();
+        return currentSpeed.ToString();
     }
 
     private void SetSponsor(string sponsorName)
@@ -60,17 +61,17 @@ public class RemoteControlCar
 
     private void SetSpeed(Speed speed)
     {
-        _currentSpeed = speed;
+        currentSpeed = speed;
     }
 }
 
-public enum SpeedUnits
+enum SpeedUnits
 {
     MetersPerSecond,
     CentimetersPerSecond
 }
 
-public struct Speed
+struct Speed
 {
     public decimal Amount { get; }
     public SpeedUnits SpeedUnits { get; }
