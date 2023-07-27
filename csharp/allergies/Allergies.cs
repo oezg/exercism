@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [Flags]
 public enum Allergen
@@ -16,28 +17,12 @@ public enum Allergen
 
 public class Allergies
 {
-    public Allergen Allergen { get; set; }
+    private Allergen _allergen { get; }
 
-    public Allergies(int mask)
-    {
-        Allergen = (Allergen)mask;
-    }
+    public Allergies(int mask) => _allergen = (Allergen)mask;
 
-    public bool IsAllergicTo(Allergen allergen)
-    {
-        return Allergen.HasFlag(allergen);
-    }
+    public bool IsAllergicTo(Allergen allergen) => _allergen.HasFlag(allergen);
 
-    public Allergen[] List()
-    {
-        List<Allergen> allergens = new List<Allergen>();
-        foreach (Allergen allergen in Enum.GetValues<Allergen>())
-        {
-            if (Allergen.HasFlag(allergen))
-            {
-                allergens.Add(allergen);
-            }
-        }
-        return allergens.ToArray();
-    }
+    public Allergen[] List() => Enum.GetValues<Allergen>().Where(IsAllergicTo).ToArray();
+        
 }

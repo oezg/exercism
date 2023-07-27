@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\allergies\\Allergies.csproj": {}
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\remote-control-cleanup\\RemoteControlCleanup.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\allergies\\Allergies.csproj": {
+    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\remote-control-cleanup\\RemoteControlCleanup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\allergies\\Allergies.csproj",
-        "projectName": "Allergies",
-        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\allergies\\Allergies.csproj",
+        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\remote-control-cleanup\\RemoteControlCleanup.csproj",
+        "projectName": "RemoteControlCleanup",
+        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\remote-control-cleanup\\RemoteControlCleanup.csproj",
         "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\allergies\\obj\\",
+        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\remote-control-cleanup\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
