@@ -1,95 +1,97 @@
 public class RemoteControlCar
 {
-
-    public string CurrentSponsor { get; private set; }
-
-    public TelemetryClass Telemetry { get; }
-
-    private Speed currentSpeed;
-
+    #region constructors
     public RemoteControlCar()
     {
-        Telemetry = new TelemetryClass(this);
+        Telemetry = new RemoteControlCarTelemetry(this);
     }
+    #endregion
 
-    public class TelemetryClass
+    #region enums
+    private enum SpeedUnits
     {
-        public TelemetryClass(RemoteControlCar remoteControlCar)
+        MetersPerSecond,
+        CentimetersPerSecond
+    }
+    #endregion
+
+    #region properties
+    public string CurrentSponsor { get; private set; }
+
+    public ITelemetry Telemetry { get; }
+    private Speed _currentSpeed { get; set; }
+    #endregion
+
+    #region methods
+    public string GetSpeed() => _currentSpeed.ToString();
+
+    private void SetSponsor(string sponsorName) => CurrentSponsor = sponsorName;
+
+    private void SetSpeed(Speed speed) => _currentSpeed = speed;
+    #endregion
+
+    #region structs
+    private struct Speed
+    {
+        public decimal Amount { get; }
+        public SpeedUnits SpeedUnits { get; }
+
+        public Speed(decimal amount, SpeedUnits speedUnits)
         {
-            RemoteControlCar = remoteControlCar;
+            Amount = amount;
+            SpeedUnits = speedUnits;
         }
 
-        public RemoteControlCar RemoteControlCar { get; }
-
-        public void Calibrate()
+        public override string ToString()
         {
-
-        }
-
-        public bool SelfTest()
-        {
-            return true;
-        }
-
-        public void ShowSponsor(string sponsorName)
-        {
-            RemoteControlCar.SetSponsor(sponsorName);
-        }
-
-        public void SetSpeed(decimal amount, string unitsString)
-        {
-            SpeedUnits speedUnits = SpeedUnits.MetersPerSecond;
-            if (unitsString == "cps")
+            string unitsString = "meters per second";
+            if (SpeedUnits == SpeedUnits.CentimetersPerSecond)
             {
-                speedUnits = SpeedUnits.CentimetersPerSecond;
+                unitsString = "centimeters per second";
             }
 
-            RemoteControlCar.SetSpeed(new Speed(amount, speedUnits));
+            return Amount + " " + unitsString;
         }
     }
+    #endregion
 
-    public string GetSpeed()
+    #region interfaces
+    public interface ITelemetry
     {
-        return currentSpeed.ToString();
+        public void Calibrate();
+        public bool SelfTest();
+        public void ShowSponsor(string sponsor);
+        public void SetSpeed(decimal x, string u);
     }
+    #endregion
 
-    private void SetSponsor(string sponsorName)
+    #region classes
+    private class RemoteControlCarTelemetry : ITelemetry
     {
-        CurrentSponsor = sponsorName;
+        #region constructors
+        public RemoteControlCarTelemetry(RemoteControlCar remoteControlCar) 
+            => RemoteControlCar = remoteControlCar;
+        #endregion
 
+        #region properties
+        public RemoteControlCar RemoteControlCar { get; }
+        #endregion
+
+        #region methods
+        public void Calibrate() { }
+
+        public bool SelfTest() => true;
+
+        public void ShowSponsor(string sponsorName) => RemoteControlCar.SetSponsor(sponsorName);
+
+        public void SetSpeed(decimal amount, string unitsString) 
+            => RemoteControlCar.SetSpeed(
+                new Speed(amount, 
+                    unitsString == "cps" 
+                    ? SpeedUnits.CentimetersPerSecond 
+                    : SpeedUnits.MetersPerSecond));
+        #endregion
     }
+    #endregion
 
-    private void SetSpeed(Speed speed)
-    {
-        currentSpeed = speed;
-    }
-}
-
-enum SpeedUnits
-{
-    MetersPerSecond,
-    CentimetersPerSecond
-}
-
-struct Speed
-{
-    public decimal Amount { get; }
-    public SpeedUnits SpeedUnits { get; }
-
-    public Speed(decimal amount, SpeedUnits speedUnits)
-    {
-        Amount = amount;
-        SpeedUnits = speedUnits;
-    }
-
-    public override string ToString()
-    {
-        string unitsString = "meters per second";
-        if (SpeedUnits == SpeedUnits.CentimetersPerSecond)
-        {
-            unitsString = "centimeters per second";
-        }
-
-        return Amount + " " + unitsString;
-    }
 }
