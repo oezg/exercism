@@ -3,62 +3,36 @@ using System.Collections.Generic;
 
 public class CircularBuffer<T>
 {
-    public T[] Buffer { get; set; }
-    
-    public int Capacity { get; set; }
+    #region fields
+    private readonly int _capacity;
+    private readonly Queue<T> _queue = new();
+    #endregion
 
-    public int Oldest { get; set; } = 0;
+    #region constructors
+    public CircularBuffer(int capacity) => _capacity = capacity;
+    #endregion
 
-    public int NextWrite { get; set; } = 0;
-
-    public bool[] Track { get; set; }
-
-    public CircularBuffer(int capacity)
-    {
-        Capacity = capacity;
-        Clear();
-    }
-
-    public T Read()
-    {
-        if (!Track[Oldest])
-        {
-            throw new InvalidOperationException();
-        }
-        T t = Buffer[Oldest];
-        Buffer[Oldest] = default(T);
-        Track[Oldest] = false;
-        Oldest = (Oldest + 1) % Capacity;
-        return t;
-    }
+    #region methods
+    public T Read() 
+        => _queue.Count == 0 ? throw new InvalidOperationException() : _queue.Dequeue();
 
     public void Write(T value)
     {
-        if (Track[NextWrite])
-        {
+        if (_queue.Count < _capacity) _queue.Enqueue(value);
+        else
             throw new InvalidOperationException();
-        }
-        Buffer[NextWrite] = value;
-        Track[NextWrite] = true;
-        NextWrite = (NextWrite + 1) % Capacity;
     }
 
     public void Overwrite(T value)
     {
-        try
+        if (_queue.Count >= _capacity)
         {
-            Write(value);
+            _queue.Dequeue(); 
         }
-        catch (InvalidOperationException e)
-        {
-            Buffer[Oldest] = value;
-            Oldest = (Oldest + 1) % Capacity;
-        }
+        _queue.Enqueue(value);
     }
 
-    public void Clear()
-    {
-        Buffer = new T[Capacity];
-        Track = new bool[Capacity];
-    }
-}   
+    public void Clear() 
+        => _queue.Clear();
+    #endregion
+}
