@@ -1,35 +1,33 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class MatchingBrackets
 {
     public static bool IsPaired(string input)
     {
-        Dictionary<char, char> bracketPairs = new() 
+        Stack<char> stack = new();
+        foreach (char bracket in input.Where("()[]{}<>".Contains))
         {
-            [')'] = '(',
-            [']'] = '[',
-            ['}'] = '{',
-        };
-        LinkedList<char> brackets = new LinkedList<char>();
-        foreach (char chr in input)
-        {
-            if ("([{".Contains(chr))
+            if ("([{<".Contains(bracket))
             {
-                brackets.AddLast(chr);
+                stack.Push(ClosingPair(bracket));
             }
-            else if (")]}".Contains(chr)) 
+            else if (stack.Count == 0 || bracket != stack.Pop())
             {
-                if (brackets.Count > 0 && brackets.Last.Value == bracketPairs[chr])
-                {
-                    brackets.RemoveLast();
-                }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
         }
-        return brackets.Count == 0;
+        return stack.Count == 0;
     }
+
+    public static char ClosingPair(char openingBracket)
+        => openingBracket switch
+        {
+            '(' => ')',
+            '[' => ']',
+            '{' => '}',
+            '<' => '>',
+            _ => throw new ArgumentOutOfRangeException(openingBracket + " must be '(', '[', '{' or '<'.")
+        };
 }
