@@ -5,10 +5,10 @@ using System.Text;
 public static class RotationalCipher
 {
     public static string Rotate(string text, int shiftKey)
-        => new StringBuilder().AppendJoin("", text.Select(chr => chr switch
+        => string.Join("", text.Select(chr => chr switch
         {
-            <= 'z' and >= 'a' => (char)('a' + ((chr - 'a' + shiftKey) % 26)),
-            <= 'Z' and >= 'A' => (char)('A' + ((chr - 'A' + shiftKey) % 26)),
+            <= 'z' and >= 'a' => (char)('a' + ((chr - 'a' + shiftKey) % ('z' - 'a' + 1))),
+            <= 'Z' and >= 'A' => (char)('A' + ((chr - 'A' + shiftKey) % ('Z' - 'A' + 1))),
             _ => chr
         })).ToString();
 }
