@@ -4,65 +4,65 @@ public class SpiralMatrix
 {
     public static int[,] GetMatrix(int size)
     {
-        return MakeMatrix(Direction.TopLeft, size, 1);
+        return MakeMatrix(StartCorner.TopLeft, size, 1);
     }
 
-    public static int[,] MakeMatrix(Direction direction, int n, int start)
+    public static int[,] MakeMatrix(StartCorner direction, int size, int start)
     {
-        int[,] matrix = new int[n, n];
-        if (n == 0)
+        int[,] matrix = new int[size, size];
+        if (size == 0)
             return matrix;
-        if (direction == Direction.TopLeft)
+        if (direction == StartCorner.TopLeft)
         {
-            for (int i = 0; i < 2 * n - 1; i++)
+            for (int increment = 0; increment < 2 * size - 1; increment++)
             {
-                if (i < n)
+                if (increment < size)
                 {
-                    matrix[0, i] = start + i;
+                    matrix[0, increment] = start + increment;
                 }
                 else
                 {
-                    matrix[i - n + 1, n - 1] = start + i;
+                    matrix[increment - size + 1, size - 1] = start + increment;
                 }
             }
-            int[,] innerMatrix = MakeMatrix(Direction.BottomRight, n - 1, start + 2 * n - 1);
+            int[,] innerMatrix = MakeMatrix(StartCorner.BottomRight, size - 1, start + 2 * size - 1);
 
-            for (int i = 0; i < n - 1; i++)
+            for (int row = 0; row < size - 1; row++)
             {
-                for (int j = 0; j < n - 1; j++) 
+                for (int col = 0; col < size - 1; col++) 
                 {
-                    matrix[i + 1, j] = innerMatrix[i, j];
+                    matrix[row + 1, col] = innerMatrix[row, col];
                 }
             }
             return matrix;
         }
         else
         {
-            for (int i = 0; i < 2 * n - 1; i++)
+            for (int increment = 0; increment < 2 * size - 1; increment++)
             {
-                if (i < n)
+                if (increment < size)
                 {
-                    matrix[n - 1, n - i - 1] = start + i;
+                    matrix[size - 1, size - increment - 1] = start + increment;
                 }
                 else
                 {
-                    matrix[2 * n - 2 - i, 0] = start + i;
+                    matrix[2 * size - 2 - increment, 0] = start + increment;
                 }
             }
-            int[,] innerMatrix = MakeMatrix(Direction.TopLeft, n - 1, start + 2 * n - 1);
+            int[,] innerMatrix = MakeMatrix(StartCorner.TopLeft, size - 1, start + 2 * size - 1);
 
-            for (int i = 0; i < n - 1; i++)
+            for (int row = 0; row < size - 1; row++)
             {
-                for (int j = 0; j < n - 1; j++)
+                for (int col = 0; col < size - 1; col++)
                 {
-                    matrix[i, j + 1] = innerMatrix[i, j];
+                    matrix[row, col + 1] = innerMatrix[row, col];
                 }
             }
             return matrix;
         }
     }
 
-    public enum Direction
+    public enum StartCorner
     {
         TopLeft,
         BottomRight
