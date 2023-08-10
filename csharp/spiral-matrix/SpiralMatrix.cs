@@ -3,15 +3,10 @@ using System.Linq;
 
 public class SpiralMatrix
 {
-    public static int[,] GetMatrix(int size)
-    {
-        return MakeMatrix(StartCorner.TopLeft, size, 1);
-    }
-
-    public static int[,] MakeMatrix(StartCorner corner, int size, int start)
+    public static int[,] GetMatrix(int size, int start = 1, StartCorner corner = StartCorner.TopLeft)
     {
         int[,] matrix = new int[size, size];
-        if (size == 0)
+        if (size-- == 0)  // size-- simplefies the rest of the code becaue I mostly need size - 1
             return matrix;
 
         FillOuterLayer(corner, size, start, ref matrix);
@@ -23,29 +18,28 @@ public class SpiralMatrix
 
     public static void FillInnerMatrix(StartCorner corner, int size, int start, ref int[,] matrix)
     {
-        int[,] innerMatrix = MakeMatrix(OtherCorner(corner), size - 1, start + 2 * size - 1);
+        int[,] innerMatrix = GetMatrix(size, start + size * 2 + 1, OtherCorner(corner));
 
-        (int, int) offset = CornerOffset(corner);
+        (int rowOffset, int colOffset) = CornerOffset(corner);
 
-        for (int row = 0; row < size - 1; row++)
-        {
-            for (int col = 0; col < size - 1; col++)
-            {
-                matrix[row + offset.Item1, col + offset.Item2] = innerMatrix[row, col];
-            }
-        }
+        for (int row = 0; row < size; row++)
+            for (int col = 0; col < size; col++)
+                matrix[row + rowOffset, col + colOffset] = innerMatrix[row, col];
     }
 
     public static void FillOuterLayer(StartCorner corner, int size, int start, ref int[,] matrix)
     {
-        (int, int) index;
-
-        foreach (int increment in Enumerable.Range(0, 2 * size - 1))
+        foreach (int increment in Enumerable.Range(0, size * 2 + 1)) 
         {
-            index = increment < size
-                ? corner == StartCorner.TopLeft ? (0, increment) : (size - 1, size - 1 - increment)
-                : corner == StartCorner.TopLeft ? (increment - (size - 1), size - 1) : ((size - 1) * 2 - increment, 0);
-            matrix[index.Item1, index.Item2] = start + increment;
+            (int row, int col) = corner == StartCorner.TopLeft
+                ? increment <= size 
+                    ? (0, increment) 
+                    : (increment - size, size)
+                : increment <= size 
+                    ? (size, size - increment) 
+                    : (size * 2 - increment, 0);
+        
+            matrix[row, col] = start + increment;
         }
     }
 
