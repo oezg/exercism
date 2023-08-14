@@ -1,9 +1,0 @@
-go 1.21.0
-
-use (
-	./go/annalyns-infiltration
-	./go/cars-assemble
-	./go/hello-world
-	./go/lasagna
-	./go/weather-forecast
-)
