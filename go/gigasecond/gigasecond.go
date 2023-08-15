@@ -6,6 +6,6 @@ import "time"
 
 // AddGigasecond returns the time one thousand million seconds after given time.
 func AddGigasecond(t time.Time) time.Time {
-	var gigasecond time.Duration = 1000_000_000 * time.Second
+	const gigasecond time.Duration = 1_000_000_000 * time.Second
 	return t.Add(gigasecond)
 }
