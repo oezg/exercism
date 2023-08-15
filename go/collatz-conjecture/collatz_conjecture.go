@@ -9,10 +9,10 @@ func CollatzConjecture(n int) (int, error) {
 	var step int
 	for n > 1 {
 		step++
-		if n%2 == 0 {
-			n /= 2
+		if n&1 == 0 {
+			n >>= 1
 		} else {
-			n = 3*n + 1
+			n = n*3 + 1
 		}
 	}
 	return step, nil
