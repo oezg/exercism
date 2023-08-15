@@ -1,6 +1,9 @@
 package techpalace
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 // WelcomeMessage returns a welcome message for the customer.
 func WelcomeMessage(customer string) string {
@@ -9,17 +12,8 @@ func WelcomeMessage(customer string) string {
 
 // AddBorder adds a border to a welcome message.
 func AddBorder(welcomeMsg string, numStarsPerLine int) string {
-	return Wrap(Border(numStarsPerLine), welcomeMsg)
-}
-
-// Wrap wraps its first argument around its second argument separated by new lines
-func Wrap(x string, y string) string {
-	return x + "\n" + y + "\n" + x
-}
-
-// Border provides the border of asterisks with configurable length
-func Border(num int) string {
-	return strings.Repeat("*", num)
+	var stars = strings.Repeat("*", numStarsPerLine)
+	return fmt.Sprintf("%s\n%s\n%s", stars, welcomeMsg, stars)
 }
 
 // CleanupMessage cleans up an old marketing message.
