@@ -1,5 +1,12 @@
 package blackjack
 
+const (
+	hit   = "H"
+	split = "P"
+	stand = "S"
+	win   = "W"
+)
+
 // ParseCard returns the integer value of a card following blackjack ruleset.
 func ParseCard(card string) int {
 	var value int
@@ -22,13 +29,7 @@ func ParseCard(card string) int {
 		value = 8
 	case "nine":
 		value = 9
-	case "ten":
-		value = 10
-	case "jack":
-		value = 10
-	case "queen":
-		value = 10
-	case "king":
+	case "ten", "jack", "queen", "king":
 		value = 10
 	default:
 		value = 0
@@ -43,15 +44,15 @@ func FirstTurn(card1, card2, dealerCard string) string {
 	var value1, value2, dealer = ParseCard(card1), ParseCard(card2), ParseCard(dealerCard)
 	switch {
 	case value1+value2 == 22:
-		decision = "P"
+		decision = split
 	case value1+value2 == 21 && dealer < 10:
-		decision = "W"
+		decision = win
 	case value1+value2 > 16:
-		decision = "S"
+		decision = stand
 	case value1+value2 > 11 && dealer < 7:
-		decision = "S"
+		decision = stand
 	default:
-		decision = "H"
+		decision = hit
 	}
 	return decision
 }
