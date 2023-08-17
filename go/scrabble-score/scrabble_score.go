@@ -1,7 +1,9 @@
+// Package scrabble provides scoring utility for Scrabble game
 package scrabble
 
 import "strings"
 
+// Score accepts a string and returns a score based on its letters
 func Score(word string) (totalScore int) {
 	for _, letter := range strings.ToUpper(word) {
 		totalScore += score(letter)
@@ -9,6 +11,7 @@ func Score(word string) (totalScore int) {
 	return
 }
 
+// score converts a letter to its value in Scrabble
 func score(letter rune) (value int) {
 	switch letter {
 	case 'A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T':
