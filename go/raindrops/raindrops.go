@@ -1,21 +1,24 @@
 package raindrops
 
-import "fmt"
+import (
+	"strconv"
+	"strings"
+)
 
 func Convert(number int) string {
-	var result string
-	if number%3*number%5*number%7 == 0 {
+	var result strings.Builder
+	if number%3 == 0 || number%5 == 0 || number%7 == 0 {
 		if number%3 == 0 {
-			result += "Pling"
+			result.WriteString("Pling")
 		}
 		if number%5 == 0 {
-			result += "Plang"
+			result.WriteString("Plang")
 		}
 		if number%7 == 0 {
-			result += "Plong"
+			result.WriteString("Plong")
 		}
 	} else {
-		result = fmt.Sprintf("%d", number)
+		result.WriteString(strconv.Itoa(number))
 	}
-	return result
+	return result.String()
 }

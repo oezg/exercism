@@ -1,16 +1,19 @@
 package hamming
 
-import "errors"
+import (
+	"fmt"
+)
 
-func Distance(a, b string) (int, error) {
+func Distance(a, b string) (hamming int, err error) {
 	if len(a) != len(b) {
-		return 0, errors.New("strings must have equal length")
+		err = fmt.Errorf("strings must have equal length")
+		return
 	}
-	var hamming int
-	for i := 0; i < len(a); i++ {
-		if a[i] != b[i] {
+	aRunes, bRunes := []rune(a), []rune(b)
+	for i, aRune := range aRunes {
+		if aRune != bRunes[i] {
 			hamming++
 		}
 	}
-	return hamming, nil
+	return
 }
