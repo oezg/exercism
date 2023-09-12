@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hb6YEwExWnq7qMYTBTDD2ZJCQpQW87dV0zIa8x+bvthJjaTVz4+XrIL7FvWaMbyNOAdY08HZoOVUdqaZavDFSQ==",
+  "dgSpecHash": "baqIYWRaCZtcMBnMCLy1tXnNIwXR+ahgqyf3P/D3NBCBJQsGI47Vz42pAh0k5LVKt0h1pbvlCgisernKH6VzOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\tournament\\Tournament.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\tournament\\Tournament.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",

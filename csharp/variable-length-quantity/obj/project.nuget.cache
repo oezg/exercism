@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xPOaAcP04SJUluEXTfZMZhNfNf3QtbmNW8K1MAyixtqI/nELaffFAKMez8iPHz4wpaG8xL3IHIGlTXfLL3RGeg==",
+  "dgSpecHash": "/a/4SfiGExXHV0gwQEJqnyqDtlMj4Xiha+doJJWN6xfxR+UrD54D3ddALgNavCpH/9lJNcZXcPU2RiYRyLI3EQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\variable-length-quantity\\VariableLengthQuantity.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\variable-length-quantity\\VariableLengthQuantity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",

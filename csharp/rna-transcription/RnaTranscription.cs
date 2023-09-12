@@ -5,8 +5,13 @@ public static class RnaTranscription
 {
     public static string ToRna(string nucleotide) 
         => new(nucleotide
-            .Replace("A", "U")
-            .Replace("T", "A")
-            .Select(x => x == 'G' ? 'C' : x == 'C' ? 'G' : x)
+            .Select(x => x switch
+            {
+                'G' => 'C',
+                'C' => 'G',
+                'A' => 'U',
+                'T' => 'A',
+                _ => throw new Exception("MUTANT!")
+            })
             .ToArray());
 }

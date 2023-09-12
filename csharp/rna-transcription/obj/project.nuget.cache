@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GZrMkYars7Vez7H+tbX/gumXnCnr45hcrHJ3QDaoWkQEPLzzVQtuv4EUNaR5PKpiyViNYHOiCamDcD/+ePK6fw==",
+  "dgSpecHash": "X4BbE0gGsXFZlyrYoOUgRVRz2UwyuZsg9sAv7ooHDk9DSxRvK3ENBj0xDtwNlIcnVkK9bVg3dSm8xXdru0L1Cw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\rna-transcription\\RnaTranscription.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\rna-transcription\\RnaTranscription.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
