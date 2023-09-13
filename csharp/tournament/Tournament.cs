@@ -1,38 +1,42 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 public static class Tournament
 {
+    // Teams dictionary is the container for the teams in the tournament
+    // ToDo: Reduce the redundant saving of team name as dictionary key and instance field
     public static Dictionary<string, Team> Teams { get; set; }
 
     public static void Tally(Stream inStream, Stream outStream)
     {
         Teams = new Dictionary<string, Team>();
 
-        using (StreamReader streamReader = new StreamReader(inStream))
+        using var streamReader = new StreamReader(inStream);
+        
+        string line;
+        while ((line = streamReader.ReadLine()) != null)
         {
-            string line;
-            while ((line = streamReader.ReadLine()) != null)
-            {
-                var result = new Result(line.Split(';'));
-                Teams.Evaluate(result);
-            }
+            var result = new Result(line.Split(';'));
+            Teams.Evaluate(result);
         }
+        
+        var sortedTeams = new List<Team>(Teams.Values);
+        sortedTeams.Sort();
 
-        var sortedTeams = SortTeams();
-
-        using (StreamWriter streamWriter = new StreamWriter(outStream))
+        using var streamWriter = new StreamWriter(outStream);
+        
+        streamWriter.Write(GetHeaders());
+        foreach (var team in sortedTeams)
         {
-            string line = GetHeaders().Trim();
-            streamWriter.Write(line);
-            foreach (var team in sortedTeams)
-            {
-                streamWriter.Write(team.ToString());
-            }
+            streamWriter.WriteUnixLine(team.ToString());
         }
     }
+
+    // WriteUnixLine extends StreamWriter to write a new line without \r
+    public static void WriteUnixLine(this StreamWriter streamWriter, string s)
+        => streamWriter.Write("\n" + s);
+    
 
     // Evaluate extension method updates Teams dict according to the result
     public static void Evaluate(this Dictionary<string, Team> dict, Result result)
@@ -58,22 +62,11 @@ public static class Tournament
         }
     }
 
-    public static IEnumerable<Team> SortTeams()
-    {
-        var teams = new List<Team>(Teams.Values);
-        teams.Sort();
-        return teams;
-    }
-
-    public static string GetHeaders()
-    {
-        return FormatLine(new string[] { "Team", "MP", "W", "D", "L", "P" }) ;
-    }
+    public static string GetHeaders() 
+        => FormatLine(new string[] { "Team", "MP", "W", "D", "L", "P" });
 
     public static string FormatLine(string[] args)
-    {
-        return $"\n{args[0], -30} | {args[1], 2} | {args[2], 2} | {args[3], 2} | {args[4], 2} | {args[5], 2}";
-    }
+        => $"{args[0],-30} | {args[1],2} | {args[2],2} | {args[3],2} | {args[4],2} | {args[5],2}";
 
     public enum Outcome
     {
@@ -113,18 +106,11 @@ public static class Tournament
         public int Losses;
         public int Draws;
 
-        public int CompareTo(Team other)
-        {
-            if (Points == other.Points)
-            {
-                return Name.CompareTo(other.Name);
-            }
-            return other.Points.CompareTo(Points);
-        }
+        public int CompareTo(Team other) 
+            => Points == other.Points ? Name.CompareTo(other.Name) : other.Points.CompareTo(Points);
 
-        public override string ToString()
-        {
-            return FormatLine(new string[]
+        public override string ToString() 
+            => FormatLine(new string[]
             {
                 Name,
                 MatchesPlayed.ToString(),
@@ -133,6 +119,5 @@ public static class Tournament
                 Losses.ToString(),
                 Points.ToString()
             });
-        }
     }
 }
