@@ -17,7 +17,7 @@ public static class Tournament
             while ((line = streamReader.ReadLine()) != null)
             {
                 var result = new Result(line.Split(';'));
-                result.Evaluate();
+                Teams.Evaluate(result);
             }
         }
 
@@ -34,7 +34,31 @@ public static class Tournament
         }
     }
 
-    public static List<Team> SortTeams()
+    // Evaluate extension method updates Teams dict according to the result
+    public static void Evaluate(this Dictionary<string, Team> dict, Result result)
+    {
+        dict.TryAdd(result.Home, new Team(result.Home));
+        dict.TryAdd(result.Away, new Team(result.Away));
+        switch (result.Outcome)
+        {
+            case Outcome.Win:
+                dict[result.Home].Wins++;
+                dict[result.Away].Losses++;
+                break;
+            case Outcome.Draw:
+                dict[result.Home].Draws++;
+                dict[result.Away].Draws++;
+                break;
+            case Outcome.Loss:
+                dict[result.Home].Losses++;
+                dict[result.Away].Wins++;
+                break;
+            default:
+                throw new Exception();
+        }
+    }
+
+    public static IEnumerable<Team> SortTeams()
     {
         var teams = new List<Team>(Teams.Values);
         teams.Sort((a, b) =>
@@ -58,47 +82,29 @@ public static class Tournament
         return $"\n{args[0], -30} | {args[1], 2} | {args[2], 2} | {args[3], 2} | {args[4], 2} | {args[5], 2}";
     }
 
+    public enum Outcome
+    {
+        Loss,
+        Draw,
+        Win,
+    }
+
     public struct Result
     {
         public string Home;
         public string Away;
-        public string Outcome;
+        public Outcome Outcome;
         
         public Result(string[] values) 
         { 
             Home = values[0];
             Away = values[1];
-            Outcome = values[2];
-        }
-
-        public void Evaluate()
-        {
-            if (!Teams.ContainsKey(Home))
-            {
-                Teams.Add(Home, new Team(Home));
-            }
-            if (!Teams.ContainsKey(Away))
-            {
-                Teams.Add(Away, new Team(Away));
-            }
-            Team team;
-            switch (Outcome)
-            {
-                case "win":
-                    Teams[Home].Wins++;
-                    Teams[Away].Losses++;
-                    break;
-                case "draw":
-                    Teams[Home].Draws++;
-                    Teams[Away].Draws++;
-                    break;
-                case "loss":
-                    Teams[Home].Losses++;
-                    Teams[Away].Wins++;
-                    break;
-                default: 
-                    throw new Exception();
-            }
+            Outcome = values[2] switch {
+               "win" => Outcome.Win,
+               "draw" => Outcome.Draw,
+               "loss" => Outcome.Loss,
+               _ => throw new NotImplementedException("Unknown outcome")
+            };
         }
     }
 
