@@ -61,14 +61,7 @@ public static class Tournament
     public static IEnumerable<Team> SortTeams()
     {
         var teams = new List<Team>(Teams.Values);
-        teams.Sort((a, b) =>
-        {
-            if (a.Points == b.Points)
-            {
-                return a.Name.CompareTo(b.Name);
-            }
-            return b.Points.CompareTo(a.Points);
-        });
+        teams.Sort();
         return teams;
     }
 
@@ -126,7 +119,7 @@ public static class Tournament
             {
                 return Name.CompareTo(other.Name);
             }
-            return other.Points - Points;
+            return other.Points.CompareTo(Points);
         }
 
         public override string ToString()
