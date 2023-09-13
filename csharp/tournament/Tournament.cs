@@ -114,11 +114,11 @@ public static class Tournament
         }
     }
 
-    public struct Team : IComparable<Team>
+    public class Team : IComparable<Team>
     {
         public string Name;
 
-        public Team(string name) : this() => Name = name;
+        public Team(string name) => Name = name;
 
         public int Points => Wins * 3 + Draws;
         public int MatchesPlayed => Wins + Losses + Draws;
