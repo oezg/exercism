@@ -85,28 +85,16 @@ public static class Tournament
             switch (Outcome)
             {
                 case "win":
-                    team = Teams[Home];
-                    team.Wins++;
-                    Teams[Home] = team;
-                    team = Teams[Away];
-                    team.Losses++;
-                    Teams[Away] = team;
+                    Teams[Home].Wins++;
+                    Teams[Away].Losses++;
                     break;
                 case "draw":
-                    team = Teams[Home];
-                    team.Draws++;
-                    Teams[Home] = team;
-                    team = Teams[Away];
-                    team.Draws++;
-                    Teams[Away] = team;
+                    Teams[Home].Draws++;
+                    Teams[Away].Draws++;
                     break;
                 case "loss":
-                    team = Teams[Home];
-                    team.Losses++;
-                    Teams[Home] = team;
-                    team = Teams[Away];
-                    team.Wins++;
-                    Teams[Away] = team;
+                    Teams[Home].Losses++;
+                    Teams[Away].Wins++;
                     break;
                 default: 
                     throw new Exception();
