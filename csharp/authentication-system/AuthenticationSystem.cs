@@ -14,11 +14,11 @@ public class Authenticator
     public Identity Admin { get; }
 
     private IReadOnlyDictionary<string, Identity> _developers
-        = new Dictionary<string, Identity>
+        = new ReadOnlyDictionary<string, Identity> (new Dictionary<string, Identity>
         {
-            ["Bertrand"] = new Identity(email: "bert@ex.ism", eyeColor: "blue"),
-            ["Anders"] = new Identity(email: "anders@ex.ism", eyeColor: "brown"),
-        };
+            ["Bertrand"] = new Identity { Email = "bert@ex.ism", EyeColor = "blue" },
+            ["Anders"] = new Identity { Email = "anders@ex.ism", EyeColor = "brown" },
+        });
     #endregion
 
     #region methods
@@ -40,15 +40,9 @@ public class Authenticator
 
 public struct Identity
 {
-    public Identity(string email, string eyeColor)
-    {
-        Email = email;
-        EyeColor = eyeColor;
-    }
+    public string Email { get; init; }
 
-    public string Email { get; set; }
-
-    public string EyeColor { get; set; }
+    public string EyeColor { get; init; }
 
 
 }
