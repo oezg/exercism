@@ -62,4 +62,3 @@ def adjective_to_verb(sentence: str, index: int) -> str:
     """
 
     return sentence.split()[index].strip('.,!"\'´`:;') + 'en'
-
