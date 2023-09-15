@@ -8,8 +8,5 @@ def steps(number: int) -> int:
     count = 0
     while number > 1:
         count += 1
-        if number % 2 == 0:
-            number //= 2
-        else:
-            number = number * 3 + 1
+        number = number * 3 + 1 if number % 2 else number // 2
     return count

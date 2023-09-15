@@ -8,7 +8,7 @@ def add_prefix_un(word: str) -> str:
     :return: str - of root word prepended with 'un'.
     """
 
-    return "un" + word
+    return ''.join(['un', word])
 
 
 def make_word_groups(vocab_words: list[str]) -> str:
@@ -29,7 +29,7 @@ def make_word_groups(vocab_words: list[str]) -> str:
 
     prefix = vocab_words[0]
 
-    lst = [prefix] + [prefix + word for word in vocab_words[1:]]
+    lst = [prefix] + [''.join([prefix, word]) for word in vocab_words[1:]]
 
     return ' :: '.join(lst)
 
@@ -42,13 +42,24 @@ def remove_suffix_ness(word: str) -> str:
 
     For example: "heaviness" becomes "heavy", but "sadness" becomes "sad".
     """
-    suffix = 'ness'
-    if not word.endswith(suffix):
-        return word
-    word = word[:-4]
+
+    word = remove_suffix(word, 'ness')
+
     if word.endswith('i'):
         word = word[:-1] + 'y'
+
     return word
+
+
+def remove_suffix(word, suffix: str) -> str:
+    """Remove the suffix from the word if exists.
+
+    :param word: str - of word to remove suffix from.
+    :param suffix: str - of suffix
+    :return: str - of word with suffix removed.
+    """
+
+    return word[:-len(suffix)] if word.endswith(suffix) else word
 
 
 def adjective_to_verb(sentence: str, index: int) -> str:
@@ -61,4 +72,4 @@ def adjective_to_verb(sentence: str, index: int) -> str:
     For example, ("It got dark as the sun set.", 2) becomes "darken".
     """
 
-    return sentence.split()[index].strip('.,!"\'´`:;') + 'en'
+    return sentence.split()[index].strip('.,!"\'`:;') + 'en'
