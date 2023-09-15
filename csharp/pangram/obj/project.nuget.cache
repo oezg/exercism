@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bSamMwX4UL8dEXNJOe3sWkoysSyDkndqFKdemaLn4sCsMPgjl2WMz/mjQIzwLnarxtXfpw+KUMWdAa/JcjxzwA==",
+  "dgSpecHash": "Pa1CSSX0GfnEiTcC79kJF6Dlzp6ALhG9CzMs9zKhCItxT3vYqDcw15x3jpjrAfXHOgycAw9zisAGl5pSShYBiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\pangram\\Pangram.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\pangram\\Pangram.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
