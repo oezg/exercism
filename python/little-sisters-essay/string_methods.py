@@ -1,6 +1,9 @@
 """Functions to help edit essay homework using string manipulation."""
 
 
+from string import punctuation
+
+
 def capitalize_title(title: str) -> str:
     """Convert the first letter of each word in the title to uppercase if needed.
 
@@ -40,4 +43,9 @@ def replace_word_choice(sentence: str, old_word: str, new_word: str) -> str:
     :return: str - input sentence with new words in place of old words.
     """
 
-    return sentence.replace(old_word, new_word)
+    out = []
+    for word in sentence.split():
+        if word.rstrip(punctuation) == old_word:
+            word = ''.join([new_word, word[len(old_word):]])
+        out.append(word)
+    return ' '.join(out)
