@@ -10,53 +10,64 @@ public static class PythagoreanTriplet
             yield break;
         }
 
-        foreach (var pair in EuclideanRootsWitSum(sum))
+        foreach (var root in EuclideanRootsWitSum(sum))
         {
-            var a = pair.m * pair.m - pair.n * pair.n;
-            var b = 2 * pair.m * pair.n;
-            var c = pair.m * pair.m + pair.n * pair.n;
-            (a, b) = (Math.Min(a, b), Math.Max(a, b));
-            verify(a, b, c, sum);
-            yield return (a, b, c);
+            yield return (root.ShortestSide, root.MiddleSide, root.Hypotenuse);
         }
     }
 
-    private static void verify(int a, int b, int c, int sum)
+    public readonly struct Root : IEquatable<Root>, IComparable<Root>
     {
-        if (sum != a + b + c)
-        {
-            throw new Exception("Sum rule!");
-        }
-        if (a * a + b * b != c * c)
-        {
-            throw new Exception("hypotenuse rule!");
-        }
-        if (a > b)
-        {
-            throw new Exception("order rule!");
-        }
+        internal int K { get; init; }
+
+        internal int M { get; init; }
+
+        internal int N { get; init; }
+        
+        private readonly int _sideA => K * (M * M - N * N);
+
+        private readonly int _sideB => 2 * K * M * N;
+
+        public readonly int ShortestSide => _sideA < _sideB ? _sideA : _sideB;
+
+        public readonly int MiddleSide => _sideA < _sideB ? _sideB : _sideA;
+
+        public readonly int Hypotenuse => K * (M * M + N * N);
+
+        public readonly int CompareTo(Root other) => ShortestSide - other.ShortestSide;
+
+        public readonly bool Equals(Root other) => Hypotenuse == other.Hypotenuse;
     }
 
-    public static IEnumerable<(int m, int n)> EuclideanRootsWitSum(int sum)
+    public static SortedSet<Root> EuclideanRootsWitSum(int sum)
     {
+        var roots = new SortedSet<Root>();
+
         if ((sum & 1) == 1)
         {
-            yield break;
+            return roots;
         }
+
         sum >>= 1;
+        
         for (int m = 2; m < Math.Sqrt(sum); m++)
         {
             for (int n = 1; n < m; n++)
             {
-                if (m % 2 == 1 && n % 2 == 1)
+                if ((m & 1) + (n & 1) == 2)
                 {
                     continue;
                 }
-                if (m * (m + n) == sum)
+                
+                if (sum % (m * (m + n)) == 0)
                 {
-                    yield return (m, n);
+                    var k = sum / (m * (m + n));
+                    
+                    roots.Add(new Root { K = k, M = m, N = n});
                 }
             }
         }
+
+        return roots;
     }
 }
