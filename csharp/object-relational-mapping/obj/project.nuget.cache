@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U/souHzyF2CDBL8WQuF4y9DMpN/xnukDIYa6EX6iNyW4UF1CV+SGYrTeyYd5FhrCZSQ/xLNEoEl06OVDKwHUOg==",
+  "dgSpecHash": "rWo8nr4Eo1rorG22AkP31zk7u/acXz3zK5loAt5fh0MsfQedu6cdjUAFGzZH4uYCKWhXepQhK1WYSIEOhfpfEg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\Exercism\\csharp\\object-relational-mapping\\ObjectRelationalMapping.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\object-relational-mapping\\ObjectRelationalMapping.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
