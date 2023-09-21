@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dy+SadMQGCWyIkmCbFk4xXfqBUWnR+dpOrTM/rb2Jb2nt/GENqBWVoUKj8oOZs6kuqA3I1hMa6GMw/ZZiJ6VGw==",
+  "dgSpecHash": "6DkljRINeBe7o7uLoAX2PaMdHBDnk34BmuE6qmNMY2qUu1QzEmjxvkKoEXFD6q0lqhwd3Qooimo82917f4fXyw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\collatz-conjecture\\CollatzConjecture.csproj",
+  "projectFilePath": "D:\\oezg\\exercism\\csharp\\collatz-conjecture\\CollatzConjecture.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
