@@ -2,7 +2,6 @@
 package isogram
 
 import (
-	"strings"
 	"unicode"
 )
 
@@ -10,9 +9,12 @@ import (
 // However, spaces and hyphens are allowed to appear multiple times.
 func IsIsogram(word string) bool {
 	set := make(map[rune]struct{})
-	for _, chr := range strings.ToLower(word) {
-		if !unicode.IsLetter(chr) {
+	for _, chr := range word {
+		if unicode.IsSpace(chr) || chr == '-' || !unicode.IsLetter(chr) {
 			continue
+		}
+		if unicode.IsUpper(chr) {
+			chr = unicode.ToLower(chr)
 		}
 		if _, exists := set[chr]; exists {
 			return false
