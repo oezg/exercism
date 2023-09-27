@@ -6,6 +6,7 @@ package logs
 
 import (
 	"fmt"
+	"strings"
 	"unicode/utf8"
 )
 
@@ -27,15 +28,7 @@ func Application(log string) string {
 // Replace replaces all occurrences of old with new, returning the modified log
 // to the caller.
 func Replace(log string, oldRune, newRune rune) string {
-	result := []rune{}
-	for _, chr := range log {
-		if chr == oldRune {
-			result = append(result, newRune)
-		} else {
-			result = append(result, chr)
-		}
-	}
-	return string(result)
+	return strings.ReplaceAll(log, string(oldRune), string(newRune))
 }
 
 // WithinLimit determines whether or not the number of characters in log is

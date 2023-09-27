@@ -22,22 +22,24 @@ func Valid(id string) bool {
 // If the string contains non digit characters or it is too short
 // or contains only digit zero then an error is raised.
 func ExtractDigits(id string) ([]int, error) {
-	digits := []int{}
 	if len(id) < 2 {
-		return digits, errors.New("id shorter than 2")
+		return nil, errors.New("id shorter than 2")
 	}
+
+	digits := []int{}
 	for _, chr := range id {
 		if unicode.IsSpace(chr) {
 			continue
 		}
 		if !unicode.IsDigit(chr) {
-			return digits, errors.New("non digit character")
+			return nil, errors.New("non digit character")
 		}
 		digit := int(chr - '0')
 		digits = append(digits, digit)
 	}
+
 	if len(digits) == 1 && digits[0] == 0 {
-		return digits, errors.New("single zero with space")
+		return nil, errors.New("single zero with space")
 	}
 	return digits, nil
 }
@@ -56,9 +58,10 @@ func DoubleEverySecondDigitFromRight(digits []int) {
 }
 
 // SumDigits accepts a slice of integers and returns their sum.
-func SumDigits(digits []int) (sum int) {
+func SumDigits(digits []int) int {
+	sum := 0
 	for _, digit := range digits {
 		sum += digit
 	}
-	return
+	return sum
 }
