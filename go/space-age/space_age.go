@@ -5,8 +5,8 @@ package space
 // Planet is a custom type that represents the name of planets.
 type Planet string
 
-// Year is a constant for the number of seconds in one Earth year.
-const Year = 31557600
+// SecondsInYear is a constant for the number of seconds in one Earth year.
+const SecondsInYear = 31557600
 
 // Age calculates how old someone would be on a given planet and age.
 // The argument in seconds and the return type for age is float64
@@ -21,8 +21,11 @@ func Age(seconds float64, planet Planet) float64 {
 		"Uranus":  84.016846,
 		"Neptune": 164.79132,
 	}
-	if period, ok := planets[planet]; ok {
-		return seconds / (period * Year)
+
+	period, ok := planets[planet]
+	if !ok {
+		return -1
 	}
-	return -1
+
+	return seconds / (period * SecondsInYear)
 }

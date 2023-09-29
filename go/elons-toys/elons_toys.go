@@ -1,6 +1,4 @@
-// Package elon defines methods on Car type to drive the car,
-// display distance travelled and battery charge, as well as
-// check if the car can finish a race track with its battery.
+// Package elon defines methods on remote controlled Car type.
 package elon
 
 import "fmt"
@@ -8,10 +6,11 @@ import "fmt"
 // Drive updates the number of meters driven based on the car's speed,
 // and reduces the battery according to the battery drainage
 func (car *Car) Drive() {
-	if car.battery >= car.batteryDrain {
-		car.battery -= car.batteryDrain
-		car.distance += car.speed
+	if car.battery < car.batteryDrain {
+		return
 	}
+	car.battery -= car.batteryDrain
+	car.distance += car.speed
 }
 
 // DisplayDistance returns the distance as displayed on the LED display.
