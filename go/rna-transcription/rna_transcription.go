@@ -2,7 +2,7 @@
 package strand
 
 import (
-	"log"
+	"fmt"
 	"strings"
 )
 
@@ -10,7 +10,7 @@ import (
 func ToRNA(dna string) string {
 	sb := strings.Builder{}
 
-	for _, nucleotide := range dna {
+	for i, nucleotide := range dna {
 		switch nucleotide {
 		case 'G':
 			sb.WriteRune('C')
@@ -21,7 +21,7 @@ func ToRNA(dna string) string {
 		case 'A':
 			sb.WriteRune('U')
 		default:
-			log.Fatalf("%c is not a DNA nucleotide", nucleotide)
+			return fmt.Sprintf("%c at the position %d is not a DNA nucleotide", nucleotide, i)
 		}
 	}
 

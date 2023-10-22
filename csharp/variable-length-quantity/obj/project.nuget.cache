@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/a/4SfiGExXHV0gwQEJqnyqDtlMj4Xiha+doJJWN6xfxR+UrD54D3ddALgNavCpH/9lJNcZXcPU2RiYRyLI3EQ==",
+  "dgSpecHash": "Hq1hBkcNlFw/zv3bt0nl0AWiY9LzopvpWkLPw01/E69xrZ8ByEnLYhWbdGlQxyNxU7FSk9LtNThpt8v1/XaI2Q==",
   "success": true,
   "projectFilePath": "D:\\oezg\\exercism\\csharp\\variable-length-quantity\\VariableLengthQuantity.csproj",
   "expectedPackageFiles": [

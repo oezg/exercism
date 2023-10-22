@@ -1,99 +1,53 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class VariableLengthQuantity
 {
     
-    public static uint[] Encode(uint[] numbers)
-    {
-        var result = new List<uint>();
+    public static uint[] Encode(uint[] numbers) 
+        => numbers.SelectMany(number => _encodeNumber(number)).ToArray();
 
-        foreach (uint number in numbers) 
-        {
-            result.AddRange(EncodeNumber(number));
-        }
-        
-        return result.ToArray();
-    }
 
     public static uint[] Decode(uint[] bytes)
     {
         var result = new List<uint>();
 
-        var number = new List<uint>();
+        var index = 0;
 
-        foreach (var codedByte in bytes)
+        for (var i = 0; i < bytes.Length; i++)
         {
-            number.Add(codedByte);
-            if (codedByte < 128)
+            if (bytes[i] < 128)
             {
-                result.Add(DecodeNumber(number));
-                number.Clear();
+                result.Add(_decodeBytes(bytes[index..(i+1)]));
+                index = i+1;
             }
         }
 
-        if (number.Count > 0)
-        {
-            throw new InvalidOperationException();
-        }
-
-        return result.ToArray();
+        return index == bytes.Length
+            ? result.ToArray() 
+            : throw new InvalidOperationException($"index {index} bytes length {bytes.Length}");
     }
 
-    public static uint DecodeNumber(List<uint> codedBytes)
+    private static uint _decodeBytes(uint[] codeBytes)
+        => codeBytes
+        .Select((codeByte, i) => (codeByte & 127) * (1u << (codeBytes.Length - i - 1) * 7))
+        .Aggregate((acc, curr) => acc + curr);
+
+
+    private static IEnumerable<uint> _encodeNumber(uint number, LinkedList<uint> code = null, bool firstIteration = true)
     {
-        uint code = 0;
+        code ??= new LinkedList<uint>();
 
-        var degree = codedBytes.Count - 1;
-
-        foreach (uint number in codedBytes)
-        {
-            if (number < 128)
-            {
-                return code + number;
-            }
-            
-            var remainder = number & 127;
-            code += remainder * (uint)(Math.Pow(128, degree));
-            degree--;
-            
-        }
-
-        return code;
-    }
-
-    public static List<uint> EncodeNumber(uint number)
-    {
         if (number == 0)
         {
-            return new List<uint> { 0 };
+            return code.DefaultIfEmpty();
         }
 
-        var division = number;
+        var digit = number & 127;
 
-        var code = new List<uint>();
+        code.AddFirst(firstIteration ? digit : digit | 128);
 
-        var continued = false;
-
-        while (division > 0)
-        {
-            var num = division & 127;
-
-
-            division = division >> 7;
-
-            if (continued)
-            {
-                num += 128;
-            }
-
-            continued = true;
-
-            code.Add(num);
-        }
-
-        code.Reverse();
-
-        return code;
+        return _encodeNumber(number >> 7, code, false);
     }
 }
