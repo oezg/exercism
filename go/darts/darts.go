@@ -10,11 +10,11 @@ import "math"
 
 // Score returns the correct amount earned by a dart landing at the given point.
 func Score(x, y float64) int {
-	return darts_score(radius(x, y))
+	return dartsScore(radius(x, y))
 }
 
 // darts_score returns the score corresponding to a certain distance from target.
-func darts_score(r float64) int {
+func dartsScore(r float64) int {
 	if r > 10 {
 		return 0
 	}
