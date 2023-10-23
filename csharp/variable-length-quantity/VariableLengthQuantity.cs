@@ -4,7 +4,6 @@ using System.Linq;
 
 public static class VariableLengthQuantity
 {
-    
     public static uint[] Encode(uint[] numbers) 
         => numbers.SelectMany(number => _encodeNumber(number)).ToArray();
 
@@ -24,9 +23,12 @@ public static class VariableLengthQuantity
             }
         }
 
-        return index == bytes.Length
-            ? result.ToArray() 
-            : throw new InvalidOperationException($"index {index} bytes length {bytes.Length}");
+        if (index < bytes.Length)
+        {
+            throw new InvalidOperationException($"index {index} bytes length {bytes.Length}");
+        }
+
+        return result.ToArray();
     }
 
     private static uint _decodeBytes(uint[] codeBytes)
@@ -35,7 +37,7 @@ public static class VariableLengthQuantity
         .Aggregate((acc, curr) => acc + curr);
 
 
-    private static IEnumerable<uint> _encodeNumber(uint number, LinkedList<uint> code = null, bool firstIteration = true)
+    private static IEnumerable<uint> _encodeNumber(uint number, LinkedList<uint> code = null)
     {
         code ??= new LinkedList<uint>();
 
@@ -46,8 +48,8 @@ public static class VariableLengthQuantity
 
         var digit = number & 127;
 
-        code.AddFirst(firstIteration ? digit : digit | 128);
+        code.AddFirst(code.Any() ? digit | 128 : digit);
 
-        return _encodeNumber(number >> 7, code, false);
+        return _encodeNumber(number >> 7, code);
     }
 }

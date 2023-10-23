@@ -6,7 +6,8 @@ import (
 	"strings"
 )
 
-// ToRNA returns the RNA complement of a given DNA sequence.
+// ToRNA returns the RNA complement of a given DNA sequence, or a warning message
+// when a letter is found in the given string that is not a DNA nucleaotide.
 func ToRNA(dna string) string {
 	sb := strings.Builder{}
 
