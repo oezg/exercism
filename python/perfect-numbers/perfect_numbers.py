@@ -21,17 +21,14 @@ def classify(number: int) -> str:
     """
     validate_positive(number=number)
 
-    def nicomachus(aliquot: int) -> str:
+    aliquot = aliquot_sum(number=number)
+    if aliquot > number:
+        return 'abundant'
 
-        if aliquot > number:
-            return 'abundant'
+    if aliquot < number:
+        return 'deficient'
 
-        if aliquot < number:
-            return 'deficient'
-
-        return 'perfect'
-
-    return nicomachus(aliquot_sum(number=number))
+    return 'perfect'
 
 
 def aliquot_sum(number: int) -> int:
@@ -57,5 +54,5 @@ def validate_positive(number: int) -> None:
     raises value error with the expected message if number is not positive integer
     """
 
-    if number < 1 or not isinstance(number, int):
+    if not isinstance(number, int) or number < 1:
         raise ValueError("Classification is only possible for positive integers.")
