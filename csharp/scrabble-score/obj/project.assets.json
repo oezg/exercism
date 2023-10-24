@@ -5794,11 +5794,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\oezg\\exercism\\csharp\\scrabble-score\\ScrabbleScore.csproj",
+      "projectUniqueName": "C:\\Users\\b45089\\code\\exercism\\csharp\\scrabble-score\\ScrabbleScore.csproj",
       "projectName": "ScrabbleScore",
-      "projectPath": "D:\\oezg\\exercism\\csharp\\scrabble-score\\ScrabbleScore.csproj",
+      "projectPath": "C:\\Users\\b45089\\code\\exercism\\csharp\\scrabble-score\\ScrabbleScore.csproj",
       "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-      "outputPath": "D:\\oezg\\exercism\\csharp\\scrabble-score\\obj\\",
+      "outputPath": "C:\\Users\\b45089\\code\\exercism\\csharp\\scrabble-score\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
