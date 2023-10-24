@@ -12,4 +12,4 @@ def is_pangram(sentence: str) -> bool:
     A pangram contains each of the 26 letters in the English alphabet.
     """
 
-    return len(set(ascii_lowercase).difference(sentence.lower())) == 0
+    return set(sentence.lower()).issuperset(ascii_lowercase)
