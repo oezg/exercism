@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YmWmulollFh9U2riCPPDzlBDZmIG1v3jMNZrWPpefliWOX1qJxrc+B7edzk7SXGEnTUTJZBox920jr5Hfpl5wQ==",
+  "dgSpecHash": "A0Npa1ygL0/0lVfG5YwUPBFQRwziKpZ5JxOtRk64/NdCMvjbVOn/nYqfT9jD7sRkYTqQcu4g0QHHKKP/VjU75g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\difference-of-squares\\DifferenceOfSquares.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\code\\exercism\\csharp\\difference-of-squares\\DifferenceOfSquares.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
