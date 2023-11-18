@@ -73,17 +73,26 @@ def maybe_double_last(hand: list[int]) -> list[int]:
     :return: list - hand with Jacks (if present) value doubled.
     """
 
-    if hand[-1] == 11:
-        hand[-1] *= 2
-    return hand
+    return hand[:-1] + [hand[-1] * 2 if hand[-1] == 11 else hand[-1]]
 
 
 def median(hand: list[int]) -> float:
+    """Find the median value in a list of sorted integers.
+
+    :param hand: list - cards in hand.
+    :return: float - value in the middle or the average of two values in the middle.
+    """
+
     middle = len(hand) // 2
-    if len(hand) % 2 > 0:
-        return hand[middle]
-    return card_average(hand[middle-1:middle+1])
+    start = middle - 1 + len(hand) % 2
+    return card_average(hand[start:middle+1])
 
 
 def average_first_and_last(hand: list[int]) -> float:
-    return card_average([hand[0], hand[-1]])
+    """Find the average of the first and last values in a list of sorted integers.
+
+    :param hand: list - cards in hand.
+    :return: float - average of the first and the last values.
+    """
+
+    return card_average(hand[::len(hand)-1])
