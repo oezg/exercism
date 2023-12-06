@@ -17,21 +17,20 @@ public static class AllYourBase
         .Sum();
 
     private static Func<int, int[]> ConvertToBaseArray(int outputBase)
-        => base10Value =>
-        {
-            if (base10Value == 0)
-            {
-                return new int[] { default };
-            }
+        => base10Value => base10Value == 0
+                ? (new int[] { default })
+                : GenerateDigits(base10Value, outputBase)
+                .Reverse()
+                .ToArray();
 
-            var output = new LinkedList<int>();
-            while (base10Value > 0)
-            {
-                output.AddFirst(base10Value % outputBase);
-                base10Value /= outputBase;
-            }
-            return output.ToArray();
-        };
+    private static IEnumerable<int> GenerateDigits(int val, int bas)
+    {
+        while (val > 0)
+        {
+            yield return val % bas;
+            val /= bas;
+        }
+    }
 
     private static void ThrowExceptions(int inputBase, int[] inputDigits, int outputBase)
     {
