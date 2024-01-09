@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qw+SdZe+gOZGET8ffIk3TQQ5vZ5EgeVeW0z1doZqlgGRMYTM7xATcBiGfqSeEDEg6iRW9Z04FCr+ZauqtYITpw==",
+  "dgSpecHash": "oRWG4jPkdxhUA3QfQDfh4cbGQcKHofjxn0H2WGJqs/U7iKZTxY68G8Bk9LFYAtrzuCnapC3QaABMchc7gekpUg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\sum-of-multiples\\SumOfMultiples.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\code\\exercism\\csharp\\sum-of-multiples\\SumOfMultiples.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",

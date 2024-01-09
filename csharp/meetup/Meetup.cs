@@ -9,40 +9,40 @@ public enum Schedule
     Second,
     Third,
     Fourth,
-    Last
+    Last,
 }
+
+public static class ScheduleExtension
+{
+    public static Index GetIndex(this Schedule schedule) => schedule switch
+    {
+        Schedule.Teenth or Schedule.First => 0,
+        Schedule.Second => 1,
+        Schedule.Third => 2,
+        Schedule.Fourth => 3,
+        Schedule.Last => ^1,
+        _ => throw new ArgumentOutOfRangeException(nameof(schedule)),
+    };
+} 
 
 public class Meetup
 {
-    private const int WeekLength = 7;
+    public int Month { get; }
 
-    public int Month { get; set; }
-
-    public int Year { get; set; }
-
-    public IEnumerable<DateTime> Dates { get; }
+    public int Year { get; }
 
     public Meetup(int month, int year)
     {
         Month = month;
         Year = year;
-        Dates = Enumerable.Range(1, DateTime.DaysInMonth(Year, Month)).Select(dayNumber => new DateTime(Year, Month, dayNumber));
     }
 
-    public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule) => schedule switch
-    {
-        Schedule.Teenth => Dates.Where(date => date.DayOfWeek == dayOfWeek).First(date => date.Day > 12), 
-        Schedule.First => Dates.First(date => date.DayOfWeek == dayOfWeek), 
-        Schedule.Second => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(1), 
-        Schedule.Third => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(2),
-        Schedule.Fourth => Dates.Where(date => date.DayOfWeek == dayOfWeek).ElementAt(3),
-        Schedule.Last => Dates.Last(date => date.DayOfWeek == dayOfWeek), 
-        _ => throw new ArgumentException(),
-    };
+    public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule) 
+        => datesInMonth(dayOfWeek, schedule).ElementAt(schedule.GetIndex());
 
-    private DateTime firstOccurrenceAfterOffset(DayOfWeek dayOfWeek, int offset = 0)
-    {
-        DateTime dt = new DateTime(Year, Month, offset + 1);
-        return dt.AddDays(((dayOfWeek - dt.DayOfWeek) % WeekLength + WeekLength) % WeekLength);
-    }
+    private IEnumerable<DateTime> datesInMonth(DayOfWeek dayOfWeek, Schedule schedule)
+        => Enumerable.Range(1, DateTime.DaysInMonth(Year, Month))
+        .Select(dayNumber => new DateTime(Year, Month, dayNumber))
+        .Where(date => date.DayOfWeek == dayOfWeek)
+        .SkipWhile(date => schedule == Schedule.Teenth && date.Day < 13);
 }

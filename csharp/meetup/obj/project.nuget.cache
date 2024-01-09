@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "M3pDs9tCW7TBdS8khz+N0guyyJ/TWMpv3jdZ4bK2z6uu0iwaAdEW7NzMCpqpm5MOmDU7826Pqqh+QovK1tHfwg==",
+  "dgSpecHash": "AReOmjfMLbXgiYQ1uoyqooihZDMfkuXZLREjZxuiYm+cIvw1SgtH6C1QLrJwjGXJWwIo20Oin6rS6zsjKJKYXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\meetup\\Meetup.csproj",
+  "projectFilePath": "C:\\Users\\b45089\\code\\exercism\\csharp\\meetup\\Meetup.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",

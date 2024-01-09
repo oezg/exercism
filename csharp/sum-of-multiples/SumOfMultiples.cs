@@ -4,8 +4,11 @@ using System.Linq;
 
 public static class SumOfMultiples
 {
-    public static int Sum(IEnumerable<int> multiples, int max)
-        => Enumerable.Range(0, max)
-        .Where(n => multiples.Any(x => x > 0 && n % x == 0))
+    public static int Sum(IEnumerable<int> magicalBases, int level) 
+        => magicalBases
+        .Where(bas => bas > 0)
+        .SelectMany(bas => Enumerable.Range(1, (level - 1) / bas)
+        .Select(m => m * bas))
+        .Distinct()
         .Sum();
 }
