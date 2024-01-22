@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JmmOgiookTDuzPiGZ1gOY+yPK+82aySbueERTNapj859ZTNGDTXd715UELjDBjL8oO1avLZ5N0SH3EYDkZp83w==",
+  "dgSpecHash": "mgE/km9KN8CNDLlda77cr6U1QIV9Ulv8uLaZcG2FaOEBTqFd3f294t7+4JiGNLxs/0PIG0whOYKhLrsEstvUNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\code\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
+  "projectFilePath": "D:\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
