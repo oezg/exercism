@@ -1,22 +1,19 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public static class Raindrops
 {
     public static string Convert(int number)
-    {
-        string result = string.Empty;
-        if (number % 3 == 0) 
-        {
-            result += "Pling";
+        => new Dictionary<int, string> {
+            [3] = "i",
+            [5] = "a",
+            [7] = "o",
         }
-        if (number % 5 == 0)
-        {
-            result += "Plang";
-        }
-        if (number % 7 == 0)
-        {
-            result += "Plong";
-        }
-        return string.IsNullOrEmpty(result) ? number.ToString() : result;
-    }
+        .Where(kvp => number.HasFactor(kvp.Key))
+        .Select(kvp => $"Pl{kvp.Value}ng" )
+        .DefaultIfEmpty(number.ToString())
+        .Aggregate((acc, curr) => $"{acc}{curr}");
+
+    public static bool HasFactor(this int number, int factor) => number % factor == 0;
 }
