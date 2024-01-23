@@ -5794,11 +5794,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b45089\\code\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
+      "projectUniqueName": "D:\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
       "projectName": "AllYourBase",
-      "projectPath": "C:\\Users\\b45089\\code\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
+      "projectPath": "D:\\exercism\\csharp\\all-your-base\\AllYourBase.csproj",
       "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b45089\\code\\exercism\\csharp\\all-your-base\\obj\\",
+      "outputPath": "D:\\exercism\\csharp\\all-your-base\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5864,7 +5864,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

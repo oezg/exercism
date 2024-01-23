@@ -7,11 +7,12 @@ public static class AllYourBase
 {
     public static int[] Rebase(int inputBase, int[] inputDigits, int outputBase)
     {
-        ThrowExceptions(inputBase, inputDigits, outputBase);
-        return ConvertToBaseArray(outputBase)(ConvertToBase10Value(inputDigits)(inputBase));
+        ValidateInput(inputBase, inputDigits, outputBase);
+        int base10Value = ConvertToBase10Value(inputDigits)(inputBase);
+        return ConvertToBaseArray(outputBase)(base10Value);
     }
 
-    private static Func<int, int> ConvertToBase10Value(int[] inputDigits) 
+    private static Func<int, int> ConvertToBase10Value(int[] inputDigits)
         => inputBase => inputDigits
         .Select((digit, index) => digit * (int)Math.Pow(inputBase, inputDigits.Length - 1 - index))
         .Sum();
@@ -32,9 +33,9 @@ public static class AllYourBase
         }
     }
 
-    private static void ThrowExceptions(int inputBase, int[] inputDigits, int outputBase)
+    private static void ValidateInput(int inputBase, int[] inputDigits, int outputBase)
     {
-        if (inputBase < 2 || outputBase < 2) 
+        if (inputBase < 2 || outputBase < 2)
             throw new ArgumentException("base can not be less than 2");
         if (inputDigits.Any(digit => digit < 0 || digit >= inputBase))
             throw new ArgumentException($"one of digits is not between 0 and {inputBase}");

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cPvAINYcBPvlj8UIyoAMgIKLYyvSf78+bocvMM2j6j1XnACRk3vlznOOWjP4yib4B1ECs7cZaO3tnlP4/Fc+Cw==",
+  "dgSpecHash": "bNTWtx+XHXRLDqvxf3kFNlDZyscNyJVKuck15tX1IKJ4etNGBl+lK6BkGGV0OcBSKS1wes8Qe9NSpY57F9lipA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\triangle\\Triangle.csproj",
+  "projectFilePath": "D:\\exercism\\csharp\\triangle\\Triangle.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\b45089\\.nuget\\packages\\exercism.tests\\0.1.0-beta1\\exercism.tests.0.1.0-beta1.nupkg.sha512",
     "C:\\Users\\b45089\\.nuget\\packages\\microsoft.codecoverage\\16.8.3\\microsoft.codecoverage.16.8.3.nupkg.sha512",
