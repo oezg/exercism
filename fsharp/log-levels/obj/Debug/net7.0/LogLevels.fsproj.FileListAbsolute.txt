@@ -112,3 +112,4 @@
 /home/oezg/code/exercism/fsharp/log-levels/obj/Debug/net7.0/LogLevels.pdb
 /home/oezg/code/exercism/fsharp/log-levels/obj/Debug/net7.0/LogLevels.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/log-levels/obj/Debug/net7.0/ref/LogLevels.dll
+/home/oezg/code/exercism/fsharp/log-levels/obj/Debug/net7.0/LogLevels.sourcelink.json

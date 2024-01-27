@@ -111,3 +111,4 @@
 /home/oezg/code/exercism/fsharp/valentines-day/obj/Debug/net7.0/ValentinesDay.pdb
 /home/oezg/code/exercism/fsharp/valentines-day/obj/Debug/net7.0/ValentinesDay.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/valentines-day/obj/Debug/net7.0/ref/ValentinesDay.dll
+/home/oezg/code/exercism/fsharp/valentines-day/obj/Debug/net7.0/ValentinesDay.sourcelink.json

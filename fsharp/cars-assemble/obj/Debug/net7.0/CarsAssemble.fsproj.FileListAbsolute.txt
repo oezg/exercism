@@ -112,3 +112,4 @@
 /home/oezg/code/exercism/fsharp/cars-assemble/obj/Debug/net7.0/CarsAssemble.pdb
 /home/oezg/code/exercism/fsharp/cars-assemble/obj/Debug/net7.0/CarsAssemble.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/cars-assemble/obj/Debug/net7.0/ref/CarsAssemble.dll
+/home/oezg/code/exercism/fsharp/cars-assemble/obj/Debug/net7.0/CarsAssemble.sourcelink.json

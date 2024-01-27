@@ -112,3 +112,4 @@
 /home/oezg/code/exercism/fsharp/lucians-luscious-lasagna/obj/Debug/net7.0/LuciansLusciousLasagna.pdb
 /home/oezg/code/exercism/fsharp/lucians-luscious-lasagna/obj/Debug/net7.0/LuciansLusciousLasagna.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/lucians-luscious-lasagna/obj/Debug/net7.0/ref/LuciansLusciousLasagna.dll
+/home/oezg/code/exercism/fsharp/lucians-luscious-lasagna/obj/Debug/net7.0/LuciansLusciousLasagna.sourcelink.json

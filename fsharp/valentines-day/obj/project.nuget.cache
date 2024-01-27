@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7gCFokieuny9Vt8FUBurHjyJrPR5IMIQkQEEc946zx7g9HJ5NXcTTsdLiLbgVBaW4tjR6mwlldLtMoE98vwkVg==",
+  "dgSpecHash": "hvx7r3AT96q1iypLd9ucGtnWWS4RE51wBmganq+yjCnhqmz/pwafxypeaDoblSaM+gnozhjLBclN9CbMdVPQsw==",
   "success": true,
   "projectFilePath": "/home/oezg/code/exercism/fsharp/valentines-day/ValentinesDay.fsproj",
   "expectedPackageFiles": [
-    "/home/oezg/.nuget/packages/fsharp.core/7.0.0/fsharp.core.7.0.0.nupkg.sha512",
+    "/home/oezg/.nuget/packages/fsharp.core/8.0.100/fsharp.core.8.0.100.nupkg.sha512",
     "/home/oezg/.nuget/packages/fsunit.xunit/4.0.4/fsunit.xunit.4.0.4.nupkg.sha512",
     "/home/oezg/.nuget/packages/microsoft.codecoverage/16.8.3/microsoft.codecoverage.16.8.3.nupkg.sha512",
     "/home/oezg/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",
@@ -59,7 +59,9 @@
     "/home/oezg/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

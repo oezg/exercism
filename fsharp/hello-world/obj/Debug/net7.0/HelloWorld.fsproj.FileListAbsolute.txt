@@ -111,3 +111,4 @@
 /home/oezg/code/exercism/fsharp/hello-world/obj/Debug/net7.0/HelloWorld.pdb
 /home/oezg/code/exercism/fsharp/hello-world/obj/Debug/net7.0/HelloWorld.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/hello-world/obj/Debug/net7.0/ref/HelloWorld.dll
+/home/oezg/code/exercism/fsharp/hello-world/obj/Debug/net7.0/HelloWorld.sourcelink.json

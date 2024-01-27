@@ -5,7 +5,7 @@ type Approval =
     | No
     | Maybe
 
-type Cuisine = 
+type Cuisine =
     | Korean
     | Turkish
 
@@ -22,13 +22,20 @@ type Activity =
     | Restaurant of Cuisine
     | Walk of int
 
-let rateActivity (activity: Activity): Approval = 
+let rateActivity (activity: Activity) : Approval =
     match activity with
     | BoardGame -> No
     | Chill -> No
-    | Movie genre -> if genre = Romance then Yes else No
+    | Movie genre ->
+        match genre with
+        | Romance -> Yes
+        | _ -> No
     | Restaurant cuisine ->
-                                        match cuisine with 
-                                        | Korean -> Yes
-                                        | Turkish -> Maybe
-    | Walk km -> if km < 3 then Yes else if km < 5 then Maybe else No
+        match cuisine with
+        | Korean -> Yes
+        | Turkish -> Maybe
+    | Walk km ->
+        match km with
+        | km when km < 3 -> Yes
+        | km when km < 5 -> Maybe
+        | _ -> No

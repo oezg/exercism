@@ -112,3 +112,4 @@
 /home/oezg/code/exercism/fsharp/annalyns-infiltration/obj/Debug/net7.0/AnnalynsInfiltration.pdb
 /home/oezg/code/exercism/fsharp/annalyns-infiltration/obj/Debug/net7.0/AnnalynsInfiltration.genruntimeconfig.cache
 /home/oezg/code/exercism/fsharp/annalyns-infiltration/obj/Debug/net7.0/ref/AnnalynsInfiltration.dll
+/home/oezg/code/exercism/fsharp/annalyns-infiltration/obj/Debug/net7.0/AnnalynsInfiltration.sourcelink.json
