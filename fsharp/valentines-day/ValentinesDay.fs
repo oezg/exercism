@@ -22,20 +22,14 @@ type Activity =
     | Restaurant of Cuisine
     | Walk of int
 
-let rateActivity (activity: Activity) : Approval =
-    match activity with
-    | BoardGame -> No
-    | Chill -> No
-    | Movie genre ->
-        match genre with
-        | Romance -> Yes
-        | _ -> No
-    | Restaurant cuisine ->
-        match cuisine with
-        | Korean -> Yes
-        | Turkish -> Maybe
-    | Walk km ->
-        match km with
-        | km when km < 3 -> Yes
-        | km when km < 5 -> Maybe
-        | _ -> No
+let rateActivity =
+    function
+    | Movie Romance
+    | Restaurant Korean -> Yes
+    | Walk distance when distance < 3 -> Yes
+    | Walk distance when distance < 5 -> Maybe
+    | Restaurant Turkish -> Maybe
+    | BoardGame
+    | Chill
+    | Movie _
+    | Walk _ -> No
