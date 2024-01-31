@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\hyperinflation-hits-hyperia\\HyperinflationHitsHyperia.csproj": {}
+    "/home/oezg/code/exercism/csharp/hyperinflation-hits-hyperia/HyperinflationHitsHyperia.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\Exercism\\csharp\\hyperinflation-hits-hyperia\\HyperinflationHitsHyperia.csproj": {
+    "/home/oezg/code/exercism/csharp/hyperinflation-hits-hyperia/HyperinflationHitsHyperia.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\Exercism\\csharp\\hyperinflation-hits-hyperia\\HyperinflationHitsHyperia.csproj",
+        "projectUniqueName": "/home/oezg/code/exercism/csharp/hyperinflation-hits-hyperia/HyperinflationHitsHyperia.csproj",
         "projectName": "HyperinflationHitsHyperia",
-        "projectPath": "C:\\Users\\b45089\\Exercism\\csharp\\hyperinflation-hits-hyperia\\HyperinflationHitsHyperia.csproj",
-        "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\Exercism\\csharp\\hyperinflation-hits-hyperia\\obj\\",
+        "projectPath": "/home/oezg/code/exercism/csharp/hyperinflation-hits-hyperia/HyperinflationHitsHyperia.csproj",
+        "packagesPath": "/home/oezg/.nuget/packages/",
+        "outputPath": "/home/oezg/code/exercism/csharp/hyperinflation-hits-hyperia/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/oezg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -68,12 +66,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.14, 7.0.14]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
