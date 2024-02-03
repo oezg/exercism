@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="LogLevelsTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2024-02-03T00:00:29" hostname="imac" time="0.076">
+  <properties/>
+  <testcase name="The message method returns the log line's message after removing leading and trailing spaces" classname="LogLevelsTest" time="0.055"/>
+  <testcase name="The message method returns the log line's message of an info log" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The message method returns the log line's message of an error log" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The reformat method correctly reformats an error log line removing spaces" classname="LogLevelsTest" time="0.005"/>
+  <testcase name="The logLevel method returns the log level of an info log line" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The reformat method correctly reformats an error log line" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The logLevel method returns the log level of an error log line" classname="LogLevelsTest" time="0.002"/>
+  <testcase name="The reformat method correctly reformats an info log line" classname="LogLevelsTest" time="0.0"/>
+  <testcase name="The reformat method correctly reformats a warning log line" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The logLevel method returns the log level of a warning log line" classname="LogLevelsTest" time="0.001"/>
+  <testcase name="The message method returns the log line's message of a warning log" classname="LogLevelsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
