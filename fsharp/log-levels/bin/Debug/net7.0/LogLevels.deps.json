@@ -9,7 +9,7 @@
       "LogLevels/1.0.0": {
         "dependencies": {
           "Exercism.Tests": "0.1.0-beta1",
-          "FSharp.Core": "7.0.0",
+          "FSharp.Core": "8.0.100",
           "FsUnit.xUnit": "4.0.4",
           "Microsoft.NET.Test.Sdk": "16.8.3",
           "xunit": "2.4.1",
@@ -30,11 +30,11 @@
           }
         }
       },
-      "FSharp.Core/7.0.0": {
+      "FSharp.Core/8.0.100": {
         "runtime": {
           "lib/netstandard2.1/FSharp.Core.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.57105"
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.1.23.52306"
           }
         },
         "resources": {
@@ -81,7 +81,7 @@
       },
       "FsUnit.xUnit/4.0.4": {
         "dependencies": {
-          "FSharp.Core": "7.0.0",
+          "FSharp.Core": "8.0.100",
           "NETStandard.Library": "2.0.3",
           "NHamcrest": "2.0.1",
           "xunit": "2.4.1"
@@ -815,12 +815,12 @@
       "path": "exercism.tests/0.1.0-beta1",
       "hashPath": "exercism.tests.0.1.0-beta1.nupkg.sha512"
     },
-    "FSharp.Core/7.0.0": {
+    "FSharp.Core/8.0.100": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hOwMwUUVO/4ZEQK4Cft3EOkMqidTdRJKu+vyYORRdTdz1WwBCr0f1dCQ8vW3Yk2Dq6p73fPSNIeumKqMg47Y9w==",
-      "path": "fsharp.core/7.0.0",
-      "hashPath": "fsharp.core.7.0.0.nupkg.sha512"
+      "sha512": "sha512-dIzmFaXV2A+q1sfPBOZMhcd90GgwjsCKVtcu9I7We3JOBcLduFN2IN4B95p+87XEYqhqBrrbLtRtPMl/d5q6Qw==",
+      "path": "fsharp.core/8.0.100",
+      "hashPath": "fsharp.core.8.0.100.nupkg.sha512"
     },
     "FsUnit.xUnit/4.0.4": {
       "type": "package",

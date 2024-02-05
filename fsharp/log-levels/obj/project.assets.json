@@ -14,7 +14,7 @@
           "lib/net5.0/Exercism.Tests.dll": {}
         }
       },
-      "FSharp.Core/7.0.0": {
+      "FSharp.Core/8.0.100": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -1185,14 +1185,14 @@
         "lib/net5.0/Exercism.Tests.dll"
       ]
     },
-    "FSharp.Core/7.0.0": {
-      "sha512": "hOwMwUUVO/4ZEQK4Cft3EOkMqidTdRJKu+vyYORRdTdz1WwBCr0f1dCQ8vW3Yk2Dq6p73fPSNIeumKqMg47Y9w==",
+    "FSharp.Core/8.0.100": {
+      "sha512": "dIzmFaXV2A+q1sfPBOZMhcd90GgwjsCKVtcu9I7We3JOBcLduFN2IN4B95p+87XEYqhqBrrbLtRtPMl/d5q6Qw==",
       "type": "package",
-      "path": "fsharp.core/7.0.0",
+      "path": "fsharp.core/8.0.100",
       "files": [
         ".nupkg.metadata",
         "Icon.png",
-        "fsharp.core.7.0.0.nupkg.sha512",
+        "fsharp.core.8.0.100.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -4022,7 +4022,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Exercism.Tests >= 0.1.0-beta1",
-      "FSharp.Core >= 7.0.0",
+      "FSharp.Core >= 8.0.100",
       "FsUnit.xUnit >= 4.0.4",
       "Microsoft.NET.Test.Sdk >= 16.8.3",
       "xunit >= 2.4.1",
@@ -4048,7 +4048,7 @@
         "net7.0"
       ],
       "sources": {
-        "/usr/lib64/dotnet/sdk/7.0.114/FSharp/library-packs": {},
+        "/usr/lib64/dotnet/sdk/8.0.100/FSharp/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4070,7 +4070,7 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[7.0.0, )",
+            "version": "[8.0.100, )",
             "generatePathProperty": true
           },
           "FsUnit.xUnit": {
@@ -4105,12 +4105,22 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[7.0.14, 7.0.14]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/7.0.114/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }

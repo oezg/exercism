@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lqCxDlvhJVteK7Ytd5XF8NgxXLsD6X2zTeXjGBarhUf/R2vIFZpW0D5G/anc+UweVaA11bkR2rgydDDSUZEKUQ==",
+  "dgSpecHash": "uCq9Kut4nHhma2SrNHYvkAiz5Yf0NWOUQHMf3QDF6B8aCrTvg8c1udnW2sVY9GNiXH66JUZnhXuB8QRzme0Zbg==",
   "success": true,
   "projectFilePath": "/home/oezg/code/exercism/fsharp/log-levels/LogLevels.fsproj",
   "expectedPackageFiles": [
     "/home/oezg/.nuget/packages/exercism.tests/0.1.0-beta1/exercism.tests.0.1.0-beta1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/fsharp.core/7.0.0/fsharp.core.7.0.0.nupkg.sha512",
+    "/home/oezg/.nuget/packages/fsharp.core/8.0.100/fsharp.core.8.0.100.nupkg.sha512",
     "/home/oezg/.nuget/packages/fsunit.xunit/4.0.4/fsunit.xunit.4.0.4.nupkg.sha512",
     "/home/oezg/.nuget/packages/microsoft.codecoverage/16.8.3/microsoft.codecoverage.16.8.3.nupkg.sha512",
     "/home/oezg/.nuget/packages/microsoft.csharp/4.0.1/microsoft.csharp.4.0.1.nupkg.sha512",
@@ -60,7 +60,9 @@
     "/home/oezg/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }
