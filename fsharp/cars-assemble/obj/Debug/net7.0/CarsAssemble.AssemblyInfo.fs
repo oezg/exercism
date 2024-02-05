@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("CarsAssemble")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+852d8b313e5d06e1470663da85e67491b3530082")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d3d448e281e91d4605a83fcef41bab9754c94e0")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("CarsAssemble")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("CarsAssemble")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
