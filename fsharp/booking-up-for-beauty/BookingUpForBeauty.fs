@@ -1,6 +1,5 @@
 module BookingUpForBeauty
 
-// The following line is needed to use the DateTime type
 open System
 
 let schedule (appointmentDateDescription: string): DateTime = 
@@ -17,5 +16,5 @@ let description (appointmentDate: DateTime): string =
     |> sprintf "You have an appointment on %s." 
 
 let anniversaryDate(): DateTime = 
-    DateTime()
+    DateTime(DateTime.Today.Year, 9, 15)
 
