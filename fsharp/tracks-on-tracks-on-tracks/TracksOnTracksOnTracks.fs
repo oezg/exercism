@@ -7,14 +7,12 @@ let existingList: string list = ["F#"; "Clojure"; "Haskell"]
 let addLanguage (language: string) (languages: string list): string list =
     language::languages
 
-let countLanguages (languages: string list): int = 
-    List.length languages
+let countLanguages = List.length
 
-let reverseList(languages: string list): string list =
-    List.rev languages
+let reverseList = List.rev
 
-let excitingList (languages: string list): bool = 
-    match languages with
-    | "F#"::_ -> true
-    | _::"F#"::_ when Array.contains (List.length languages) [|2; 3|]  -> true
+let excitingList = 
+    function
+    | "F#" :: _
+    | _ :: "F#" :: ([] | [ _ ]) -> true
     | _ -> false

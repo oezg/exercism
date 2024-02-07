@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("TracksOnTracksOnTracks")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ad2f92a74f1ab158a53c74aaf9e6bcd3a69882b")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e5922818691eb6a246e7d3c83ff35a02da45d66")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("TracksOnTracksOnTracks")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("TracksOnTracksOnTracks")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
