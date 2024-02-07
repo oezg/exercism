@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("TwoFer")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82165a914ae2b3353bda7d99fad2f56dc346ae55")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b77348d6f0fa9063727ca80e1d252b79a4d88693")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("TwoFer")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("TwoFer")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

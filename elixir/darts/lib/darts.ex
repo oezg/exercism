@@ -11,14 +11,12 @@ defmodule Darts do
     |> points()
 
 
-  defp zone(position) do
-    case distance(position) do
-      outside when outside > 10 -> :outside
-      outer_circle when outer_circle > 5 -> :outer_circle
-      middle_circle when middle_circle > 1 -> :middle_circle
-      _inner_circle -> :inner_circle
-    end
-  end
+  defp zone(position), do: circle(distance(position))
+
+  defp circle(inner) when inner <= 1, do: :inner_circle
+  defp circle(middle) when middle <= 5, do: :middle_circle
+  defp circle(outer) when outer <= 10, do: :outer_circle
+  defp circle(_outside), do: :outside
 
   defp distance({x, y}), do: :math.sqrt(x*x + y*y)
 
