@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("BirdWatcher")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b77348d6f0fa9063727ca80e1d252b79a4d88693")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1ad2f92a74f1ab158a53c74aaf9e6bcd3a69882b")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("BirdWatcher")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("BirdWatcher")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
