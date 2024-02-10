@@ -1,32 +1,40 @@
 defmodule HighSchoolSweetheart do
-  def first_letter(name) do
-    # Please implement the first_letter/1 function
-  end
+  @heart_template """
+       ******       ******
+     **      **   **      **
+   **         ** **         **
+  **            *            **
+  **                         **
+  **     P. 1.  +  P. 2.     **
+   **                       **
+     **                   **
+       **               **
+         **           **
+           **       **
+             **   **
+               ***
+                *
+  """
 
-  def initial(name) do
-    # Please implement the initial/1 function
-  end
+  @spec first_letter(String.t()) :: String.t()
+  def first_letter(name),
+    do: String.first(String.trim_leading(name))
 
-  def initials(full_name) do
-    # Please implement the initials/1 function
-  end
+  @spec initial(String.t()) :: String.t()
+  def initial(name),
+    do: String.upcase(first_letter(name)) <> "."
 
-  def pair(full_name1, full_name2) do
-    #      ******       ******
-    #    **      **   **      **
-    #  **         ** **         **
-    # **            *            **
-    # **                         **
-    # **     X. X.  +  X. X.     **
-    #  **                       **
-    #    **                   **
-    #      **               **
-    #        **           **
-    #          **       **
-    #            **   **
-    #              ***
-    #               *
+  @spec initials(String.t()) :: String.t()
+  def initials(full_name),
+    do:
+      full_name
+      |> String.split(" ")
+      |> Enum.map_join(" ", &initial/1)
 
-    # Please implement the pair/2 function
-  end
+  @spec pair(String.t(), String.t()) :: String.t()
+  def pair(full_name1, full_name2),
+    do:
+      @heart_template
+      |> String.replace("P. 1.", initials(full_name1))
+      |> String.replace("P. 2.", initials(full_name2))
 end

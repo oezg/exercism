@@ -41,13 +41,31 @@ let replaceCoach(team: Team) (coach: Coach): Team =
       with Coach = coach
    }
 
-let isSameTeam(homeTeam: Team) (awayTeam: Team): bool =
-   homeTeam = awayTeam
+let isSameTeam: Team -> Team -> bool = (=)
 
-let rootForTeam =
+
+let rootForTeamArgumentDestructuring {
+      Name = name
+      Coach = {
+         Name = coachName
+         FormerPlayer = coachIsFormerPlayer
+      }
+      Stats = {
+         Wins = wins
+         Losses = losses
+      }
+   }: bool =
+   coachName = "Gregg Popovich"
+   || coachIsFormerPlayer
+   || name = "Chicago Bulls"
+   || wins >= 60
+   || losses > wins
+
+let rootForTeamPatternMatching : Team -> bool   =
    function
    | { Name = "Chicago Bulls" } -> true
-   | { Coach = { Name = "Gregg Popovich" } } -> true
-   | { Coach = { FormerPlayer = true } } -> true
+   | { Coach = { Name = "Gregg Popovich" } | { FormerPlayer = true } } -> true
    | { Stats = { Wins = wins; Losses = losses } } when wins >= 60 || losses > wins -> true
    | _ -> false
+
+let rootForTeam = rootForTeamArgumentDestructuring

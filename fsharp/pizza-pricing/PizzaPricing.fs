@@ -1,6 +1,5 @@
 module PizzaPricing
 
-// TODO: please define the 'Pizza' discriminated union type
 type Pizza = 
     | Margherita
     | Caprese
@@ -8,17 +7,20 @@ type Pizza =
     | ExtraSauce of Pizza
     | ExtraToppings of Pizza
 
-let rec pizzaPrice (pizza: Pizza): int =
-    match pizza with
+let rec pizzaPrice = 
+    function
     | Margherita -> 7
     | Caprese -> 9
     | Formaggio -> 10
-    | ExtraSauce pzz-> 1 + pizzaPrice pzz
-    | ExtraToppings pzz -> 2 + pizzaPrice pzz
+    | ExtraSauce pizza-> 1 + pizzaPrice pizza
+    | ExtraToppings pizza -> 2 + pizzaPrice pizza
+
+let surcharge =
+    function
+    | 1 -> 3
+    | 2 -> 2
+    | _ -> 0
 
 let orderPrice(pizzas: Pizza list): int = 
-    match pizzas with
-    | [_] -> 3 + List.sumBy pizzaPrice pizzas
-    | [_; _] -> 2 + List.sumBy pizzaPrice pizzas
-    | _ -> List.sumBy pizzaPrice pizzas
-
+    List.sumBy pizzaPrice pizzas + surcharge pizzas.Length
+    

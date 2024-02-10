@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("TisburyTreasureHunt")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e5922818691eb6a246e7d3c83ff35a02da45d66")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da8218a9fc22d46bdf8042a251ef213696db57ce")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("TisburyTreasureHunt")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("TisburyTreasureHunt")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

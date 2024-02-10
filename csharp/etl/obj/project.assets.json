@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net7.0": {
+    "net8.0": {
       "Exercism.Tests/0.1.0-beta1": {
         "type": "package",
         "dependencies": {
@@ -5780,7 +5780,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net7.0": [
+    "net8.0": [
       "Exercism.Tests >= 0.1.0-beta1",
       "Microsoft.NET.Test.Sdk >= 16.8.3",
       "xunit >= 2.4.1",
@@ -5788,31 +5788,29 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\b45089\\.nuget\\packages\\": {}
+    "/home/oezg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\etl\\Etl.csproj",
+      "projectUniqueName": "/home/oezg/code/exercism/csharp/etl/Etl.csproj",
       "projectName": "Etl",
-      "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\etl\\Etl.csproj",
-      "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\etl\\obj\\",
+      "projectPath": "/home/oezg/code/exercism/csharp/etl/Etl.csproj",
+      "packagesPath": "/home/oezg/.nuget/packages/",
+      "outputPath": "/home/oezg/code/exercism/csharp/etl/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/oezg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net7.0"
+        "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net7.0": {
-          "targetAlias": "net7.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "projectReferences": {}
         }
       },
@@ -5823,8 +5821,8 @@
       }
     },
     "frameworks": {
-      "net7.0": {
-        "targetAlias": "net7.0",
+      "net8.0": {
+        "targetAlias": "net8.0",
         "dependencies": {
           "Exercism.Tests": {
             "target": "Package",
@@ -5859,7 +5857,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

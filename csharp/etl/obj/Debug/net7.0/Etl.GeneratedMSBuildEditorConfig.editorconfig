@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Etl
-build_property.ProjectDir = C:\Users\b45089\oezg\exercism\csharp\etl\
+build_property.ProjectDir = /home/oezg/code/exercism/csharp/etl/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
