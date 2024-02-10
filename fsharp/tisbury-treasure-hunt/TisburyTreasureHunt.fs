@@ -1,9 +1,9 @@
 module TisburyTreasureHunt
 
-let getCoordinate = snd
+let getCoordinate (_, coordinate) = coordinate
 
 let convertCoordinate (coordinate: string): int * char = 
-    (int (coordinate.Substring(0, 1)), coordinate[1])
+    int (coordinate.Substring(0, 1)), coordinate[1]
 
 let compareRecords (azarasData: string * string) (ruisData: string * (int * char) * string) : bool = 
     let azarasCoordinate = azarasData |> getCoordinate |> convertCoordinate
