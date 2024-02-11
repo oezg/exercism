@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\kindergarten-garden\\KindergartenGarden.csproj": {}
+    "/home/oezg/code/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj": {}
   },
   "projects": {
-    "C:\\Users\\b45089\\oezg\\exercism\\csharp\\kindergarten-garden\\KindergartenGarden.csproj": {
+    "/home/oezg/code/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\kindergarten-garden\\KindergartenGarden.csproj",
+        "projectUniqueName": "/home/oezg/code/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj",
         "projectName": "KindergartenGarden",
-        "projectPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\kindergarten-garden\\KindergartenGarden.csproj",
-        "packagesPath": "C:\\Users\\b45089\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\b45089\\oezg\\exercism\\csharp\\kindergarten-garden\\obj\\",
+        "projectPath": "/home/oezg/code/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj",
+        "packagesPath": "/home/oezg/.nuget/packages/",
+        "outputPath": "/home/oezg/code/exercism/csharp/kindergarten-garden/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\b45089\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/oezg/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -73,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

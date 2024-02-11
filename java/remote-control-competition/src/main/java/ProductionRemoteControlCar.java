@@ -1,18 +1,26 @@
-class ProductionRemoteControlCar {
+class ProductionRemoteControlCar implements RemoteControlCar, Comparable<ProductionRemoteControlCar> {
+
+    private int distance;
+    private int numberOfVictories;
 
     public void drive() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.drive() method");
+        distance += 10;
     }
 
     public int getDistanceTravelled() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.getDistanceTravelled() method");
+        return distance;
     }
 
     public int getNumberOfVictories() {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.getNumberOfVictories() method");
+        return numberOfVictories;
     }
 
     public void setNumberOfVictories(int numberOfVictories) {
-        throw new UnsupportedOperationException("Please implement the ProductionRemoteControlCar.setNumberOfVictories() method");
+        this.numberOfVictories = numberOfVictories;
+    }
+
+    @Override
+    public int compareTo(ProductionRemoteControlCar car) {
+        return getNumberOfVictories() - car.getNumberOfVictories();
     }
 }

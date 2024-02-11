@@ -1,6 +1,7 @@
 module TisburyTreasureHunt
 
-let getCoordinate (_, coordinate) = coordinate
+let getCoordinate (_: string, coordinate: string) = 
+    coordinate
 
 let convertCoordinate (coordinate: string): int * char = 
     int (coordinate.Substring(0, 1)), coordinate[1]

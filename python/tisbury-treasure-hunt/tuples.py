@@ -29,7 +29,7 @@ def compare_records(azara_record, rui_record):
     :return: bool - do the coordinates match?
     """
 
-    return convert_coordinate(get_coordinate(azara_record)) == get_coordinate(rui_record)
+    return convert_coordinate(azara_record[1]) == rui_record[1]
 
 
 def create_record(azara_record, rui_record):
@@ -40,10 +40,7 @@ def create_record(azara_record, rui_record):
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
 
-    if not compare_records(azara_record, rui_record):
-        return 'not a match'
-
-    return azara_record + rui_record
+    return azara_record + rui_record if compare_records(azara_record, rui_record) else 'not a match'
 
 
 def clean_up(combined_record_group):
@@ -57,7 +54,8 @@ def clean_up(combined_record_group):
     (see HINTS.md for an example).
     """
 
-    return '\n'.join(to_string(record[:1] + record[2:]) for record in combined_record_group) + '\n'
+    return '\n'.join(f"{record[:1] + record[2:]}" for record in combined_record_group) + '\n'
+    # return '\n'.join(to_string(record[:1] + record[2:]) for record in combined_record_group) + '\n'
 
 def to_string(tpl: tuple[str]):
     
