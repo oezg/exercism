@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("QueenAttack")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5310eb30c16f552933fa92f01df9a6a58a996bf8")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce6a010ff532fb64021190857b72c6c08901044f")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("QueenAttack")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("QueenAttack")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

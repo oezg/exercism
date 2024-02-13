@@ -1,18 +1,12 @@
 module QueenAttack
 
-let create (col: int, row: int) = 
-    // A) 0 <= col && col < 8 && 0 <= row && row < 8
-    // B) Seq.contains col [0..7] && Seq.contains row [0..7] 
-    [col; row]
-    |> Seq.forall (fun x -> Seq.contains x [0..7])
+let create (queen: int * int) = 
+    let row, col = queen
+    0 <= row && 0 <= col && row < 8 && col < 8
 
 let canAttack (queen1: int * int) (queen2: int * int) = 
-    
-    if fst queen1 = fst queen2 then
-        true
-    elif snd queen1 = snd queen2 then
-        true
-    elif abs (fst queen1 - fst queen2) = abs (snd queen1 - snd queen2) then 
-        true
-    else
-        false
+    let row1, col1 = queen1
+    let row2, col2 = queen2
+    row1 = row2
+    || col1 = col2
+    || abs (row1 - row2) = abs (col1 - col2)
