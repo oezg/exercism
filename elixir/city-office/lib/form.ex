@@ -3,6 +3,13 @@ defmodule Form do
   A collection of loosely related functions helpful for filling out various forms at the city office.
   """
 
+  @typedoc """
+  Document different address formats.
+  """
+  @type address_map :: %{:street => String.t(), :postal_code => String.t(), :city => String.t()}
+  @type address_tuple :: {street :: String.t(), postal_code :: String.t(), city :: String.t()}
+  @type address :: address_map() | address_tuple()
+
   @doc """
   Generates a string of a given length.
 
@@ -44,10 +51,6 @@ defmodule Form do
       {:error, diff}
     end
   end
-
-  @type address_map :: %{:street => String.t(), :postal_code => String.t(), :city => String.t()}
-  @type address_tuple :: {street :: String.t(), postal_code :: String.t(), city :: String.t()}
-  @type address :: address_map() | address_tuple()
 
   @doc"""
   Formats the address as an uppercase multiline string.

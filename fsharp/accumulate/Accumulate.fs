@@ -1,16 +1,13 @@
 module Accumulate
 
+let rec applier func acc input =
+    match input with
+    | [] -> acc
+    | head :: tail -> applier func (func head :: acc) tail
 
-let rec helper func source target = 
-    match source with
-    | [] -> target
-    | head :: tail -> helper func tail (func head :: target)
 
-let rec reverser target source =
-    match source with
-    | [] -> target
-    | head :: tail -> reverser (head :: target) tail
-
-let rec accumulate (func: 'a -> 'b) (input: 'a list): 'b list = 
-    helper func input []
-    |> reverser []
+let accumulate (func: 'a -> 'b) (input: 'a list): 'b list = 
+    
+    input 
+    |> applier func []
+    |> applier id []

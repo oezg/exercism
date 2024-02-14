@@ -7,45 +7,49 @@ defmodule RPG.CharacterSheet do
   Welcome the new player.
   """
   @spec welcome() :: :ok
-  def welcome(), do: IO.puts("Welcome! Let's fill out your character sheet together.")
+  def welcome(), do:
+    IO.puts("Welcome! Let's fill out your character sheet together.")
 
   @doc """
   Ask for the character's name.
   """
   @spec ask_name() :: String.t()
-  def ask_name(), do: ask_for_characters("name")
+  def ask_name(), do:
+    ask_something("name")
 
   @doc """
   Ask for the character's class.
   """
   @spec ask_class() :: String.t()
-  def ask_class(), do: ask_for_characters("class")
-
-  @spec ask_for_characters(something :: String.t()) :: String.t()
-  defp ask_for_characters(something), do: String.trim(IO.gets("What is your character's #{something}?\n"))
+  def ask_class(), do:
+    ask_something("class")
 
   @doc """
   Ask for the character's level.
   """
   @spec ask_level() :: integer()
-  def ask_level() do
-    ask_for_characters("level")
+  def ask_level(), do:
+    ask_something("level")
     |> Integer.parse()
     |> elem(0)
-  end
+
+  @spec ask_something(something :: String.t()) :: String.t()
+  defp ask_something(something), do:
+    String.trim(IO.gets("What is your character's #{something}?\n"))
 
   @doc """
   Welcome the new player, ask for the character's name, class, and level.
   Print the map with the label "Your character".
   Return the character sheet as a map.
   """
-  @spec run() :: map()
+  @spec run() :: %{name: String.t(), class: String.t(), level: integer()}
   def run() do
     welcome()
-    name = ask_name()
-    class = ask_class()
-    level = ask_level()
-    mappy = %{name: name, class: class, level: level}
-    IO.inspect(mappy, label: "Your character")
+    %{
+      name: ask_name(),
+      class: ask_class(),
+      level: ask_level(),
+    }
+    |> IO.inspect(label: "Your character")
   end
 end

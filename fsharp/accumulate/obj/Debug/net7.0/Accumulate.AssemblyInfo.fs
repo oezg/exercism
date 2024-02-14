@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Accumulate")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce6a010ff532fb64021190857b72c6c08901044f")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7883f4f4f98978d244ca0ded05eb0f98ef957424")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Accumulate")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Accumulate")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
