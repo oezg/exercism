@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("GradeSchool")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce6a010ff532fb64021190857b72c6c08901044f")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c1d997ce1993c93c3f556bbcaeaffd226d3db56")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("GradeSchool")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("GradeSchool")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

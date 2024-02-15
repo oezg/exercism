@@ -1,28 +1,28 @@
 class NeedForSpeed {
-    private int _battery = 100;
-    private int _distance = 0;
-    private int _speed;
-    private int _drain;
+    private int battery = 100;
+    private int distance = 0;
+    private int speed;
+    private int drain;
 
     NeedForSpeed(int speed, int batteryDrain) {
-        _speed = speed;
-        _drain = batteryDrain;
+        this.speed = speed;
+        this.drain = batteryDrain;
     }
 
     public boolean batteryDrained() {
-        return _battery < _drain;
+        return battery < drain;
     }
 
     public int distanceDriven() {
-        return _distance;
+        return distance;
     }
 
     public void drive() {
         if (batteryDrained()) {
             return;
         }
-        _battery -= _drain;
-        _distance += _speed;
+        battery -= drain;
+        distance += speed;
     }
 
     public static NeedForSpeed nitro() {
@@ -31,10 +31,10 @@ class NeedForSpeed {
 }
 
 class RaceTrack {
-    private int _distance;
+    private int distance;
 
     RaceTrack(int distance) {
-        _distance = distance;
+        this.distance = distance;
     }
 
     public boolean tryFinishTrack(NeedForSpeed car) {
@@ -43,7 +43,7 @@ class RaceTrack {
             
             car.drive();
 
-            if (car.distanceDriven() - start >= _distance) {
+            if (car.distanceDriven() - start >= distance) {
                 return true;
             }
 

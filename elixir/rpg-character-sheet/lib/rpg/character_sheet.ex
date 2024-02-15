@@ -43,13 +43,11 @@ defmodule RPG.CharacterSheet do
   Return the character sheet as a map.
   """
   @spec run() :: %{name: String.t(), class: String.t(), level: integer()}
-  def run() do
-    welcome()
+  def run(), do:
     %{
-      name: ask_name(),
+      name: welcome() && ask_name(),
       class: ask_class(),
       level: ask_level(),
     }
     |> IO.inspect(label: "Your character")
-  end
 end
