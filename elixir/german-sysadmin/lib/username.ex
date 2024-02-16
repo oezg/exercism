@@ -22,16 +22,11 @@ defmodule Username do
   """
   @spec sanitize(charlist()) :: charlist()
   def sanitize([]), do: []
-  def sanitize([head | tail]) do
-    replacement = case head do
-      ?ö -> ~c"oe"
-      ?ä -> ~c"ae"
-      ?ü -> ~c"ue"
-      ?ß -> ~c"ss"
-      ?_ -> ~c"_"
-      lower_ascii_letter when lower_ascii_letter in ?a..?z -> [lower_ascii_letter]
-      _ -> ~c""
-    end
-    replacement ++ sanitize(tail)
-  end
+  def sanitize([?ö | input]), do: [?o | [?e | sanitize(input)]]
+  def sanitize([?ä | input]), do: [?a | [?e | sanitize(input)]]
+  def sanitize([?ü | input]), do: [?u | [?e | sanitize(input)]]
+  def sanitize([?ß | input]), do: [?s | [?s | sanitize(input)]]
+  def sanitize([?_ | input]), do: [?_ | sanitize(input)]
+  def sanitize([ch | input]) when ch in ?a..?z, do: [ch | sanitize(input)]
+  def sanitize([ _ | input]), do: sanitize(input)
 end
