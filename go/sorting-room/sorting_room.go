@@ -1,3 +1,4 @@
+// Package sorting is a learning exercise for type conversion, type assertion and type switching.
 package sorting
 
 import (
@@ -5,7 +6,7 @@ import (
 	"strconv"
 )
 
-// DescribeNumber should return a string describing the number.
+// DescribeNumber returns a string describing the number.
 func DescribeNumber(f float64) string {
 	return fmt.Sprintf("This is the number %0.1f", f)
 }
@@ -14,7 +15,7 @@ type NumberBox interface {
 	Number() int
 }
 
-// DescribeNumberBox should return a string describing the NumberBox.
+// DescribeNumberBox returns a string describing the NumberBox.
 func DescribeNumberBox(nb NumberBox) string {
 	return fmt.Sprintf("This is a box containing the number %0.1f", float64(nb.Number()))
 }
@@ -31,7 +32,7 @@ type FancyNumberBox interface {
 	Value() string
 }
 
-// ExtractFancyNumber should return the integer value for a FancyNumber
+// ExtractFancyNumber returns the integer value for a FancyNumber
 // and 0 if any other FancyNumberBox is supplied.
 func ExtractFancyNumber(fnb FancyNumberBox) int {
 	fn, ok := fnb.(FancyNumber)
@@ -45,12 +46,12 @@ func ExtractFancyNumber(fnb FancyNumberBox) int {
 	return number
 }
 
-// DescribeFancyNumberBox should return a string describing the FancyNumberBox.
+// DescribeFancyNumberBox returns a string describing the FancyNumberBox.
 func DescribeFancyNumberBox(fnb FancyNumberBox) string {
 	return fmt.Sprintf("This is a fancy box containing the number %0.1f", float64(ExtractFancyNumber(fnb)))
 }
 
-// DescribeAnything should return a string describing whatever it contains.
+// DescribeAnything returns a string describing whatever it contains.
 func DescribeAnything(i interface{}) string {
 	switch v := i.(type) {
 	case int:
