@@ -8,19 +8,13 @@ type School = Map<Grade, Roster>
 let empty: School = School([])
 
 let grade (number: Grade): School -> Roster = 
-    Map.tryFind number  >> Option.defaultValue []
+    Map.tryFind number  >> Option.defaultValue [] >> List.sort
 
 let roster: School -> Roster = 
     Map.values >> Seq.collect Seq.sort >> List.ofSeq
 
-let private addToRoster (student: Student) (roster: Roster) : Roster =
-    List.sort (student :: roster)
-
-let private changer (student: Student): option<Roster> -> option<Roster> =
-    // (Option.defaultValue [] >> (fun xs -> student :: xs) >> Some)
-    function
-    | Some roster -> Some (addToRoster student roster)
-    | None -> Some (addToRoster student [])
+let private changer (student: Student): Roster option -> Roster option =
+    Option.defaultValue [] >> (fun roster -> student :: roster) >> Some
     
 let add (student: Student) (gradeNumber: Grade): School -> School = 
     function

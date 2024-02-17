@@ -2,14 +2,23 @@ module Bob
 
 open System
 
-let private isYell (input: string): bool = 
-    input = input.ToUpper() && String.exists Char.IsUpper input
-    
+let (|Silence|_|) text =
+    if String.IsNullOrWhiteSpace text then Some() else None
 
-let response (input: string): string = 
-    match input.Trim() with
-    | "" -> "Fine. Be that way!"
-    | input when input.EndsWith('?') && isYell input -> "Calm down, I know what I'm doing!"
-    | input when input.EndsWith('?') -> "Sure."
-    | input when isYell input -> "Whoa, chill out!"
+let (|Question|_|) (text: string) =
+    if text.TrimEnd().EndsWith('?') then Some() else None
+
+let private check chars = 
+    if not (Seq.isEmpty chars) && Seq.forall (fun c -> Char.IsUpper c) chars
+    then Some() else None
+let (|Yell|_|) (text: string) =
+    text
+    |> Seq.filter (fun c -> Char.IsLetter c)
+    |> check 
+
+let response = function
+    | Silence -> "Fine. Be that way!"
+    | Yell & Question -> "Calm down, I know what I'm doing!"
+    | Yell -> "Whoa, chill out!"
+    | Question -> "Sure."
     | _ -> "Whatever."
