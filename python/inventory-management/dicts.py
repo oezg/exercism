@@ -33,11 +33,10 @@ def decrement_items(inventory, items):
     :return: dict - updated inventory with items decremented.
     """
 
-    for item in items:
-        if item not in inventory:
-            continue
-        inventory[item] = max(0,  inventory[item] - 1)
-    return inventory
+    from collections import Counter
+
+    subtraction = Counter(inventory) - Counter(items)
+    return {item: subtraction[item] for item in inventory }
 
 
 def remove_item(inventory, item):
