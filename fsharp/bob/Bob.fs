@@ -2,19 +2,17 @@ module Bob
 
 open System
 
-let (|Silence|_|) text =
-    if String.IsNullOrWhiteSpace text then Some() else None
+let private someOrNone condition = if condition then Some() else None
+
+let private twoPredicates (text: string) =
+    not (text |> Seq.exists Char.IsLower) && (text |> Seq.exists Char.IsLetter)
+
+let (|Silence|_|) = String.IsNullOrWhiteSpace >> someOrNone
 
 let (|Question|_|) (text: string) =
-    if text.TrimEnd().EndsWith('?') then Some() else None
+    text.TrimEnd().EndsWith('?') |> someOrNone
 
-let private check chars = 
-    if not (Seq.isEmpty chars) && Seq.forall (fun c -> Char.IsUpper c) chars
-    then Some() else None
-let (|Yell|_|) (text: string) =
-    text
-    |> Seq.filter (fun c -> Char.IsLetter c)
-    |> check 
+let (|Yell|_|) = twoPredicates >> someOrNone
 
 let response = function
     | Silence -> "Fine. Be that way!"

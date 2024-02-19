@@ -1,5 +1,6 @@
 """Functions to keep track and alter inventory."""
 
+from collections import Counter
 
 def create_inventory(items):
     """Create a dict that tracks the amount (count) of each element on the `items` list.
@@ -8,8 +9,7 @@ def create_inventory(items):
     :return: dict - the inventory dictionary.
     """
 
-    inventory = {}
-    return add_items(inventory, items)
+    return add_items({}, items)
 
 
 def add_items(inventory, items):
@@ -20,9 +20,7 @@ def add_items(inventory, items):
     :return: dict - the inventory updated with the new items.
     """
 
-    for item in items:
-        inventory[item] = inventory.get(item, 0) + 1
-    return inventory
+    return Counter(inventory) + Counter(items)
 
 
 def decrement_items(inventory, items):
@@ -33,10 +31,8 @@ def decrement_items(inventory, items):
     :return: dict - updated inventory with items decremented.
     """
 
-    from collections import Counter
-
     subtraction = Counter(inventory) - Counter(items)
-    return {item: subtraction[item] for item in inventory }
+    return {item: subtraction[item] for item in inventory}
 
 
 def remove_item(inventory, item):
