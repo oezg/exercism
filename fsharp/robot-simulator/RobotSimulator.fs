@@ -2,44 +2,40 @@ module RobotSimulator
 
 type Direction = North | East | South | West
 type Position = int * int
+type Robot = Robot of direction: Position * position: Position
 
-type Robot = {
-    Direction: Direction
-    Position: Position
-}
+let toPosition =
+    function
+    | North -> (0, 1)
+    | East -> (1, 0)
+    | South -> (0, -1)
+    | West -> (-1, 0)
 
-type Side = 
-    | Left
-    | Right
+let (^^) (x, y) (left: bool) =
+    if left then (-y, x) else (y, -x)
 
-let private turn (side: Side) (robot: Robot) =
-    match robot.Direction with
-    | North -> if side = Left then {robot with Direction = West} else {robot with Direction = East}
-    | East  -> if side = Left then {robot with Direction = North} else {robot with Direction = South}
-    | South -> if side = Left then {robot with Direction = East} else {robot with Direction = West}
-    | West  -> if side = Left then {robot with Direction = South} else {robot with Direction = North}
+let turnLeft (left: bool) (Robot(dir, pos)) =
+    Robot(dir ^^ left, pos)
 
-let private advance (robot: Robot) =
-    match robot.Direction with
-    | North -> {robot with Position = (fst robot.Position, snd robot.Position + 1)}
-    | East  -> {robot with Position = (fst robot.Position + 1, snd robot.Position)}
-    | South -> {robot with Position = (fst robot.Position, snd robot.Position - 1)}
-    | West  -> {robot with Position = (fst robot.Position - 1, snd robot.Position)}
+let (+) (x1, y1) (x2, y2) =
+    (x1 + x2, y1 + y2)
 
-let private movement (chr: char) =
-    match chr with
-    | 'A' -> advance
-    | 'R' -> turn Right
-    | 'L' -> turn Left
-    | _ -> id  // I don't know what to do here, I can't throw an Exception
+let advance (Robot(dir, pos)) =
+    Robot(dir, dir + pos)
 
-let create direction position = 
-    {
-        Direction = direction
-        Position = position
-    }
+let create direction position =
+    Robot(toPosition direction, position)
 
-let move (instructions: string) (robot: Robot) = 
-    instructions 
-    |> Seq.map movement 
-    |> Seq.fold (fun rbt mvmt -> mvmt rbt) robot
+let (|Advance|_|) chr = if chr = 'A' then Some(advance) else None
+let (|Right|_|) chr = if chr = 'R' then Some(turnLeft false) else None
+let (|Left|_|) chr = if chr = 'L' then Some(turnLeft true) else None
+
+let move (instructions: string) (robot: Robot): Robot =
+    let instruct robot =
+        function
+        | Advance advance -> advance robot
+        | Left turn -> turn robot
+        | Right turn -> turn robot
+        | _ -> failwith "Invalid instruction"
+
+    Seq.fold instruct robot instructions
