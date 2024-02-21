@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("RobotSimulator")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+329814de10619310319a6b8ec086be4704243204")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53e39016cfdd52508a462e6a164b0bc3fbc2f721")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("RobotSimulator")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("RobotSimulator")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
