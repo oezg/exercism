@@ -1,31 +1,21 @@
 module KindergartenGarden
 
-open System
+type Plant = Violets | Grass | Radishes | Clover
 
-type Plant =
-    | Violets
-    | Grass
-    | Radishes
-    | Clover
-    | Invalid
+let private getPlant = function
+    | 'V' -> Some Violets
+    | 'G' -> Some Grass
+    | 'R' -> Some Radishes
+    | 'C' -> Some Clover
+    | _ -> None
 
-let get_plant letter = 
-    match letter with
-    | 'V' -> Violets
-    | 'G' -> Grass
-    | 'R' -> Radishes
-    | 'C' -> Clover
-    | _ -> Invalid
-
-let students = 
-    "Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, Larry".Split(", ")
-    |> Array.mapi (fun index name -> (name, index)) 
-    |> Map.ofArray
+let private students =
+    "Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, Larry".Split ", "
+    |> Array.mapi (fun index name -> (name, index))
+    |> dict
 
 let plants (diagram: string) student =
-    let rows = diagram.Split('\n')
-    let letters = (2 * students[student])
-    [for row in rows do
-        for letter in row[letters..(letters+1)] do
-            get_plant letter
-    ]
+    diagram.Split '\n'
+    |> Seq.collect (Seq.skip (2 * students[student]) >> Seq.take 2)
+    |> Seq.choose getPlant
+    |> List.ofSeq

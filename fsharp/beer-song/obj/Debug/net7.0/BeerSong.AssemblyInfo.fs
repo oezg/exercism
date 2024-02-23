@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("BeerSong")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ffc375b980202b8398a7d4ebd2c980af8dffad3")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dd1c3de5773b4ef834be2a98ae936a891bde9b8")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("BeerSong")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("BeerSong")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
