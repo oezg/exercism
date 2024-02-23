@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("KindergartenGarden")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dd1c3de5773b4ef834be2a98ae936a891bde9b8")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6388b0058d8e1dd94587c79321434bfb00e73ba4")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("KindergartenGarden")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("KindergartenGarden")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

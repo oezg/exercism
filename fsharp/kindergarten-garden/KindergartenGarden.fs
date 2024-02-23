@@ -1,8 +1,13 @@
 module KindergartenGarden
 
-type Plant = Violets | Grass | Radishes | Clover
+type Plant =
+    | Violets
+    | Grass
+    | Radishes
+    | Clover
 
-let private getPlant = function
+let private getPlant =
+    function
     | 'V' -> Some Violets
     | 'G' -> Some Grass
     | 'R' -> Some Radishes
@@ -10,7 +15,9 @@ let private getPlant = function
     | _ -> None
 
 let private students =
-    "Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, Larry".Split ", "
+    "Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, Larry"
+        .Split
+        ", "
     |> Array.mapi (fun index name -> (name, index))
     |> dict
 
