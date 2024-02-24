@@ -4,20 +4,20 @@ defmodule TakeANumber do
   """
 
   @spec loop(integer()) :: nil
-  defp loop(state \\ 0) do
+  defp loop(last_number \\ 0) do
     receive do
       {:report_state, sender_pid} ->
-        send(sender_pid, state)
-        loop(state)
+        send(sender_pid, last_number)
+        loop(last_number)
 
       {:take_a_number, sender_pid} ->
-        state = state + 1
-        send(sender_pid, state)
-        loop(state)
+        last_number = last_number + 1
+        send(sender_pid, last_number)
+        loop(last_number)
 
       :stop -> nil
 
-      _ -> loop(state)
+      _ -> loop(last_number)
     end
   end
 
