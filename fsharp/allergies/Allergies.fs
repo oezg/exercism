@@ -1,34 +1,21 @@
 module Allergies
 
-type Allergen =
-    | Eggs
-    | Peanuts
-    | Shellfish
-    | Strawberries
-    | Tomatoes
-    | Chocolate
-    | Pollen
-    | Cats
+open System
 
-let getAllergen =
-    function
-    | 1 -> Eggs
-    | 2 -> Peanuts
-    | 4 -> Shellfish
-    | 8 -> Strawberries
-    | 16 -> Tomatoes
-    | 32 -> Chocolate
-    | 64 -> Pollen
-    | 128 -> Cats
-    | _ -> failwith "Not Implemented"
+type Allergen =
+    | Eggs = 0b1
+    | Peanuts = 0b10
+    | Shellfish = 0b100
+    | Strawberries = 0b1000
+    | Tomatoes = 0b1_0000
+    | Chocolate = 0b10_0000
+    | Pollen = 0b100_0000
+    | Cats = 0b1000_0000
+
+let allergicTo codedAllergies (allergen: Allergen) =
+    codedAllergies ||| int allergen = codedAllergies
 
 let list codedAllergies =
-    let rec helper lmt acc = function
-        | 0 -> acc
-        | num when num < lmt -> helper (lmt / 2) acc num
-        | num -> helper (lmt / 2) ((getAllergen lmt) :: acc) (num - lmt)
-
-    helper 128 [] (codedAllergies % 256)
-
-let allergicTo codedAllergies allergen =
-    List.contains allergen (list codedAllergies)
+    Enum.GetValues<Allergen>()
+    |> Seq.filter (allergicTo codedAllergies)
+    |> List.ofSeq
