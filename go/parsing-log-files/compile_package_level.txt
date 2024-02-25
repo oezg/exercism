@@ -1,0 +1,31 @@
+goos: linux
+goarch: amd64
+pkg: parsinglogfiles
+cpu: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+BenchmarkIsValidLine-4            	 2016762	       585.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIsValidLine-4            	 2022260	       585.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIsValidLine-4            	 1991456	       604.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIsValidLine-4            	 1877964	       601.6 ns/op	       0 B/op	       0 allocs/op
+BenchmarkIsValidLine-4            	 1984240	       603.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkSplitLogLine-4           	  495649	      2151 ns/op	    1076 B/op	      16 allocs/op
+BenchmarkSplitLogLine-4           	  518680	      2102 ns/op	    1075 B/op	      16 allocs/op
+BenchmarkSplitLogLine-4           	  535687	      2115 ns/op	    1076 B/op	      16 allocs/op
+BenchmarkSplitLogLine-4           	  524172	      2121 ns/op	    1076 B/op	      16 allocs/op
+BenchmarkSplitLogLine-4           	  512271	      2081 ns/op	    1075 B/op	      16 allocs/op
+BenchmarkCountQuotedPasswords-4   	  315831	      3577 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountQuotedPasswords-4   	  305673	      3661 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountQuotedPasswords-4   	  310838	      3614 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountQuotedPasswords-4   	  315685	      3521 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCountQuotedPasswords-4   	  314238	      3552 ns/op	       0 B/op	       0 allocs/op
+BenchmarkRemoveEndOfLineText-4    	 1787041	       655.1 ns/op	      72 B/op	       4 allocs/op
+BenchmarkRemoveEndOfLineText-4    	 1739376	       659.3 ns/op	      72 B/op	       4 allocs/op
+BenchmarkRemoveEndOfLineText-4    	 1788730	       658.7 ns/op	      72 B/op	       4 allocs/op
+BenchmarkRemoveEndOfLineText-4    	 1792905	       661.3 ns/op	      72 B/op	       4 allocs/op
+BenchmarkRemoveEndOfLineText-4    	 1783736	       655.0 ns/op	      72 B/op	       4 allocs/op
+BenchmarkTagWithUserName-4        	  736484	      1617 ns/op	     385 B/op	      11 allocs/op
+BenchmarkTagWithUserName-4        	  737965	      1646 ns/op	     385 B/op	      11 allocs/op
+BenchmarkTagWithUserName-4        	  612213	      1635 ns/op	     386 B/op	      11 allocs/op
+BenchmarkTagWithUserName-4        	  636069	      1655 ns/op	     385 B/op	      11 allocs/op
+BenchmarkTagWithUserName-4        	  615470	      1630 ns/op	     385 B/op	      11 allocs/op
+PASS
+ok  	parsinglogfiles	37.973s
