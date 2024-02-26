@@ -51,10 +51,8 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
     """
 
     def category() -> str:
-        collections = (VEGAN, VEGETARIAN, PALEO, KETO, OMNIVORE)
-        names = "VEGAN, VEGETARIAN, PALEO, KETO, OMNIVORE".split(", ")
-        for name, collection in zip(names, collections):
-            if collection.issuperset(dish_ingredients):
+        for name in ("VEGAN", "VEGETARIAN", "PALEO", "KETO", "OMNIVORE"):
+            if globals()[name].issuperset(dish_ingredients):
                 return name
         return ""
 
@@ -73,7 +71,7 @@ def tag_special_ingredients(dish: tuple[str, list[str]]) -> tuple[str, set[str]]
     """
 
     name, ingredients = dish
-    return name, SPECIAL_INGREDIENTS.intersection(ingredients)
+    return name, SPECIAL_INGREDIENTS & set(ingredients)
 
 
 def compile_ingredients(dishes: list[set[str]]) -> set[str]:
@@ -100,7 +98,7 @@ def separate_appetizers(dishes: list[str], appetizers: list[str]) -> list[str]:
     Either list could contain duplicates and may require de-duping.
     """
 
-    return [*set(dishes).difference(appetizers)]
+    return list(set(dishes) - set(appetizers))
 
 
 def singleton_ingredients(dishes: list[set[str]], intersection: set[str]) -> set[str]:
