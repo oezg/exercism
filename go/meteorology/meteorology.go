@@ -10,13 +10,11 @@ const (
 	Fahrenheit TemperatureUnit = 1
 )
 
-var temperatureUnits = map[TemperatureUnit]string{
-	Celsius:    "°C",
-	Fahrenheit: "°F",
-}
-
 func (tu TemperatureUnit) String() string {
-	return temperatureUnits[tu]
+	return map[TemperatureUnit]string{
+		Celsius:    "°C",
+		Fahrenheit: "°F",
+	}[tu]
 }
 
 type Temperature struct {
@@ -35,13 +33,11 @@ const (
 	MilesPerHour SpeedUnit = 1
 )
 
-var speedUnits = map[SpeedUnit]string{
-	KmPerHour:    "km/h",
-	MilesPerHour: "mph",
-}
-
 func (su SpeedUnit) String() string {
-	return speedUnits[su]
+	return map[SpeedUnit]string{
+		KmPerHour:    "km/h",
+		MilesPerHour: "mph",
+	}[su]
 }
 
 type Speed struct {
