@@ -50,13 +50,9 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
     """
 
-    def category() -> str:
-        for name in ("VEGAN", "VEGETARIAN", "PALEO", "KETO", "OMNIVORE"):
-            if globals()[name].issuperset(dish_ingredients):
-                return name
-        return ""
-
-    return f"{dish_name}: {category()}"
+    categories = ("VEGAN", "VEGETARIAN", "PALEO", "KETO", "OMNIVORE")
+    category = filter(lambda name: globals()[name].issuperset(dish_ingredients), categories)
+    return f"{dish_name}: {next(category)}"
 
 
 def tag_special_ingredients(dish: tuple[str, list[str]]) -> tuple[str, set[str]]:

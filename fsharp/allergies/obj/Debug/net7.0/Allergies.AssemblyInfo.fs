@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Allergies")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+039a4ae1d0d4d1a83eb2513b9cdb97efba6e6606")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47cf6bbb1724299dfc571183431dd9a6752ef49a")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Allergies")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Allergies")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
