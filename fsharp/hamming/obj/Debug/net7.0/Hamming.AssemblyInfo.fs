@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Hamming")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1edb68d64bf7e5f2892eb34a401a86437918ee0a")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5901dd3008afd16bee8cc3ee89991c5f081524b0")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Hamming")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Hamming")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

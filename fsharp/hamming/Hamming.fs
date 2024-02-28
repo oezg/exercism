@@ -1,7 +1,7 @@
 module Hamming
 
-let distance strand1 strand2 =
-    if String.length strand1 <> String.length strand2 then
+let distance (strand1: string) (strand2: string) =
+    if strand1.Length <> strand2.Length then
         None
     else
         Seq.zip strand1 strand2
