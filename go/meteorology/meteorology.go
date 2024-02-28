@@ -11,10 +11,14 @@ const (
 )
 
 func (tu TemperatureUnit) String() string {
-	return map[TemperatureUnit]string{
-		Celsius:    "°C",
-		Fahrenheit: "°F",
-	}[tu]
+	switch tu {
+	case Celsius:
+		return "°C"
+	case Fahrenheit:
+		return "°F"
+	default:
+		panic("Invalid temperature unit")
+	}
 }
 
 type Temperature struct {
@@ -34,10 +38,14 @@ const (
 )
 
 func (su SpeedUnit) String() string {
-	return map[SpeedUnit]string{
-		KmPerHour:    "km/h",
-		MilesPerHour: "mph",
-	}[su]
+	switch su {
+	case KmPerHour:
+		return "km/h"
+	case MilesPerHour:
+		return "mph"
+	default:
+		panic("Invalid speed unit")
+	}
 }
 
 type Speed struct {
