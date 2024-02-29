@@ -17,7 +17,7 @@ func (tu TemperatureUnit) String() string {
 	case Fahrenheit:
 		return "°F"
 	default:
-		panic("Invalid temperature unit")
+		return ""
 	}
 }
 
@@ -44,7 +44,7 @@ func (su SpeedUnit) String() string {
 	case MilesPerHour:
 		return "mph"
 	default:
-		panic("Invalid speed unit")
+		return ""
 	}
 }
 
@@ -66,5 +66,6 @@ type MeteorologyData struct {
 }
 
 func (md MeteorologyData) String() string {
-	return fmt.Sprintf("%v: %v, Wind %v at %v, %v%% Humidity", md.location, md.temperature, md.windDirection, md.windSpeed, md.humidity)
+	return fmt.Sprintf("%v: %v, Wind %v at %v, %v%% Humidity",
+		md.location, md.temperature, md.windDirection, md.windSpeed, md.humidity)
 }

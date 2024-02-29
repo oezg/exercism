@@ -14,8 +14,7 @@ def generate_seat_letters(number):
 
     """
 
-    for i in range (number):
-        yield ("A", "B", "C", "D")[i % 4]
+    return (("A", "B", "C", "D")[i % 4] for i in range(number))
 
 
 def generate_seats(number):
@@ -35,13 +34,8 @@ def generate_seats(number):
 
     """
 
-    letters = generate_seat_letters(number)
-    for n in range(number):
-        m = n // 4 + 1
-        if m > 12:
-            m += 1
-        yield f"{m}{next(letters)}"
-
+    return (f"{n // 4 + (1 if  n < 48 else 2)}{letter}"
+            for n, letter in enumerate(generate_seat_letters(number)))
 
 
 def assign_seats(passengers):
@@ -54,8 +48,7 @@ def assign_seats(passengers):
 
     """
 
-    seats = generate_seats(len(passengers))
-    return {passenger: next(seats) for passenger in passengers}
+    return dict(zip(passengers, generate_seats(len(passengers))))
 
 
 def generate_codes(seat_numbers, flight_id):
@@ -67,5 +60,4 @@ def generate_codes(seat_numbers, flight_id):
 
     """
 
-    for number in seat_numbers:
-        yield f"{number}{flight_id}".ljust(12, "0")
+    return (f"{number}{flight_id}".ljust(12, "0") for number in seat_numbers)
