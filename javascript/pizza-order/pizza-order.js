@@ -7,8 +7,12 @@
  * @returns {number} the price of the pizza
  */
 export function pizzaPrice(pizza, ...extras) {
-  return extras.reduce((acc, cur) => acc + price(cur), price(pizza));
+  if (extras.length === 0) {
+    return price(pizza);
+  }
+  return price(extras[0]) + pizzaPrice(pizza, ...extras.slice(1))
 }
+
 
 function price(item) {
   switch (item) {
