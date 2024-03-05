@@ -1,5 +1,3 @@
-import { NotAvailable } from "./errors";
-
 export class TranslationService {
   /**
    * Creates a new service
@@ -18,8 +16,8 @@ export class TranslationService {
    * @param {string} text
    * @returns {Promise<string>}
    */
-  async free(text) {
-    return this.api.fetch(text).then(translation => translation.translation);
+  free(text) {
+    return this.api.fetch(text).then(result => result.translation);
   }
 
   /**
@@ -36,7 +34,7 @@ export class TranslationService {
     if (texts.length === 0) {
       return Promise.reject(new BatchIsEmpty());
     }
-    return Promise.all(texts.map(text => this.api.fetch(text).then(translation => translation.translation)));
+    return Promise.all(texts.map(text => this.free(text)));
   }
 
   /**
@@ -84,16 +82,17 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   premium(text, minimumQuality) {
-    return this.api.fetch(text).then(tr => {
-      if (tr.quality < minimumQuality) throw new QualityThresholdNotMet(text);
-      return tr.translation;
-    }, async () => {
-      await this.request(text);
-      return this.api.fetch(text).then(tr => {
-        if (tr.quality < minimumQuality) throw new QualityThresholdNotMet(text);
-        return tr.translation;
+    return this.api.fetch(text)
+      .then(result => {
+        if (result.quality < minimumQuality) throw new QualityThresholdNotMet(text);
+        return result.translation;
+      }, async () => {
+        await this.request(text);
+        return this.api.fetch(text).then(result => {
+          if (result.quality < minimumQuality) throw new QualityThresholdNotMet(text);
+          return result.translation;
+        });
       });
-    });
   }
 }
 
