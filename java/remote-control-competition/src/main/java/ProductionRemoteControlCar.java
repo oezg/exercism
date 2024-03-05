@@ -21,6 +21,6 @@ class ProductionRemoteControlCar implements RemoteControlCar, Comparable<Product
 
     @Override
     public int compareTo(ProductionRemoteControlCar car) {
-        return getNumberOfVictories() - car.getNumberOfVictories();
+        return Integer.compare(getNumberOfVictories(), car.getNumberOfVictories());
     }
 }
