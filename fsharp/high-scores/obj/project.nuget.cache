@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M4SRzfEjW6DIQVWYzcoXoSmKj72K/cco0GXKWo3xVqWvSGklt8Y3fmtzUeRVDBkQ8a+Zdaf/8UNrMCZtjDfuUA==",
+  "dgSpecHash": "pFwRkeVZR6+7w+3RdjMdg/H+jkmasHFiQvTcrBlmkvgrf2GdQe55QLI7qxy72iez4oOujoS3Ac7yo7SQC7J+JA==",
   "success": true,
   "projectFilePath": "/home/oezg/code/exercism/fsharp/high-scores/HighScores.fsproj",
   "expectedPackageFiles": [
@@ -59,7 +59,9 @@
     "/home/oezg/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.netcore.app.ref/7.0.15/microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.15/microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512"
   ],
   "logs": []
 }

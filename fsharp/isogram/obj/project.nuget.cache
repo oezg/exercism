@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lK7CENJj23zQ2cEkgRY0Q8/dPhv3FEJFD8JebpadQRS1/4jp8kHqmayBuhIRl3uQHlNkA5VQEHXpst9c+Yz0Qw==",
+  "dgSpecHash": "7TDQ8ytLcc9QFoUAa/bRBRa9szFLuhX/jwHHCBruVjrvFKBtcLG0xV4HaQkRL/dAx1bF6bxRPx9ix3A0Ziyokg==",
   "success": true,
   "projectFilePath": "/home/oezg/code/exercism/fsharp/isogram/Isogram.fsproj",
   "expectedPackageFiles": [
@@ -59,7 +59,9 @@
     "/home/oezg/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.netcore.app.ref/7.0.15/microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "/home/oezg/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.15/microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512"
   ],
   "logs": []
 }

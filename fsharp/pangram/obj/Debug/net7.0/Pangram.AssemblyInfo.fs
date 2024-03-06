@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Pangram")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+47cf6bbb1724299dfc571183431dd9a6752ef49a")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26f00378bf63cab990cd5872ea6d6de7be5a2d2a")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Pangram")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Pangram")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

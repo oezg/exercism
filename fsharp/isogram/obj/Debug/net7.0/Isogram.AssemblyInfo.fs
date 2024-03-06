@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Isogram")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75ad3a6cdf88bf4eaadc8725f521025418c2b830")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+26f00378bf63cab990cd5872ea6d6de7be5a2d2a")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Isogram")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Isogram")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

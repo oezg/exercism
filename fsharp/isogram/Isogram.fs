@@ -2,6 +2,9 @@ module Isogram
 
 open System
 
-let isIsogram (str: string) =
-    let letters = Seq.filter Char.IsAsciiLetter str |> Seq.map Char.ToLower
-    0 = Seq.compareWith compare letters (Seq.distinct letters)
+let private normalize = Seq.filter Char.IsLetter >> Seq.map Char.ToLower
+
+let private areAllDistinct str =
+    str |> set |> Set.count = (Seq.length str)
+
+let isIsogram (str: string) = normalize str |> areAllDistinct
