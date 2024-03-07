@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RemoteControlCarTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-03-05T20:19:18" hostname="imac" time="0.064">
+<testsuite name="RemoteControlCarTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2024-03-07T21:46:05" hostname="imac" time="0.066">
   <properties/>
-  <testcase name="The ExperimentalRemoteControlCar is an instance of the RemoteControlCar interface" classname="RemoteControlCarTest" time="0.045"/>
+  <testcase name="The ExperimentalRemoteControlCar is an instance of the RemoteControlCar interface" classname="RemoteControlCarTest" time="0.047"/>
   <testcase name="The ProductionRemoteControlCar implements the Comparable interface" classname="RemoteControlCarTest" time="0.003"/>
   <testcase name="The getDistanceTravelled method of the ProductionRemoteControlCar returns 10 after driving once" classname="RemoteControlCarTest" time="0.003"/>
   <testcase name="The getRankedCars returns a list of multiple cars sorted by number of victories" classname="RemoteControlCarTest" time="0.002"/>
-  <testcase name="The TestTrack.race method uses the drive method on the remote control car" classname="RemoteControlCarTest" time="0.002"/>
-  <testcase name="The getDistanceTravelled method of the ExperimentalRemoteControlCar returns 20 after driving once" classname="RemoteControlCarTest" time="0.001"/>
+  <testcase name="The TestTrack.race method uses the drive method on the remote control car" classname="RemoteControlCarTest" time="0.001"/>
+  <testcase name="The getDistanceTravelled method of the ExperimentalRemoteControlCar returns 20 after driving once" classname="RemoteControlCarTest" time="0.0"/>
   <testcase name="The ProductionRemoteControlCar is an instance of the RemoteControlCar interface" classname="RemoteControlCarTest" time="0.001"/>
   <testcase name="The getRankedCars returns a list of two cars sorted by number of victories" classname="RemoteControlCarTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>

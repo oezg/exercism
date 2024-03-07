@@ -2,9 +2,10 @@ class ProductionRemoteControlCar implements RemoteControlCar, Comparable<Product
 
     private int distance;
     private int numberOfVictories;
+    private static final int SPEED = 10;
 
     public void drive() {
-        distance += 10;
+        distance += SPEED;
     }
 
     public int getDistanceTravelled() {
