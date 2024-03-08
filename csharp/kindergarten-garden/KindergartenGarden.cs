@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public enum Plant
 {
@@ -11,24 +12,17 @@ public enum Plant
 
 public class KindergartenGarden
 {
-    public KindergartenGarden(string diagram)
-    {
-        string[] rows = diagram.Split('\n');
-        _plants = new Plant[rows.Length, rows[0].Length];
-        for (int i = 0; i < rows.Length; i++)
-        {
-            for (int j = 0; j < rows[i].Length; j++)
-            {
-                _plants[i,j] = (Plant)rows[i][j];
-            }
-        }
-    }
+    private readonly IEnumerable<Plant> _plants;
+    private static readonly string[] _studentNames = {
+        "Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry"
+    };
 
-    private Plant[,] _plants { get; }
+    public KindergartenGarden(string diagram) => 
+        _plants = diagram.Where(c => Enum.IsDefined(typeof(Plant), (int)c)).Select(c => (Plant)c);
 
     public IEnumerable<Plant> Plants(string student)
     {
-        int n = 2 * (student[0] - 'A');
-        return new Plant[] { _plants[0, n], _plants[0, n+1], _plants[1, n], _plants[1, n+1] };
+        int n = 2 * Array.IndexOf(_studentNames, student);
+        return _plants.Skip(n).Take(2).Concat(_plants.Skip(n + _plants.Count() / 2).Take(2));
     }
 }

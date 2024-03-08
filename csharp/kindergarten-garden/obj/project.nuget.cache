@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Nau1jB0D9qxHEJ/ztipQc9Y1Jp823NPxKwFq6HfQ3gXiXtgQ09M8arn7oiDUdWOCpHQxeSCr/g+unR6CcrgA1g==",
+  "dgSpecHash": "qdiFGH88jHrhTUiT8g7rCaQakNlO2bJaJuXnAbTf4N+a0R01fpjfhCiEf8Fr+OKjprQxLNcQ7M6ThwXkbHH+2Q==",
   "success": true,
-  "projectFilePath": "/home/oezg/code/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj",
+  "projectFilePath": "/home/oezg/exercism/csharp/kindergarten-garden/KindergartenGarden.csproj",
   "expectedPackageFiles": [
     "/home/oezg/.nuget/packages/exercism.tests/0.1.0-beta1/exercism.tests.0.1.0-beta1.nupkg.sha512",
     "/home/oezg/.nuget/packages/microsoft.codecoverage/16.8.3/microsoft.codecoverage.16.8.3.nupkg.sha512",
