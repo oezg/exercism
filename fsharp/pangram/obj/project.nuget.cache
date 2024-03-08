@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MRcSXpSV5aT/TJKKNwvE08DjoAqZrif3ErjWMOUC25/EOKTfIc38G0W/dFIMpCpd7vbicTgVs+GWHBVCaKVjPQ==",
+  "dgSpecHash": "nVD+nDu4t6kKSIUgYLs4pBAC9Gu7FxABDZGkioEQSIds4wvheF+GEJZ/lJxaD2MTveqQuk3roSsV+8G0A/aWvQ==",
   "success": true,
-  "projectFilePath": "/home/oezg/code/exercism/fsharp/pangram/Pangram.fsproj",
+  "projectFilePath": "/home/oezg/exercism/fsharp/pangram/Pangram.fsproj",
   "expectedPackageFiles": [
     "/home/oezg/.nuget/packages/fsharp.core/8.0.101/fsharp.core.8.0.101.nupkg.sha512",
     "/home/oezg/.nuget/packages/fsunit.xunit/4.0.4/fsunit.xunit.4.0.4.nupkg.sha512",
@@ -59,9 +59,7 @@
     "/home/oezg/.nuget/packages/xunit.core/2.4.1/xunit.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.core/2.4.1/xunit.extensibility.core.2.4.1.nupkg.sha512",
     "/home/oezg/.nuget/packages/xunit.extensibility.execution/2.4.1/xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512",
-    "/home/oezg/.nuget/packages/microsoft.netcore.app.ref/7.0.15/microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
-    "/home/oezg/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.15/microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512"
+    "/home/oezg/.nuget/packages/xunit.runner.visualstudio/2.4.3/xunit.runner.visualstudio.2.4.3.nupkg.sha512"
   ],
   "logs": []
 }

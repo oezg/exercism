@@ -3,4 +3,4 @@ module Pangram
 open System
 
 let isPangram: string -> bool =
-    set >> Set.map Char.ToLower >> Set.isSubset (set [ 'a' .. 'z' ])
+    Set.isSubset (set [ 'a' .. 'z' ]) <<  Set.map Char.ToLower << set

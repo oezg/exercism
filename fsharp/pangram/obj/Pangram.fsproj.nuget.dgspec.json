@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/oezg/code/exercism/fsharp/pangram/Pangram.fsproj": {}
+    "/home/oezg/exercism/fsharp/pangram/Pangram.fsproj": {}
   },
   "projects": {
-    "/home/oezg/code/exercism/fsharp/pangram/Pangram.fsproj": {
+    "/home/oezg/exercism/fsharp/pangram/Pangram.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/oezg/code/exercism/fsharp/pangram/Pangram.fsproj",
+        "projectUniqueName": "/home/oezg/exercism/fsharp/pangram/Pangram.fsproj",
         "projectName": "Pangram",
-        "projectPath": "/home/oezg/code/exercism/fsharp/pangram/Pangram.fsproj",
+        "projectPath": "/home/oezg/exercism/fsharp/pangram/Pangram.fsproj",
         "packagesPath": "/home/oezg/.nuget/packages/",
-        "outputPath": "/home/oezg/code/exercism/fsharp/pangram/obj/",
+        "outputPath": "/home/oezg/exercism/fsharp/pangram/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/oezg/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,7 @@
           "net7.0"
         ],
         "sources": {
-          "/usr/lib64/dotnet/sdk/8.0.101/FSharp/library-packs": {},
+          "/usr/lib/dotnet/sdk/8.0.102/FSharp/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -72,22 +72,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[7.0.15, 7.0.15]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[7.0.15, 7.0.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.102/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -799,7 +799,7 @@
     "FSharp.Core/8.0.101": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-08KMS2pn0CVIWzCaGsxKaxMX5lLzE5Yz4hf7+pCENBGaWwBJEnOcTxlU1yITwOPVDPglmiyAJJIxHDd9XFvINg==",
+      "sha512": "sha512-zgayoIo09sFNuVnzURFXhdWTNP0j8MFHbRXXmMGaqIzwbjXsJJCArDNwaTjOeuxi7Cj1KWoxyKXdpQInkNDRkQ==",
       "path": "fsharp.core/8.0.101",
       "hashPath": "fsharp.core.8.0.101.nupkg.sha512"
     },
