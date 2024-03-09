@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Grains")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d7185eb6d3ef1d505d940ce29fe0183cc9e4990")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbe4da2c270cd76877c0332824b321b7128856d7")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Grains")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Grains")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
