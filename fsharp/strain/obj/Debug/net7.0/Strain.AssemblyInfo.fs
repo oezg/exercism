@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Strain")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77b9c1f1e59bc6db765881698ac4cb6e4cc69713")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bab9aa3d7202f021aaf659bcd38de7b4b1aadc6")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Strain")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Strain")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
