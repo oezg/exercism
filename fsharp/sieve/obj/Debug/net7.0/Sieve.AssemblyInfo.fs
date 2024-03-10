@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Sieve")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b2e730ad5780b06e77a258d0226ba6c3c12554a")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77b9c1f1e59bc6db765881698ac4cb6e4cc69713")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Sieve")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Sieve")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

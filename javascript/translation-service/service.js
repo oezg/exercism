@@ -47,28 +47,15 @@ export class TranslationService {
    * @returns {Promise<void>}
    */
   request(text) {
-    const externalApi = this.api;
-    return new Promise(function (resolve, reject) {
-      externalApi.request(text, function (something) {
-        if(something === undefined) {
-          resolve(something);
-        } else {
-          externalApi.request(text, function (something2) {
-            if(something2 === undefined) {
-              resolve(something2);
-            } else {
-              externalApi.request(text, function (something3) {
-                if(something3 === undefined) {
-                  resolve(something3);
-                } else {
-                  reject(something3);
-                }
-              })
-            }
-          })
-        }
-      })
-    });
+    const requestText = () =>
+      new Promise((resolve, reject) => {
+        this.api.request(text, (result) => {
+          if (result === undefined) resolve();
+          reject(result);
+        });
+      });
+
+    return requestText().catch(requestText).catch(requestText);
   }
 
   /**
@@ -82,16 +69,14 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   premium(text, minimumQuality) {
-    return this.api.fetch(text)
-      .then(result => {
-        if (result.quality < minimumQuality) throw new QualityThresholdNotMet(text);
+    return this.api
+      .fetch(text)
+      .catch(() => this.request(text).then(() => this.api.fetch(text))
+      ).then((result) => {
+        if (result.quality < minimumQuality) {
+          throw new QualityThresholdNotMet();
+        }
         return result.translation;
-      }, async () => {
-        await this.request(text);
-        return this.api.fetch(text).then(result => {
-          if (result.quality < minimumQuality) throw new QualityThresholdNotMet(text);
-          return result.translation;
-        });
       });
   }
 }
