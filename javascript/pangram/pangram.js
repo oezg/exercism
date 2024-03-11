@@ -1,4 +1,5 @@
 export const isPangram = (sentence) =>
   asciiLower.every(c => sentence.toLowerCase().includes(c));
+  // new Set(sentence.toLowerCase()).isSupersetOf(new Set(asciiLower));
 
-const asciiLower = new Array(26).fill(undefined).map((_, i) => String.fromCharCode(i + 97));
+const asciiLower = Array.from({ length: 26 }, (_, i) => String.fromCharCode(i + 97));
