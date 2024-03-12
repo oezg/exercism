@@ -10,14 +10,14 @@
 
 (defn interest
   [balance]
-  (* balance 0.01M (bigdec (abs (interest-rate balance)))))
+  (* 0.01M (bigdec (abs (interest-rate balance)))))
 
 (defn annual-balance-update
   "Returns the annual balance update, taking into account the interest rate."
   [balance]
-  (+ balance (interest balance)))
+  (* balance (+ 1 (interest balance))))
 
 (defn amount-to-donate
   "Returns how much money to donate based on the balance and the tax-free percentage."
   [balance tax-free-percentage]
-  (if (> balance 0) (int (* 2 balance tax-free-percentage 0.01)) 0))
+  (if (< balance 0) 0 (int (* balance tax-free-percentage 0.02))))
