@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Darts")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ed6a3a1112e845b4cd8bf4e87f7ec34859e96d4")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77cae292af863b40657ad0f80aa03e68dae64677")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Darts")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Darts")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

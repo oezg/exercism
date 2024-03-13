@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("LogLevels")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+852d8b313e5d06e1470663da85e67491b3530082")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77cae292af863b40657ad0f80aa03e68dae64677")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("LogLevels")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("LogLevels")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("BookingUpForBeauty")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+82165a914ae2b3353bda7d99fad2f56dc346ae55")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77cae292af863b40657ad0f80aa03e68dae64677")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("BookingUpForBeauty")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("BookingUpForBeauty")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
