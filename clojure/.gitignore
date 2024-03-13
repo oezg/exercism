@@ -3,3 +3,4 @@
 */.lsp/*
 */.cpcache/*
 */.*
+*/.lein-failures

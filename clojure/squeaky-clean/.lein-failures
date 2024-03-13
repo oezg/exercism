@@ -1,1 +1,1 @@
-{"squeaky-clean-test" ["convert-kebab-to-camel-case" "omit-lower-case-greek-letters" "combine-conversions" "clean-string-with-special-characters" "clean-string-with-numbers" "clean-string-with-control-char"]}
+{"squeaky-clean-test" ["clean-single-letter" "convert-kebab-to-camel-case" "omit-lower-case-greek-letters" "combine-conversions" "clean-string-with-special-characters" "clean-empty-string" "clean-string-with-spaces" "clean-clean-string" "clean-string-with-numbers" "clean-string-with-control-char"]}
