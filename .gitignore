@@ -1,1 +1,7 @@
-.*/*/*/.*
+.gitignore
+/.vs/
+/.vscode/
+/fsharp/*/bin/*
+/csharp/*/obj/*
+.fake
+.fake

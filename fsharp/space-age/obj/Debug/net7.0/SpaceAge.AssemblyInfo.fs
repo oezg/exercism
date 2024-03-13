@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("SpaceAge")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce6a010ff532fb64021190857b72c6c08901044f")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ed6a3a1112e845b4cd8bf4e87f7ec34859e96d4")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("SpaceAge")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("SpaceAge")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

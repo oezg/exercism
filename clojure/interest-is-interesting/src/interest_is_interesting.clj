@@ -10,7 +10,7 @@
 
 (defn interest
   [balance]
-  (* 0.01M (abs (interest-rate balance))))
+  (bigdec (* 0.01 (abs (interest-rate balance)))))
 
 (defn annual-balance-update
   "Returns the annual balance update, taking into account the interest rate."

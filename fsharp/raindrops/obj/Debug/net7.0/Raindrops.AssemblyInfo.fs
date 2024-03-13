@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Raindrops")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c50eef2120dec1cc990116c6157085c48ef9d424")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ed6a3a1112e845b4cd8bf4e87f7ec34859e96d4")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Raindrops")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Raindrops")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

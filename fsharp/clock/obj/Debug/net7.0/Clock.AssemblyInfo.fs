@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Clock")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c1d997ce1993c93c3f556bbcaeaffd226d3db56")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ed6a3a1112e845b4cd8bf4e87f7ec34859e96d4")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Clock")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Clock")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
