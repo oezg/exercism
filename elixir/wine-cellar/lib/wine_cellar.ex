@@ -13,8 +13,9 @@ defmodule WineCellar do
     |> maybe_filter(opts[:country], &filter_by_country/2)
   end
 
-  defp maybe_filter(wines, option, _filter) when option == nil, do: wines
-  defp maybe_filter(wines, option, filter), do: filter.(wines, option)
+  defp maybe_filter(wines, nil, _), do: wines
+
+  defp maybe_filter(wines, criterion, filter), do: filter.(wines, criterion)
 
   # The functions below do not need to be modified.
 
