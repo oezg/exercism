@@ -1,6 +1,8 @@
-.*
+.gitignore
+.clj-kondo/*
+.lsp/*
 */.clj-kondo/*
 */.lsp/*
 */.cpcache/*
-*/.*
-*/.lein-failures
+*/.lein*
+*/target/*

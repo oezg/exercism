@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("AnnalynsInfiltration")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dd1c3de5773b4ef834be2a98ae936a891bde9b8")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77cae292af863b40657ad0f80aa03e68dae64677")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("AnnalynsInfiltration")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("AnnalynsInfiltration")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
