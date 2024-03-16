@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "ceddlyburge"
+  ],
+  "contributors": [
+    "mpizenberg"
+  ],
+  "files": {
+    "solution": [
+      "src/MariosMarvellousLasagna.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.elm"
+    ]
+  },
+  "icon": "lasagna-master",
+  "blurb": "Learn the Elm `let` expression by cooking Mario's Marvellous Lasagna"
+}
