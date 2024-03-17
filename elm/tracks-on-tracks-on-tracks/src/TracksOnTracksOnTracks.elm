@@ -12,18 +12,18 @@ existingList =
 
 
 addLanguage : String -> List String -> List String
-addLanguage language languages =
-    language :: languages
+addLanguage =
+    (::)
 
 
 countLanguages : List String -> Int
-countLanguages languages =
-    List.length languages
+countLanguages =
+    List.length
 
 
 reverseList : List String -> List String
-reverseList languages =
-    List.reverse languages
+reverseList =
+    List.reverse
 
 
 excitingList : List String -> Bool

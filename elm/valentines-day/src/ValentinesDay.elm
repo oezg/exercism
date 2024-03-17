@@ -20,9 +20,23 @@ type Genre
 
 
 type Activity
-    = Value1
-    | Value2
+    = BoardGame
+    | Chill
+    | Movie Genre
+    | Restaurant Cuisine
 
 
+rateActivity : Activity -> Approval
 rateActivity activity =
-    Debug.todo "implement this function and create a type annotation"
+    case activity of
+        Movie Romance ->
+            Yes
+
+        Restaurant Korean ->
+            Yes
+
+        Restaurant Turkish ->
+            Maybe
+
+        _ ->
+            No

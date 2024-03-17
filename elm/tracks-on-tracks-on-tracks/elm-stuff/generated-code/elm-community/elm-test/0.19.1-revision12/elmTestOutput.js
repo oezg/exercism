@@ -7601,13 +7601,8 @@ var $author$project$Test$Runner$Node$run = F2(
 				});
 		}
 	});
-var $author$project$TracksOnTracksOnTracks$addLanguage = F2(
-	function (language, languages) {
-		return A2($elm$core$List$cons, language, languages);
-	});
-var $author$project$TracksOnTracksOnTracks$countLanguages = function (languages) {
-	return $elm$core$List$length(languages);
-};
+var $author$project$TracksOnTracksOnTracks$addLanguage = $elm$core$List$cons;
+var $author$project$TracksOnTracksOnTracks$countLanguages = $elm$core$List$length;
 var $elm_explorations$test$Test$Runner$Failure$Equality = F2(
 	function (a, b) {
 		return {$: 'Equality', a: a, b: b};
@@ -7697,9 +7692,7 @@ var $author$project$TracksOnTracksOnTracks$excitingList = function (languages) {
 var $author$project$TracksOnTracksOnTracks$existingList = _List_fromArray(
 	['Elm', 'Clojure', 'Haskell']);
 var $author$project$TracksOnTracksOnTracks$newList = _List_Nil;
-var $author$project$TracksOnTracksOnTracks$reverseList = function (languages) {
-	return $elm$core$List$reverse(languages);
-};
+var $author$project$TracksOnTracksOnTracks$reverseList = $elm$core$List$reverse;
 var $elm_explorations$test$Test$Internal$blankDescriptionFailure = $elm_explorations$test$Test$Internal$failNow(
 	{
 		description: 'This test has a blank description. Let\'s give it a useful one!',
@@ -8020,7 +8013,7 @@ var $author$project$Test$Generated$Main$main = A2(
 		processes: 4,
 		report: $author$project$Test$Reporter$Reporter$ConsoleReport($author$project$Console$Text$UseColor),
 		runs: 100,
-		seed: 247737772326002
+		seed: 118098280666357
 	},
 	_List_fromArray(
 		[
@@ -8034,7 +8027,7 @@ var $author$project$Test$Generated$Main$main = A2(
 _Platform_export({'Test':{'Generated':{'Main':{'init':$author$project$Test$Generated$Main$main($elm$json$Json$Decode$int)(0)}}}});}(this));
 return this.Elm;
 })({});
-var pipeFilename = "/tmp/elm_test-20338.sock";
+var pipeFilename = "/tmp/elm_test-23134.sock";
 var net = require('net'),
   client = net.createConnection(pipeFilename);
 
