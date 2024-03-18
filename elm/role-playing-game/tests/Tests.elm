@@ -1,7 +1,7 @@
 module Tests exposing (tests)
 
 import Expect
-import RolePlayingGame exposing (Player, castSpell, introduce, revive)
+import RolePlayingGame exposing (castSpell, introduce, revive)
 import Test exposing (..)
 
 
