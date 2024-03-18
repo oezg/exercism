@@ -1,20 +1,22 @@
 public enum LogLevel {
-    TRACE("TRC"),
-    DEBUG("DBG"),
-    INFO("INF"),
-    WARNING("WRN"),
-    ERROR("ERR"),
-    FATAL("FTL"),
-    UNKNOWN("");
+    UNKNOWN(null, 0),
+    TRACE("TRC", 1),
+    DEBUG("DBG", 2),
+    INFO("INF", 4),
+    WARNING("WRN", 5),
+    ERROR("ERR", 6),
+    FATAL("FTL", 42);
 
     private final String levelString;
+    private final int encodedLogLevel;
 
     public String getLevelString() {
         return levelString;
     }
 
-    LogLevel(String level) {
+    LogLevel(String level, int encodedLevel) {
         levelString = level;
+        encodedLogLevel = encodedLevel;
     }
 
     public static LogLevel fromString(String level) {
@@ -25,4 +27,6 @@ public enum LogLevel {
         }
         return LogLevel.UNKNOWN;
     }
+
+    public static
 }

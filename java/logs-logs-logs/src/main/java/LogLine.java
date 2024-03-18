@@ -1,3 +1,4 @@
+import java.text.MessageFormat;
 import java.util.regex.Pattern;
 
 public class LogLine {
@@ -21,6 +22,14 @@ public class LogLine {
     }
 
     public String getOutputForShortLog() {
-        throw new UnsupportedOperationException("Please implement the getOutputForShortLog() method");
+        return MessageFormat.format("{0, int}:{1}", convertToNumber(getLogLevel()), getMessage())
+    }
+
+    private int convertToNumber(LogLevel level) {
+        return 0;
+    }
+
+    private String getMessage() {
+        return "";
     }
 }
