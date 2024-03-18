@@ -2,19 +2,6 @@ import os
 import shutil
 
 
-directories = (
-    "bin", 
-    "obj", 
-    ".vs", 
-    ".mono", 
-    "elm-stuff", 
-    "target", 
-    ".cpcache", 
-    "__pycache__",
-    ".gradle",
-    "build"
-)
-
 def test_directory(dirpath, dirname):
     if "." == dirpath:
         return dirname in (".mono", ".vscode", ".vs")
@@ -29,7 +16,8 @@ def test_directory(dirpath, dirname):
             return dirname in ("bin", ".gradle", "build")
         case "python":
             return dirname in (".pytest_cache", "__pycache__")
-    return dirname == ".idea"
+        case _:
+            return dirname == ".idea"
 
 
 def remove_directories(root_dir):
