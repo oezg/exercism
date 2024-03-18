@@ -38,10 +38,8 @@ package-lock.json
 /typescript/*/yarn.lock
 /typescript/*/.pnp.cjs
 /typescript/*/.pnp.loader.mjs
-
-/typescript/*/.yarn/cache
-/typescript/*/.yarn/unplugged
-/typescript/*/.yarn/install-state.gz
-
-
-!yarn-3.6.4.cjs
+# /typescript/*/.yarn/cache
+# /typescript/*/.yarn/unplugged
+# /typescript/*/.yarn/install-state.gz
+/typescript/*/.yarn/*
+!/typescript/*/.yarn/releases
