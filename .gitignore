@@ -1,13 +1,15 @@
 
-.exercism
 .mono
 .vs
 .fake
+*.sln
 
 /.vscode/
 
-/**/.clj-kondo/
-/**/.lsp/
+.clj-kondo/
+.lsp/
+/clojure/*/.clj-kondo
+/clojure/*/.lsp
 /clojure/*/target/
 /clojure/*/.lein-failures
 
@@ -28,8 +30,9 @@
 /python/*/__pycache__/
 /python/.pytest_cache/
 
-/**/node_modules
+node_modules/
 /**/bin/configlet
 /**/bin/configlet.exe
-/**/pnpm-lock.yaml
-/**/yarn.lock
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
