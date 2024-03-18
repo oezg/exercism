@@ -15,7 +15,7 @@ def test_directory(dirpath, dirname):
         case "java":
             return dirname in ("bin", ".gradle", "build", ".idea")
         case "python":
-            return dirname in (".pytest_cache", "__pycache__")
+            return dirname in (".pytest_cache", "__pycache__", "venv", ".idea")
         case "javascript" | "typescript":
             return dirname == "node_modules"
         case _:
