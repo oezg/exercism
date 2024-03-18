@@ -1,35 +1,21 @@
-import java.text.MessageFormat;
-import java.util.regex.Pattern;
-
 public class LogLine {
-
-    private final String line;
-
-    public String getLine() {
-        return line;
-    }
-
-    public LogLine(String logLine) {
-        line = logLine;
-    }
+    private final LogLevel level;
+    private final String message;
 
     public LogLevel getLogLevel() {
-        var m = Pattern.compile("^\\[([A-Z]{3})\\]").matcher(getLine());
-        if (m.find()) {
-            return LogLevel.fromString(m.group(1));
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public String getOutputForShortLog() {
-        return MessageFormat.format("{0, int}:{1}", convertToNumber(getLogLevel()), getMessage())
-    }
-
-    private int convertToNumber(LogLevel level) {
-        return 0;
+        return level;
     }
 
     private String getMessage() {
-        return "";
+        return message;
+    }
+
+    public LogLine(String logLine) {
+        message = logLine.substring(7);
+        level = LogLevel.fromString(logLine.substring(1, 4));
+    }
+
+    public String getOutputForShortLog() {
+        return String.format("%d:%s", level.getEncodedLevel(), getMessage());
     }
 }
