@@ -1,8 +1,0 @@
-.gitignore
-.clj-kondo/*
-.lsp/*
-*/.clj-kondo/*
-*/.lsp/*
-*/.cpcache/*
-*/.lein*
-*/target/*

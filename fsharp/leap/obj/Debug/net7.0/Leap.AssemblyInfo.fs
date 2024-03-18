@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Leap")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb3493a730d350da6df0d762449fcfa63f7255aa")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a9f6cc891f028d4b3ad045d88b46c8875dda5c0")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Leap")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Leap")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]
