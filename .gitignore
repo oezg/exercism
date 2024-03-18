@@ -5,6 +5,9 @@
 .fake
 
 /.vscode/
+
+/**/.clj-kondo/
+/**/.lsp/
 /clojure/*/target/
 /clojure/*/.lein-failures
 
