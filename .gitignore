@@ -15,4 +15,6 @@
 /fsharp/*/bin/
 /fsharp/*/obj/
 
+/java/*/bin/
+
 /python/*/__pycache__/
