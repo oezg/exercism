@@ -11,6 +11,6 @@ def remove_directories(root_dir, directories):
                 shutil.rmtree(direcotry_path)
 
 
-directories = ("bin", "obj", ".vs", ".mono")
+directories = ("bin", "obj", ".vs", ".mono", "elm-stuff")
 root_directory = "."
 remove_directories(root_directory, directories)
