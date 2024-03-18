@@ -30,13 +30,15 @@
 /python/*/__pycache__/
 /python/.pytest_cache/
 
+
+/typescript/*/.yarn/
+!/typescript/*/.yarn/releases/yarn-3.6.4.cjs
+
 node_modules/
 /**/bin/configlet
 /**/bin/configlet.exe
-pnpm-lock.yaml
+/typescript/*/pnpm-lock.yaml
 package-lock.json
-yarn.lock
-.pnp.cjs
-.pnp.loader.mjs
-.yarn/
-!/**/.yarn/releases/yarn-*.cjs
+/typescript/*/yarn.lock
+/typescript/*/.pnp.cjs
+/typescript/*/.pnp.loader.mjs
