@@ -9,6 +9,7 @@
 .clj-kondo/
 .lsp/
 /clojure/*/.clj-kondo
+/clojure/*/.cpcache
 /clojure/*/.lsp
 /clojure/*/target/
 /clojure/*/.lein-failures
