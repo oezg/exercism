@@ -5,36 +5,59 @@ type alias MonsterDamage =
     String
 
 
+attackWithWeapon : String -> String -> Int -> String
+attackWithWeapon weapon monsterDamage strength =
+    String.concat [ monsterDamage, "Attacked with ", weapon, " of strength ", String.fromInt strength, "." ]
+
+
 attackWithSword1 : MonsterDamage -> Int -> MonsterDamage
-attackWithSword1 monsterDamage strength =
-    Debug.todo "Implement attackWithSword1 function"
+attackWithSword1 =
+    attackWithWeapon "sword"
 
 
 attackWithClaw1 : MonsterDamage -> Int -> MonsterDamage
-attackWithClaw1 monsterDamage strength =
-    Debug.todo "Implement attackWithClaw1 function"
+attackWithClaw1 =
+    attackWithWeapon "claw"
+
+
+attackAnn : MonsterDamage -> MonsterDamage
+attackAnn monsterDamage =
+    attackWithSword1 monsterDamage 5
+
+
+attackKazak : MonsterDamage -> MonsterDamage
+attackKazak monsterDamage =
+    attackWithClaw1 monsterDamage 1
 
 
 attack1 : MonsterDamage -> MonsterDamage
 attack1 monsterDamage =
-    Debug.todo "Implement attack1 function"
+    monsterDamage
+        |> attackAnn
+        |> attackKazak
+        |> attackKazak
+        |> attackAnn
 
 
 attackWithSword2 : Int -> MonsterDamage -> MonsterDamage
 attackWithSword2 strength monsterDamage =
-    Debug.todo "Implement attackWithSword2 function"
+    attackWithSword1 monsterDamage strength
 
 
 attackWithClaw2 : Int -> MonsterDamage -> MonsterDamage
 attackWithClaw2 strength monsterDamage =
-    Debug.todo "Implement attackWithClaw2 function"
+    attackWithClaw1 monsterDamage strength
 
 
 attack2 : MonsterDamage -> MonsterDamage
 attack2 monsterDamage =
-    Debug.todo "Implement attack2 function"
+    monsterDamage
+        |> attackWithSword2 5
+        |> attackWithClaw2 1
+        |> attackWithClaw2 1
+        |> attackWithSword2 5
 
 
 attack3 : MonsterDamage -> MonsterDamage
 attack3 =
-    Debug.todo "Implement attack3 function"
+    attackWithSword2 5 >> attackWithClaw2 1 >> attackWithClaw2 1 >> attackWithSword2 5
