@@ -13,6 +13,8 @@
 /clojure/*/.lsp
 /clojure/*/target/
 /clojure/*/.lein-failures
+/clojure/*/.lein-repl-history
+/clojure/*/.nrepl-port
 
 /csharp/*/bin/
 /csharp/*/obj/
