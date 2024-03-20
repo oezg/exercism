@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "ceddlyburge"
+  ],
+  "contributors": [
+    "mpizenberg"
+  ],
+  "files": {
+    "solution": [
+      "src/TisburyTreasureHunt.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.elm"
+    ]
+  },
+  "forked_from": [
+    "python/tisbury-treasure-hunt"
+  ],
+  "blurb": "Learn usage of Tuples by designing a pirate treasure game"
+}
