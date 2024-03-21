@@ -37,21 +37,21 @@
   "Returns true if the average of the cards at even indexes
    is the same as the average of the cards at odd indexes."
   [hand]
-  (let [m (fn [x]
-            (card-average (map second (filter #(x (first %)) (map-indexed vector hand)))))]
-    (= (m odd?) (m even?)))
+  (let [fltr_idx (fn [pred]
+                   (card-average (map second (filter #(pred (first %)) (map-indexed vector hand)))))]
+    (= (fltr_idx odd?) (fltr_idx even?))))
 
-  (defn double-last
-    "This function takes a list lst as input. It first removes the last
+(defn double-last
+  "This function takes a list lst as input. It first removes the last
    element of the list using butlast, then doubles the last element
    using (* 2 (last lst)), and finally adds the doubled last element
    to the modified list using conj."
-    [lst]
-    (conj (vec (butlast lst)) (* 2 (last lst))))
+  [lst]
+  (conj (vec (butlast lst)) (* 2 (last lst))))
 
 
-  (defn maybe-double-last
-    "If the last card is a Jack (11), doubles its value
+(defn maybe-double-last
+  "If the last card is a Jack (11), doubles its value
    before returning the hand."
-    [hand]
-    (if (not= 11 (last hand)) hand (double-last hand)))
+  [hand]
+  (if (not= 11 (last hand)) hand (double-last hand)))
