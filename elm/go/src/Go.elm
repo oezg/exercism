@@ -5,4 +5,15 @@ import GoSupport exposing (..)
 
 applyRules : Game -> Rule -> NonValidatingRule -> Rule -> Rule -> Game
 applyRules game oneStonePerPointRule captureRule libertyRule koRule =
-    Debug.todo "Please implement the `applyRules` function"
+    case
+        game
+            |> oneStonePerPointRule
+            |> Result.map captureRule
+            |> Result.andThen libertyRule
+            |> Result.andThen koRule
+    of
+        Ok result ->
+            changePlayer result
+
+        Err message ->
+            { game | error = message }
