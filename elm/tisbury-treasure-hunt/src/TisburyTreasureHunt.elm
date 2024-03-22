@@ -29,8 +29,7 @@ treasureLocationMatchesPlaceLocation placeLocation =
 
 countPlaceTreasures : Place -> List Treasure -> Int
 countPlaceTreasures ( _, placeLocation ) =
-    List.map Tuple.second
-        >> List.filter (treasureLocationMatchesPlaceLocation placeLocation)
+    List.filter (Tuple.second >> treasureLocationMatchesPlaceLocation placeLocation)
         >> List.length
 
 

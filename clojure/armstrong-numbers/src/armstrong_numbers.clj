@@ -1,14 +1,12 @@
 (ns armstrong-numbers)
 
-(defn digitize 
+(defn digitize
   [num]
-  (loop [x num acc []]
-    (if (= x 0) acc
-    (recur (quot x 10) (conj acc (mod x 10))))))
+  (map #(mod % 10) (take-while pos? (iterate #(quot % 10) num))))
 
 (defn powers [num]
   (let [digits (digitize num)]
-   (map #(Math/pow % (count digits)) digits)))
+    (map #(Math/pow % (count digits)) digits)))
 
 (defn armstrong [num]
   (apply + (powers num)))
