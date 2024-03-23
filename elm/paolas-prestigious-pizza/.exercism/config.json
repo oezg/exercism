@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "jiegillet"
+  ],
+  "contributors": [
+    "mpizenberg",
+    "ceddlyburge"
+  ],
+  "files": {
+    "solution": [
+      "src/PaolasPrestigiousPizza.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.elm"
+    ]
+  },
+  "icon": "pizza-slices",
+  "blurb": "Learn the basics of parsing by processing the menu of Paola's Prestigious Pizza"
+}
