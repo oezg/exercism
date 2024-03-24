@@ -9,7 +9,7 @@ module PaolasPrestigiousPizza exposing
     , wordParser
     )
 
-import Parser exposing ((|.), (|=), Parser)
+import Parser exposing ((|.), (|=), Parser, chompWhile, getChompedString, keyword, oneOf, succeed)
 
 
 type alias Pizza =
@@ -22,37 +22,75 @@ type alias Pizza =
 
 priceParser : Parser Int
 priceParser =
-    Parser.succeed identity
-        |= Parser.int
+    Parser.int
         |. Parser.symbol "€"
-        |. Parser.end
 
 
 vegetarianParser : Parser Bool
 vegetarianParser =
-    Parser.succeed
+    oneOf
+        [ succeed True
+            |. keyword "(v)"
+        , succeed False
+        ]
 
 
 wordParser : Parser String
 wordParser =
-    Debug.todo "Please implement this parser"
+    Parser.chompWhile Char.isAlpha
+        |> Parser.getChompedString
+        |> Parser.map String.toLower
 
 
 ingredientsParser : Parser (List String)
 ingredientsParser =
-    Debug.todo "Please implement this parser"
+    Parser.sequence
+        { start = ""
+        , separator = ","
+        , end = ""
+        , spaces = Parser.spaces
+        , item = oneIngredientParser
+        , trailing = Parser.Forbidden
+        }
 
 
 pizzaParser : Parser Pizza
 pizzaParser =
-    Debug.todo "Please implement this parser"
+    Parser.succeed Pizza
+        |= wordParser
+        |. Parser.spaces
+        |= vegetarianParser
+        |. Parser.symbol ":"
+        |. Parser.spaces
+        |= ingredientsParser
+        |. Parser.spaces
+        |. Parser.symbol "-"
+        |. Parser.spaces
+        |= priceParser
 
 
 menuParser : Parser (List Pizza)
 menuParser =
-    Debug.todo "Please implement this parser"
+    Parser.sequence
+        { start = ""
+        , separator = "\n"
+        , end = ""
+        , spaces = Parser.succeed ()
+        , item = pizzaParser
+        , trailing = Parser.Optional
+        }
+        |. Parser.end
 
 
 oneIngredientParser : Parser String
 oneIngredientParser =
-    Debug.todo "Please implement this parser"
+    chompWhile (\c -> Char.isAlpha c || c == ' ')
+        |> getChompedString
+        |> Parser.andThen
+            (\s ->
+                if String.isEmpty s then
+                    Parser.problem "empty string"
+
+                else
+                    Parser.succeed ((String.trim >> String.toLower) s)
+            )

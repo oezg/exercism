@@ -27,10 +27,8 @@ numberOfCreatorComments (Ticket { createdBy, comments }) =
 assignedToDevTeam : Ticket -> Bool
 assignedToDevTeam (Ticket { assignedTo }) =
     case assignedTo of
-        Just user ->
-            case user of
-                User x ->
-                    member x devteam
+        Just (User user) ->
+            member user devteam
 
         _ ->
             False
