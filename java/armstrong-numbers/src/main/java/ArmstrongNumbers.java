@@ -8,15 +8,14 @@ class ArmstrongNumbers {
     if (number == 0) {
       return acc;
     }
-    var x = number % 10;
-    acc.add(x);
+    acc.add(number % 10);
     return digits(acc, number / 10);
   }
 
   private int armstrong(int number) {
-    var lst = digits(new ArrayList<Integer>(), number);
-    IntUnaryOperator power = n -> (int) Math.pow(n, lst.size());
-    return lst.stream().mapToInt(Integer::intValue).map(power).sum();
+    List<Integer> digit = digits(new ArrayList<Integer>(), number);
+    IntUnaryOperator power = n -> (int) Math.pow(n, digit.size());
+    return digit.stream().mapToInt(Integer::intValue).map(power).sum();
   }
 
   boolean isArmstrongNumber(int numberToCheck) {

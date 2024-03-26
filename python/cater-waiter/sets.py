@@ -35,7 +35,7 @@ def check_drinks(drink_name: str, drink_ingredients: list[str]) -> str:
     name followed by "Cocktail" (includes alcohol).
     """
 
-    return f"{drink_name} {'M' if set(drink_ingredients).isdisjoint(ALCOHOLS) else 'C'}ocktail"
+    return f"{drink_name} {'M' if ALCOHOLS.isdisjoint(drink_ingredients) else 'C'}ocktail"
 
 
 def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
@@ -50,9 +50,9 @@ def categorize_dish(dish_name: str, dish_ingredients: list[str]) -> str:
     All dishes will "fit" into one of the categories imported from `sets_categories_data.py`
     """
 
-    categories = ("VEGAN", "VEGETARIAN", "PALEO", "KETO", "OMNIVORE")
-    category = filter(lambda name: globals()[name].issuperset(dish_ingredients), categories)
-    return f"{dish_name}: {next(category)}"
+    categories = {"VEGAN": VEGAN, "VEGETARIAN": VEGETARIAN, "PALEO": PALEO, "KETO": KETO, "OMNIVORE": OMNIVORE}
+    category = next(filter(lambda name: categories[name].issuperset(dish_ingredients), categories))
+    return f"{dish_name}: {category}"
 
 
 def tag_special_ingredients(dish: tuple[str, list[str]]) -> tuple[str, set[str]]:
@@ -66,8 +66,8 @@ def tag_special_ingredients(dish: tuple[str, list[str]]) -> tuple[str, set[str]]
     SPECIAL_INGREDIENTS constant imported from `sets_categories_data.py`.
     """
 
-    name, ingredients = dish
-    return name, SPECIAL_INGREDIENTS & set(ingredients)
+    name, ingredients = clean_ingredients(*dish)
+    return name, SPECIAL_INGREDIENTS & ingredients
 
 
 def compile_ingredients(dishes: list[set[str]]) -> set[str]:
@@ -79,8 +79,7 @@ def compile_ingredients(dishes: list[set[str]]) -> set[str]:
     This function should return a `set` of all ingredients from all listed dishes.
     """
 
-    first, *rest = dishes
-    return first.union(*rest)
+    return set.union(*dishes)
 
 
 def separate_appetizers(dishes: list[str], appetizers: list[str]) -> list[str]:
@@ -112,5 +111,4 @@ def singleton_ingredients(dishes: list[set[str]], intersection: set[str]) -> set
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    first, *rest = dishes
-    return first.union(*rest) ^ intersection
+    return compile_ingredients(dishes) ^ intersection
