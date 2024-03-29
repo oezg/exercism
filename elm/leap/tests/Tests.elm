@@ -10,22 +10,16 @@ tests =
     describe "Leap"
         [ test "leap year" <|
             \() -> Expect.equal True (Leap.isLeapYear 1996)
-        , skip <|
-            test "non-leap year" <|
+        , test "non-leap year" <|
                 \() -> Expect.equal False (Leap.isLeapYear 1997)
-        , skip <|
-            test "non-leap even year" <|
+        , test "non-leap even year" <|
                 \() -> Expect.equal False (Leap.isLeapYear 1998)
-        , skip <|
-            test "century" <|
+        , test "century" <|
                 \() -> Expect.equal False (Leap.isLeapYear 1900)
-        , skip <|
-            test "second century" <|
+        , test "second century" <|
                 \() -> Expect.equal False (Leap.isLeapYear 1800)
-        , skip <|
-            test "fourth century" <|
+        , test "fourth century" <|
                 \() -> Expect.equal True (Leap.isLeapYear 2400)
-        , skip <|
-            test "y2k" <|
+        , test "y2k" <|
                 \() -> Expect.equal True (Leap.isLeapYear 2000)
         ]

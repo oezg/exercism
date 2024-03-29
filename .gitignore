@@ -26,6 +26,9 @@
 /fsharp/*/obj/
 /fsharp/*/*.sln
 
+/haskell/*/.stack-work/
+
+
 /java/*/bin/
 /java/*/build/
 /java/*/.gradle/
