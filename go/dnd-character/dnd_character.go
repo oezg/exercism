@@ -1,5 +1,12 @@
+// Package dndcharacter is utility for generating character for a dnd game.
 package dndcharacter
 
+import (
+	"math"
+	"math/rand"
+)
+
+// Character represents a dnd game character.
 type Character struct {
 	Strength     int
 	Dexterity    int
@@ -12,15 +19,25 @@ type Character struct {
 
 // Modifier calculates the ability modifier for a given ability score
 func Modifier(score int) int {
-	panic("Please implement the Modifier() function")
+	return int(math.Floor((float64(score) - 10) / 2))
 }
 
 // Ability uses randomness to generate the score for an ability
 func Ability() int {
-	panic("Please implement the Ability() function")
+	minimum := 6
+	roll := func() int {
+		x := rand.Intn(6) + 1
+		if x < minimum {
+			minimum = x
+		}
+		return x
+	}
+	return roll() + roll() + roll() + roll() - minimum
 }
 
 // GenerateCharacter creates a new Character with random scores for abilities
 func GenerateCharacter() Character {
-	panic("Please implement the GenerateCharacter() function")
+	char := Character{Ability(), Ability(), Ability(), Ability(), Ability(), Ability(), 10}
+	char.Hitpoints += Modifier(char.Constitution)
+	return char
 }
