@@ -3,12 +3,25 @@ package romannumerals
 
 import (
 	"fmt"
+	"math"
 	"strings"
 )
 
-var (
-	romans = map[int][4]string{
-		0: {"", "", "", ""},
+// ToRomanNumeral converts a number from Arabic numerals to Roman numerals.
+func ToRomanNumeral(input int) (string, error) {
+	if input <= 0 || input >= 4000 {
+		return "", fmt.Errorf("%d is out of range", input)
+	}
+	return validRomanNumeral(input), nil
+}
+
+func validRomanNumeral(n int) string {
+	return strings.Join(roman(digits(n)), "")
+}
+
+func roman(digits [4]int) []string {
+	romans := map[int][4]string{
+		0: {},
 		1: {"I", "X", "C", "M"},
 		2: {"II", "XX", "CC", "MM"},
 		3: {"III", "XXX", "CCC", "MMM"},
@@ -19,21 +32,6 @@ var (
 		8: {"VIII", "LXXX", "DCCC"},
 		9: {"IX", "XC", "CM"},
 	}
-)
-
-// ToRomanNumeral converts a number from Arabic numerals to Roman numerals.
-func ToRomanNumeral(input int) (string, error) {
-	if input <= 0 || input >= 4000 {
-		return "", fmt.Errorf("%d is out of range", input)
-	}
-	return toValidRomanNumeral2(input), nil
-}
-
-func toValidRomanNumeral2(n int) string {
-	return strings.Join(toRomanDigits(digitize(n)), "")
-}
-
-func toRomanDigits(digits [4]int) []string {
 	out := make([]string, 4)
 	for i := 0; i < 4; i++ {
 		out[3-i] = romans[digits[i]][i]
@@ -41,13 +39,10 @@ func toRomanDigits(digits [4]int) []string {
 	return out
 }
 
-func digitize(n int) [4]int {
+func digits(n int) [4]int {
 	out := [4]int{}
 	for digit := 0; digit < 4; digit++ {
-		exponent := 1
-		for j := 0; j < digit; j++ {
-			exponent *= 10
-		}
+		exponent := int(math.Pow10(digit))
 		out[digit] = n % (exponent * 10) / exponent
 	}
 	return out

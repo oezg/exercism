@@ -28,17 +28,23 @@ sortByMonsterName =
     List.sortBy .monster
 
 
+boolToInt : Bool -> number
+boolToInt b =
+    if b then
+        1
+
+    else
+        0
+
+
+compareBooleans : Bool -> Bool -> Order
+compareBooleans a b =
+    compare (boolToInt a) (boolToInt b)
+
+
 orderByShininessAscending : Card -> Card -> Order
 orderByShininessAscending a b =
-    case ( a.shiny, b.shiny ) of
-        ( False, True ) ->
-            LT
-
-        ( True, False ) ->
-            GT
-
-        _ ->
-            EQ
+    compareBooleans a.shiny b.shiny
 
 
 orderByCoolnessAscending : Card -> Card -> Order
