@@ -3,14 +3,12 @@ package isbn
 
 // IsValidISBN checks if the provided string is a valid ISBN-10.
 func IsValidISBN(isbn string) bool {
-	total := 0
-	multiplier := 10
-	value := 0
+	total, value, multiplier := 0, 0, 10
 	for _, digit := range isbn {
 		switch {
 		case digit == 'X' && multiplier == 1:
 			value = 10
-		case digit <= '9' && digit >= '0':
+		case digit >= '0' && digit <= '9':
 			value = int(digit) - '0'
 		case digit == '-':
 			continue
