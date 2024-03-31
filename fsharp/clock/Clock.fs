@@ -1,27 +1,26 @@
 module Clock
 
-type Clock = {
-    Hour: int
-    Minute: int
-}
+[<Measure>]
+type minute
 
-let rec newClock minutes = 
-    let clean = minutes % (60*24)
-    if clean >= 0 then
-        {
-            Hour = clean / 60
-            Minute = clean % 60
-        }
-    else 
-        newClock (clean + (60*24) )
+type Clock = Clock of int<minute>
 
-let minutesOf clock =
-    clock.Hour * 60 + clock.Minute
+let minutesPerHour = 60<minute>
+let minutesPerDay = 24 * minutesPerHour
 
-let create hours minutes: Clock = newClock (minutes + 60 * hours)
+let private convertMinutesToClock =
+    let modulo m n = (n % m + m) % m
+    modulo minutesPerDay >> Clock
 
-let add (minutes: int) (clock: Clock): Clock = newClock (minutesOf clock + minutes)
+let private toMinute minutes = minutes * 1<minute>
 
-let subtract minutes clock = add -minutes clock
+let create hours =
+    toMinute >> (+) (hours * minutesPerHour) >> convertMinutesToClock
 
-let rec display clock = sprintf "%02d:%02d" clock.Hour clock.Minute
+let add minutes (Clock m) =
+    m + (toMinute minutes) |> convertMinutesToClock
+
+let subtract minutes = add -minutes
+
+let display (Clock m) =
+    $"%02d{m / minutesPerHour}:%02d{m % minutesPerHour}"
