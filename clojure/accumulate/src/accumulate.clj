@@ -1,5 +1,8 @@
 (ns accumulate)
 
 (defn accumulate [function collection]
-  (for [element collection]
-    (function element)))
+  (if (empty? collection)
+    []
+    (cons
+     (function (first collection))
+     (accumulate function (rest collection)))))
