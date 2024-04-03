@@ -1,27 +1,36 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 public static class ProteinTranslation
 {
-    private const int CodonLength = 3;
-    public static string[] Proteins(string strand)
-        => Enumerable.Range(0, strand.Length / CodonLength)
-        .Select(i       => strand.Substring(CodonLength * i, CodonLength))
-        .TakeWhile(c    => !(c == "UAA" || c == "UAG" || c == "UGA"))
-        .Translate().ToArray();
 
-    private static IEnumerable<string> Translate(this IEnumerable<string> codons)
-        => codons.Select(codon => codon switch
+    private const int CodonLength = 3;
+    public static string[] Proteins(string strand) =>
+        strand.ToProteins().ToArray();
+
+    private static IEnumerable<string> ToProteins(this string strand)
+    {
+        for (var idx = 0; idx < strand.Length; idx += CodonLength)
         {
-            "AUG"                               => "Methionine",
-            "UUU" or "UUC"                      => "Phenylalanine",
-            "UUA" or "UUG"                      => "Leucine",
-            "UCU" or "UCC" or "UCA" or "UCG"    => "Serine",
-            "UAU" or "UAC"                      => "Tyrosine",
-            "UGU" or "UGC"                      => "Cysteine",
-            "UGG"                               => "Tryptophan",
-            _                                   => throw new ArgumentOutOfRangeException(),
-        });
+            var protein = ToProtein(strand[idx..(idx + CodonLength)]);
+            if (protein == "STOP")
+                yield break;
+            yield return protein;
+        }
+    }
+
+    private static string ToProtein(string codon) =>
+        codon switch
+        {
+            "UCU" or "UCC" or "UCA" or "UCG" => "Serine",
+            "UAA" or "UAG" or "UGA" => "STOP",
+            "UUU" or "UUC" => "Phenylalanine",
+            "UUA" or "UUG" => "Leucine",
+            "UAU" or "UAC" => "Tyrosine",
+            "UGU" or "UGC" => "Cysteine",
+            "AUG" => "Methionine",
+            "UGG" => "Tryptophan",
+            _ => throw new ArgumentOutOfRangeException(codon),
+        };
 }
