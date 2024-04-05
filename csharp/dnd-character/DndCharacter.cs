@@ -10,26 +10,21 @@ public class DndCharacter
     public int Intelligence { get; }
     public int Wisdom { get; }
     public int Charisma { get; }
-    public int Hitpoints { get; }
+    public int Hitpoints { get; } = 10;
 
-    public static int Modifier(int score)
-        => (score - 10) >> 1;
+    public static int Modifier(int score) => (score - 10) >> 1;
 
-    public static int Ability() 
-        => Enumerable.Range(0, 4).Select(_ => s_random.Next(1, 7)).Order().TakeLast(3).Sum();
+    public static int Ability() =>
+        Enumerable.Range(0, 4).Select(_ => s_random.Next(1, 7)).Order().TakeLast(3).Sum();
 
-    public static DndCharacter Generate()
-    {
-        return new DndCharacter(
-            strength: Ability(),
-            dexterity: Ability(),
-            constitution: Ability(),
-            intelligence: Ability(),
-            wisdom: Ability(),
-            charisma: Ability()
-            );
-
-    }
+    public static DndCharacter Generate() => new(
+        strength: Ability(),
+        dexterity: Ability(),
+        constitution: Ability(),
+        intelligence: Ability(),
+        wisdom: Ability(),
+        charisma: Ability()
+    );
 
     public DndCharacter(int strength, int dexterity, int constitution, int intelligence, int wisdom, int charisma)
     {
@@ -39,6 +34,6 @@ public class DndCharacter
         Intelligence = intelligence;
         Wisdom = wisdom;
         Charisma = charisma;
-        Hitpoints = 10 + Modifier(Constitution);
+        Hitpoints += Modifier(Constitution);
     }
 }
