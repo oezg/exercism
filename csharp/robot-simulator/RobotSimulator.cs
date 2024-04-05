@@ -1,27 +1,17 @@
 using System.Linq;
 using System;
 
-public class RobotSimulator
+public record struct RobotSimulator(Direction Direction, int X, int Y)
 {
-    public void Move(string instructions)
-    {
-        foreach (char instruction in instructions)
-            switch (instruction)
+    public void Move(string instructions) =>
+        (Direction, X, Y) = instructions.Aggregate((direction: Direction, x: X, y: Y),
+            (robot, instruction) => instruction switch
             {
-                case 'A': (X, Y) = (X + Direction.X(), Y + Direction.Y()); break;
-                case 'R': Direction = Direction.Right(); break;
-                case 'L': Direction = Direction.Left(); break;
-                default: throw new ArgumentOutOfRangeException(nameof(instructions), "invalid");
-            }
-    }
-
-    public RobotSimulator(Direction direction, int x, int y) => (Direction, X, Y) = (direction, x, y);
-
-    public Direction Direction { get; set; }
-
-    public int X { get; set; }
-
-    public int Y { get; set; }
+                'L' => (robot.direction.Left(), robot.x, robot.y),
+                'R' => (robot.direction.Right(), robot.x, robot.y),
+                'A' => (robot.direction, robot.x + robot.direction.X(), robot.y + robot.direction.Y()),
+                _ => throw new ArgumentException(nameof(instructions), "can only contain A, L or R")
+            });
 }
 
 public enum Direction
