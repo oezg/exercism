@@ -3,7 +3,15 @@ package resistorcolorduo
 
 // Value returns the resistance value of a resistor with a given colors.
 func Value(colors []string) int {
-	return resistorValue(colors[0])*10 + resistorValue(colors[1])
+	if len(colors) < 2 {
+		return -1
+	}
+	resistorColor1 := resistorValue(colors[0])
+	resistorColor2 := resistorValue(colors[1])
+	if resistorColor1 < 0 || resistorColor2 < 0 {
+		return -1
+	}
+	return resistorColor1*10 + resistorColor2
 }
 
 func resistorValue(color string) int {
@@ -29,7 +37,7 @@ func resistorValue(color string) int {
 	case "white":
 		return 9
 	default:
-		panic("invalid color")
+		return -1
 	}
 }
 
