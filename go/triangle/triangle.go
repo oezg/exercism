@@ -14,12 +14,28 @@ const (
 // KindFromSides returns the kind of triangle formed by the given three sides.
 func KindFromSides(a, b, c float64) Kind {
 	switch {
-	case !valid(a, b, c):
+	case notTriangle(a, b, c):
 		return NaT
-
+	case equilateral(a, b, c):
+		return Equ
+	case isosceles(a, b, c):
+		return Iso
+	default:
+		return Sca
 	}
 }
 
-func valid(a, b, c float64) bool {
-	return a+b >= c && b+c >= a && a+c >= b
+func isosceles(a, b, c float64) bool {
+	return a == b || a == c || b == c
+}
+
+func equilateral(a, b, c float64) bool {
+	return a == b && a == c
+}
+
+func notTriangle(a, b, c float64) bool {
+	if a == 0 && b == 0 && c == 0 {
+		return true
+	}
+	return a+b < c || b+c < a || a+c < b
 }
