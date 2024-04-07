@@ -4,7 +4,7 @@ package clock
 import "fmt"
 
 // Minute represents a minute in clock.
-type Minute int
+type Minute uint16
 
 // ToMinute returns the given number in minutes.
 func ToMinute(minutes int) Minute {
@@ -44,6 +44,13 @@ func (c Clock) String() string {
 // goarch: amd64
 // pkg: clock
 // cpu: Intel(R) Core(TM) i5-6500 CPU @ 3.20GHz
+
+// INT
 // BenchmarkAddMinutes-4           335680532                3.499 ns/op           0 B/op          0 allocs/op
 // BenchmarkSubtractMinutes-4      335853228                3.480 ns/op           0 B/op          0 allocs/op
-// BenchmarkCreateClocks-4         81661189                13.49 ns/op            0 B/op          0 allocs/op
+// BenchmarkCreateClocks-4          81661189               13.49 ns/op            0 B/op          0 allocs/op
+
+// UINT16
+// BenchmarkAddMinutes-4           253546959                4.647 ns/op           0 B/op          0 allocs/op
+// BenchmarkSubtractMinutes-4      252239953                4.630 ns/op           0 B/op          0 allocs/op
+// BenchmarkCreateClocks-4         157343528                7.564 ns/op           0 B/op          0 allocs/op
