@@ -1,6 +1,8 @@
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class GottaSnatchEmAll {
 
@@ -13,20 +15,25 @@ class GottaSnatchEmAll {
     }
 
     static boolean canTrade(Set<String> myCollection, Set<String> theirCollection) {
-        return !(myCollection.containsAll(theirCollection) || myCollection.isEmpty());
+        if (myCollection.isEmpty()) {
+            return false;
+        }
+        return !myCollection.containsAll(theirCollection);
     }
 
     static Set<String> commonCards(List<Set<String>> collections) {
-        return collections.stream().reduce((acc, set) -> {
-            Set<String> temp = new HashSet<>(acc);
-            return temp.retainAll(set) ? temp : acc;
-        }).orElse(new HashSet<String>());
+        return collections.stream().reduce((acc, set) -> intersection(acc, set)).orElse(Set.of());
     }
 
     static Set<String> allCards(List<Set<String>> collections) {
-        return collections.stream().reduce((acc, set) -> {
-            Set<String> temp = new HashSet<>(acc);
-            return temp.addAll(set) ? temp : acc;
-        }).orElse(new HashSet<>());
+        return collections.stream().reduce((acc, set) -> union(acc, set)).orElse(Set.of());
+    }
+
+    private static Set<String> union(Set<String> set1, Set<String> set2) {
+        return Stream.concat(set1.stream(), set2.stream()).collect(Collectors.toSet());
+    }
+
+    private static Set<String> intersection(Set<String> set1, Set<String> set2) {
+        return set1.stream().filter(set2::contains).collect(Collectors.toSet());
     }
 }
