@@ -6,8 +6,8 @@ import "fmt"
 // Minute represents a minute in clock.
 type Minute uint16
 
-// ToMinute returns the given number in minutes.
-func ToMinute(minutes int) Minute {
+// toMinute returns the given number in minutes.
+func toMinute(minutes int) Minute {
 	const minutesInDay = 24 * 60
 	modulo := func(num, mod int) int {
 		return ((num % mod) + mod) % mod
@@ -22,7 +22,7 @@ type Clock struct {
 
 // New returns a new clock from given hours and minutes.
 func New(h, m int) Clock {
-	return Clock{Minutes: ToMinute(h*60 + m)}
+	return Clock{Minutes: toMinute(h*60 + m)}
 }
 
 // Add returns a new clock with the given number of minutes added to the receiver clock.
