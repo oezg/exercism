@@ -10,15 +10,19 @@ const (
 
 // Proverb returns the relevant proverb, generated from the given list of inputs.
 func Proverb(rhyme []string) []string {
-	out := make([]string, len(rhyme))
-	for index, verse := range rhyme {
-		if index == len(rhyme)-1 {
-			out[index] = fmt.Sprintf(footLine, rhyme[0])
-		} else {
-			out[index] = fmt.Sprintf(bodyLine, verse, rhyme[index+1])
-		}
+	if len(rhyme) == 0 {
+		return []string{}
 	}
-	return out
+
+	out := make([]string, 0, len(rhyme))
+	lastVerse := rhyme[0]
+
+	for _, verse := range rhyme[1:] {
+		out = append(out, fmt.Sprintf(bodyLine, lastVerse, verse))
+		lastVerse = verse
+	}
+
+	return append(out, fmt.Sprintf(footLine, rhyme[0]))
 }
 
 // 1 for range loop
@@ -35,6 +39,12 @@ func Proverb(rhyme []string) []string {
 
 // 5
 // BenchmarkProverb-4        291346              3813 ns/op            1472 B/op         51 allocs/op
+
+// 6 indented happy path
+// BenchmarkProverb-4        200809              5740 ns/op            2048 B/op         75 allocs/op
+
+// 7 unindent happy path
+// BenchmarkProverb-4        292440              3866 ns/op            1472 B/op         51 allocs/op
 
 // goos: linux
 // goarch: amd64

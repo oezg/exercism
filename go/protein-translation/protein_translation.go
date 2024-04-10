@@ -27,11 +27,11 @@ func FromRNA(rna string) ([]string, error) {
 	for index := 0; index < strandLength; index += codonLength {
 		aminoAcid, err := FromCodon(rna[index : index+codonLength])
 
-		if err == ErrInvalidBase {
+		if errors.Is(err, ErrInvalidBase) {
 			return nil, ErrInvalidBase
 		}
 
-		if err == ErrStop {
+		if errors.Is(err, ErrStop) {
 			break
 		}
 
@@ -42,28 +42,27 @@ func FromRNA(rna string) ([]string, error) {
 }
 
 // FromCodon returns the protein corresponding to the given 3-Base-Codon.
-func FromCodon(codon string) (aminoAcid string, err error) {
+func FromCodon(codon string) (string, error) {
 	switch codon {
 	case "UCU", "UCC", "UCA", "UCG":
-		aminoAcid = "Serine"
+		return "Serine", nil
 	case "UAA", "UAG", "UGA":
-		err = ErrStop
+		return "", ErrStop
 	case "UUU", "UUC":
-		aminoAcid = "Phenylalanine"
+		return "Phenylalanine", nil
 	case "UUA", "UUG":
-		aminoAcid = "Leucine"
+		return "Leucine", nil
 	case "UAU", "UAC":
-		aminoAcid = "Tyrosine"
+		return "Tyrosine", nil
 	case "UGU", "UGC":
-		aminoAcid = "Cysteine"
+		return "Cysteine", nil
 	case "AUG":
-		aminoAcid = "Methionine"
+		return "Methionine", nil
 	case "UGG":
-		aminoAcid = "Tryptophan"
+		return "Tryptophan", nil
 	default:
-		err = ErrInvalidBase
+		return "", ErrInvalidBase
 	}
-	return
 }
 
 // 1 SWITCH
@@ -74,9 +73,21 @@ func FromCodon(codon string) (aminoAcid string, err error) {
 // BenchmarkCodon-4         7364150               155.3 ns/op             0 B/op          0 allocs/op
 // BenchmarkProtein-4       1377252              1001 ns/op             384 B/op         11 allocs/op
 
-// 3 Switch with named return
+// 3 Switch with naked return
 // BenchmarkCodon-4        50637979                21.48 ns/op            0 B/op          0 allocs/op
 // BenchmarkProtein-4       1799146               649.9 ns/op           384 B/op         11 allocs/op
+
+// 4 named return variables
+// BenchmarkCodon-4        53022634                21.36 ns/op            0 B/op          0 allocs/op
+// BenchmarkProtein-4       1768119               677.7 ns/op           384 B/op         11 allocs/op
+
+// 5 error comparison with errors.Is
+// BenchmarkCodon-4        54122398                20.27 ns/op            0 B/op          0 allocs/op
+// BenchmarkProtein-4       1270966               987.9 ns/op           384 B/op         11 allocs/op
+
+// 6 unnamed return variables
+// BenchmarkCodon-4        56983788                20.25 ns/op            0 B/op          0 allocs/op
+// BenchmarkProtein-4       1261290               993.8 ns/op           384 B/op         11 allocs/op
 
 // goos: linux
 // goarch: amd64
