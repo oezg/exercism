@@ -1,27 +1,33 @@
 package wordcount
 
 import (
-	"regexp"
 	"strings"
+	"unicode"
 )
 
 type Frequency map[string]int
 
 func WordCount(phrase string) Frequency {
-	pattern := regexp.MustCompile(`[^a-zA-Z0-9']+`)
-	words := pattern.Split(phrase, -1)
-	out := map[string]int{}
-	for _, word := range words {
-		trimmed := strings.Trim(word, "'")
-		if len(trimmed) == 0 {
+	out := make(Frequency)
+	for _, word := range strings.FieldsFunc(phrase, func(r rune) bool {
+		return !(unicode.IsLetter(r) || unicode.IsNumber(r) || r == '\'')
+	}) {
+		trimmed := strings.ToLower(strings.Trim(word, "'"))
+		if trimmed == "" {
 			continue
 		}
-		normalized := strings.ToLower(trimmed)
-		out[normalized] += 1
+		out[trimmed] += 1
 	}
 	return out
 }
 
+// 3
+// BenchmarkWordCount-4      169422              7616 ns/op            4352 B/op         47 allocs/op
+
+// 2
+// BenchmarkWordCount-4       45045             25237 ns/op            9759 B/op        125 allocs/op
+
+// 1
 // BenchmarkWordCount-4       29361             41786 ns/op           22636 B/op        294 allocs/op
 
 // goos: linux
