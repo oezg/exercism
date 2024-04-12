@@ -1,3 +1,4 @@
+// Package wordcount is a utility to analyze which words are used, and how often they're repeated.
 package wordcount
 
 import (
@@ -5,21 +6,30 @@ import (
 	"unicode"
 )
 
+// Frequency is a map between case insensitive words and their count.
 type Frequency map[string]int
 
+func (f Frequency) add(word string) {
+	trimmed := strings.ToLower(strings.Trim(word, "'"))
+	if len(trimmed) > 0 {
+		f[trimmed]++
+	}
+}
+
+// WordCount counts how many times each word occurs in a subtitle of a drama.
 func WordCount(phrase string) Frequency {
-	out := make(Frequency)
-	for _, word := range strings.FieldsFunc(phrase, func(r rune) bool {
+	out := Frequency{}
+	delimit := func(r rune) bool {
 		return !(unicode.IsLetter(r) || unicode.IsNumber(r) || r == '\'')
-	}) {
-		trimmed := strings.ToLower(strings.Trim(word, "'"))
-		if trimmed == "" {
-			continue
-		}
-		out[trimmed] += 1
+	}
+	for _, word := range strings.FieldsFunc(phrase, delimit) {
+		out.add(word)
 	}
 	return out
 }
+
+// 4
+// BenchmarkWordCount-4      168207              7202 ns/op            4352 B/op         47 allocs/op
 
 // 3
 // BenchmarkWordCount-4      169422              7616 ns/op            4352 B/op         47 allocs/op
