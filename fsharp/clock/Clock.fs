@@ -5,27 +5,16 @@ type minute
 
 type Clock = Clock of int<minute>
 
-let private minutesPerHour = 60<minute>
-let private minutesPerDay = 24 * minutesPerHour
+let private hourMinutes: int<minute> = 60<minute>
 
-let private convertMinutesToClock =
-    let modulo m n = (n % m + m) % m
-    modulo minutesPerDay >> Clock
+let add (minutes: int) (Clock m) : Clock =
+    let modulo (m: int<minute>) (n: int<minute>) : int<minute> = (n % m + m) % m
+    minutes * 1<minute> + m |> modulo (24 * hourMinutes) |> Clock
 
-let private toMinute minutes = minutes * 1<minute>
+let create (hours: int) (minutes: int) : Clock =
+    Clock 0<minute> |> add (hours * 60 + minutes)
 
-let private joinToClock minutes =
-    toMinute >> (+) minutes >> convertMinutesToClock
+let subtract (minutes: int) : (Clock -> Clock) = add -minutes
 
-let private hoursToMinutes h = h * minutesPerHour
-
-let private join (Clock m) = joinToClock m
-
-let create = hoursToMinutes >> joinToClock
-
-let add minutes clock = join clock minutes
-
-let subtract minutes = add -minutes
-
-let display (Clock m) =
-    $"%02d{m / minutesPerHour}:%02d{m % minutesPerHour}"
+let display (Clock m) : string =
+    $"%02d{m / hourMinutes}:%02d{m % hourMinutes}"
