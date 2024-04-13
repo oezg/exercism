@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "sjakobi"
+  ],
+  "contributors": [
+    "amscotti",
+    "ee7"
+  ],
+  "files": {
+    "solution": [
+      "leap.nim"
+    ],
+    "test": [
+      "test_leap.nim"
+    ],
+    "example": [
+      ".meta/example.nim"
+    ]
+  },
+  "blurb": "Determine whether a given year is a leap year.",
+  "source": "CodeRanch Cattle Drive, Assignment 3",
+  "source_url": "https://coderanch.com/t/718816/Leap"
+}
