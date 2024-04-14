@@ -12,32 +12,30 @@ ops = {
 
 def answer(question: str) -> int:
     'Parse and evaluate simple math word problems returning the answer as an integer.'
-    a = re.match(r'What is( \d+)?\?', question)
-    if a:
-        if a.group(1) is None:
-            raise ValueError("syntax error")
-        return int(a.group(1))
-    p = r'What is(( -?\d+){0,2}) ?(minus|plus|multiplied by|divided by)?(( -?\d+){0,2})( (minus|plus|multiplied by|divided by)? ?(-?\d+))?\?'
-    b = re.match(p, question)
-    if b:
-        if  b.group(1).count(' ') != 1:
-            raise ValueError("syntax error")
-        try:
-
-            r = ops[b.group(3)](int(b.group(2)), int(b.group(4)))
-            if b.group(6):
-                r = ops[b.group(7)](r, int(b.group(8)))
-            return r
-        except:
-            raise ValueError("syntax error")
-    raise ValueError("unknown operation")
+    expression = question.removeprefix('What is').removesuffix('?').strip()
+    if re.search(r'[^\d -]', re.sub('(minus|plus|multiplied by|divided by)', '', expression)):
+        raise ValueError("unknown operation")
+    value, success = process(expression)
+    if success:
+        return value
+    raise ValueError("syntax error")
 
 
-def zero(q: str) -> re.Match[str] | None:
-    return re.match(r'What is (\d+)\?', q)
+def process(expression: str)-> tuple[int, bool]:
+    'Parse expression returning the value of the expression and True or 0 and False.'
+    value = re.match(r'-?\d+', expression)
+    if value:
+        return process_help(int(value.group()), expression.removeprefix(value.group()).strip())
+    return 0, False
 
-def one(q: str) -> re.Match[str] | None:
-    return re.match(r'What is (\d+) plus (\d+)\?', q)
 
-def due(q: str) -> re.Match[str] | None:
-    return re.match(r'What is (\d+) (\w+)( by)? (\d+)\?', q)
+def process_help(val:int, expr: str)-> tuple[int, bool]:
+    'Helper to process the expression recursively.'
+    if expr=='':
+        return val, True
+    valid = re.match(r'(minus|plus|multiplied by|divided by) (-?\d+)', expr)
+    if not valid:
+        return 0, False
+    result = ops[valid.group(1)](val, int(valid.group(2)))
+    nexpr = expr.removeprefix(valid.group()).strip()
+    return process_help(result, nexpr)
