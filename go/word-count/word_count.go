@@ -9,24 +9,39 @@ import (
 // Frequency is a map between case insensitive words and their count.
 type Frequency map[string]int
 
-func (f Frequency) add(word string) {
+func (f Frequency) add(word string, done chan struct{}) {
 	trimmed := strings.ToLower(strings.Trim(word, "'"))
+
 	if len(trimmed) > 0 {
 		f[trimmed]++
 	}
+
+	done <- struct{}{}
 }
 
 // WordCount counts how many times each word occurs in a subtitle of a drama.
 func WordCount(phrase string) Frequency {
-	out := Frequency{}
 	delimit := func(r rune) bool {
 		return !(unicode.IsLetter(r) || unicode.IsNumber(r) || r == '\'')
 	}
-	for _, word := range strings.FieldsFunc(phrase, delimit) {
-		out.add(word)
+
+	words := strings.FieldsFunc(phrase, delimit)
+	done := make(chan struct{}, len(words))
+	out := Frequency{}
+
+	for _, word := range words {
+		out.add(word, done)
 	}
+
+	for range words {
+		<-done
+	}
+
 	return out
 }
+
+// 5 https://gobyexample.com/channel-synchronization
+// BenchmarkWordCount-4      111864             10876 ns/op            5600 B/op         60 allocs/op
 
 // 4
 // BenchmarkWordCount-4      168207              7202 ns/op            4352 B/op         47 allocs/op
