@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "amscotti"
+  ],
+  "contributors": [
+    "ee7"
+  ],
+  "files": {
+    "solution": [
+      "sum_of_multiples.nim"
+    ],
+    "test": [
+      "test_sum_of_multiples.nim"
+    ],
+    "example": [
+      ".meta/example.nim"
+    ]
+  },
+  "blurb": "Given a number, find the sum of all the multiples of particular numbers up to but not including that number.",
+  "source": "A variation on Problem 1 at Project Euler",
+  "source_url": "https://projecteuler.net/problem=1"
+}
