@@ -1,14 +1,6 @@
-import std/sets
+import sequtils, sugar
 
 proc sum*(limit: int, factors: openArray[int]): int =
-  var multiples = initHashSet[int]()
-  for factor in factors:
-    if factor == 0:
-      continue
-    var temp = factor
-    while temp < limit:
-      multiples.incl(temp)
-      temp += factor
-
-  for multiple in multiples.items:
-    result += multiple
+  for n in 1..<limit:
+    if factors.any((factor) => factor > 0 and n mod factor == 0):
+      inc result, n
