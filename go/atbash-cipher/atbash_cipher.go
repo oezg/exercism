@@ -7,11 +7,14 @@ package atbash
 
 import "unicode"
 
-const groupSize = 5
+const (
+	groupSize              = 5
+	preallocatedBufferSize = 60
+)
 
 // Atbash returns the ciphertext of the given string encoded in Atbash cipher.
 func Atbash(s string) string {
-	buffer := []rune{}
+	buffer := make([]rune, 0, preallocatedBufferSize)
 	i := 0
 	for _, letter := range s {
 		cipher := atbash(letter)
@@ -41,6 +44,12 @@ func atbash(p rune) rune {
 		return -1
 	}
 }
+
+// 3 allocate constant memory, expanding if larger memory is needed.
+// BenchmarkAtbash-4         763663              1387 ns/op             152 B/op          8 allocs/op
+
+// 2 allocate variable memory depending on inpu length
+// BenchmarkAtbash-4         610438              1780 ns/op             680 B/op         16 allocs/op
 
 // 1
 // BenchmarkAtbash-4         439363              2389 ns/op            1224 B/op         34 allocs/op
