@@ -1,7 +1,7 @@
 {
-  "name": "@exercism/typescript-dnd-character",
+  "name": "@exercism/typescript-pangram",
   "version": "1.0.0",
-  "description": "Exercism practice exercise on dnd-character",
+  "description": "Exercism exercises in Typescript.",
   "private": true,
   "repository": {
     "type": "git",

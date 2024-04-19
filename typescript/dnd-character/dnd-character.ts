@@ -10,7 +10,7 @@ export class DnDCharacter {
 
 
   public static generateAbilityScore(): number {
-    const roll = () => 1 + Math.floor(Math.random()*6);
+    const roll = () => 1 + Math.floor(Math.random() * 6);
     return new Array(4).fill(roll()).sort((a, b) => a - b).slice(1).reduce((a, b) => a + b);
   }
 

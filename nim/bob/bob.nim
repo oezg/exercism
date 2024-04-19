@@ -9,13 +9,14 @@ func isShout(s: string): bool =
       break
 
 func hey*(s: string): string =
-  if s.strip.endsWith('?') and s.isShout:
-    "Calm down, I know what I'm doing!"
+  if s.isShout:
+    if s.strip.endsWith('?'):
+      "Calm down, I know what I'm doing!"
+    else:
+      "Whoa, chill out!"
   elif s.strip.endsWith('?'):
     "Sure."
   elif s.isEmptyOrWhitespace:
     "Fine. Be that way!"
-  elif s.isShout:
-    "Whoa, chill out!"
   else:
     "Whatever."
