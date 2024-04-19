@@ -1,23 +1,26 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 public static class Sieve
 {
-    public static int[] Primes(int limit)
+    public static IEnumerable<int> Primes(int limit)
     {
-        var candidates = Enumerable.Range(2, limit - 1).ToArray();
-        var visited = new bool[candidates.Length];
-        var primes = new List<int>();
-        for (int i = 0; i < candidates.Length; i++)
+        if (limit < 0)
+            throw new ArgumentOutOfRangeException(nameof(limit));
+
+        var primes = new BitArray(limit + 1, true);
+
+        for (var i = 2; i < primes.Length; i++)
         {
-            if (visited[i]) continue;
-            primes.Add(candidates[i]);
-            for (int j = i; j < candidates.Length; j += candidates[i])
-            {
-                visited[j] = true;
-            }
+            if (!primes[i])
+                continue;
+
+            for (var j = i * 2; j < primes.Length; j += i)
+                primes[j] = false;
+
+            yield return i;
         }
-        return primes.ToArray();
     }
 }
