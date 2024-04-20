@@ -1,3 +1,6 @@
 export function isPangram(text: string): boolean {
-  return 'abcdefghijklmnopqrstuvwxyz'.split('').every(c => text.toLowerCase().includes(c));
+  const lowerCaseText = text.toLowerCase();
+  return letters.every(c => lowerCaseText.toLowerCase().includes(c));
 }
+
+const letters = Array.from('abcdefghijklmnopqrstuvwxyz');
