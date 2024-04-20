@@ -1,11 +1,9 @@
 module Sieve
 
 let primes limit =
-    let sieve = Array.init (limit + 1) (fun i -> if i < 2 then false else true)
+    let rec sieve acc rest =
+        match rest with
+        | [] -> List.rev acc
+        | head :: tail -> sieve (head :: acc) (List.except [ head * head .. head .. limit ] tail)
 
-    for i = 2 to limit do
-        if sieve[i] then
-            for j in [ i * 2 .. i .. limit ] do
-                sieve[j] <- false
-
-    List.ofSeq (Array.indexed sieve |> Seq.filter (fun (_, isPrime) -> isPrime) |> Seq.map fst)
+    sieve [] [ 2..limit ]
