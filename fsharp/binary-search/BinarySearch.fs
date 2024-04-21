@@ -2,15 +2,15 @@ module BinarySearch
 
 
 let find input value =
-    let rec needle ground hay =
+    let rec needle bottom hay =
         if Array.isEmpty hay then
             None
         else
-            let middle = (Array.length hay) / 2
+            let midheight = (Array.length hay) >>> 1
+            let bite = hay[midheight]
 
-            match hay.[middle] with
-            | found when found = value -> Some(ground + middle)
-            | small when small < value -> needle (ground + middle + 1) hay.[(middle + 1) ..]
-            | large -> needle ground hay.[.. (middle - 1)]
+            if bite = value then Some(bottom + midheight)
+            elif bite > value then needle bottom hay[.. (midheight - 1)]
+            else needle (bottom + midheight + 1) hay[(midheight + 1) ..]
 
     needle 0 input

@@ -1,28 +1,23 @@
-export function hey(message: string): bobish {
+export function hey(message: string): BobsResponse {
   message = message.trimEnd();
   const isShout = !/[a-z]/.test(message) && /[A-Z]/.test(message);
   const isQuestion = message.endsWith("?");
   const isSilence = message.length === 0;
-  let key;
   if (isQuestion && isShout)
-    key = 4;
-  else if (isQuestion)
-    key = 2;
-  else if (isShout)
-    key = 3;
-  else if (isSilence)
-    key = 1;
-  else
-    key = 0;
-  return bobsAnswers[key];
+    return BobsResponse.toShoutingQuestions;
+  if (isQuestion)
+    return BobsResponse.toQuestions;
+  if (isShout)
+    return BobsResponse.toShout;
+  if (isSilence)
+    return BobsResponse.toSilence;
+  return BobsResponse.toAnythingElse;
 }
 
-type bobish = typeof bobsAnswers[number];
-
-const bobsAnswers = [
-  "Whatever.",
-  "Fine. Be that way!",
-  "Sure.",
-  "Whoa, chill out!",
-  "Calm down, I know what I'm doing!",
-] as const;
+enum BobsResponse {
+  toSilence = "Fine. Be that way!",
+  toShout = "Whoa, chill out!",
+  toAnythingElse = "Whatever.",
+  toQuestions = "Sure.",
+  toShoutingQuestions = "Calm down, I know what I'm doing!",
+}

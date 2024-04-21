@@ -1,8 +1,11 @@
 import java.lang.Math;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 class DnDCharacter {
+    static Random random = new Random();
+
     int strength;
     int dexterity;
     int constitution;
@@ -19,7 +22,6 @@ class DnDCharacter {
         wisdom = ability(rollDice());
         charisma = ability(rollDice());
         hitpoints = 10 + modifier(constitution);
-
     }
 
     int ability(List<Integer> scores) {
@@ -27,12 +29,7 @@ class DnDCharacter {
     }
 
     List<Integer> rollDice() {
-        List<Integer> out = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            int dice = (int) (Math.random() * 6) + 1;
-            out.add(dice);
-        }
-        return out;
+        return random.ints(4, 1, 7).boxed().collect(Collectors.toList());
     }
 
     int modifier(int input) {
