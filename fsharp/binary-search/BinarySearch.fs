@@ -6,7 +6,7 @@ let find input value =
         if Array.isEmpty hay then
             None
         else
-            let midheight = (Array.length hay) >>> 1
+            let midheight = (Array.length hay) / 2
             let bite = hay[midheight]
 
             if bite = value then Some(bottom + midheight)
