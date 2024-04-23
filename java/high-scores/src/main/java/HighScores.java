@@ -16,7 +16,7 @@ class HighScores {
     }
 
     Integer latest() {
-        return scores.get(scores.size() - 1);
+        return scores.getLast();
     }
 
     Integer personalBest() {
@@ -24,9 +24,10 @@ class HighScores {
     }
 
     List<Integer> personalTopThree() {
-        var sortedScores = new ArrayList<>(scores);
-        Collections.sort(sortedScores, Comparator.reverseOrder());
-        return sortedScores.subList(0, Math.min(3, scores.size()));
+        return scores.stream()
+                .sorted(Comparator.reverseOrder())
+                .limit(3)
+                .toList();
     }
 
 }
