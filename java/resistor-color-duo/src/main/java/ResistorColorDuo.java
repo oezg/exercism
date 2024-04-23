@@ -1,14 +1,14 @@
 import java.util.List;
 
-class ResistorColor {
+class ResistorColorDuo {
+    int value(String[] colors) {
+        return 10 * colorCode(colors[0]) + colorCode(colors[1]);
+    }
+
     private static final List<String> COLORS = List.of("black", "brown", "red", "orange", "yellow", "green", "blue",
             "violet", "grey", "white");
 
     int colorCode(String color) {
         return COLORS.indexOf(color);
-    }
-
-    String[] colors() {
-        return COLORS.toArray(new String[0]);
     }
 }
