@@ -1,11 +1,14 @@
-import java.util.Arrays;
+import java.util.List;
 
 class ResistorColor {
+    private static final List<String> _colors = List.of("black", "brown", "red", "orange", "yellow", "green", "blue",
+            "violet", "grey", "white");
+
     int colorCode(String color) {
-        return Arrays.asList(colors()).indexOf(color);
+        return _colors.indexOf(color);
     }
 
     String[] colors() {
-        return new String[] { "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white" };
+        return _colors.toArray(new String[0]);
     }
 }
