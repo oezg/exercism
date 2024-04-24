@@ -6,7 +6,7 @@ export class Squares {
   constructor(n: number) {
     this.squareOfSum_ = Math.pow(n * (n + 1) / 2, 2)
     this.sumOfSquares_ = (n * (n + 1) * (2 * n + 1)) / 6
-    this.difference_ = Math.abs(this.sumOfSquares_ - this.squareOfSum_)
+    this.difference_ = this.squareOfSum_ - this.sumOfSquares_
   }
 
   get sumOfSquares(): number {

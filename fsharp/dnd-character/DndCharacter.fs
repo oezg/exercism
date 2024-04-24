@@ -2,6 +2,12 @@ module DndCharacter
 
 open System
 
+[<Literal>]
+let diceSides = 6
+
+[<Literal>]
+let diceCount = 4
+
 [<Struct>]
 type Character =
     { Strength: int
@@ -17,14 +23,10 @@ let private random = Random()
 let modifier x = (x - 10.0) / 2.0 |> floor |> int
 
 let ability () =
-    seq {
-        for _ = 1 to 4 do
-            random.Next(1, 7)
-    }
+    Seq.init diceCount (fun _ -> random.Next diceSides + 1)
     |> Seq.sort
-    |> Seq.skip 1
+    |> Seq.tail
     |> Seq.sum
-
 
 let createCharacter () =
     let constitution = ability ()
