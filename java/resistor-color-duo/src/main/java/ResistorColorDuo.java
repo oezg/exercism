@@ -8,7 +8,7 @@ class ResistorColorDuo {
     private static final List<String> COLORS = List.of("black", "brown", "red", "orange", "yellow", "green", "blue",
             "violet", "grey", "white");
 
-    int colorCode(String color) {
+    private static int colorCode(String color) {
         return COLORS.indexOf(color);
     }
 }
