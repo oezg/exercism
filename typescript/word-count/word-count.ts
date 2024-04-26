@@ -1,12 +1,6 @@
-export function count(s: string): Map<string, number> {
-  let frequency = new Map<string, number>();
-  s
+export const count = (s: string): Map<string, number> =>
+  s.toLowerCase()
   .split(/[\s,]/)
+  .map(token => token.replace(/^\W+|\W+$/g, ''))
   .filter(Boolean)
-  .map(token => token.replace(punctuation_regex, ''))
-  .map(trimmed => trimmed.toLowerCase())
-  .forEach(word => frequency.set(word, 1 + (frequency.get(word) ?? 0)))
-  return frequency;
-}
-
-const punctuation_regex = /^[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+|[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+$/g;
+  .reduce((acc, current) => acc.set(current, 1 + (acc.get(current) ?? 0)), new Map<string, number>());
