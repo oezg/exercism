@@ -5,12 +5,15 @@ type Classification =
     | Abundant
     | Deficient
 
-let aliquotSum n =
-    [ 1 .. (n / 2) ] |> Seq.filter (fun i -> n % i = 0) |> Seq.sum
 
 let classify n : Classification option =
-    match n with
-    | outOfRange when outOfRange < 1 -> None
-    | perfect when perfect = aliquotSum n -> Some Perfect
-    | abundant when abundant < aliquotSum n -> Some Abundant
-    | _ -> Some Deficient
+    if n < 1 then
+        None
+    else
+        let aliquotSum = [ 1 .. (n / 2) ] |> Seq.filter (fun i -> n % i = 0) |> Seq.sum
+
+        match compare aliquotSum n with
+        | 0 -> Perfect
+        | 1 -> Abundant
+        | _ -> Deficient
+        |> Some
