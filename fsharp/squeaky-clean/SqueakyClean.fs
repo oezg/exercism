@@ -3,12 +3,10 @@ module SqueakyClean
 open System
 
 let transform (c: char) : string =
-    match c with
-    | '-' -> "_"
-    | ' ' -> ""
-    | kebapCase when Char.IsUpper kebapCase -> $"-{(Char.ToLower kebapCase)}"
-    | numeric when Char.IsDigit numeric -> ""
-    | greekLower when 'α' <= greekLower && greekLower <= 'ω' -> "?"
-    | _ -> string c
+    if Char.IsDigit c || Char.IsWhiteSpace c then ""
+    elif Char.IsUpper c then $"-{Char.ToLower c}"
+    elif c = '-' then "_"
+    elif 'α' <= c && c <= 'ω' then "?"
+    else string c
 
 let clean (identifier: string) : string = String.collect transform identifier
