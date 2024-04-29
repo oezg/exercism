@@ -6,8 +6,8 @@ let private triangleWithDistinctSides sides triangle =
     | _ -> false
     && List.exists (fun n -> triangle |> List.distinct |> List.length = n) sides
 
-let equilateral = triangleWithDistinctSides <| List.singleton 1
+let equilateral = triangleWithDistinctSides (List.singleton 1)
 
-let isosceles = triangleWithDistinctSides <| [ 1; 2 ]
+let isosceles = triangleWithDistinctSides ([ 1; 2 ])
 
-let scalene = triangleWithDistinctSides <| List.singleton 3
+let scalene = triangleWithDistinctSides (List.singleton 3)
