@@ -5,15 +5,14 @@ import (
 	"errors"
 )
 
-var memory = []int{2, 3, 5, 7, 11, 13}
-
 // Nth returns the nth prime number. An error must be returned if the nth prime number can't be calculated ('n' is equal or less than zero)
 func Nth(n int) (int, error) {
+	var memory = []int{2, 3, 5, 7, 11, 13}
 	if n < 1 {
 		return 0, errors.New("n cannot be less than one")
 	}
 	for x := memory[len(memory)-1] + 2; n > len(memory); x += 2 {
-		if isNotPrime(x) {
+		if isNotPrime(x, memory) {
 			continue
 		}
 		memory = append(memory, x)
@@ -21,7 +20,7 @@ func Nth(n int) (int, error) {
 	return memory[n-1], nil
 }
 
-func isNotPrime(x int) bool {
+func isNotPrime(x int, memory []int) bool {
 	for _, prime := range memory {
 		if x%prime == 0 {
 			return true
@@ -29,6 +28,10 @@ func isNotPrime(x int) bool {
 	}
 	return false
 }
+
+// 2 Clear or reinitialize memory at the start of each benchmark test
+// to simulate the scenario where primes have to be recalculated.
+// BenchmarkNth-4                 3         468360649 ns/op          351136 B/op         15 allocs/op
 
 // 1
 // BenchmarkNth-4          802869487                1.427 ns/op           0 B/op          0 allocs/op
