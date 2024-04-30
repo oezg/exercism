@@ -10,30 +10,27 @@ import (
 func Detect(subject string, candidates []string) []string {
 	out := []string{}
 	target := strings.ToLower(subject)
-	targetMap := make(map[rune]uint8)
-	for _, char := range target {
-		targetMap[char] += 1
-	}
-OUTER:
+	targetCounter := toCounter(target)
 	for _, v := range candidates {
 		candidate := strings.ToLower(v)
-		if target == candidate {
-			continue
-		}
-		candidateMap := make(map[rune]uint8)
-		for _, char := range candidate {
-			candidateMap[char] += 1
-			if candidateMap[char] > targetMap[char] {
-				continue OUTER
-			}
-		}
-		if !maps.Equal(targetMap, candidateMap) {
+		if target == candidate || !maps.Equal(targetCounter, toCounter(candidate)) {
 			continue
 		}
 		out = append(out, v)
 	}
 	return out
 }
+
+func toCounter(word string) map[rune]uint8 {
+	frequency := make(map[rune]uint8)
+	for _, letter := range word {
+		frequency[letter]++
+	}
+	return frequency
+}
+
+// 6 Extract Map Creation and Remove Early Termination Check
+// BenchmarkDetectAnagrams-4          81540             14048 ns/op            1473 B/op         61 allocs/op
 
 // 5 stop counting earlier, uint8
 // BenchmarkDetectAnagrams-4          86455             13238 ns/op            1088 B/op         56 allocs/op

@@ -9,7 +9,7 @@ import (
 func Nth(n int) (int, error) {
 	var memory = []int{2, 3, 5, 7, 11, 13}
 	if n < 1 {
-		return 0, errors.New("n cannot be less than one")
+		return 0, errors.New("n must be positive")
 	}
 	for x := memory[len(memory)-1] + 2; n > len(memory); x += 2 {
 		if isNotPrime(x, memory) {
@@ -25,9 +25,15 @@ func isNotPrime(x int, memory []int) bool {
 		if x%prime == 0 {
 			return true
 		}
+		if prime*prime > x {
+			break
+		}
 	}
 	return false
 }
+
+// 3 Limit the range of primes checked up to the square root of x.
+// BenchmarkNth-4               164           7267458 ns/op          351136 B/op         15 allocs/op
 
 // 2 Clear or reinitialize memory at the start of each benchmark test
 // to simulate the scenario where primes have to be recalculated.
