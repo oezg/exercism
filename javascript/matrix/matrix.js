@@ -1,18 +1,17 @@
-import { forEach } from "core-js/core/array";
-
 export class Matrix {
+  rows_;
+  columns_;
+
   constructor(s) {
-    this.s = s;
+    this.rows_ = s.split('\n').map(r => r.split(' ').map(c => Number(c)));
+    this.columns_ = this.rows_[0].map((_, i) => this.rows_.map(row => row[i]));
   }
 
   get rows() {
-    return this.s.split('\n').map(r => r.split(' ').map(c => Number(c)));
+    return [...this.rows_];
   }
 
   get columns() {
-    const out = []
-    forEach(this.rows, (row, idx, rws) => {
-      out.push();
-    })
+    return [...this.columns_];
   }
 }
