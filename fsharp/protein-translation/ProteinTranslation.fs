@@ -1,3 +1,3 @@
 module ProteinTranslation
 
-let proteins rna = failwith "You need to implement this function."
+let proteins rna = []
