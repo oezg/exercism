@@ -30,29 +30,41 @@ type Codon =
     | UAG
     | UGA
 
-(* How can I get the values of Codon to loop through them to find the right codon? *)
-let private toCodon s : Result<Codon, string> =
-    match s with
-    | "AUG" -> AUG Methionine |> Ok
-    | "UUU" -> UUU Phenylalanine |> Ok
-    | "UUC" -> UUC Phenylalanine |> Ok
-    | "UUA" -> UUA Leucine |> Ok
-    | "UUG" -> UUG Leucine |> Ok
-    | "UCU" -> UCU Serine |> Ok
-    | "UCC" -> UCC Serine |> Ok
-    | "UCA" -> UCA Serine |> Ok
-    | "UCG" -> UCG Serine |> Ok
-    | "UAU" -> UAU Tyrosine |> Ok
-    | "UAC" -> UAC Tyrosine |> Ok
-    | "UGU" -> UGU Cysteine |> Ok
-    | "UGC" -> UGC Cysteine |> Ok
-    | "UGG" -> UGG Tryptophan |> Ok
-    | "UAA" -> UAA |> Ok
-    | "UAG" -> UAG |> Ok
-    | "UGA" -> UGA |> Ok
-    | _ -> Error s
+type Nucleobase =
+    | A
+    | U
+    | C
+    | G
 
-(* A simplification candidate but I don't kow yet how.*)
+let private toBase =
+    function
+    | 'A' -> Ok A
+    | 'U' -> Ok U
+    | 'C' -> Ok C
+    | 'G' -> Ok G
+    | _ -> Error "invalid nucleobase"
+
+let private toCodon =
+    function
+    | [ A; U; G ] -> AUG Methionine |> Ok
+    | [ U; U; U ] -> UUU Phenylalanine |> Ok
+    | [ U; U; C ] -> UUC Phenylalanine |> Ok
+    | [ U; U; A ] -> UUA Leucine |> Ok
+    | [ U; U; G ] -> UUG Leucine |> Ok
+    | [ U; C; U ] -> UCU Serine |> Ok
+    | [ U; C; C ] -> UCC Serine |> Ok
+    | [ U; C; A ] -> UCA Serine |> Ok
+    | [ U; C; G ] -> UCG Serine |> Ok
+    | [ U; A; U ] -> UAU Tyrosine |> Ok
+    | [ U; A; C ] -> UAC Tyrosine |> Ok
+    | [ U; G; U ] -> UGU Cysteine |> Ok
+    | [ U; G; C ] -> UGC Cysteine |> Ok
+    | [ U; G; G ] -> UGG Tryptophan |> Ok
+    | [ U; A; A ] -> UAA |> Ok
+    | [ U; A; G ] -> UAG |> Ok
+    | [ U; G; A ] -> UGA |> Ok
+    | _ -> Error "Invalid codon"
+
 let private toAminoAcid (codon: Codon) : AminoAcid option =
     match codon with
     | AUG aa -> Some aa
@@ -73,44 +85,54 @@ let private toAminoAcid (codon: Codon) : AminoAcid option =
     | UAG
     | UGA -> None
 
-(* Do I have to invent the wheel? It seems String does not have a predefined chunk function. Just read your comment will work on it!*)
-let private chunk size s =
-    let rec loop acc (remaining: string) =
-        if remaining.Length <= size then
-            remaining :: acc |> List.rev
-        else
-            loop (remaining[.. size - 1] :: acc) remaining[size..]
+let private seqOfResultsToResultWithList (sqnce: Result<Nucleobase, string> seq) : Result<Nucleobase list, string> =
+    let rec loop acc results =
+        match results with
+        | [] ->
+            match acc with
+            | Ok lst -> Ok(List.rev lst)
+            | Error _ -> Error "This should never happen"
 
-    loop [] s
+        | Ok nuc :: rest ->
+            match acc with
+            | Ok lst -> loop (Ok(nuc :: lst)) rest
+            | Error _ -> Error "This should never happen"
 
-(* Do I have to invent the wheel? *)
-let private aggregateResults lst =
-    let rec loop acc rest =
-        match rest with
-        | [] -> List.rev acc |> Ok
-        | Ok aa :: aas -> loop (aa :: acc) aas
         | Error err :: _ -> Error err
 
-    loop [] lst
+    loop (Ok []) (Seq.toList sqnce)
 
+let codonBinder (triples: Nucleobase list list) : Result<Codon list, string> =
+    let rec loop acc coll =
+        match coll with
+        | [] -> Ok(List.rev acc)
+        | triple :: rest ->
+            let cd = toCodon triple
 
-(* Just read your comment will work on it!*)
-let private truncateList lst =
-    let rec takeUntilNone acc rest =
-        match rest with
-        | [] -> List.rev acc
-        | Ok(Some x) :: xs -> takeUntilNone (Ok x :: acc) xs
-        | Ok None :: _ -> List.rev acc
-        | Error err :: _ -> List.rev (Error err :: acc)
+            match cd with
+            | Ok cdn -> loop (cdn :: acc) rest
+            | Error err -> Error err
 
-    takeUntilNone [] lst
+    loop [] triples
+
+let aaBinder (codons: Codon list) : Result<Protein, string> =
+    let rec loop acc coll =
+        match coll with
+        | [] -> Ok(List.rev acc)
+        | cdn :: rest ->
+            match toAminoAcid cdn with
+            | Some aa -> loop (aa :: acc) rest
+            | None -> Ok(List.rev acc)
+
+    loop [] codons
 
 let private resultProtein (rna: string) : Result<Protein, string> =
-    chunk 3 rna
-    |> List.map toCodon
-    |> List.map (Result.map toAminoAcid)
-    |> truncateList
-    |> aggregateResults
+    rna
+    |> Seq.map toBase
+    |> seqOfResultsToResultWithList
+    |> Result.map (List.chunkBySize 3)
+    |> Result.bind codonBinder
+    |> Result.bind aaBinder
 
 let proteins (rna: string) =
     resultProtein rna
