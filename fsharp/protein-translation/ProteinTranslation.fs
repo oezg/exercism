@@ -36,7 +36,7 @@ type Nucleobase =
     | C
     | G
 
-let private toBase =
+let private toBase: char -> Result<Nucleobase, string> =
     function
     | 'A' -> Ok A
     | 'U' -> Ok U
@@ -44,7 +44,7 @@ let private toBase =
     | 'G' -> Ok G
     | _ -> Error "invalid nucleobase"
 
-let private toCodon =
+let private toCodon: Nucleobase list -> Result<Codon, string> =
     function
     | [ A; U; G ] -> AUG Methionine |> Ok
     | [ U; U; U ] -> UUU Phenylalanine |> Ok
@@ -65,8 +65,8 @@ let private toCodon =
     | [ U; G; A ] -> UGA |> Ok
     | _ -> Error "Invalid codon"
 
-let private toAminoAcid (codon: Codon) : AminoAcid option =
-    match codon with
+let private toAminoAcid: Codon -> AminoAcid option =
+    function
     | AUG aa -> Some aa
     | UUU aa -> Some aa
     | UUC aa -> Some aa
@@ -85,37 +85,18 @@ let private toAminoAcid (codon: Codon) : AminoAcid option =
     | UAG
     | UGA -> None
 
-let private seqOfResultsToResultWithList (sqnce: Result<Nucleobase, string> seq) : Result<Nucleobase list, string> =
-    let rec loop acc results =
-        match results with
-        | [] ->
-            match acc with
-            | Ok lst -> Ok(List.rev lst)
-            | Error _ -> Error "This should never happen"
-
-        | Ok nuc :: rest ->
-            match acc with
-            | Ok lst -> loop (Ok(nuc :: lst)) rest
-            | Error _ -> Error "This should never happen"
-
-        | Error err :: _ -> Error err
-
-    loop (Ok []) (Seq.toList sqnce)
-
-let codonBinder (triples: Nucleobase list list) : Result<Codon list, string> =
+let private codonBinder (triples: Nucleobase list list) : Result<Codon list, string> =
     let rec loop acc coll =
         match coll with
         | [] -> Ok(List.rev acc)
         | triple :: rest ->
-            let cd = toCodon triple
-
-            match cd with
-            | Ok cdn -> loop (cdn :: acc) rest
+            match toCodon triple with
+            | Ok codon -> loop (codon :: acc) rest
             | Error err -> Error err
 
     loop [] triples
 
-let aaBinder (codons: Codon list) : Result<Protein, string> =
+let private aaBinder (codons: Codon list) : Result<Protein, string> =
     let rec loop acc coll =
         match coll with
         | [] -> Ok(List.rev acc)
@@ -126,15 +107,21 @@ let aaBinder (codons: Codon list) : Result<Protein, string> =
 
     loop [] codons
 
+let private folder (character: char) (result: Result<Nucleobase list, string>) : Result<Nucleobase list, string> =
+    match result with
+    | Ok nucleobases ->
+        match toBase character with
+        | Ok nucleobase -> Ok(nucleobase :: nucleobases)
+        | Error err -> Error err
+    | Error err -> Error err
+
 let private resultProtein (rna: string) : Result<Protein, string> =
-    rna
-    |> Seq.map toBase
-    |> seqOfResultsToResultWithList
+    Seq.foldBack folder rna (Ok [])
     |> Result.map (List.chunkBySize 3)
     |> Result.bind codonBinder
     |> Result.bind aaBinder
 
-let proteins (rna: string) =
+let proteins (rna: string) : string list =
     resultProtein rna
     |> Result.defaultValue []
     |> List.map (fun aa -> aa.ToString())
