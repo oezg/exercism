@@ -36,6 +36,8 @@ type Nucleobase =
     | C
     | G
 
+type RNA = Nucleobase list
+
 let private toBase: char -> Result<Nucleobase, string> =
     function
     | 'A' -> Ok A
@@ -96,18 +98,18 @@ let private codonBinder (triples: Nucleobase list list) : Result<Codon list, str
 
     loop [] triples
 
-let private aaBinder (codons: Codon list) : Result<Protein, string> =
+let private aaBinder (codons: Codon list) : Protein =
     let rec loop acc coll =
         match coll with
-        | [] -> Ok(List.rev acc)
+        | [] -> List.rev acc
         | cdn :: rest ->
             match toAminoAcid cdn with
             | Some aa -> loop (aa :: acc) rest
-            | None -> Ok(List.rev acc)
+            | None -> List.rev acc
 
     loop [] codons
 
-let private folder (character: char) (result: Result<Nucleobase list, string>) : Result<Nucleobase list, string> =
+let private folder (character: char) (result: Result<RNA, string>) : Result<RNA, string> =
     match result with
     | Ok nucleobases ->
         match toBase character with
@@ -119,9 +121,9 @@ let private resultProtein (rna: string) : Result<Protein, string> =
     Seq.foldBack folder rna (Ok [])
     |> Result.map (List.chunkBySize 3)
     |> Result.bind codonBinder
-    |> Result.bind aaBinder
+    |> Result.map aaBinder
 
 let proteins (rna: string) : string list =
-    resultProtein rna
-    |> Result.defaultValue []
-    |> List.map (fun aa -> aa.ToString())
+    match resultProtein rna with
+    | Error err -> [ err ]
+    | Ok protein -> List.map (sprintf "%A") protein

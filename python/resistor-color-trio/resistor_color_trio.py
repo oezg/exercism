@@ -13,19 +13,24 @@ class ResistorColor(enum.Enum):
     GREY = 8
     WHITE = 9
 
+class Prefix(enum.Enum):
+    GIGA = 1_000_000_000
+    MEGA = 1_000_000
+    KILO = 1_000
+    UNIT = 1
+
 
 def label(colors: list[str]) -> int:
     first_band, second_band, third_band, *_ = colors
-    resistance = value(first_band, second_band) * 10 ** color_code(color=third_band)
-    prefixes = (('giga', 1_000_000_000), ('mega', 1_000_000), ('kilo', 1_000), ('', 1))
-    for prefix, exponent in prefixes:
-        if resistance >= exponent:
-            return f'{resistance // exponent} {prefix}ohms'
+    resistance = resistance_value(first_band, second_band, third_band)
+    for prefix in Prefix:
+        if resistance >= prefix.value:
+            return f'{resistance // prefix.value} {prefix.name.replace("UNIT", "").lower()}ohms'
     return '0 ohms'
 
 
-def value(first_band, second_band: str) -> int:
-    return 10 * color_code(color=first_band) + color_code(color=second_band)
+def resistance_value(first_band, second_band, third_band: str) -> int:
+    return (10 * color_code(first_band) + color_code(second_band)) * 10 ** color_code(third_band)
 
 
 def color_code(color: str) -> int:

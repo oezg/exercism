@@ -5,7 +5,7 @@ using System.Linq;
 public static class RomanNumeralExtension
 {
     public static string ToRoman(this int value) =>
-        string.Join("", digits(value).Select((digit, index) => romans[index][digit]).Reverse());
+        string.Join("", value.digits().Select((digit, index) => romans[index][digit]).Reverse());
 
     static readonly Dictionary<int, string[]> romans = new()
     {
@@ -15,7 +15,12 @@ public static class RomanNumeralExtension
         [3] = new string[] { "", "M", "MM", "MMM", "", "", "", "", "", "", "" }
     };
 
-    static IEnumerable<int> digits(int value)
+    /// <summary>
+    /// Returns the digits of <paramref name="value"/> from right.
+    /// </summary>
+    /// <param name="value"> Number in range [1, 4000). </param>
+    /// <returns> Digits from right. </returns>
+    static IEnumerable<int> digits(this int value)
     {
         for (int n = value; n > 0; n /= 10) yield return n % 10;
     }
