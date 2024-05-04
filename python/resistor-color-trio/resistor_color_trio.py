@@ -13,11 +13,19 @@ class ResistorColor(enum.Enum):
     GREY = 8
     WHITE = 9
 
+
 class Prefix(enum.Enum):
     GIGA = 1_000_000_000
     MEGA = 1_000_000
     KILO = 1_000
     UNIT = 1
+
+    def __str__(self) -> str:
+        match self:
+            case Prefix.UNIT:
+                return ""
+            case _:
+                return self.name.lower()
 
 
 def label(colors: list[str]) -> int:
@@ -25,7 +33,7 @@ def label(colors: list[str]) -> int:
     resistance = resistance_value(first_band, second_band, third_band)
     for prefix in Prefix:
         if resistance >= prefix.value:
-            return f'{resistance // prefix.value} {prefix.name.replace("UNIT", "").lower()}ohms'
+            return f'{resistance // prefix.value} {prefix}ohms'
     return '0 ohms'
 
 
