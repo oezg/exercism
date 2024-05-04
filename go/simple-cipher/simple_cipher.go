@@ -9,7 +9,7 @@ type shift struct {
 }
 
 type vigenere struct {
-	key []rune
+	keys []rune
 }
 
 func NewCaesar() Cipher {
@@ -24,24 +24,11 @@ func NewShift(distance int) Cipher {
 }
 
 func (s shift) Encode(input string) string {
-	out := make([]rune, 0, len(input))
-	for _, letter := range strings.ToLower(input) {
-		if letter < 'a' || letter > 'z' {
-			continue
-		}
-		substitute := (letter - 'a' + rune(s.distance) + 26) % 26
-		out = append(out, substitute+'a')
-	}
-	return string(out)
+	return code(input, s, 1)
 }
 
 func (s shift) Decode(input string) string {
-	out := make([]rune, 0, len(input))
-	for _, letter := range input {
-		substitute := ((letter-'a'-rune(s.distance))%26+26)%26 + 'a'
-		out = append(out, substitute)
-	}
-	return string(out)
+	return code(input, s, -1)
 }
 
 func NewVigenere(key string) Cipher {
@@ -52,33 +39,64 @@ func NewVigenere(key string) Cipher {
 	}) {
 		return nil
 	}
-	return vigenere{key: []rune(key)}
+	return vigenere{keys: []rune(key)}
 }
 
 func (v vigenere) Encode(input string) string {
-	out := make([]rune, 0, len(input))
-	j := 0
+	return code(input, v, 1)
+}
+
+func (v vigenere) Decode(input string) string {
+	return code(input, v, -1)
+}
+
+func code(input string, c Cipher, direction int) string {
+	var n, offset int
+	var sb strings.Builder
+	sb.Grow(len(input))
 	for _, letter := range strings.ToLower(input) {
 		if letter < 'a' || letter > 'z' {
 			continue
 		}
-		distance := v.key[j%len(v.key)] - 'a'
-		j++
-		substitute := ((letter-'a'+distance)%26 + 26) % 26
-		out = append(out, substitute+'a')
+		switch v := c.(type) {
+		case shift:
+			offset = direction * v.distance
+		case vigenere:
+			offset = direction * int(v.keys[n%len(v.keys)]-'a')
+		}
+		sb.WriteRune((letter-'a'+rune(offset)+26)%26 + 'a')
+		n++
 	}
-	return string(out)
+	return sb.String()
 }
 
-func (v vigenere) Decode(input string) string {
-	out := make([]rune, 0, len(input))
-	for i, letter := range input {
-		distance := v.key[i%len(v.key)] - 'a'
-		substitute := ((letter-'a'-distance)%26+26)%26 + 'a'
-		out = append(out, substitute)
-	}
-	return string(out)
-}
+// 6 type switching
+// BenchmarkEncodeShift-4            397117              2575 ns/op             472 B/op         17 allocs/op
+// BenchmarkDecodeShift-4            578624              1901 ns/op             240 B/op          9 allocs/op
+// BenchmarkNewVigenere-4           1552394               743.8 ns/op           408 B/op         10 allocs/op
+// BenchmarkEncVigenere-4            698690              1583 ns/op             176 B/op         10 allocs/op
+// BenchmarkDecVigenere-4            753327              1435 ns/op              80 B/op          6 allocs/op
+
+// 5 deduplicate encode and decode
+// BenchmarkEncodeShift-4            382975              2819 ns/op             472 B/op         17 allocs/op
+// BenchmarkDecodeShift-4            545280              2014 ns/op             240 B/op          9 allocs/op
+// BenchmarkNewVigenere-4           1714399               912.3 ns/op           648 B/op         10 allocs/op
+// BenchmarkEncVigenere-4            627675              1904 ns/op             320 B/op         16 allocs/op
+// BenchmarkDecVigenere-4            653851              1663 ns/op             224 B/op         12 allocs/op
+
+// 4 vignere keys int slice and nth method
+// BenchmarkEncodeShift-4            446500              2330 ns/op             472 B/op         17 allocs/op
+// BenchmarkDecodeShift-4            824053              1310 ns/op             240 B/op          9 allocs/op
+// BenchmarkNewVigenere-4           1751719               724.9 ns/op           648 B/op         10 allocs/op
+// BenchmarkEncVigenere-4            725199              1516 ns/op             176 B/op         10 allocs/op
+// BenchmarkDecVigenere-4            981404              1220 ns/op              80 B/op          6 allocs/op
+
+// 3 with string builder
+// BenchmarkEncodeShift-4            450146              2312 ns/op             472 B/op         17 allocs/op
+// BenchmarkDecodeShift-4            695574              1490 ns/op             240 B/op          9 allocs/op
+// BenchmarkNewVigenere-4           1734394               691.8 ns/op           408 B/op         10 allocs/op
+// BenchmarkEncVigenere-4            729592              1510 ns/op             176 B/op         10 allocs/op
+// BenchmarkDecVigenere-4            866185              1253 ns/op              80 B/op          6 allocs/op
 
 // 2 without regex
 // BenchmarkEncodeShift-4            323817              3633 ns/op            1494 B/op         28 allocs/op
