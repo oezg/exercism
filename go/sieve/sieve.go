@@ -5,16 +5,15 @@ import "math"
 
 // Sieve returns the list of prime numbers less than or equal to limit
 func Sieve(limit int) []int {
-	// if limit < 2 {
-	// 	return nil
-	// }
+	if limit < 2 {
+		return nil
+	}
 
 	// approximation for the number of prime numbers less than or equal to a given limit
-	primeNumbers :=
-	primes := make([]int, 0, int(math.Max(1, float64(limit)/math.Log(float64(limit)))))
+	primes := make([]int, 0, int(float64(limit)/math.Log(float64(limit))))
 	sieve := make([]bool, limit+1)
 	for i, v := range sieve {
-		if i < 2 || v {
+		if v || i < 2 {
 			continue
 		}
 		primes = append(primes, i)
@@ -24,6 +23,9 @@ func Sieve(limit int) []int {
 	}
 	return primes
 }
+
+// 4 One pass
+// BenchmarkSieve-4          496238              2394 ns/op            4688 B/op         10 allocs/op
 
 // 3 prime number theorem
 // BenchmarkSieve-4          316825              3451 ns/op            4688 B/op         10 allocs/op
