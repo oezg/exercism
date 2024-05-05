@@ -1,0 +1,17 @@
+| [A; U; G] -> Methionine |> Some |> Ok
+| [U; U; U] -> Phenylalanine |> Some |> Ok
+| [U; U; C] -> Phenylalanine |> Some |> Ok
+| [U; U; A] -> Leucine |> Some |> Ok
+| [U; U; G] -> Leucine |> Some |> Ok
+| [U; C; U] -> Serine |> Some |> Ok
+| [U; C; C] -> Serine |> Some |> Ok
+| [U; C; A] -> Serine |> Some |> Ok
+| [U; C; G] -> Serine |> Some |> Ok
+| [U; A; U] -> Tyrosine |> Some |> Ok
+| [U; A; C] -> Tyrosine |> Some |> Ok
+| [U; G; U] -> Cysteine |> Some |> Ok
+| [U; G; C] -> Cysteine |> Some |> Ok
+| [U; G; G] -> Tryptophan |> Some |> Ok
+| [U; A; A] -> None |> Ok
+| [U; A; G] -> None |> Ok
+| [U; G; A] -> None |> Ok

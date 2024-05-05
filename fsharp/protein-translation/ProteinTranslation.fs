@@ -11,25 +11,6 @@ type AminoAcid =
 
 type Protein = AminoAcid list
 
-type Codon =
-    | AUG of AminoAcid
-    | UUU of AminoAcid
-    | UUC of AminoAcid
-    | UUA of AminoAcid
-    | UUG of AminoAcid
-    | UCU of AminoAcid
-    | UCC of AminoAcid
-    | UCA of AminoAcid
-    | UCG of AminoAcid
-    | UAU of AminoAcid
-    | UAC of AminoAcid
-    | UGU of AminoAcid
-    | UGC of AminoAcid
-    | UGG of AminoAcid
-    | UAA
-    | UAG
-    | UGA
-
 type Nucleobase =
     | A
     | U
@@ -37,6 +18,29 @@ type Nucleobase =
     | G
 
 type RNA = Nucleobase list
+
+type Codon = Nucleobase list
+
+let private codonToAA: Codon -> Result<AminoAcid option, string> =
+    function
+    | [ A; U; G ] -> Methionine |> Some |> Ok
+    | [ U; U; U ] -> Phenylalanine |> Some |> Ok
+    | [ U; U; C ] -> Phenylalanine |> Some |> Ok
+    | [ U; U; A ] -> Leucine |> Some |> Ok
+    | [ U; U; G ] -> Leucine |> Some |> Ok
+    | [ U; C; U ] -> Serine |> Some |> Ok
+    | [ U; C; C ] -> Serine |> Some |> Ok
+    | [ U; C; A ] -> Serine |> Some |> Ok
+    | [ U; C; G ] -> Serine |> Some |> Ok
+    | [ U; A; U ] -> Tyrosine |> Some |> Ok
+    | [ U; A; C ] -> Tyrosine |> Some |> Ok
+    | [ U; G; U ] -> Cysteine |> Some |> Ok
+    | [ U; G; C ] -> Cysteine |> Some |> Ok
+    | [ U; G; G ] -> Tryptophan |> Some |> Ok
+    | [ U; A; A ] -> None |> Ok
+    | [ U; A; G ] -> None |> Ok
+    | [ U; G; A ] -> None |> Ok
+    | _ -> Error "invalid codon"
 
 let private toBase: char -> Result<Nucleobase, string> =
     function
@@ -46,70 +50,19 @@ let private toBase: char -> Result<Nucleobase, string> =
     | 'G' -> Ok G
     | _ -> Error "invalid nucleobase"
 
-let private toCodon: Nucleobase list -> Result<Codon, string> =
-    function
-    | [ A; U; G ] -> AUG Methionine |> Ok
-    | [ U; U; U ] -> UUU Phenylalanine |> Ok
-    | [ U; U; C ] -> UUC Phenylalanine |> Ok
-    | [ U; U; A ] -> UUA Leucine |> Ok
-    | [ U; U; G ] -> UUG Leucine |> Ok
-    | [ U; C; U ] -> UCU Serine |> Ok
-    | [ U; C; C ] -> UCC Serine |> Ok
-    | [ U; C; A ] -> UCA Serine |> Ok
-    | [ U; C; G ] -> UCG Serine |> Ok
-    | [ U; A; U ] -> UAU Tyrosine |> Ok
-    | [ U; A; C ] -> UAC Tyrosine |> Ok
-    | [ U; G; U ] -> UGU Cysteine |> Ok
-    | [ U; G; C ] -> UGC Cysteine |> Ok
-    | [ U; G; G ] -> UGG Tryptophan |> Ok
-    | [ U; A; A ] -> UAA |> Ok
-    | [ U; A; G ] -> UAG |> Ok
-    | [ U; G; A ] -> UGA |> Ok
-    | _ -> Error "Invalid codon"
-
-let private toAminoAcid: Codon -> AminoAcid option =
-    function
-    | AUG aa -> Some aa
-    | UUU aa -> Some aa
-    | UUC aa -> Some aa
-    | UUA aa -> Some aa
-    | UUG aa -> Some aa
-    | UCU aa -> Some aa
-    | UCC aa -> Some aa
-    | UCA aa -> Some aa
-    | UCG aa -> Some aa
-    | UAU aa -> Some aa
-    | UAC aa -> Some aa
-    | UGU aa -> Some aa
-    | UGC aa -> Some aa
-    | UGG aa -> Some aa
-    | UAA
-    | UAG
-    | UGA -> None
-
-let private codonBinder (triples: Nucleobase list list) : Result<Codon list, string> =
+let private toProtein (codons: Codon list) : Result<Protein, string> =
     let rec loop acc coll =
         match coll with
         | [] -> Ok(List.rev acc)
-        | triple :: rest ->
-            match toCodon triple with
-            | Ok codon -> loop (codon :: acc) rest
+        | codon :: rest ->
+            match codonToAA codon with
+            | Ok(Some aa) -> loop (aa :: acc) rest
+            | Ok None -> loop acc []
             | Error err -> Error err
-
-    loop [] triples
-
-let private aaBinder (codons: Codon list) : Protein =
-    let rec loop acc coll =
-        match coll with
-        | [] -> List.rev acc
-        | cdn :: rest ->
-            match toAminoAcid cdn with
-            | Some aa -> loop (aa :: acc) rest
-            | None -> List.rev acc
 
     loop [] codons
 
-let private folder (character: char) (result: Result<RNA, string>) : Result<RNA, string> =
+let private toRNA (character: char) (result: Result<RNA, string>) : Result<RNA, string> =
     match result with
     | Ok nucleobases ->
         match toBase character with
@@ -118,10 +71,9 @@ let private folder (character: char) (result: Result<RNA, string>) : Result<RNA,
     | Error err -> Error err
 
 let private resultProtein (rna: string) : Result<Protein, string> =
-    Seq.foldBack folder rna (Ok [])
+    Seq.foldBack toRNA rna (Ok [])
     |> Result.map (List.chunkBySize 3)
-    |> Result.bind codonBinder
-    |> Result.map aaBinder
+    |> Result.bind toProtein
 
 let proteins (rna: string) : string list =
     match resultProtein rna with
