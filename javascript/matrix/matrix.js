@@ -3,7 +3,7 @@ export class Matrix {
   columns_;
 
   constructor(s) {
-    this.rows_ = s.split('\n').map(r => r.split(' ').map(c => Number(c)));
+    this.rows_ = s.split('\n').map(r => r.split(' ').map(Number));
     this.columns_ = this.rows_[0].map((_, i) => this.rows_.map(row => row[i]));
   }
 
