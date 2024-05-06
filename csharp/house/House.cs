@@ -21,10 +21,16 @@ public static class House
     };
 
     public static string Recite(int num) =>
-        $"This is {recite(num)}";
+        $"This is {reciteDownRecursive(num)}";
 
-    static string recite(int n) =>
-        n == 1 ? s_verses[n] : string.Join(' ', s_verses[n], recite(n - 1));
+    static string reciteDownRecursive(int n)
+    {
+        if (n == 1)
+        {
+            return s_verses[n];
+        }
+        return string.Join(' ', s_verses[n], reciteDownRecursive(n - 1));
+    }
 
     public static string Recite(int startVerse, int endVerse)
         => string.Join('\n', Enumerable.Range(startVerse, endVerse - startVerse + 1).Select(n => Recite(n)));
