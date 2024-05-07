@@ -28,10 +28,13 @@
 
 /haskell/*/.stack-work/
 
-
 /java/*/bin/
 /java/*/build/
 /java/*/.gradle/
+
+/kotlin/*bin/
+/kotlin/*/build
+/kotlin/*/.gradle
 
 /python/*/__pycache__/
 /python/.pytest_cache/
