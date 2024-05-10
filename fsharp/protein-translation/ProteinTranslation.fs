@@ -1,5 +1,20 @@
 module ProteinTranslation
 
+open FsToolkit.ErrorHandling
+
+
+type Nucleobase =
+    | A
+    | U
+    | C
+    | G
+
+type Triplet = Nucleobase * Nucleobase * Nucleobase
+
+type Codon = Nucleobase list
+
+type RNA = Nucleobase list
+
 type AminoAcid =
     | Methionine
     | Phenylalanine
@@ -10,16 +25,6 @@ type AminoAcid =
     | Tryptophan
 
 type Protein = AminoAcid list
-
-type Nucleobase =
-    | A
-    | U
-    | C
-    | G
-
-type RNA = Nucleobase list
-
-type Codon = Nucleobase list
 
 let private codonToAA: Codon -> Result<AminoAcid option, string> =
     function
@@ -57,21 +62,15 @@ let private toProtein (codons: Codon list) : Result<Protein, string> =
         | codon :: rest ->
             match codonToAA codon with
             | Ok(Some aa) -> loop (aa :: acc) rest
-            | Ok None -> loop acc []
+            | Ok None -> Ok(List.rev acc)
             | Error err -> Error err
 
     loop [] codons
 
-let private toRNA (character: char) (result: Result<RNA, string>) : Result<RNA, string> =
-    match result with
-    | Ok nucleobases ->
-        match toBase character with
-        | Ok nucleobase -> Ok(nucleobase :: nucleobases)
-        | Error err -> Error err
-    | Error err -> Error err
-
 let private resultProtein (rna: string) : Result<Protein, string> =
-    Seq.foldBack toRNA rna (Ok [])
+    rna
+    |> List.ofSeq
+    |> List.traverseResultM toBase
     |> Result.map (List.chunkBySize 3)
     |> Result.bind toProtein
 
