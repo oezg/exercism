@@ -2,17 +2,17 @@ module ProteinTranslation
 
 open FsToolkit.ErrorHandling
 
-type Nucleobase =
+type private Nucleobase =
     | A
     | U
     | C
     | G
 
-type RNA = Nucleobase list
+type private RNA = Nucleobase list
 
-type Triplet = Nucleobase * Nucleobase * Nucleobase
+type private Triplet = Nucleobase * Nucleobase * Nucleobase
 
-type AminoAcid =
+type private AminoAcid =
     | Methionine
     | Phenylalanine
     | Leucine
@@ -21,9 +21,9 @@ type AminoAcid =
     | Cysteine
     | Tryptophan
 
-type Protein = AminoAcid list
+type private Protein = AminoAcid list
 
-type Codon =
+type private Codon =
     | Coding of AminoAcid
     | Stop
 
@@ -71,7 +71,15 @@ let private resultProtein (rna: string) : Result<Protein, string> =
     |> Result.bind (List.traverseResultM toCodon)
     |> Result.map toProtein
 
+
+let private resultExpressionProtein (strand: string) : Result<Protein, string> =
+    result {
+        let! rna = strand |> List.ofSeq |> List.traverseResultM toBase
+        let! triplets = rna |> List.chunkBySize 3 |> List.traverseResultM toTriplet
+        let! codons = triplets |> List.traverseResultM toCodon
+        return toProtein codons
+    }
+
 let proteins (rna: string) : string list =
-    match resultProtein rna with
-    | Error err -> [ err ]
-    | Ok protein -> List.map (sprintf "%A") protein
+    resultExpressionProtein rna
+    |> Result.either (List.map (sprintf "%A")) List.singleton
