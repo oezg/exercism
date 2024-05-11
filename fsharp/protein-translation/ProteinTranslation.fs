@@ -2,18 +2,15 @@ module ProteinTranslation
 
 open FsToolkit.ErrorHandling
 
-
 type Nucleobase =
     | A
     | U
     | C
     | G
 
-type Triplet = Nucleobase * Nucleobase * Nucleobase
-
-type Codon = Nucleobase list
-
 type RNA = Nucleobase list
+
+type Triplet = Nucleobase * Nucleobase * Nucleobase
 
 type AminoAcid =
     | Methionine
@@ -26,26 +23,9 @@ type AminoAcid =
 
 type Protein = AminoAcid list
 
-let private codonToAA: Codon -> Result<AminoAcid option, string> =
-    function
-    | [ A; U; G ] -> Methionine |> Some |> Ok
-    | [ U; U; U ] -> Phenylalanine |> Some |> Ok
-    | [ U; U; C ] -> Phenylalanine |> Some |> Ok
-    | [ U; U; A ] -> Leucine |> Some |> Ok
-    | [ U; U; G ] -> Leucine |> Some |> Ok
-    | [ U; C; U ] -> Serine |> Some |> Ok
-    | [ U; C; C ] -> Serine |> Some |> Ok
-    | [ U; C; A ] -> Serine |> Some |> Ok
-    | [ U; C; G ] -> Serine |> Some |> Ok
-    | [ U; A; U ] -> Tyrosine |> Some |> Ok
-    | [ U; A; C ] -> Tyrosine |> Some |> Ok
-    | [ U; G; U ] -> Cysteine |> Some |> Ok
-    | [ U; G; C ] -> Cysteine |> Some |> Ok
-    | [ U; G; G ] -> Tryptophan |> Some |> Ok
-    | [ U; A; A ] -> None |> Ok
-    | [ U; A; G ] -> None |> Ok
-    | [ U; G; A ] -> None |> Ok
-    | _ -> Error "invalid codon"
+type Codon =
+    | Coding of AminoAcid
+    | Stop
 
 let private toBase: char -> Result<Nucleobase, string> =
     function
@@ -53,17 +33,32 @@ let private toBase: char -> Result<Nucleobase, string> =
     | 'U' -> Ok U
     | 'C' -> Ok C
     | 'G' -> Ok G
-    | _ -> Error "invalid nucleobase"
+    | notNucleobase -> Error $"invalid nucleobase: {notNucleobase}"
 
-let private toProtein (codons: Codon list) : Result<Protein, string> =
+let private toTriplet: Nucleobase list -> Result<Triplet, string> =
+    function
+    | [ a; b; c ] -> Ok(a, b, c)
+    | notTriplet -> Error $"invalid triplet length: {List.length notTriplet}"
+
+let private toCodon: Triplet -> Result<Codon, string> =
+    function
+    | A, U, G -> Ok(Coding Methionine)
+    | U, U, (U | C) -> Ok(Coding Phenylalanine)
+    | U, U, (A | G) -> Ok(Coding Leucine)
+    | U, C, _ -> Ok(Coding Serine)
+    | U, A, (U | C) -> Ok(Coding Tyrosine)
+    | U, G, (U | C) -> Ok(Coding Cysteine)
+    | U, G, G -> Ok(Coding Tryptophan)
+    | U, A, (A | G) -> Ok(Stop)
+    | U, G, A -> Ok(Stop)
+    | notCodon -> Error $"invalid codon: {notCodon}"
+
+let private toProtein (codons: Codon list) : Protein =
     let rec loop acc coll =
         match coll with
-        | [] -> Ok(List.rev acc)
-        | codon :: rest ->
-            match codonToAA codon with
-            | Ok(Some aa) -> loop (aa :: acc) rest
-            | Ok None -> Ok(List.rev acc)
-            | Error err -> Error err
+        | [] -> List.rev acc
+        | Stop :: _ -> List.rev acc
+        | Coding aa :: rest -> loop (aa :: acc) rest
 
     loop [] codons
 
@@ -72,7 +67,9 @@ let private resultProtein (rna: string) : Result<Protein, string> =
     |> List.ofSeq
     |> List.traverseResultM toBase
     |> Result.map (List.chunkBySize 3)
-    |> Result.bind toProtein
+    |> Result.bind (List.traverseResultM toTriplet)
+    |> Result.bind (List.traverseResultM toCodon)
+    |> Result.map toProtein
 
 let proteins (rna: string) : string list =
     match resultProtein rna with

@@ -1,0 +1,17 @@
+    |  A, U, G  ->  Ok(Coding Methionine
+    |  U, U, U  ->  Ok(Coding Phenylalanine
+    |  U, U, C  ->  Ok(Coding Phenylalanine
+    |  U, U, A  ->  Ok(Coding Leucine
+    |  U, U, G  ->  Ok(Coding Leucine
+    |  U, C, U  ->  Ok(Coding Serine
+    |  U, C, C  ->  Ok(Coding Serine
+    |  U, C, A  ->  Ok(Coding Serine
+    |  U, C, G  ->  Ok(Coding Serine
+    |  U, A, U  ->  Ok(Coding Tyrosine
+    |  U, A, C  ->  Ok(Coding Tyrosine
+    |  U, G, U  ->  Ok(Coding Cysteine
+    |  U, G, C  ->  Ok(Coding Cysteine
+    |  U, G, G  ->  Ok(Coding Tryptophan
+    |  U, A, A  ->  Ok(Coding None
+    |  U, A, G  ->  Ok(Coding None
+    |  U, G, A  ->  Ok(Coding None
