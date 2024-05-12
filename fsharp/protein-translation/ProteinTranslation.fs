@@ -8,9 +8,7 @@ type private Nucleobase =
     | C
     | G
 
-type private RNA = Nucleobase list
-
-type private Triplet = Nucleobase * Nucleobase * Nucleobase
+type private Triplet = Triplet of Nucleobase * Nucleobase * Nucleobase
 
 type private AminoAcid =
     | Methionine
@@ -21,27 +19,27 @@ type private AminoAcid =
     | Cysteine
     | Tryptophan
 
-type private Protein = AminoAcid list
+type private Protein = Protein of AminoAcid list
 
 type private Codon =
     | Coding of AminoAcid
     | Stop
 
-let private toBase: char -> Result<Nucleobase, string> =
-    function
-    | 'A' -> Ok A
-    | 'U' -> Ok U
-    | 'C' -> Ok C
-    | 'G' -> Ok G
-    | notNucleobase -> Error $"invalid nucleobase: {notNucleobase}"
+let private nucleobaseDictionary =
+    [| 'A', A; 'U', U; 'C', C; 'G', G |] |> Map.ofArray
+
+let private toBase (letter: char) : Result<Nucleobase, string> =
+    nucleobaseDictionary
+    |> Map.tryFind letter
+    |> Result.requireSome $"invalid nucleobase: {letter}"
 
 let private toTriplet: Nucleobase list -> Result<Triplet, string> =
     function
-    | [ a; b; c ] -> Ok(a, b, c)
+    | [ a; b; c ] -> Ok(Triplet(a, b, c))
     | notTriplet -> Error $"invalid triplet length: {List.length notTriplet}"
 
-let private toCodon: Triplet -> Result<Codon, string> =
-    function
+let private toCodon (Triplet(a, b, c): Triplet) : Result<Codon, string> =
+    match (a, b, c) with
     | A, U, G -> Ok(Coding Methionine)
     | U, U, (U | C) -> Ok(Coding Phenylalanine)
     | U, U, (A | G) -> Ok(Coding Leucine)
@@ -53,24 +51,13 @@ let private toCodon: Triplet -> Result<Codon, string> =
     | U, G, A -> Ok(Stop)
     | notCodon -> Error $"invalid codon: {notCodon}"
 
+let private isCoding codon =
+    match codon with
+    | Stop -> false
+    | _ -> true
+
 let private toProtein (codons: Codon list) : Protein =
-    let rec loop acc coll =
-        match coll with
-        | [] -> List.rev acc
-        | Stop :: _ -> List.rev acc
-        | Coding aa :: rest -> loop (aa :: acc) rest
-
-    loop [] codons
-
-let private resultProtein (rna: string) : Result<Protein, string> =
-    rna
-    |> List.ofSeq
-    |> List.traverseResultM toBase
-    |> Result.map (List.chunkBySize 3)
-    |> Result.bind (List.traverseResultM toTriplet)
-    |> Result.bind (List.traverseResultM toCodon)
-    |> Result.map toProtein
-
+    codons |> List.takeWhile isCoding |> List.map (fun (Coding aa) -> aa) |> Protein
 
 let private resultExpressionProtein (strand: string) : Result<Protein, string> =
     result {
@@ -82,4 +69,4 @@ let private resultExpressionProtein (strand: string) : Result<Protein, string> =
 
 let proteins (rna: string) : string list =
     resultExpressionProtein rna
-    |> Result.either (List.map (sprintf "%A")) List.singleton
+    |> Result.either (fun (Protein aminoacids) -> List.map (sprintf "%A") aminoacids) List.singleton
