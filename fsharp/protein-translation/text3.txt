@@ -1,0 +1,7 @@
+    | A, U, G -> Methionine |> Coding |> Ok
+    | U, U, (U | C) -> Phenylalanine |> Coding |> Ok
+    | U, U, (A | G) -> Leucine |> Coding |> Ok
+    | U, C, _ -> Serine |> Coding |> Ok
+    | U, A, (U | C) -> Tyrosine |> Coding |> Ok
+    | U, G, (U | C) -> Cysteine |> Coding |> Ok
+    | U, G, G -> Tryptophan |> Coding |> Ok
