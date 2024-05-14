@@ -17,13 +17,9 @@ type private AminoAcid =
     | Cysteine
     | Tryptophan
 
-type private RNA = RNA of Nucleobase list
-
 type private Triplet = Triplet of Nucleobase * Nucleobase * Nucleobase
 
-type private Codon =
-    | Coding of AminoAcid
-    | Stop
+type private Codon = Codon of AminoAcid option
 
 type private Protein = Protein of AminoAcid list
 
@@ -40,42 +36,30 @@ let private toTriplet: Nucleobase list -> Result<Triplet, string> =
     | [ a; b; c ] -> Ok(Triplet(a, b, c))
     | notTriplet -> Error $"Invalid triplet length: {List.length notTriplet}"
 
-let private toCodon (Triplet(a, b, c): Triplet) : Result<Codon, string> =
+let private toCodon (Triplet(a, b, c)) : Result<Codon, string> =
     match (a, b, c) with
-    | A, U, G -> Methionine |> Coding |> Ok
-    | U, U, (U | C) -> Phenylalanine |> Coding |> Ok
-    | U, U, (A | G) -> Leucine |> Coding |> Ok
-    | U, C, _ -> Serine |> Coding |> Ok
-    | U, A, (U | C) -> Tyrosine |> Coding |> Ok
-    | U, G, (U | C) -> Cysteine |> Coding |> Ok
-    | U, G, G -> Tryptophan |> Coding |> Ok
-    | U, A, (A | G) -> Stop |> Ok
-    | U, G, A -> Stop |> Ok
+    | A, U, G -> Methionine |> Some |> Codon |> Ok
+    | U, U, (U | C) -> Phenylalanine |> Some |> Codon |> Ok
+    | U, U, (A | G) -> Leucine |> Some |> Codon |> Ok
+    | U, C, _ -> Serine |> Some |> Codon |> Ok
+    | U, A, (U | C) -> Tyrosine |> Some |> Codon |> Ok
+    | U, G, (U | C) -> Cysteine |> Some |> Codon |> Ok
+    | U, G, G -> Tryptophan |> Some |> Codon |> Ok
+    | U, A, (A | G) -> None |> Codon |> Ok
+    | U, G, A -> None |> Codon |> Ok
     | notCodon -> Error $"Invalid codon: {notCodon}"
+
+let private toProtein: Codon list -> Protein =
+    List.takeWhile (function Codon aa -> Option.isSome aa)
+    >> List.choose (function Codon aa -> if Option.isSome aa then aa else None)
+    >> Protein
 
 let private resultExpressionProtein (strand: string) : Result<Protein, string> =
     result {
-        let! (rna: RNA) = strand |> List.ofSeq |> List.traverseResultM toBase |> Result.map RNA
-
-        let! (codons: Codon list) =
-            match rna with
-            | RNA bases ->
-                bases
-                |> List.chunkBySize 3
-                |> List.traverseResultM toTriplet
-                |> Result.bind (List.traverseResultM toCodon)
-
-        let (protein: Protein) =
-            codons
-            |> List.takeWhile (function
-                | Stop -> false
-                | _ -> true)
-            |> List.map (function
-                | Coding aminoAcid -> aminoAcid
-                | Stop -> failwith "Incomplete pattern match warning")
-            |> Protein
-
-        return protein
+        let! rna = strand |> List.ofSeq |> List.traverseResultM toBase
+        let! triplets = rna |> List.chunkBySize 3 |> List.traverseResultM toTriplet
+        let! codons = triplets |> List.traverseResultM toCodon
+        return codons |> toProtein
     }
 
 let proteins (rna: string) : string list =
