@@ -23,7 +23,7 @@ type private Codon = Codon of AminoAcid option
 
 type private Protein = Protein of AminoAcid list
 
-let private nucleobaseDictionary =
+let private nucleobaseDictionary: Map<char, Nucleobase> =
     [| 'A', A; 'U', U; 'C', C; 'G', G |] |> Map.ofArray
 
 let private toBase (letter: char) : Result<Nucleobase, string> =
@@ -33,35 +33,35 @@ let private toBase (letter: char) : Result<Nucleobase, string> =
 
 let private toTriplet: Nucleobase list -> Result<Triplet, string> =
     function
-    | [ a; b; c ] -> Ok(Triplet(a, b, c))
+    | [ first; second; third ] -> Triplet(first, second, third) |> Ok
     | notTriplet -> Error $"Invalid triplet length: {List.length notTriplet}"
 
-let private toCodon (Triplet(a, b, c)) : Result<Codon, string> =
-    match (a, b, c) with
-    | A, U, G -> Methionine |> Some |> Codon |> Ok
-    | U, U, (U | C) -> Phenylalanine |> Some |> Codon |> Ok
-    | U, U, (A | G) -> Leucine |> Some |> Codon |> Ok
-    | U, C, _ -> Serine |> Some |> Codon |> Ok
-    | U, A, (U | C) -> Tyrosine |> Some |> Codon |> Ok
-    | U, G, (U | C) -> Cysteine |> Some |> Codon |> Ok
-    | U, G, G -> Tryptophan |> Some |> Codon |> Ok
-    | U, A, (A | G) -> None |> Codon |> Ok
-    | U, G, A -> None |> Codon |> Ok
+let private toCodon (Triplet(first, second, third)) : Result<Codon, string> =
+    let resultCodon = Some >> Codon >> Ok
+    match (first, second, third) with
+    | A, U, G       -> Methionine |> resultCodon
+    | U, U, (U | C) -> Phenylalanine |> resultCodon
+    | U, U, (A | G) -> Leucine |> resultCodon
+    | U, C, _       -> Serine |> resultCodon
+    | U, A, (U | C) -> Tyrosine |> resultCodon
+    | U, G, (U | C) -> Cysteine |> resultCodon
+    | U, G, G       -> Tryptophan |> resultCodon
+    | U, A, (A | G)
+    | U, G, A       -> None |> Codon |> Ok
     | notCodon -> Error $"Invalid codon: {notCodon}"
 
-let private toProtein: Codon list -> Protein =
+let private toAminoAcids: Codon list -> AminoAcid list =
     List.takeWhile (function Codon aa -> Option.isSome aa)
     >> List.choose (function Codon aa -> if Option.isSome aa then aa else None)
-    >> Protein
 
 let private resultExpressionProtein (strand: string) : Result<Protein, string> =
     result {
         let! rna = strand |> List.ofSeq |> List.traverseResultM toBase
         let! triplets = rna |> List.chunkBySize 3 |> List.traverseResultM toTriplet
         let! codons = triplets |> List.traverseResultM toCodon
-        return codons |> toProtein
+        return codons |> toAminoAcids |> Protein
     }
 
 let proteins (rna: string) : string list =
     resultExpressionProtein rna
-    |> Result.either (fun (Protein aminoacids) -> List.map (sprintf "%A") aminoacids) List.singleton
+    |> Result.either (function Protein aa -> List.map (sprintf "%A") aa) List.singleton

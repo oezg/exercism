@@ -11,7 +11,8 @@
   ],
   "files": {
     "solution": [
-      "ProteinTranslation.fs"
+      "ProteinTranslation.fs",
+      "ProteinTranslation.fsproj"
     ],
     "test": [
       "ProteinTranslationTests.fs"
