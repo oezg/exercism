@@ -12,7 +12,9 @@
   ],
   "files": {
     "solution": [
-      "Etl.fs"
+      "Etl.fs",
+      "Etl.fsproj",
+      "MapInversion.fs"
     ],
     "test": [
       "EtlTests.fs"
