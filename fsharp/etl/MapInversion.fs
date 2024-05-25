@@ -26,6 +26,7 @@ let private valuesIntoFunc
 let invertFunc (handler: 'K -> 'K -> 'V -> 'K option) (source: Map<'K, 'V list>) : Map<'V, 'K> =
     Map.fold (valuesIntoFunc handler) Map.empty source
 
+
 (* Helpers *)
 
 let private omitKey (existing: 'K) (key: 'K) (value: 'V) : 'K option = None
@@ -41,12 +42,23 @@ let private keepMinimum (existing: 'K) (key: 'K) (value: 'V) : 'K option =
 let private throwException (existing: 'K) (key: 'K) (value: 'V) : 'K option =
     failwithf "Key %A is associated with values %A and %A" value existing key
 
-let invertOmitting<'K, 'V> = invertFunc omitKey
-let invertUpdating<'K, 'V> = invertFunc updateKey
-let invertKeeping<'K, 'V> = invertFunc keepExisting
-let invertMax<'K, 'V> = invertFunc keepMaximum
-let invertMin<'K, 'V> = invertFunc keepMinimum
-let invertThrowing<'K, 'V> = invertFunc throwException
+let invertOmitting<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc omitKey
+
+let invertUpdating<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc updateKey
+
+let invertKeeping<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc keepExisting
+
+let invertMax<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc keepMaximum
+
+let invertMin<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc keepMinimum
+
+let invertThrowing<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertFunc throwException
 
 
 (* Generic map inversion with Result *)
@@ -54,18 +66,17 @@ let invertThrowing<'K, 'V> = invertFunc throwException
 let private valuesWithResult (key: 'K) (source: Result<Map<'V, 'K>, string>) (value: 'V) : Result<Map<'V, 'K>, string> =
     match source with
     | Ok table ->
-        if Map.containsKey value table then
-            Error(sprintf "Duplicate map key: %A" value)
-        else
-            Ok(Map.add value key table)
+        match Map.tryFind value table with
+        | None -> Ok(Map.add value key table)
+        | Some existing -> Error(sprintf "Key %A is associated with values %A and %A" value existing key)
     | Error err -> Error err
 
 let private valuesIntoResult
     (source: Result<Map<'V, 'K>, string>)
     (key: 'K)
-    (values: 'V list)
+    (values: 'V seq)
     : Result<Map<'V, 'K>, string> =
-    List.fold (valuesWithResult key) source values
+    Seq.fold (valuesWithResult key) source values
 
-let invertResult (source: Map<'K, 'V list>) : Result<Map<'V, 'K>, string> =
+let invertResult (source: Map<'K, 'V seq>) : Result<Map<'V, 'K>, string> =
     Map.fold valuesIntoResult (Ok Map.empty) source

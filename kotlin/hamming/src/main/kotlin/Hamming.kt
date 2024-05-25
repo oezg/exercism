@@ -1,8 +1,8 @@
 object Hamming {
 
-    fun compute(leftStrand: String, rightStrand: String) =
-        if (leftStrand.length == rightStrand.length)
-            leftStrand.zip(rightStrand).count { it.first != it.second }
-        else
-            throw IllegalArgumentException("left and right strands must be of equal length")
+    fun compute(leftStrand: String, rightStrand: String): Int {
+        require(leftStrand.length == rightStrand.length) {"left and right strands must be of equal length"}
+
+        return leftStrand.indices.count { leftStrand[it] != rightStrand[it] }
+    }
 }
