@@ -1,31 +1,63 @@
 module MapInversion
 
+(* Generic map inversion with Result *)
+
+let invertResult<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Result<Map<'V, 'K>, string> =
+    Map.fold
+        (fun state key value ->
+            Result.bind
+                (fun acc ->
+                    match Map.tryFind value acc with
+                    | None -> Ok(Map.add value key acc)
+                    | Some existing -> Error($"{value} is mapped to {existing} and {key}"))
+                state)
+        (Ok Map.empty)
+
+let invertListResult<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Result<Map<'V, 'K>, string> =
+    Map.fold
+        (fun statePerKey key ->
+            List.fold
+                (fun statePerValue value ->
+                    Result.bind
+                        (fun acc ->
+                            match Map.tryFind value acc with
+                            | None -> Ok(Map.add value key acc)
+                            | Some existing -> Error($"{value} is mapped to {existing} and {key}"))
+                        statePerValue)
+                statePerKey)
+        (Ok Map.empty)
+
+
 (* Generic higher-order map inversion with handler function *)
 
-let private valueWithFunc
-    (handle: 'K -> 'K -> 'V -> 'K option)
-    (key: 'K)
-    (source: Map<'V, 'K>)
-    (value: 'V)
-    : Map<'V, 'K> =
-    Map.change
-        value
-        (function
-        | None -> Some key
-        | Some existing -> handle existing key value)
-        source
-
-let private valuesIntoFunc
+let invertFunc<'K, 'V when 'K: comparison and 'V: comparison>
     (handler: 'K -> 'K -> 'V -> 'K option)
-    (source: Map<'V, 'K>)
-    (key: 'K)
-    (values: 'V seq)
-    : Map<'V, 'K> =
-    Seq.fold (valueWithFunc handler key) source values
+    : Map<'K, 'V> -> Map<'V, 'K> =
+    Map.fold
+        (fun acc key value ->
+            Map.change
+                value
+                (function
+                | None -> Some key
+                | Some existing -> handler existing key value)
+                acc)
+        Map.empty
 
-let invertFunc (handler: 'K -> 'K -> 'V -> 'K option) (source: Map<'K, 'V list>) : Map<'V, 'K> =
-    Map.fold (valuesIntoFunc handler) Map.empty source
-
+let invertListFunc<'K, 'V when 'K: comparison and 'V: comparison>
+    (handler: 'K -> 'K -> 'V -> 'K option)
+    : Map<'K, 'V list> -> Map<'V, 'K> =
+    Map.fold
+        (fun statePerKey key ->
+            List.fold
+                (fun statePerValue value ->
+                    Map.change
+                        value
+                        (function
+                        | None -> Some key
+                        | Some existing -> handler existing key value)
+                        statePerValue)
+                statePerKey)
+        Map.empty
 
 (* Helpers *)
 
@@ -40,43 +72,42 @@ let private keepMinimum (existing: 'K) (key: 'K) (value: 'V) : 'K option =
     if existing > key then Some key else Some existing
 
 let private throwException (existing: 'K) (key: 'K) (value: 'V) : 'K option =
-    failwithf "Key %A is associated with values %A and %A" value existing key
+    failwith $"{value} is mapped to {existing} and {key}"
 
-let invertOmitting<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+
+let invertOmit<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc omitKey
 
-let invertUpdating<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+let invertUpdate<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc updateKey
 
-let invertKeeping<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+let invertKeep<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc keepExisting
 
-let invertMax<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+let invertMax<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc keepMaximum
 
-let invertMin<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+let invertMin<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc keepMinimum
 
-let invertThrowing<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+let invertThrow<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V> -> Map<'V, 'K> =
     invertFunc throwException
 
 
-(* Generic map inversion with Result *)
+let invertListOmit<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc omitKey
 
-let private valuesWithResult (key: 'K) (source: Result<Map<'V, 'K>, string>) (value: 'V) : Result<Map<'V, 'K>, string> =
-    match source with
-    | Ok table ->
-        match Map.tryFind value table with
-        | None -> Ok(Map.add value key table)
-        | Some existing -> Error(sprintf "Key %A is associated with values %A and %A" value existing key)
-    | Error err -> Error err
+let invertListUpdate<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc updateKey
 
-let private valuesIntoResult
-    (source: Result<Map<'V, 'K>, string>)
-    (key: 'K)
-    (values: 'V seq)
-    : Result<Map<'V, 'K>, string> =
-    Seq.fold (valuesWithResult key) source values
+let invertListKeep<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc keepExisting
 
-let invertResult (source: Map<'K, 'V seq>) : Result<Map<'V, 'K>, string> =
-    Map.fold valuesIntoResult (Ok Map.empty) source
+let invertListMax<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc keepMaximum
+
+let invertListMin<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc keepMinimum
+
+let invertListThrow<'K, 'V when 'K: comparison and 'V: comparison> : Map<'K, 'V list> -> Map<'V, 'K> =
+    invertListFunc throwException
