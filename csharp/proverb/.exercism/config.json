@@ -11,7 +11,8 @@
   ],
   "files": {
     "solution": [
-      "Proverb.cs"
+      "Proverb.cs",
+      "Proverb.csproj"
     ],
     "test": [
       "ProverbTests.cs"
