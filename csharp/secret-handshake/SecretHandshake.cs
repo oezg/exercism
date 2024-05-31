@@ -5,7 +5,7 @@ using System.Linq;
 
 public static class SecretHandshake
 {
-    static readonly ImmutableSortedDictionary<int, Func<IEnumerable<string>, IEnumerable<string>>> s_actions =
+    private static readonly ImmutableSortedDictionary<int, Func<IEnumerable<string>, IEnumerable<string>>> s_actions =
         ImmutableSortedDictionary<int, Func<IEnumerable<string>, IEnumerable<string>>>.Empty
             .Add(0b00001, actions => actions.Append("wink"))
             .Add(0b00010, actions => actions.Append("double blink"))
