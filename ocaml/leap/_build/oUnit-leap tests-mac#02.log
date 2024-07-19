@@ -1,0 +1,6 @@
+2024-07-19T15:12:56+00:00 mac#02 I: Start test leap tests:1:year divisible by 2, not divisible by 4 in common year.
+2024-07-19T15:12:56+00:00 mac#02 I: Test leap tests:1:year divisible by 2, not divisible by 4 in common year is successful.
+2024-07-19T15:12:56+00:00 mac#02 I: End test leap tests:1:year divisible by 2, not divisible by 4 in common year.
+2024-07-19T15:12:56+00:00 mac#02 I: Start test leap tests:7:year divisible by 400 but not by 125 is still a leap year.
+2024-07-19T15:12:56+00:00 mac#02 I: Test leap tests:7:year divisible by 400 but not by 125 is still a leap year is successful.
+2024-07-19T15:12:56+00:00 mac#02 I: End test leap tests:7:year divisible by 400 but not by 125 is still a leap year.
