@@ -7,7 +7,8 @@
   ],
   "files": {
     "solution": [
-      "lib/resistor_color.ex"
+      "lib/resistor_color.ex",
+      "bench.exs"
     ],
     "test": [
       "test/resistor_color_test.exs"

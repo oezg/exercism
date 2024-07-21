@@ -3,22 +3,22 @@ defmodule ResistorColor do
   A helpful program so that you don't have to remember the values of the bands.
   """
 
-  @colors {
-    :black,
-    :brown,
-    :red,
-    :orange,
-    :yellow,
-    :green,
-    :blue,
-    :violet,
-    :grey,
-    :white
+  @colors %{
+    black: 0,
+    brown: 1,
+    red: 2,
+    orange: 3,
+    yellow: 4,
+    green: 5,
+    blue: 6,
+    violet: 7,
+    grey: 8,
+    white: 9
   }
 
   @doc """
   Return the value of a color band
   """
   @spec code(atom) :: integer()
-  def code(color), do: Enum.find(0..(tuple_size(@colors) - 1), &(elem(@colors, &1) == color))
+  def code(color), do: @colors[color]
 end
