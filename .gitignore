@@ -52,3 +52,5 @@ package-lock.json
 # /typescript/*/.yarn/install-state.gz
 /typescript/*/.yarn/*
 !/typescript/*/.yarn/releases
+
+/ocaml/*/_build/
