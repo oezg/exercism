@@ -4,7 +4,9 @@
   ],
   "files": {
     "solution": [
-      "lib/resistor_color_duo.ex"
+      "lib/resistor_color_duo.ex",
+      "bench.exs",
+      "result.txt"
     ],
     "test": [
       "test/resistor_color_duo_test.exs"

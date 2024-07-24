@@ -1,23 +1,24 @@
 defmodule ResistorColorDuo do
   @moduledoc false
 
-  @colors %{
-    black: 0,
-    brown: 1,
-    red: 2,
-    orange: 3,
-    yellow: 4,
-    green: 5,
-    blue: 6,
-    violet: 7,
-    grey: 8,
-    white: 9
-  }
   @doc """
   Calculate a resistance value from two colors
   """
   @spec value(colors :: [atom]) :: integer
-  def value([color1 | [color2 | _]]) do
-    @colors[color1] * 10 + @colors[color2]
-  end
+  def value(bands),
+    do: bands |> Enum.take(2) |> Enum.map(&band_value/1) |> Integer.undigits()
+
+  def value_conventional([band1, band2 | _]), do: band_value(band1) * 10 + band_value(band2)
+
+  @spec band_value(color :: atom) :: integer
+  defp band_value(:black), do: 0
+  defp band_value(:brown), do: 1
+  defp band_value(:red), do: 2
+  defp band_value(:orange), do: 3
+  defp band_value(:yellow), do: 4
+  defp band_value(:green), do: 5
+  defp band_value(:blue), do: 6
+  defp band_value(:violet), do: 7
+  defp band_value(:grey), do: 8
+  defp band_value(:white), do: 9
 end
