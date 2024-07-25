@@ -4,7 +4,7 @@ defmodule ResistorColorDuoTest do
   # @tag :pending
   test "Brown and black" do
     colors = [:brown, :black]
-    output = ResistorColorDuo.value(colors)
+    output = ResistorColorDuo.value_conventional(colors)
     expected = 10
 
     assert output == expected
