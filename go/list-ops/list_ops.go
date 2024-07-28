@@ -1,83 +1,93 @@
 // Package listops implements basic list operations.
 package listops
 
-import "slices"
-
 // IntList is an abstraction of a list of integers which we can define methods on
 type IntList []int
+type binaryFunc func(int, int) int
+type unaryFunc func(int) int
+type predicateFunc func(int) bool
 
-func (s IntList) Foldl(fn func(int, int) int, initial int) int {
-	if s.Length() == 0 {
-		return initial
+func (s IntList) Foldl(fn binaryFunc, initial int) int {
+	result := initial
+
+	for _, v := range s {
+		result = fn(result, v)
 	}
 
-	return s[1:].Foldl(fn, fn(initial, s[0]))
+	return result
 }
 
-func (s IntList) Foldr(fn func(int, int) int, initial int) int {
-	if s.Length() == 0 {
-		return initial
+func (s IntList) Foldr(fn binaryFunc, initial int) int {
+	result := initial
+
+	for i := s.Length() - 1; i >= 0; i-- {
+		result = fn(s[i], result)
 	}
 
-	return s[:s.Length()-1].Foldr(fn, fn(s[s.Length()-1], initial))
+	return result
 }
 
-func (s IntList) Filter(fn func(int) bool) IntList {
-	out := IntList{}
+func (s IntList) Filter(fn predicateFunc) IntList {
+	result := IntList{}
 
 	for _, v := range s {
 		if fn(v) {
-			out = append(out, v)
+			result = append(result, v)
 		}
 	}
 
-	return out
+	return result
 }
 
-func (s IntList) Length() int {
-	return lengthHelper(0, s)
-}
-
-func lengthHelper(acc int, s IntList) int {
-	if slices.Equal(IntList{}, s) {
-		return acc
+func (s IntList) Length() (length int) {
+	for range s {
+		length++
 	}
-	return lengthHelper(acc+1, s[1:])
+	return
 }
 
-func (s IntList) Map(fn func(int) int) IntList {
-	out := make(IntList, 0, s.Length())
+func (s IntList) Map(fn unaryFunc) IntList {
+	result := make(IntList, s.Length())
 
-	for _, v := range s {
-		out = append(out, fn(v))
+	for i, v := range s {
+		result[i] = fn(v)
 	}
 
-	return out
+	return result
 }
 
 func (s IntList) Reverse() IntList {
-	return reverseHelper(IntList{}, s)
-}
+	result := make(IntList, 0, s.Length())
 
-func reverseHelper(acc IntList, s IntList) IntList {
-	if slices.Equal(IntList{}, s) {
-		return acc
+	for i := s.Length() - 1; i >= 0; i-- {
+		result = append(result, s[i])
 	}
-	return reverseHelper(append(acc, s[s.Length()-1]), s[:s.Length()-1])
+
+	return result
 }
 
 func (s IntList) Append(lst IntList) IntList {
-	if lst.Length() == 0 {
-		return s
+	sLength := s.Length()
+	lstLength := lst.Length()
+	result := make(IntList, sLength+lstLength)
+
+	for i := 0; i < sLength+lstLength; i++ {
+		if i < sLength {
+			result[i] = s[i]
+		} else {
+			result[i] = lst[i-sLength]
+		}
 	}
 
-	return append(s, lst[0]).Append(lst[1:])
+	return result
 }
 
 func (s IntList) Concat(lists []IntList) IntList {
-	if len(lists) == 0 {
-		return s
+	result := s
+
+	for _, v := range lists {
+		result = result.Append(v)
 	}
 
-	return s.Append(lists[0]).Concat(lists[1:])
+	return result
 }
