@@ -68,16 +68,10 @@ func (s IntList) Reverse() IntList {
 
 func (s IntList) Append(lst IntList) IntList {
 	sLength := s.Length()
-	lstLength := lst.Length()
-	result := make(IntList, sLength+lstLength)
+	result := make(IntList, sLength+lst.Length())
 
-	for i := 0; i < sLength+lstLength; i++ {
-		if i < sLength {
-			result[i] = s[i]
-		} else {
-			result[i] = lst[i-sLength]
-		}
-	}
+	copy(result, s)
+	copy(result[sLength:], lst)
 
 	return result
 }
