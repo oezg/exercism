@@ -14,10 +14,18 @@
     (:talkative "Bird")
     (otherwise "I don't know... A dragon?")))
 
-(defun habitat-fitter (weight))
+(defun habitat-fitter (weight)
+  (cond ((>= weight 40) :massive)
+        ((and (>= weight 20) (<= weight 39)) :large)
+        ((and (>= weight 10) (<= weight 19)) :medium)
+        ((and (>= weight 1) (<= weight 9) :small))
+        ((<= weight 0) :just-your-imagination)))
 
-(defun feeding-time-p (fullness))
+(defun feeding-time-p (fullness)
+  (if (> fullness 20) "All is well." "It's feeding time!"))
 
-(defun pet (pet))
+(defun pet (pet)
+  (when (string= pet "Fish") "Maybe not with this pet..."))
 
-(defun play-fetch (pet))
+(defun play-fetch (pet)
+  (unless (string= pet "Dog") "Maybe not with this pet..."))
