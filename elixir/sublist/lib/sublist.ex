@@ -6,9 +6,10 @@ defmodule Sublist do
   and if not whether it is equal or unequal to the second list.
   """
   @spec compare(list(), list()) :: :equal | :sublist | :superlist | :unequal
+  def compare(a, a), do: :equal
+
   def compare(a, b) do
     cond do
-      length(a) == length(b) and subsequence?(a, b) -> :equal
       length(a) < length(b) and subsequence?(a, b) -> :sublist
       length(b) < length(a) and subsequence?(b, a) -> :superlist
       true -> :unequal
@@ -20,6 +21,10 @@ defmodule Sublist do
   defp subsequence?(_, []), do: false
 
   defp subsequence?([x | _xs] = a, [y | ys] = b) do
-    if x === y and a == Enum.slice(b, 0, length(a)), do: true, else: subsequence?(a, ys)
+    if x === y and compare(a, Enum.slice(b, 0, length(a))) == :equal do
+      true
+    else
+      subsequence?(a, ys)
+    end
   end
 end

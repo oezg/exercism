@@ -52,23 +52,19 @@ func Recite(startBottles, takeDown int) []string {
 }
 
 func verse(n int) []string {
-	isPlural := pluralEndings(n)
-	out := make([]string, 0, 4)
-	out = append(out, fmt.Sprintf(prefix, numbers[n], isPlural[0]))
-	out = append(out, fmt.Sprintf(prefix, numbers[n], isPlural[0]))
-	out = append(out, midline)
-	out = append(out, fmt.Sprintf(suffix, strings.ToLower(numbers[n-1]), isPlural[1]))
-
-	return out
+	endingPrefix, endingSuffix := pluralEndings(n)
+	firstLine := fmt.Sprintf(prefix, numbers[n], endingPrefix)
+	lastLine := fmt.Sprintf(suffix, strings.ToLower(numbers[n-1]), endingSuffix)
+	return []string{firstLine, firstLine, midline, lastLine}
 }
 
-func pluralEndings(n int) []string {
+func pluralEndings(n int) (prefix, suffix string) {
 	switch n {
 	case 1:
-		return []string{"", "s"}
+		return "", "s"
 	case 2:
-		return []string{"s", ""}
+		return "s", ""
 	default:
-		return []string{"s", "s"}
+		return "s", "s"
 	}
 }
