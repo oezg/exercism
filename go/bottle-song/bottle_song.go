@@ -39,23 +39,20 @@ func Recite(startBottles, takeDown int) []string {
 		return nil
 	}
 
-	out := make([]string, 0, takeDown*5-1)
+	out := make([]string, 0, takeDown*5)
 
 	for i := startBottles; i > startBottles-takeDown; i-- {
 		out = append(out, verse(i)...)
-		if i > startBottles-takeDown+1 {
-			out = append(out, "")
-		}
 	}
 
-	return out
+	return out[1:]
 }
 
 func verse(n int) []string {
 	endingPrefix, endingSuffix := pluralEndings(n)
 	firstLine := fmt.Sprintf(prefix, numbers[n], endingPrefix)
 	lastLine := fmt.Sprintf(suffix, strings.ToLower(numbers[n-1]), endingSuffix)
-	return []string{firstLine, firstLine, midline, lastLine}
+	return []string{"", firstLine, firstLine, midline, lastLine}
 }
 
 func pluralEndings(n int) (prefix, suffix string) {

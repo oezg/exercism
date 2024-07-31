@@ -20,7 +20,9 @@
   ],
   "files": {
     "solution": [
-      "lib/sublist.ex"
+      "lib/sublist.ex",
+      "bench.exs",
+      "result.txt"
     ],
     "test": [
       "test/sublist_test.exs"
