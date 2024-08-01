@@ -9,17 +9,19 @@ defmodule Sublist do
   def compare(a, b) do
     cond do
       a === b -> :equal
-      subseq?(a, b) -> :sublist
-      subseq?(b, a) -> :superlist
-      true -> :unequal
+      subsequence?(b, a) -> :sublist
+      subsequence?(a, b) -> :superlist
+      :else -> :unequal
     end
   end
 
-  defp subseq?([], _), do: true
-  defp subseq?(_, []), do: false
+  @spec subsequence?(list(), list()) :: boolean()
+  defp subsequence?(superlist, sublist)
+  defp subsequence?(_, []), do: true
+  defp subsequence?([], _), do: false
 
-  defp subseq?(a = [x | as], [x | bs]),
-    do: if(List.starts_with?(bs, as), do: true, else: subseq?(a, bs))
+  defp subsequence?([x | list], [x | prefix] = sublist),
+    do: List.starts_with?(list, prefix) or subsequence?(list, sublist)
 
-  defp subseq?(a, [_ | bs]), do: subseq?(a, bs)
+  defp subsequence?([_ | list], sublist), do: subsequence?(list, sublist)
 end
