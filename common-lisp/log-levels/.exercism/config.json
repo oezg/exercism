@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "verdammelt"
+  ],
+  "files": {
+    "solution": [
+      "log-levels.lisp"
+    ],
+    "test": [
+      "log-levels-test.lisp"
+    ],
+    "exemplar": [
+      ".meta/exemplar.lisp"
+    ]
+  },
+  "forked_from": [
+    "csharp/log-levels"
+  ],
+  "blurb": "Learn about Common Lisp strings by processing log messages"
+}
