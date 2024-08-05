@@ -16,8 +16,7 @@
   ],
   "files": {
     "solution": [
-      "src/Pangram.hs",
-      "package.yaml"
+      "src/Pangram.hs"
     ],
     "test": [
       "test/Tests.hs"
