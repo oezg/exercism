@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "verdammelt"
+  ],
+  "contributors": [
+    "OrdoFlammae",
+    "timotheosh"
+  ],
+  "files": {
+    "solution": [
+      "two-fer.lisp"
+    ],
+    "test": [
+      "two-fer-test.lisp"
+    ],
+    "example": [
+      ".meta/example.lisp"
+    ]
+  },
+  "blurb": "Create a sentence of the form \"One for X, one for me.\".",
+  "source_url": "https://github.com/exercism/problem-specifications/issues/757"
+}
