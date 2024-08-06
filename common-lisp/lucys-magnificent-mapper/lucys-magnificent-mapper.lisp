@@ -8,5 +8,4 @@
   (mapcar f nums))
 
 (defun only-the-best (f nums)
-  (remove-if (lambda (num)
-    (= 1 num)) (remove-if f nums)))
+  (remove-if (lambda (num) (or (= 1 num) (funcall f num))) nums))
