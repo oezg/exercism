@@ -25,17 +25,11 @@ func (n1 Number) Add(n2 Number) Number {
 }
 
 func (n1 Number) Subtract(n2 Number) Number {
-	return Number{
-		real: n1.Real() - n2.Real(),
-		imag: n1.Imaginary() - n2.Imaginary(),
-	}
+	return n1.Add(n2.Times(-1))
 }
 
 func (n1 Number) Multiply(n2 Number) Number {
-	return Number{
-		real: n1.Real()*n2.Real() - n1.Imaginary()*n2.Imaginary(),
-		imag: n1.Imaginary()*n2.Real() + n1.Real()*n2.Imaginary(),
-	}
+	return firstTerm(n1, n2).Subtract(secondTerm(n1, n2))
 }
 
 func (n Number) Times(factor float64) Number {
@@ -46,11 +40,7 @@ func (n Number) Times(factor float64) Number {
 }
 
 func (n1 Number) Divide(n2 Number) Number {
-	n2AbsSquared := n2.absSquared()
-	return Number{
-		real: (n1.Real()*n2.Real() + n1.Imaginary()*n2.Imaginary()) / n2AbsSquared,
-		imag: (n1.Imaginary()*n2.Real() - n1.Real()*n2.Imaginary()) / n2AbsSquared,
-	}
+	return firstTerm(n1, n2).Add(secondTerm(n1, n2)).Times(math.Pow(absSquared(n2), -1))
 }
 
 func (n Number) Conjugate() Number {
@@ -61,17 +51,30 @@ func (n Number) Conjugate() Number {
 }
 
 func (n Number) Abs() float64 {
-	return math.Sqrt(n.absSquared())
+	return math.Sqrt(absSquared(n))
 }
 
 func (n Number) Exp() Number {
-	expReal := math.Pow(math.E, n.Real())
 	return Number{
-		real: math.Cos(n.Imaginary()) * expReal,
-		imag: math.Sin(n.Imaginary()) * expReal,
+		real: math.Cos(n.Imaginary()),
+		imag: math.Sin(n.Imaginary()),
+	}.Times(math.Pow(math.E, n.Real()))
+}
+
+func absSquared(n Number) float64 {
+	return n.Multiply(n.Conjugate()).Real()
+}
+
+func firstTerm(n1, n2 Number) Number {
+	return Number{
+		real: n1.Real() * n2.Real(),
+		imag: n1.Imaginary() * n2.Real(),
 	}
 }
 
-func (n Number) absSquared() float64 {
-	return n.Real()*n.Real() + n.Imaginary()*n.Imaginary()
+func secondTerm(n1, n2 Number) Number {
+	return Number{
+		real: n1.Imaginary() * n2.Imaginary(),
+		imag: -1 * n1.Real() * n2.Imaginary(),
+	}
 }
