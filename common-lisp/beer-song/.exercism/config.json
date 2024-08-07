@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "verdammelt"
+  ],
+  "contributors": [
+    "dnmfarrell"
+  ],
+  "files": {
+    "solution": [
+      "beer-song.lisp"
+    ],
+    "test": [
+      "beer-song-test.lisp"
+    ],
+    "example": [
+      ".meta/example.lisp"
+    ]
+  },
+  "blurb": "Produce the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.",
+  "source": "Learn to Program by Chris Pine",
+  "source_url": "https://pine.fm/LearnToProgram/?Chapter=06"
+}
