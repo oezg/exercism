@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "verdammelt"
+  ],
+  "files": {
+    "solution": [
+      "armstrong-numbers.lisp"
+    ],
+    "test": [
+      "armstrong-numbers-test.lisp"
+    ],
+    "example": [
+      ".meta/example.lisp"
+    ]
+  },
+  "blurb": "Determine if a number is an Armstrong number.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Narcissistic_number"
+}
