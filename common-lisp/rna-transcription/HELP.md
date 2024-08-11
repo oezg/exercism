@@ -17,7 +17,7 @@ If you write your code in the exercise lisp file then load it with `(load "exerc
 You can launch the tests with this command line invocation (again, replace "exercise" with the appropriate name in two places)
 
 ```sh
-ros run --load exercise-test.lisp --eval '(uiop:quit (if (exercise-test:run-tests) 0 1))'
+ros run --load rna-transcription-test.lisp --eval '(uiop:quit (if (rna-transcription-test:run-tests) 0 1))'
 ```
 
 ## Submitting your solution
