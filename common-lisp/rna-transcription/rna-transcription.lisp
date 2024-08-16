@@ -3,13 +3,15 @@
   (:export :to-rna))
 (in-package :rna-transcription)
 
-(defparameter nucleaotides (make-hash-table :test 'eql))
-(setf (gethash #\G nucleaotides) #\C)
-(setf (gethash #\C nucleaotides) #\G)
-(setf (gethash #\T nucleaotides) #\A)
-(setf (gethash #\A nucleaotides) #\U)
+(defparameter *nucleotides* 
+  (let ((nucleotides (make-hash-table :test 'eql)))
+    (setf (gethash #\G nucleotides) #\C)
+    (setf (gethash #\C nucleotides) #\G)
+    (setf (gethash #\T nucleotides) #\A)
+    (setf (gethash #\A nucleotides) #\U)
+    nucleotides))
 
 
 (defun to-rna (str)
   "Transcribe a string representing DNA nucleotides to RNA."
-  (map 'string (lambda (nuc) (gethash nuc nucleaotides)) str))
+  (map 'string (lambda (nuc) (gethash nuc *nucleotides*)) str))
