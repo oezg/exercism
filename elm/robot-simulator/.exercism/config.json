@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "tgecho"
+  ],
+  "contributors": [
+    "michaelkpfeifer",
+    "nathanielknight",
+    "tuxagon"
+  ],
+  "files": {
+    "solution": [
+      "src/RobotSimulator.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/RobotSimulator.example.elm"
+    ]
+  },
+  "blurb": "Write a robot simulator.",
+  "source": "Inspired by an interview question at a famous company."
+}
