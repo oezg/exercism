@@ -6,56 +6,64 @@ import (
 	"strconv"
 )
 
+type biFunc func(int, int) int
+
+type arithmeticOperation = string
+
 const (
-	pattern = ` (plus|minus|multiplied by|divided by) (-?\d+)`
-	// A repeated capturing group will only capture the last iteration.
-	// Put a capturing group around the repeated group to capture all iterations.
-	patternHead = `What is (-?\d+)((` + pattern + `)*)\?`
-	patternRest = pattern + "(.*)"
+	plus              arithmeticOperation = "plus"
+	minus             arithmeticOperation = "minus"
+	multiply          arithmeticOperation = "multiplied by"
+	divide            arithmeticOperation = "divided by"
+	patternValidation                     = `^What is (-?\d+)(` + patternIteration + `)*\?$`
+	patternIteration                      = ` (` + plus + `|` + minus + `|` + multiply + `|` + divide + `) (-?\d+)`
 )
 
 var (
-	rexpHead = regexp.MustCompile(patternHead)
-	rexpRest = regexp.MustCompile(patternRest)
+	rexpValidate = regexp.MustCompile(patternValidation)
+	rexpIterate  = regexp.MustCompile(patternIteration)
+	operations   = map[arithmeticOperation]biFunc{
+		plus:     func(i1, i2 int) int { return i1 + i2 },
+		minus:    func(i1, i2 int) int { return i1 - i2 },
+		multiply: func(i1, i2 int) int { return i1 * i2 },
+		divide:   func(i1, i2 int) int { return i1 / i2 },
+	}
 )
 
 // Answer returns the integer result of the operation given in the question.
 // Parser rejects unsupported operations and invalid syntax.
 func Answer(question string) (int, bool) {
-	data := rexpHead.FindStringSubmatch(question)
-	if len(data) == 0 {
+	validQuestion := rexpValidate.FindStringSubmatch(question)
+	if validQuestion == nil {
 		return 0, false
 	}
 
-	head, _ := strconv.Atoi(data[1])
-	return rechelp(head, data[2]), true
+	head, _ := strconv.Atoi(validQuestion[1])
+
+	rest := rexpIterate.FindAllStringSubmatch(question, -1)
+
+	return foldOperations(head, rest), true
 }
 
-func rechelp(head int, data string) int {
-	if data == "" {
-		return head
+func foldOperations(acc int, coll [][]string) int {
+	if len(coll) == 0 {
+		return acc
 	}
 
-	rest := rexpRest.FindStringSubmatch(data)
-	operand, _ := strconv.Atoi(rest[2])
-	current := calculate(head, rest[1], operand)
-	return rechelp(current, rest[3])
+	operation := operations[coll[0][1]]
+	number, _ := strconv.Atoi(coll[0][2])
+
+	return foldOperations(operation(acc, number), coll[1:])
 }
 
-func calculate(current int, operation string, operand int) int {
-	switch operation {
-	case "plus":
-		return current + operand
-	case "minus":
-		return current - operand
-	case "multiplied by":
-		return current * operand
-	case "divided by":
-		return current / operand
-	default:
-		return current
-	}
-}
+// 9. FindStringSubmatch instead of MatchString
+// BenchmarkAnswer-4          52431             23059 ns/op            7823 B/op         86 allocs/op
+
+// 8. Validate and Iterate
+// BenchmarkAnswer-4          38042             30699 ns/op            6569 B/op        110 allocs/op
+
+// 7. Map of operations
+// BenchmarkAnswer-4          51970             22325 ns/op            5580 B/op         72 allocs/op
 
 // 6. Constant patterns
 // BenchmarkAnswer-4          53384             22476 ns/op            5582 B/op         72 allocs/op
