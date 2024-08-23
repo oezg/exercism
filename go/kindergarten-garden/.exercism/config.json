@@ -19,7 +19,8 @@
   ],
   "files": {
     "solution": [
-      "kindergarten_garden.go"
+      "kindergarten_garden.go",
+      "go.mod"
     ],
     "test": [
       "kindergarten_garden_test.go"

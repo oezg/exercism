@@ -4,85 +4,78 @@ package kindergarten
 
 import (
 	"errors"
-	"fmt"
-	"sort"
+	"slices"
 	"strings"
 )
 
 // Garden represents the children and their plants.
 type Garden struct {
-	children map[child][]plant
+	children map[string][]string
 }
 
-type child = string
+// NewGarden returns a pointer to a new garden or an error, given the cups and the children.
+func NewGarden(diagram string, children []string) (*Garden, error) {
+	rows := strings.Split(diagram, "\n")
+	if rows[0] != "" || len(rows) < 3 || len(rows[1]) != len(children)*2 {
+		return nil, errors.New("wrong diagram format")
+	}
 
-type plant = string
+	if len(rows[1]) != len(rows[2]) {
+		return nil, errors.New("mismatched rows")
+	}
 
-type cup = rune
+	if len(rows[1])%2 == 1 {
+		return nil, errors.New("odd number of cups")
+	}
 
-var cupToPlant = map[cup]plant{
+	childrensPlants := make(map[string][]string, len(children))
+
+	sortedChildren := append([]string{}, children...)
+	slices.Sort(sortedChildren)
+
+	for i, v := range sortedChildren {
+		if _, ok := childrensPlants[v]; ok {
+			return nil, errors.New("duplicate name")
+		}
+
+		cups := []byte{rows[1][i*2], rows[1][i*2+1], rows[2][i*2], rows[2][i*2+1]}
+
+		fourPlants, err := cupsToPlants(cups)
+		if err != nil {
+			return nil, err
+		}
+
+		childrensPlants[v] = fourPlants
+	}
+
+	return &Garden{childrensPlants}, nil
+}
+
+// Plants returns the plants of the given child or false.
+func (g *Garden) Plants(child string) ([]string, bool) {
+	plants, ok := g.children[child]
+	return plants, ok
+}
+
+var cupToPlant = map[byte]string{
 	'R': "radishes",
 	'C': "clover",
 	'G': "grass",
 	'V': "violets",
 }
 
-func cupsToPlants(cups []cup) ([]plant, error) {
-	out := make([]plant, 0, 4)
+func cupsToPlants(cups []byte) ([]string, error) {
+	out := make([]string, 4)
 
-	for _, v := range cups {
-		plant, ok := cupToPlant[v]
-		if !ok {
-			return nil, fmt.Errorf("invalid cup code: %c", v)
+	for i, v := range cups {
+		if plant, ok := cupToPlant[v]; !ok {
+			return nil, errors.New("invalid cup code" + string(v))
+		} else {
+			out[i] = plant
 		}
-		out = append(out, plant)
 	}
 
 	return out, nil
 }
 
-// NewGarden returns a pointer to a new garden or an error, given the cups and the children.
-func NewGarden(diagram string, children []child) (*Garden, error) {
-	lines := strings.Split(diagram, "\n")
-	if lines[0] != "" || len(lines) != 3 || len(lines[1]) != len(children)*2 {
-		return nil, errors.New("wrong diagram format")
-	}
-
-	if len(lines[1]) != len(lines[2]) {
-		return nil, errors.New("mismatched rows")
-	}
-
-	if len(lines[1])%2 == 1 {
-		return nil, errors.New("odd number of cups")
-	}
-
-	out := Garden{children: map[child][]plant{}}
-
-	// To avoid sorting in place, first copy the slice to a new array.
-	sortedChildren := make([]child, len(children))
-	_ = copy(sortedChildren, children)
-	sort.Strings(sortedChildren)
-
-	for i, v := range sortedChildren {
-		if _, ok := out.children[v]; ok {
-			return nil, errors.New("duplicate name")
-		}
-
-		// TODO: find a nicer way to express the four cups
-		cups := lines[1][i*2:i*2+2] + lines[2][i*2:i*2+2]
-		fourPlants, err := cupsToPlants([]cup(cups))
-		if err != nil {
-			return nil, err
-		}
-
-		out.children[v] = fourPlants
-	}
-
-	return &out, nil
-}
-
-// Plants returns the plants of the given child or false.
-func (g *Garden) Plants(child child) ([]plant, bool) {
-	plants, ok := g.children[child]
-	return plants, ok
-}
+// BenchmarkNewGarden-4      143058              8097 ns/op            6467 B/op         77 allocs/op

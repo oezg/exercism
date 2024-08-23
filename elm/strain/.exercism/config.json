@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "tgecho"
+  ],
+  "contributors": [
+    "nathanielknight",
+    "parkerl",
+    "tuxagon"
+  ],
+  "files": {
+    "solution": [
+      "src/Strain.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/Strain.example.elm"
+    ]
+  },
+  "blurb": "Implement the `keep` and `discard` operation on collections.",
+  "source": "Conversation with James Edward Gray II",
+  "source_url": "http://graysoftinc.com/"
+}
