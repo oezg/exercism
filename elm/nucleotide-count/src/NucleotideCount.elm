@@ -1,7 +1,5 @@
 module NucleotideCount exposing (nucleotideCounts)
 
-import Task exposing (sequence)
-
 
 type alias NucleotideCounts =
     { a : Int
@@ -12,30 +10,27 @@ type alias NucleotideCounts =
 
 
 nucleotideCounts : String -> Result String NucleotideCounts
-nucleotideCounts sequence =
-    Result.fromMaybe "Invalid nucleotide in strand" (elm sequence (NucleotideCounts 0 0 0 0))
+nucleotideCounts =
+    String.foldl
+        (\nucleotide ->
+            Maybe.andThen
+                (\({ a, c, g, t } as count) ->
+                    case nucleotide of
+                        'A' ->
+                            Just { count | a = a + 1 }
 
+                        'C' ->
+                            Just { count | c = c + 1 }
 
-elm sequence acc =
-    case String.uncons sequence of
-        Nothing ->
-            Just acc
+                        'G' ->
+                            Just { count | g = g + 1 }
 
-        Just ( c, rest ) ->
-            (case c of
-                'A' ->
-                    Just { acc | a = acc.a + 1 }
+                        'T' ->
+                            Just { count | t = t + 1 }
 
-                'C' ->
-                    Just { acc | c = acc.c + 1 }
-
-                'G' ->
-                    Just { acc | g = acc.g + 1 }
-
-                'T' ->
-                    Just { acc | t = acc.t + 1 }
-
-                _ ->
-                    Nothing
-            )
-                |> Maybe.andThen (elm rest)
+                        _ ->
+                            Nothing
+                )
+        )
+        (Just (NucleotideCounts 0 0 0 0))
+        >> Result.fromMaybe "Invalid nucleotide in strand"
