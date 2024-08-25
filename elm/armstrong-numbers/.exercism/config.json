@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "CharlonTank"
+  ],
+  "contributors": [
+    "mpizenberg"
+  ],
+  "files": {
+    "solution": [
+      "src/ArmstrongNumbers.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/ArmstrongNumbers.example.elm"
+    ]
+  },
+  "blurb": "Determine if a number is an Armstrong number.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Narcissistic_number"
+}
