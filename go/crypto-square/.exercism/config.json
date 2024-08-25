@@ -18,7 +18,8 @@
   ],
   "files": {
     "solution": [
-      "crypto_square.go"
+      "crypto_square.go",
+      "go.mod"
     ],
     "test": [
       "crypto_square_test.go"
