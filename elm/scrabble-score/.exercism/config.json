@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "woylie"
+  ],
+  "contributors": [
+    "A5308Y",
+    "nathanielknight",
+    "tgecho",
+    "tuxagon"
+  ],
+  "files": {
+    "solution": [
+      "src/ScrabbleScore.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/ScrabbleScore.example.elm"
+    ]
+  },
+  "blurb": "Given a word, compute the Scrabble score for that word.",
+  "source": "Inspired by the Extreme Startup game",
+  "source_url": "https://github.com/rchatley/extreme_startup"
+}
