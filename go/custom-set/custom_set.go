@@ -12,11 +12,11 @@ func New() Set {
 }
 
 func NewFromSlice(l []string) Set {
-	s := New()
+	out := New()
 	for _, v := range l {
-		s.members[v] = struct{}{}
+		out.Add(v)
 	}
-	return s
+	return out
 }
 
 func (s Set) String() string {
@@ -43,52 +43,25 @@ func (s Set) Add(elem string) {
 }
 
 func Subset(s1, s2 Set) bool {
-	for k := range s1.members {
-		if !s2.Has(k) {
-			return false
-		}
-	}
-
-	return true
+	return Difference(s1, s2).IsEmpty()
 }
 
 func Disjoint(s1, s2 Set) bool {
-	for k := range s1.members {
-		if s2.Has(k) {
-			return false
-		}
-	}
-
-	return true
+	return Intersection(s1, s2).IsEmpty()
 }
 
 func Equal(s1, s2 Set) bool {
-
 	return Subset(s1, s2) && Subset(s2, s1)
 }
 
 func Intersection(s1, s2 Set) Set {
-	out := New()
-
-	for k := range s1.members {
-		if s2.Has(k) {
-			out.Add(k)
-		}
-	}
-
-	return out
+	return differsection(s1.members, s2.Has)
 }
 
 func Difference(s1, s2 Set) Set {
-	out := New()
-
-	for k := range s1.members {
-		if !s2.Has(k) {
-			out.Add(k)
-		}
-	}
-
-	return out
+	return differsection(s1.members, func(member string) bool {
+		return !s2.Has(member)
+	})
 }
 
 func Union(s1, s2 Set) Set {
@@ -100,6 +73,18 @@ func Union(s1, s2 Set) Set {
 
 	for k := range s2.members {
 		out.Add(k)
+	}
+
+	return out
+}
+
+func differsection(coll map[string]struct{}, f func(string) bool) Set {
+	out := New()
+
+	for k := range coll {
+		if f(k) {
+			out.Add(k)
+		}
 	}
 
 	return out
