@@ -18,24 +18,28 @@ const (
 )
 
 // Day returns the exact date of a meetup, given a month, year, weekday and week.
+// If the week schedule argument is not valid it panics.
 func Day(wSched WeekSchedule, wDay time.Weekday, month time.Month, year int) int {
 	meetup := time.Date(year, month, 1, 0, 0, 0, 0, time.UTC)
-	for meetup.Weekday() != wDay {
-		meetup = meetup.AddDate(0, 0, 1)
+	dayslater := func(n int) {
+		meetup = meetup.AddDate(0, 0, n)
+	}
+	for ; meetup.Weekday() != wDay; dayslater(1) {
 	}
 
 	switch wSched {
 	case First, Second, Third, Fourth:
-		meetup = meetup.AddDate(0, 0, 7*int(wSched))
+		dayslater(int(wSched) * 7)
 	case Last:
-		meetup = meetup.AddDate(0, 0, 28)
+		dayslater(28)
 		if meetup.Month() != month {
-			meetup = meetup.AddDate(0, 0, -7)
+			dayslater(-7)
+		}
+	case Teenth:
+		for ; meetup.Day() < 13; dayslater(7) {
 		}
 	default:
-		for meetup.Day() < 13 {
-			meetup = meetup.AddDate(0, 0, 7)
-		}
+		panic("invalid week schedule")
 	}
 	return meetup.Day()
 }

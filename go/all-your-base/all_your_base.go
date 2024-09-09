@@ -1,12 +1,19 @@
+// Package allyourbase is utility for numerical conversion between bases.
 package allyourbase
 
 import (
 	"errors"
 )
 
+// ConvertToBase takes a sequence of digits in one base, representing a number,
+// and converts it into a sequence of digits in another base, representing the same number.
 func ConvertToBase(inputBase int, inputDigits []int, outputBase int) ([]int, error) {
 	if inputBase < 2 {
 		return nil, errors.New("input base must be >= 2")
+	}
+
+	if outputBase < 2 {
+		return nil, errors.New("output base must be >= 2")
 	}
 
 	for _, v := range inputDigits {
@@ -14,10 +21,6 @@ func ConvertToBase(inputBase int, inputDigits []int, outputBase int) ([]int, err
 			continue
 		}
 		return nil, errors.New("all digits must satisfy 0 <= d < input base")
-	}
-
-	if outputBase < 2 {
-		return nil, errors.New("output base must be >= 2")
 	}
 
 	decimal := reduceToDecimal(inputBase, inputDigits)
