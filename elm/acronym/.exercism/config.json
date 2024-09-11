@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "tuxagon"
+  ],
+  "contributors": [
+    "nathanielknight"
+  ],
+  "files": {
+    "solution": [
+      "src/Acronym.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/Acronym.example.elm"
+    ]
+  },
+  "blurb": "Convert a long phrase to its acronym.",
+  "source": "Julien Vanier",
+  "source_url": "https://github.com/monkbroc"
+}
