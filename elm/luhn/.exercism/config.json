@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "tuxagon"
+  ],
+  "contributors": [
+    "jiegillet",
+    "nathanielknight"
+  ],
+  "files": {
+    "solution": [
+      "src/Luhn.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/Luhn.example.elm"
+    ]
+  },
+  "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",
+  "source": "The Luhn Algorithm on Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Luhn_algorithm"
+}
