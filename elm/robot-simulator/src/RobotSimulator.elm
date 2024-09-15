@@ -75,16 +75,36 @@ advance : Robot -> Robot
 advance robot =
     case robot.bearing of
         North ->
-            { robot | coordinates = { x = robot.coordinates.x, y = robot.coordinates.y + 1 } }
+            { robot
+                | coordinates =
+                    { x = robot.coordinates.x
+                    , y = robot.coordinates.y + 1
+                    }
+            }
 
         East ->
-            { robot | coordinates = { x = robot.coordinates.x + 1, y = robot.coordinates.y } }
+            { robot
+                | coordinates =
+                    { x = robot.coordinates.x + 1
+                    , y = robot.coordinates.y
+                    }
+            }
 
         South ->
-            { robot | coordinates = { x = robot.coordinates.x, y = robot.coordinates.y - 1 } }
+            { robot
+                | coordinates =
+                    { x = robot.coordinates.x
+                    , y = robot.coordinates.y - 1
+                    }
+            }
 
         West ->
-            { robot | coordinates = { x = robot.coordinates.x - 1, y = robot.coordinates.y } }
+            { robot
+                | coordinates =
+                    { x = robot.coordinates.x - 1
+                    , y = robot.coordinates.y
+                    }
+            }
 
 
 simulate : String -> Robot -> Robot

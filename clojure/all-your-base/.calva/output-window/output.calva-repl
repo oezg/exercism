@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in: (cd /home/oezg/code/exercism/clojure/all-your-base; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.1.1"},cider/cider-nrepl {:mvn/version,"0.47.1"}}}' -M -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]")
-; Using host:port localhost:35727 ...
+; Using host:port localhost:43679 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -48,23 +48,8 @@ about why stdout printed to this file is prepended with `;` to be line comments.
 clj꞉user꞉> 
 ; Jack-in done.
 clj꞉user꞉> 
-nil
+#'all-your-base/convert
 clj꞉all-your-base꞉> 
-#'all-your-base/from-base-to-ten
-clj꞉all-your-base꞉> 
-(from-base-to-ten 2 '(1 0))
-2.0
-clj꞉all-your-base꞉> 
-(from-base-to-ten 16 '(1 1
-                       ))
-17.0
-clj꞉all-your-base꞉> 
-#'all-your-base/from-base-to-ten
-clj꞉all-your-base꞉> 
-(from-base-to-ten 16 '(1 1))
-; Execution error (ArityException) at all-your-base/eval10152 (REPL:64).
-; Wrong number of args (2) passed to: all-your-base/from-base-to-ten
-clj꞉all-your-base꞉> 
-(from-base-to-ten 1 '() 16 '(1 1))
-nil
+(convert 3 '(1 1 2 0) 16)
+(2 10)
 clj꞉all-your-base꞉> 
