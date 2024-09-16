@@ -7,31 +7,16 @@ type alias Triplet =
 
 triplets : Int -> List Triplet
 triplets n =
-    let
-        z =
-            n // 2
+    List.concatMap
+        (\sumAB ->
+            List.filterMap
+                (\a ->
+                    if a ^ 2 + (sumAB - a) ^ 2 == (n - sumAB) ^ 2 then
+                        Just ( a, sumAB - a, n - sumAB )
 
-        bRange =
-            List.range (ceiling <| sqrt (toFloat n / 2)) (n // 4)
-
-        toTriplet ( x, y ) =
-            let
-                a =
-                    x * x - y * y
-
-                b =
-                    2 * x * y
-
-                c =
-                    x * x + y * y
-            in
-            ( min a b, max a b, c )
-
-        ispyth b =
-            if modBy b (n // 2) == 0 then
-                Just ( b, n // 2 // b )
-
-            else
-                Nothing
-    in
-    List.map toTriplet (List.filterMap ispyth bRange)
+                    else
+                        Nothing
+                )
+                (List.range 1 (sumAB // 2))
+        )
+        (List.range (n // 2) (2 * n // 3))
