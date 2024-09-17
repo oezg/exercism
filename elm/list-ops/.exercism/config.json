@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "jcshih"
+  ],
+  "contributors": [
+    "nathanielknight",
+    "tgecho",
+    "tuxagon"
+  ],
+  "files": {
+    "solution": [
+      "src/ListOps.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/ListOps.example.elm"
+    ]
+  },
+  "blurb": "Implement basic list operations."
+}
