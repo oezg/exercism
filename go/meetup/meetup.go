@@ -23,17 +23,19 @@ func Day(wSched WeekSchedule, wDay time.Weekday, month time.Month, year int) int
 	dayslater := func(n int) {
 		meetup = meetup.AddDate(0, 0, n)
 	}
-	for ; meetup.Weekday() != wDay; dayslater(1) {
+	for meetup.Weekday() != wDay {
+		dayslater(1)
 	}
 
 	switch wSched {
+	case Teenth:
+		for meetup.Day() < 13 {
+			dayslater(7)
+		}
 	case Last:
 		dayslater(28)
 		if meetup.Month() != month {
 			dayslater(-7)
-		}
-	case Teenth:
-		for ; meetup.Day() < 13; dayslater(7) {
 		}
 	default:
 		dayslater(int(wSched) * 7)
