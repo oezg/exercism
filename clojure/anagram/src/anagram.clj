@@ -1,11 +1,19 @@
 (ns anagram
   (:require [clojure.string :refer [lower-case]]))
 
+(defn map-equal? [f & args]
+  (apply = (map f args)))
+
+(defn not-equal? [a b]
+  (not (map-equal? lower-case a b)))
+
+(defn anagram? [a b]
+  (map-equal? (comp sort lower-case) a b))
+
+(defn all-check? [fix-input & binary-predicates]
+  (let [unary-predicates (map #(partial % fix-input) binary-predicates)]
+    (fn [x] (every? #(% x) unary-predicates))))
+
 (defn anagrams-for [word prospect-list]
-  (let [lower-word (lower-case word)
-        not-word #(not= % lower-word)
-        sorted-word (sort lower-word)
-        anagram #(= sorted-word (sort %))
-        anagram? #(let [lower (lower-case %)]
-                    (and (anagram lower) (not-word lower)))]
-    (filter anagram? prospect-list)))
+  (let [anagram (all-check? word anagram? not-equal?)]
+    (filter anagram prospect-list)))

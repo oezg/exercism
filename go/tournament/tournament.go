@@ -24,11 +24,15 @@ func Tally(reader io.Reader, writer io.Writer) error {
 	lines := strings.Split(string(buf[:n]), "\n")
 	league := tournament{}
 	for _, line := range lines {
-		// ignore comments and newlines
-		if len(line) == 0 || line[0] == '#' {
+		line = strings.TrimSpace(line)
+		// ignore comments and empty lines
+		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
-		fields := strings.Split(line, ";")
+
+		fields := strings.FieldsFunc(line, func(r rune) bool {
+			return r == ';'
+		})
 		if len(fields) != 3 {
 			return errors.New("line must have 3 fields")
 		}
@@ -37,36 +41,34 @@ func Tally(reader io.Reader, writer io.Writer) error {
 			return err
 		}
 	}
+
 	_, err = writer.Write([]byte(league.table()))
 	return err
 }
 
-type tournament map[string][]int
+type tournament map[string]performance
 
 func (t tournament) score(home, visit, result string) error {
-	switch result {
-	case "win":
-		t[home] = append(t[home], 3)
-		t[visit] = append(t[visit], 0)
-	case "draw":
-		t[home] = append(t[home], 1)
-		t[visit] = append(t[visit], 1)
-	case "loss":
-		t[home] = append(t[home], 0)
-		t[visit] = append(t[visit], 3)
-	default:
-		return errors.New("result can only be win, draw or loss")
-	}
-	return nil
-}
+	homePerformance := t[home]
+	visitorPerformance := t[visit]
 
-func (t tournament) points(name string) (points [5]int) {
-	for _, v := range t[name] {
-		points[v]++
-		points[2]++
-		points[4] += v
+	switch strings.ToLower(result) {
+	case "win":
+		homePerformance.win++
+		visitorPerformance.loss++
+	case "draw":
+		homePerformance.draw++
+		visitorPerformance.draw++
+	case "loss":
+		homePerformance.loss++
+		visitorPerformance.win++
+	default:
+		return errors.New("invalid result: " + result)
 	}
-	return
+
+	t[home] = homePerformance
+	t[visit] = visitorPerformance
+	return nil
 }
 
 func (t tournament) table() string {
@@ -75,8 +77,8 @@ func (t tournament) table() string {
 		names = append(names, k)
 	}
 	sort.Slice(names, func(i, j int) bool {
-		a := t.points(names[i])[4]
-		b := t.points(names[j])[4]
+		a := t[names[i]].points()
+		b := t[names[j]].points()
 		return a > b || a == b && names[i] < names[j]
 	})
 
@@ -84,10 +86,28 @@ func (t tournament) table() string {
 	sb.Grow(length * (1 + len(names)))
 	sb.WriteString(header)
 	for _, v := range names {
-		p := t.points(v)
-		fmt.Fprintf(&sb, template, v, p[2], p[3], p[1], p[0], p[4])
+		p := t[v]
+		fmt.Fprintf(&sb, template, v, p.matches(), p.win, p.draw, p.loss, p.points())
 	}
 	return sb.String()
 }
 
+type performance struct {
+	win  int
+	draw int
+	loss int
+}
+
+func (p performance) matches() int {
+	return p.win + p.draw + p.loss
+}
+
+func (p performance) points() int {
+	return 3*p.win + p.draw
+}
+
+// 2. map of string to struct
+// BenchmarkTally-4           52497             23596 ns/op           12290 B/op        117 allocs/op
+
+// 1. map of string to int slice
 // BenchmarkTally-4           59395             20579 ns/op           13026 B/op        158 allocs/op
