@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "rebelwarrior"
+  ],
+  "contributors": [
+    "jiegillet",
+    "nathanielknight",
+    "tgecho",
+    "tuxagon"
+  ],
+  "files": {
+    "solution": [
+      "src/RomanNumerals.elm"
+    ],
+    "test": [
+      "tests/Tests.elm"
+    ],
+    "example": [
+      ".meta/src/RomanNumerals.example.elm"
+    ]
+  },
+  "blurb": "Convert modern Arabic numbers into Roman numerals.",
+  "source": "The Roman Numeral Kata",
+  "source_url": "https://codingdojo.org/kata/RomanNumerals/"
+}
