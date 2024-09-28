@@ -23,15 +23,15 @@ module SavingsAccount
     BALANCE_RANGES.in_range(balance)
   end
 
-  module FloatPatch
-    refine Float do
+  module PercentPatch
+    refine Numeric do
       def percent
-        self / 100
+        self/100
       end
     end
   end
 
-  using FloatPatch
+  using PercentPatch
 
   def annual_balance_update(balance)
     balance * (1 + interest_rate(balance).percent)
