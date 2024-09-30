@@ -1,6 +1,7 @@
 package tournament
 
 import (
+	"bufio"
 	"errors"
 	"fmt"
 	"io"
@@ -15,34 +16,27 @@ const (
 )
 
 func Tally(reader io.Reader, writer io.Writer) error {
-	buf := make([]byte, 512)
-	n, err := reader.Read(buf)
-	if err != nil {
-		return err
-	}
-
-	lines := strings.Split(string(buf[:n]), "\n")
+	sc := bufio.NewScanner(reader)
 	league := tournament{}
-	for _, line := range lines {
-		line = strings.TrimSpace(line)
+	for sc.Scan() {
+		line := strings.TrimSpace(sc.Text())
 		// ignore comments and empty lines
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
-
-		fields := strings.FieldsFunc(line, func(r rune) bool {
-			return r == ';'
-		})
+		fields := strings.Split(line, ";")
 		if len(fields) != 3 {
 			return errors.New("line must have 3 fields")
 		}
-		err = league.score(fields[0], fields[1], fields[2])
+		err := league.score(fields[0], fields[1], fields[2])
 		if err != nil {
 			return err
 		}
 	}
-
-	_, err = writer.Write([]byte(league.table()))
+	if err := sc.Err(); err != nil {
+		return err
+	}
+	_, err := writer.Write([]byte(league.table()))
 	return err
 }
 
@@ -105,6 +99,12 @@ func (p performance) matches() int {
 func (p performance) points() int {
 	return 3*p.win + p.draw
 }
+
+// 4. strings.Split instead of FieldsFunc
+// BenchmarkTally-4           49650             24424 ns/op           40328 B/op        128 allocs/op
+
+// 3. bufio.Scanner to read line by line
+// BenchmarkTally-4           42301             30581 ns/op           40328 B/op        128 allocs/op
 
 // 2. map of string to struct
 // BenchmarkTally-4           52497             23596 ns/op           12290 B/op        117 allocs/op

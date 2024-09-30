@@ -4,19 +4,25 @@ package resistorcolortrio
 
 import "fmt"
 
+var prefixes = [...]string{"", "kilo", "mega", "giga"}
+
 // Label describes the resistance value given the colors of a resistor.
 // The label is a string with a resistance value with an unit appended
 // (e.g. "33 ohms", "470 kiloohms").
 func Label(colors []string) string {
+	if len(colors) < 3 {
+		return ""
+	}
+
 	value := value(colors[:2])
 	for power := resistorValue(colors[2]); power > 0; power-- {
 		value *= 10
 	}
 	j := 0
-	for ; value > 1000; value /= 1000 {
+	for ; j < len(prefixes) && value > 1000; value /= 1000 {
 		j++
 	}
-	prefix := [...]string{"", "kilo", "mega", "giga"}[j]
+	prefix := prefixes[j]
 
 	return fmt.Sprintf("%d %sohms", value, prefix)
 }
