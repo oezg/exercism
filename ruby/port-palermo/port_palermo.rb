@@ -1,13 +1,20 @@
 module Port
+
   IDENTIFIER = :PALE
   PORT = ...4
   CARGO = ...3
+  TERMINALS = {
+    OIL: :A,
+    GAS: :A,
+  }
+  TERMINALS.default = :B
 
   def self.get_identifier(city)
     city[PORT].upcase.to_sym
   end
 
   def self.get_terminal(ship_identifier)
-    ["OIL", "GAS"].include?(ship_identifier[CARGO]) ? :A : :B
+    TERMINALS[ship_identifier[CARGO].to_sym]
   end
+
 end

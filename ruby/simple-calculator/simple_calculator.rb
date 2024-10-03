@@ -1,27 +1,45 @@
-class SimpleCalculator
-
+module CalculatorExceptions
   class UnsupportedOperation < StandardError
   end
+end
 
-  ALLOWED_OPERATIONS = ['+', '/', '*'].freeze
+class SimpleCalculator
+
+  include CalculatorExceptions
+
+  OPERATIONS = {
+    '+' => ->(operand1, operand2) { operand1 + operand2 },
+    '*' => ->(operand1, operand2) { operand1 * operand2 },
+    '/' => ->(nominator, denominator) { nominator / denominator }
+  }
 
   def self.calculate(first_operand, second_operand, operation)
-    raise UnsupportedOperation unless ALLOWED_OPERATIONS.include? operation
+    new(first_operand, second_operand, operation).to_s
+  end
 
-    raise ArgumentError unless first_operand.is_a? Numeric and second_operand.is_a? Numeric
-
-    result = case operation
-    when '+'
-      first_operand + second_operand
-    when '*'
-      first_operand * second_operand
-    when '/'
-      first_operand / second_operand
-    end
-
-    "#{first_operand} #{operation} #{second_operand} = #{result}"
-
+  def to_s
+    '%<left>i %<operation>s %<right>i = %<result>.0f' % {
+      left: operand1,
+      operation: operator,
+      right: operand2,
+      result: operation.call(operand1, operand2)
+    }
     rescue ZeroDivisionError
       "Division by zero is not allowed."
   end
+
+  private
+
+  attr_accessor :operand1, :operand2, :operator, :operation
+
+  def initialize(operand1, operand2, operation)
+    raise UnsupportedOperation unless OPERATIONS.include? operation
+    raise ArgumentError unless [operand1, operand2].all?(Numeric)
+
+    self.operand1 = operand1
+    self.operand2 = operand2
+    self.operator = operation
+    self.operation = OPERATIONS[operation]
+  end
+
 end
