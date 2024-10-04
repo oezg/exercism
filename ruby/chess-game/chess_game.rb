@@ -10,7 +10,7 @@ module Chess
   }
 
   def valid_square?(rank, file)
-    RANKS.cover? rank and FILES.cover? file
+    RANKS.cover? Integer(rank) and FILES.cover? file
   end
 
   def nick_name(first_name, last_name)
@@ -25,16 +25,9 @@ module Chess
   private
 
   def valid?(square)
-    valid_square?(square[1].to_i, square[0])
+    valid_square?(*square.reverse.split(""))
   end
 
 end
 
 Chess.extend Chess
-
-if $PROGRAM_NAME == __FILE__
-  puts '4 Public methods for Chess:'
-  puts Chess.public_methods(false).take(4).sort.join(', ')
-  puts '4 Private methods for Chess:'
-  puts Chess.private_methods(false).take(4).sort.join(', ')
-end

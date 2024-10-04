@@ -10,7 +10,7 @@ class SimpleCalculator
   OPERATIONS = {
     '+' => ->(operand1, operand2) { operand1 + operand2 },
     '*' => ->(operand1, operand2) { operand1 * operand2 },
-    '/' => ->(nominator, denominator) { nominator / denominator }
+    '/' => ->(numerator, denominator) { numerator / denominator }
   }
 
   def self.calculate(first_operand, second_operand, operation)
@@ -22,10 +22,10 @@ class SimpleCalculator
       left: operand1,
       operation: operator,
       right: operand2,
-      result: operation.call(operand1, operand2)
+      result: operation[operand1, operand2]
     }
     rescue ZeroDivisionError
-      "Division by zero is not allowed."
+      'Division by zero is not allowed.'
   end
 
   private

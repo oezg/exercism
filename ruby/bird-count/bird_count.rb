@@ -1,25 +1,33 @@
 class BirdCount
+
   def self.last_week
-    raise 'Please implement the BirdCount.last_week method'
+    [0, 2, 5, 3, 7, 8, 4]
   end
+
+  private
+
+  attr_accessor :birds_per_day
 
   def initialize(birds_per_day)
-    raise 'Please implement the BirdCount#initialize method'
+    self.birds_per_day = birds_per_day
   end
 
+  public
+
   def yesterday
-    raise 'Please implement the BirdCount#yesterday method'
+    self.birds_per_day[-2]
   end
 
   def total
-    raise 'Please implement the BirdCount#total method'
+    self.birds_per_day.sum
   end
 
   def busy_days
-    raise 'Please implement the BirdCount#busy_days method'
+    self.birds_per_day.select { |day| day >= 5 }.count
   end
 
   def day_without_birds?
-    raise 'Please implement the BirdCount#day_without_birds method'
+    self.birds_per_day.any? { |day| day == 0 }
   end
+
 end
