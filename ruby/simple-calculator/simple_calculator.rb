@@ -1,6 +1,19 @@
 module CalculatorExceptions
-  class UnsupportedOperation < StandardError
+
+  class UnsupportedOperationError < StandardError
+    def initialize(message = 'Operator is not supported')
+      super
+    end
   end
+
+  UnsupportedOperation = UnsupportedOperationError
+
+  class OperandError < ArgumentError
+    def initialize(message = 'All operands must be numeric')
+      super
+    end
+  end
+
 end
 
 class SimpleCalculator
@@ -8,8 +21,8 @@ class SimpleCalculator
   include CalculatorExceptions
 
   OPERATIONS = {
-    '+' => ->(operand1, operand2) { operand1 + operand2 },
-    '*' => ->(operand1, operand2) { operand1 * operand2 },
+    '+' => ->(operand1, operand2)     { operand1 + operand2 },
+    '*' => ->(operand1, operand2)     { operand1 * operand2 },
     '/' => ->(numerator, denominator) { numerator / denominator }
   }
 
@@ -18,11 +31,11 @@ class SimpleCalculator
   end
 
   def to_s
-    '%<left>i %<operation>s %<right>i = %<result>.0f' % {
-      left: operand1,
+    '%<operand1>i %<operation>s %<operand2>i = %<result>.0f' % {
+      operand1:  operand1,
       operation: operator,
-      right: operand2,
-      result: operation[operand1, operand2]
+      operand2:  operand2,
+      result:    operation[operand1, operand2]
     }
     rescue ZeroDivisionError
       'Division by zero is not allowed.'
@@ -30,15 +43,18 @@ class SimpleCalculator
 
   private
 
-  attr_accessor :operand1, :operand2, :operator, :operation
+  attr_accessor :operand1,
+                :operand2,
+                :operator,
+                :operation
 
   def initialize(operand1, operand2, operation)
     raise UnsupportedOperation unless OPERATIONS.include? operation
-    raise ArgumentError unless [operand1, operand2].all?(Numeric)
+    raise OperandError         unless [operand1, operand2].all?(Numeric)
 
-    self.operand1 = operand1
-    self.operand2 = operand2
-    self.operator = operation
+    self.operand1  = operand1
+    self.operand2  = operand2
+    self.operator  = operation
     self.operation = OPERATIONS[operation]
   end
 

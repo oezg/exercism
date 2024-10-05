@@ -2,7 +2,10 @@
 // of three color bands.
 package resistorcolortrio
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 var prefixes = [...]string{"", "kilo", "mega", "giga"}
 
@@ -14,24 +17,14 @@ func Label(colors []string) string {
 		return ""
 	}
 
-	value := resistorValue(colors[:2])
-	for power := resistorColors[colors[2]]; power > 0; power-- {
-		value *= 10
-	}
-
+	value := resistorColors[colors[0]]*10 + resistorColors[colors[1]]
+	value *= int(math.Pow10(resistorColors[colors[2]]))
 	j := 0
 	for ; j < len(prefixes) && value > 1_000; value /= 1_000 {
 		j++
 	}
 
 	return fmt.Sprintf("%d %sohms", value, prefixes[j])
-}
-
-func resistorValue(colors []string) (value int) {
-	for i, power := len(colors)-1, 1; i >= 0; i, power = i-1, power*10 {
-		value += resistorColors[colors[i]] * power
-	}
-	return
 }
 
 var resistorColors = map[string]int{
@@ -47,4 +40,4 @@ var resistorColors = map[string]int{
 	"white":  9,
 }
 
-// BenchmarkLabel-4          507986              2122 ns/op             248 B/op         19 allocs/op
+// BenchmarkLabel-4          535584              2082 ns/op             248 B/op         19 allocs/op
