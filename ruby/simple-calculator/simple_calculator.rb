@@ -37,8 +37,8 @@ class SimpleCalculator
       operand2:  operand2,
       result:    operation[operand1, operand2]
     }
-    rescue ZeroDivisionError
-      'Division by zero is not allowed.'
+  rescue ZeroDivisionError
+    'Division by zero is not allowed.'
   end
 
   private

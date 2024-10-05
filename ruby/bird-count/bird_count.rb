@@ -10,7 +10,9 @@ class BirdCount
                    :DEFINITION_OF_BUSY,
                    :PENULTIMATE
 
-  def self.last_week = LAST_WEEK
+  def self.last_week
+    LAST_WEEK
+  end
 
   private
 
@@ -22,12 +24,20 @@ class BirdCount
 
   public
 
-  def yesterday()= birds_per_day.fetch PENULTIMATE
+  def yesterday
+    birds_per_day.fetch PENULTIMATE
+  end
 
-  def total()= birds_per_day.sum
+  def total
+    birds_per_day.sum
+  end
 
-  def busy_days()= birds_per_day.select(&DEFINITION_OF_BUSY).count
+  def busy_days
+    birds_per_day.select(&DEFINITION_OF_BUSY).count
+  end
 
-  def day_without_birds?()= birds_per_day.any? { |day| day.zero? }
+  def day_without_birds?
+    birds_per_day.any? { |day| day.zero? }
+  end
 
 end
