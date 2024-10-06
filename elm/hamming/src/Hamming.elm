@@ -1,32 +1,21 @@
 module Hamming exposing (distance)
 
 
-errorMessage : String
-errorMessage =
-    "strands must be of equal length"
-
-
-foldLeft2 : Int -> List a -> List a -> Maybe Int
-foldLeft2 acc a b =
-    case ( a, b ) of
-        ( x :: xs, y :: ys ) ->
-            Maybe.map
-                (\n ->
-                    if x /= y then
-                        n + 1
-
-                    else
-                        n
-                )
-                (foldLeft2 acc xs ys)
-
-        ( [], [] ) ->
-            Just acc
-
-        _ ->
-            Nothing
-
-
 distance : String -> String -> Result String Int
 distance left right =
-    Result.fromMaybe errorMessage (foldLeft2 0 (String.toList left) (String.toList right))
+    if String.length left /= String.length right then
+        Err "strands must be of equal length"
+
+    else
+        List.map2
+            (\a b ->
+                if a == b then
+                    0
+
+                else
+                    1
+            )
+            (String.toList left)
+            (String.toList right)
+            |> List.sum
+            |> Ok

@@ -33,11 +33,11 @@ class BirdCount
   end
 
   def busy_days
-    birds_per_day.select(&DEFINITION_OF_BUSY).count
+    birds_per_day.count(&DEFINITION_OF_BUSY)
   end
 
   def day_without_birds?
-    birds_per_day.any? { |day| day.zero? }
+    birds_per_day.any?(&:zero?)
   end
 
 end

@@ -19,7 +19,7 @@ class BoutiqueInventory
   end
 
   def cheap
-    items.select &CHEAP
+    items.select(&CHEAP)
   end
 
   def out_of_stock
