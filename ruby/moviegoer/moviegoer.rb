@@ -3,10 +3,10 @@ end
 
 class Moviegoer
 
-  SENIOR        = 60
-  JUNIOR        = 18
+  SENIOR         = 60
+  JUNIOR         = 18
   DISCOUNT_PRICE = 10
-  NORMAL_PRICE  = 15
+  NORMAL_PRICE   = 15
 
   private_constant :SENIOR,
                    :JUNIOR,
@@ -17,7 +17,7 @@ class Moviegoer
   private
 
   attr_accessor :age,
-              :member
+                :member
 
   def initialize(age, member: false)
     self.age = age

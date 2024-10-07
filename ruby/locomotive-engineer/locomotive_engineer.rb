@@ -1,20 +1,22 @@
-class LocomotiveEngineer
+module LocomotiveEngineer
 
-  def self.generate_list_of_wagons(*array)
-    array
+  def generate_list_of_wagons(*wagon_ids)
+    wagon_ids
   end
 
-  def self.fix_list_of_wagons(each_wagons_id, missing_wagons)
-    a, b, loc, *rest = each_wagons_id
-    [loc, *missing_wagons, *rest, a, b]
+  def fix_list_of_wagons(each_wagons_id, missing_wagons)
+    first_wagon, second_wagon, locomotive, *rest = each_wagons_id
+    [locomotive, *missing_wagons, *rest, first_wagon, second_wagon]
   end
 
-  def self.add_missing_stops(routing, **cities)
-    {**routing, stops: cities.values}
+  def add_missing_stops(routing, **stops)
+    {**routing, stops: stops.values}
   end
 
-  def self.extend_route_information(route, more_route_information)
+  def extend_route_information(route, more_route_information)
     {**route, **more_route_information}
   end
 
 end
+
+LocomotiveEngineer.extend LocomotiveEngineer
