@@ -1,15 +1,15 @@
 (ns nth-prime)
 
-(defn- candidates [n]
+(defn candidates [n]
   (range 3 (inc (Math/sqrt n)) 2))
 
-(defn- not-divisible [n m]
-  (not= 0 (mod n m)))
+(defn divisible-by [n m]
+  (zero? (rem n m)))
 
-(defn- prime? [n]
-  (every? (partial not-divisible n) (candidates n)))
+(defn prime? [n]
+  (every? (partial (complement divisible-by) n) (candidates n)))
 
-(defn- next-prime
+(defn next-prime
   "Returns the next prime number greater than n."
   [n]
   (cond

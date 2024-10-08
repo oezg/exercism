@@ -1,7 +1,7 @@
 module LocomotiveEngineer
 
-  def generate_list_of_wagons(*wagon_ids)
-    wagon_ids
+  def generate_list_of_wagons(*identifiers)
+    identifiers
   end
 
   def fix_list_of_wagons(each_wagons_id, missing_wagons)
@@ -13,8 +13,8 @@ module LocomotiveEngineer
     {**routing, stops: stops.values}
   end
 
-  def extend_route_information(route, more_route_information)
-    {**route, **more_route_information}
+  def extend_route_information(routing, routing_extension)
+    {**routing, **routing_extension}
   end
 
 end

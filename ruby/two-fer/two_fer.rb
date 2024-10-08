@@ -1,21 +1,12 @@
-class TwoFer
-
-  def self.two_fer(name = 'you')
-    new(name).to_s
+class String
+  def crazy_shit(my_map)
+    self % my_map
   end
+end
 
-  private
 
-  attr_accessor :name
+TwoFer = 'One for %<name>s, one for me.'
 
-  def initialize(name)
-    self.name = name
-  end
-
-  public
-
-  def to_s
-    'One for %<name>s, one for me.' % {name:}
-  end
-
+def TwoFer.two_fer(name = 'you')
+  crazy_shit({name:})
 end
