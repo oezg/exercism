@@ -13,9 +13,7 @@ class BoutiqueInventory
   end
 
   def total_stock
-    items.sum do |item|
-      item.quantity_by_size.values.sum
-    end
+    items.sum { |item| item.quantity_by_size.values.sum }
   end
 
 end

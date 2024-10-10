@@ -14,37 +14,41 @@ module Blackjack
     'jack' => 10,
     'queen' => 10,
     'king' => 10
-  }
-  CARDS.default = 0
-  CARDS.freeze
+  }.freeze
 
   private_constant :CARDS
 
-  def parse_card(card)
-    CARDS[card]
-  end
+  class << self
 
-  def card_range(card1, card2)
-    case parse_card(card1) + parse_card(card2)
-    when 4..11 then 'low'
-    when 12..16 then 'mid'
-    when 17..20 then 'high'
-    when 21 then 'blackjack'
-    when 22 then 'two aces'
-    else 'invalid'
+    def parse_card(card)
+      CARDS.fetch(card, 0)
     end
-  end
 
-  def first_turn(card1, card2, dealer_card)
-    case card_range(card1, card2)
-    when 'two aces' then 'P'
-    when 'low' then 'H'
-    when 'high' then 'S'
-    when 'mid' then if parse_card(dealer_card) >= 7 then 'H' else 'S' end
-    when 'blackjack' then if parse_card(dealer_card) < 10 then 'W' else 'S' end
+    def card_range(card1, card2)
+      case parse_card(card1) + parse_card(card2)
+      when 4..11 then 'low'
+      when 12..16 then 'mid'
+      when 17..20 then 'high'
+      when 21 then 'blackjack'
+      when 22 then 'two aces'
+      end
     end
+
+    def first_turn(card1, card2, dealer_card)
+      case card_range(card1, card2)
+      when 'two aces'
+        'P'  # Split
+      when 'low'
+        'H'  # Hit
+      when 'high'
+        'S'  # Stand
+      when 'mid'
+        parse_card(dealer_card) >= 7 ? 'H' : 'S'
+      when 'blackjack'
+        parse_card(dealer_card) < 10 ? 'W' : 'S'
+      end
+    end
+
   end
 
 end
-
-Blackjack.extend Blackjack
