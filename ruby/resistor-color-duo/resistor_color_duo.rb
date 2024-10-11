@@ -15,19 +15,21 @@ class ResistorColorDuo
 
   private_constant :BANDS
 
-  class << self
+  def self.value(colors)
+    new(colors).to_i
+  end
 
-    def value(colors)
-      color1, color2 = colors.map { |color| color_code(color) }
-      10 * color1 + color2
-    end
+  def to_i
+    resistor_value
+  end
 
-    private
+  private
 
-    def color_code(color)
-      BANDS.fetch(color.to_sym)
-    end
+  attr_accessor :resistor_value
 
+  def initialize(colors)
+    color1, color2 = colors.map(&:intern).map(&BANDS)
+    self.resistor_value = 10 * color1 + color2
   end
 
 end

@@ -25,5 +25,6 @@
    (+ (* b c) (* a d))])
 
 (defn div [[a b] [c d]]
-  [(/ (+ (* a c) (* b d)) (+ (* c c) (* d d)))
-   (/ (- (* b c) (* a d)) (+ (* c c) (* d d)))])
+  (let [denominator (+ (* c c) (* d d))]
+    [(/ (+ (* a c) (* b d)) denominator)
+     (/ (- (* b c) (* a d)) denominator)]))

@@ -1,5 +1,8 @@
 (ns etl
-  (:require [clojure.string :refer [lower-case]]))
+  (:require [clojure.string :as string]))
 
 (defn transform [source]
-  (into {} (for [[k v] source s v] [(lower-case s) k])))
+  (->> (for [[score values] source
+             value values]
+         [(string/lower-case value) score])
+       (into {})))
