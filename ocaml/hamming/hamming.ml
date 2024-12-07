@@ -6,9 +6,9 @@ let hamming_distance (a: nucleotide list) (b: nucleotide list) =
   | 0, _ -> Error "left strand must not be empty"
   | _, 0 -> Error "right strand must not be empty"
   | x, y when x <> y -> Error "left and right strands must be of equal length"
-  | _ -> 
-    let distance = 
-      List.combine a b |> List.filter (fun p -> fst p <> snd p) |>  List.length
+  | _ ->
+    let distance =
+      List.fold_left2 (fun acc x y -> acc + if x <> y then 1 else 0) 0 a b
     in
     Ok distance
 
