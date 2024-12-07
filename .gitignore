@@ -53,6 +53,6 @@ package-lock.json
 /typescript/*/.yarn/*
 !/typescript/*/.yarn/releases
 
-/ocaml/*/_build/
+/ocaml/*/_build
 
 _build
