@@ -13,17 +13,17 @@ makeTree =
 
 sort : List Int -> List Int
 sort =
-    makeTree >> backToList []
+    makeTree >> backToList
 
 
-backToList : List Int -> BinaryTree -> List Int
-backToList acc tree =
+backToList : BinaryTree -> List Int
+backToList tree =
     case tree of
         Empty ->
-            acc
+            []
 
         Tree left value right ->
-            backToList (value :: backToList acc right) left
+            backToList left ++ (value :: backToList right)
 
 
 add : Int -> BinaryTree -> BinaryTree
