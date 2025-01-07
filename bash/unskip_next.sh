@@ -7,3 +7,5 @@ if [[ ! $filename =~ .bats$ ]]; then
 fi
 
 sed -i '0,/^  \(\[\[ $BATS_RUN_SKIPPED == "true" ]] || skip$\)/ s//  # \1/' "$filename"
+
+bats "$filename"
