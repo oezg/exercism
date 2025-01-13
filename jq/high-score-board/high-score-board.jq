@@ -8,7 +8,7 @@ def create_score_board:
 #   input: a score board object.
 #   output: the score board with the new player added.
 def add_player(player; score):
-  if has(player) | not then .[player] = score end;
+  {(player): score} + .;
 
 # Remove a player from a score board.
 #   input: a score board object.
