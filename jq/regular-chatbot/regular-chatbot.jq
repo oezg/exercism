@@ -14,7 +14,7 @@ def check_phone_number:
   end;
 
 def get_domains: 
-  [scan("(?: \\w+ \\.)+ \\w {2,3}"; "x")];
+  [scan("(?: \\w+ \\.)+ \\w{2,}"; "x")];
 
 def extract_name:
   capture("my name is (?<name>[a-z-]+)"; "i").name;
