@@ -2,21 +2,24 @@ def rest: .[1:];
 def isempty: length == 0;
 
 def array_add:
+  first + 
   if isempty 
     then 0
-    else first + (rest | array_add)
+    else (rest | array_add)
   end;
 
 def array_reverse:
   if isempty 
     then []
-    else (rest | array_reverse) + [first]
-  end;
+    else (rest | array_reverse)
+  end 
+  + [first // empty];
 
 def array_map(f):
   def _map:
+    [first // empty | f] + 
     if isempty 
       then []
-      else [first | f] + (rest | _map)
+      else (rest | _map)
     end;
   _map;
