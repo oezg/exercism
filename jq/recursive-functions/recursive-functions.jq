@@ -1,25 +1,26 @@
 def rest: .[1:];
 def isempty: length == 0;
+def second: .[1];
+
+def master(array_add; array_reverse; array_map; fun):
+  def tco:
+    if second | isempty
+      then first 
+    else
+      if array_reverse
+        then .[0] = [second | first] + first
+      elif array_add
+        then .[0] += (second | first)
+      else .[0] += [second | first | fun]
+      end | .[1] = (second | rest) | tco
+    end;
+  [(if array_add then 0 else [] end), .] | tco;
 
 def array_add:
-  first + 
-  if isempty 
-    then 0
-    else (rest | array_add)
-  end;
+  master(true; false; false; null);
 
 def array_reverse:
-  if isempty 
-    then []
-    else (rest | array_reverse)
-  end 
-  + [first // empty];
-
+  master(false; true; false; null);
+  
 def array_map(f):
-  def _map:
-    [first // empty | f] + 
-    if isempty 
-      then []
-      else (rest | _map)
-    end;
-  _map;
+  master(false; false; true; f);
