@@ -1,23 +1,16 @@
-def is_divisible(n):
-    . % n == 0;
+def pling:
+    {"3": "i", "5": "a", "7": "o"}[tostring] | "Pl\(.)ng";
 
-def drops:
-    [
-        if is_divisible(3) then "Pling" else empty end,
-        if is_divisible(5) then "Plang" else empty end,
-        if is_divisible(7) then "Plong" else empty end
-    ];
+def tailcalloptimizable:
+    if .array != [] then
+        (.array | first) as $head
+        | .array |= .[1:]
+        | if .number % $head == 0 then
+            .result += [$head | pling]
+        end
+        | tailcalloptimizable
+    end;
 
-def rain:
-    join("");
-def jigolo:
-    .number as $number | .number | drops | add // $number;
-
-
-jigolo
-# rain as $raindrops |
-# if ($raindrops | length) == 0 then
-#     $number
-# else
-#     $raindrops
-# end
+. + {array: [3, 5, 7], result: []}
+| tailcalloptimizable
+| (.result | add) // .number
