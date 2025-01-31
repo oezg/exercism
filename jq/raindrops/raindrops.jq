@@ -11,6 +11,17 @@ def tailcalloptimizable:
         | tailcalloptimizable
     end;
 
-. + {array: [3, 5, 7], result: []}
-| tailcalloptimizable
-| (.result | add) // .number
+def main:
+    . + {array: [3, 5, 7], result: []}
+    | tailcalloptimizable
+    | (.result | add) // .number;
+
+def glenn:
+    .number as $n
+    | {"Pling": 3, "Plang": 5, "Plong": 7}
+    | to_entries
+    | map(select($n % .value == 0))
+    | map(.key)
+    | add // $n;
+
+glenn
