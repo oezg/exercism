@@ -21,7 +21,7 @@ END_EXPECTED
 }
 
 @test 'no nesting' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -46,7 +46,7 @@ END_EXPECTED
 }
 
 @test 'flattens a nested array' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -67,7 +67,7 @@ END_EXPECTED
 }
 
 @test 'flattens array with just integers present' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -104,7 +104,7 @@ END_EXPECTED
 }
 
 @test '5 level nesting' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -151,7 +151,7 @@ END_EXPECTED
 }
 
 @test '6 level nesting' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -198,7 +198,7 @@ END_EXPECTED
 }
 
 @test 'null values are omitted from the final result' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -222,7 +222,7 @@ END_EXPECTED
 }
 
 @test 'consecutive null values at the front of the list are omitted from the final result' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -245,7 +245,7 @@ END_EXPECTED
 }
 
 @test 'consecutive null values in the middle of the list are omitted from the final result' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -270,7 +270,7 @@ END_EXPECTED
 }
 
 @test '6 level nest list with null values' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
@@ -317,7 +317,7 @@ END_EXPECTED
 }
 
 @test 'all values in nested list are null' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f flatten-array.jq << 'END_INPUT'
 {
