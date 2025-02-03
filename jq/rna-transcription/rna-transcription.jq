@@ -1,5 +1,6 @@
-def transcr:
-  {"65": 85, "67": 71, "71": 67, "84": 65}[tostring];
+def table: {"A": "U", "C": "G", "G": "C", "T": "A"};
 
 def toRna:
-  explode | map(transcr) | implode;
+  explode
+  | map([.] | implode | table[.])
+  | reduce .[] as $item (""; . + $item);
