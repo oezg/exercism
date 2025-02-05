@@ -16,11 +16,11 @@ def add_player(player; score):
 def remove_player(player):
   del(.[player]);
 
-# Increase a player's score by the given amount.
+# Increase a player's score by the given amount, add new player.
 #   input: a score board object.
 #   output: the score board with the player's score increased, if they exist.
 def update_score(player; points):
-  if has(player) then .[player] += points end;
+  .[player] += points;
 
 # Apply 100 bonus points to all players on the board.
 #   input: a score board object.
