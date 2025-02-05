@@ -1,7 +1,7 @@
 .heyBob 
 | gsub("^\\s+|\\s+$"; "") 
-| (length == 0) as $silence
 | endswith("?") as $question
+| (. == "") as $silence
 | ((test("[a-z]") | not) and test("[A-Z]")) as $yell
 | if $yell and $question then
     "Calm down, I know what I'm doing!"
