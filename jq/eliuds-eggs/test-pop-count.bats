@@ -18,7 +18,7 @@ END_INPUT
 }
 
 @test '1 egg' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f pop-count.jq << 'END_INPUT'
 {
@@ -32,7 +32,7 @@ END_INPUT
 }
 
 @test '4 eggs' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f pop-count.jq << 'END_INPUT'
 {
@@ -46,7 +46,7 @@ END_INPUT
 }
 
 @test '13 eggs' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f pop-count.jq << 'END_INPUT'
 {
