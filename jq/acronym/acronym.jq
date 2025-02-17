@@ -1,9 +1,6 @@
 def acronym:
-    gsub("[^a-zA-Z\\s-]"; "")
-    | gsub("[\\s-]+"; "-")
-    | split("-")
-    | map(.[0:1])
-    | join("")
-    | ascii_upcase;
+    split("[\\s-]+"; null)
+    | map(ltrimstr("_")[0:1] | ascii_upcase)
+    | join("");
 
 .phrase | acronym
