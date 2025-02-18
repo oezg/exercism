@@ -1,5 +1,5 @@
 def factors:
-    .range = [pow(.value; 0.5) | floor | range(2; . + 1)]
+    .range = [.value | sqrt | floor | range(2; . + 1)]
     | .factors = [];
 
 def primes:
@@ -7,13 +7,13 @@ def primes:
         if .range == [] then
             .factors += [.value]
         else
-            (.range | first) as $head 
+            (.range | first) as $head
             | if .value % $head == 0 then
                 .value |= . / $head
-                | .factors += [$head] 
+                | .factors += [$head]
             else
                 .range |= .[1:]
-            end 
+            end
             | primes
         end
     end;
