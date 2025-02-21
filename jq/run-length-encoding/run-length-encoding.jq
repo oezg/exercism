@@ -1,13 +1,29 @@
+def reducer:
+  reduce .[] as $x ([]; 
+    if . == [] or last.value != $x then
+      . + [{value: $x, count: 1}]
+    else
+      last.count += 1
+    end);
+
+def torna:
+  if .count == 1 then 
+    .value
+  else 
+    "\(.count)\(.value)"
+  end;
+
+def ritorna:
+  if .count == null then 
+    .value
+  else
+    .value as $value
+    | [range(.count | tonumber) | $value] 
+    | add
+  end;
+
 def encode:
-  "Implement this function" | halt_error;
+  . / "" | reducer | map(torna) | add // "";
 
 def decode:
-  "Implement this function" | halt_error;
-
-if .property == "encode" then
-    .input.string | encode
-elif .property == "decode" then
-    .input.string | decode
-else
-    .input.string | encode | decode
-end
+  [capture("(?<count>\\d+)?(?<value>[a-z ])"; "gi") | ritorna] | add // "";
