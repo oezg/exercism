@@ -7,20 +7,10 @@ def reducer:
     end);
 
 def torna:
-  if .count == 1 then 
-    .value
-  else 
-    "\(.count)\(.value)"
-  end;
+  "\(if .count > 1 then .count else "" end)\(.value)";
 
 def ritorna:
-  if .count == null then 
-    .value
-  else
-    .value as $value
-    | [range(.count | tonumber) | $value] 
-    | add
-  end;
+  .value * (.count // "1" | tonumber);
 
 def encode:
   . / "" | reducer | map(torna) | add // "";
