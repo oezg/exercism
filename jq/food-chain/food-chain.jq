@@ -31,8 +31,8 @@ def nth_line_from_end:
 def verse:
     [
         first_line, 
-        when(. > 0; second_line), 
-        when(. < 7; (range(.; 0; -1) | nth_line_from_end), final_line)
+        when(animal != "fly"; second_line), 
+        when(animal != "horse"; (range(.; 0; -1) | nth_line_from_end), final_line)
     ] | add;
 
 [range(.startVerse - 1; .endVerse) | verse] | join("\n")
