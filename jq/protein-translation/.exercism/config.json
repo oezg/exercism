@@ -4,7 +4,11 @@
   ],
   "files": {
     "solution": [
-      "protein-translation.jq"
+      "protein-translation.jq",
+      "input.txt",
+      "codons.jq",
+      "codons.json",
+      "helper.jq"
     ],
     "test": [
       "test-protein-translation.bats"

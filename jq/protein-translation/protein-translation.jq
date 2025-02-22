@@ -1,15 +1,20 @@
+include "helper";
+
 def chunk(size):
     def _chunk:
-        if length < size then
-            empty
-        else
-            .[]
-
-def partition(size; step):
-    def _partition:
-        if length < size then
-            empty
-        else
-            .[:size], (.[step:] | _partition)
+        if length > size then
+            .[:size], (.[size:] | _chunk)
         end;
-    _partition;
+    _chunk;
+
+def translate:
+    codons[.] // ("Invalid codon" | halt_error);
+
+def chain:
+    if . == [] or (first | translate == "STOP") then
+        empty
+    else
+        (first | translate), (.[1:] | chain)
+    end;
+
+.strand / "" | [chunk(3) | add // empty] | [chain]
