@@ -1,4 +1,6 @@
+def anagram(word):
+    . != word and (. / "" | sort) == (word / "" | sort);
+
 (.subject | ascii_downcase) as $subject
-| ($subject | explode | sort) as $anagram
 | .candidates
-| map(select(ascii_downcase | . != $subject and (explode | sort) == $anagram))
+| map(select(ascii_downcase | anagram($subject)))

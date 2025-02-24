@@ -1,7 +1,4 @@
-(.lines | map(length)) as $lengths
-| .lines
-| to_entries
-| map(.value + " " * (($lengths[.key:] | max) - $lengths[.key]))
+.lines
 | map(. / "")
 | transpose
-| map(add)
+| map(until(last != null; .[:-1]) | map(. // " ") | add)
