@@ -1,15 +1,10 @@
 . / ""
 | map(select(. != " "))
 | reverse
-| to_entries
 | try (
     if length == 1 then error end
-    | map(.value |= tonumber)
-    | reduce .[] as $i (0;
-        . + if $i.key % 2 == 0 then
-            $i.value
-        else
-            $i.value * 2 - (if $i.value < 5 then 0 else 9 end)
-        end)
+    | map(tonumber)
+    | [(.[range(1; length; 2)] | . * 2 | if . > 9 then . - 9 end), .[range(0; length; 2)]]
+    | add
     | . % 10 == 0
 ) catch false
