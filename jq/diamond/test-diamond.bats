@@ -37,7 +37,7 @@ END_EXPECTED
 }
 
 @test 'Smallest non-degenerate case with odd diamond side length' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f diamond.jq << 'END_INPUT'
         {
@@ -58,7 +58,7 @@ END_EXPECTED
 }
 
 @test 'Smallest non-degenerate case with even diamond side length' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f diamond.jq << 'END_INPUT'
         {
@@ -81,7 +81,7 @@ END_EXPECTED
 }
 
 @test 'Largest possible diamond' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f diamond.jq << 'END_INPUT'
         {
