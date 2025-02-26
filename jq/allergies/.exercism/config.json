@@ -4,7 +4,8 @@
   ],
   "files": {
     "solution": [
-      "allergies.jq"
+      "allergies.jq",
+      "rank.jq"
     ],
     "test": [
       "test-allergies.bats"
