@@ -1,18 +1,11 @@
-include "rank";
+include "digits";
 
-def allergen(score):
-    if . == [] or score == 0 then
-        empty
-    else
-        first.value as $value
-        | if score >= $value then
-            (.[1:] | allergen(score - $value)), first.name
-        else
-            .[1:] | allergen(score)
-        end
-    end;
-
-(.input.score % sum_allergen_values) as $score
-| .input.item as $item
-| [[rank] | allergen($score)]
+.input.item as $item
+| [
+    (.input.score | [digits(2)] | reverse), 
+    "eggs peanuts shellfish strawberries tomatoes chocolate pollen cats" / " "
+] 
+| transpose 
+| until(last | last != null; .[:-1]) 
+| map(select(first == 1) | last)
 | if $item then index($item) != null end
