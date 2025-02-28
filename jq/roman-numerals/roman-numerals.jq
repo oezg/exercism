@@ -1,16 +1,7 @@
-include "digits";
-
-def table: 
-    {
-        I: ["I", "X", "C", "M"], 
-        V: ["V", "L", "D"], 
-        X: ["X", "C", "M"]
-    };
-
 def toroman: 
-    table.I.[.key] as $I
-    | table.V.[.key] as $V
-    | table.X.[.key] as $X
+    ["I", "X", "C", "M"][.key] as $I
+    | ["V", "L", "D"][.key] as $V
+    | ["X", "C", "M"][.key] as $X
     | [
         "", 
         "\($I)", 
@@ -25,8 +16,7 @@ def toroman:
     ][.value];
 
 .number 
-| [digits(10)] 
-| reverse 
+| if . == 0 then [0] else [while(. > 0; . /= 10 | floor) | . % 10] end
 | to_entries 
 | map(toroman) 
 | reverse 
