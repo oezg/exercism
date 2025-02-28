@@ -68,7 +68,7 @@ load bats-jq
 }
 
 @test '27 is XXVII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 27}'
     assert_success
     expected='XXVII'
@@ -76,7 +76,7 @@ load bats-jq
 }
 
 @test '48 is XLVIII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 48}'
     assert_success
     expected='XLVIII'
@@ -84,7 +84,7 @@ load bats-jq
 }
 
 @test '49 is XLIX' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 49}'
     assert_success
     expected='XLIX'
@@ -92,7 +92,7 @@ load bats-jq
 }
 
 @test '59 is LIX' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 59}'
     assert_success
     expected='LIX'
@@ -100,7 +100,7 @@ load bats-jq
 }
 
 @test '66 is LXVI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 66}'
     assert_success
     expected='LXVI'
@@ -108,7 +108,7 @@ load bats-jq
 }
 
 @test '93 is XCIII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 93}'
     assert_success
     expected='XCIII'
@@ -116,7 +116,7 @@ load bats-jq
 }
 
 @test '141 is CXLI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 141}'
     assert_success
     expected='CXLI'
@@ -124,7 +124,7 @@ load bats-jq
 }
 
 @test '163 is CLXIII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 163}'
     assert_success
     expected='CLXIII'
@@ -132,7 +132,7 @@ load bats-jq
 }
 
 @test '166 is CLXVI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 166}'
     assert_success
     expected='CLXVI'
@@ -140,7 +140,7 @@ load bats-jq
 }
 
 @test '402 is CDII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 402}'
     assert_success
     expected='CDII'
@@ -148,7 +148,7 @@ load bats-jq
 }
 
 @test '575 is DLXXV' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 575}'
     assert_success
     expected='DLXXV'
@@ -156,7 +156,7 @@ load bats-jq
 }
 
 @test '666 is DCLXVI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 666}'
     assert_success
     expected='DCLXVI'
@@ -164,7 +164,7 @@ load bats-jq
 }
 
 @test '911 is CMXI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 911}'
     assert_success
     expected='CMXI'
@@ -172,7 +172,7 @@ load bats-jq
 }
 
 @test '1024 is MXXIV' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 1024}'
     assert_success
     expected='MXXIV'
@@ -180,7 +180,7 @@ load bats-jq
 }
 
 @test '1666 is MDCLXVI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 1666}'
     assert_success
     expected='MDCLXVI'
@@ -188,7 +188,7 @@ load bats-jq
 }
 
 @test '3000 is MMM' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 3000}'
     assert_success
     expected='MMM'
@@ -196,7 +196,7 @@ load bats-jq
 }
 
 @test '3001 is MMMI' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 3001}'
     assert_success
     expected='MMMI'
@@ -204,7 +204,7 @@ load bats-jq
 }
 
 @test '3999 is MMMCMXCIX' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 3999}'
     assert_success
     expected='MMMCMXCIX'
@@ -212,7 +212,7 @@ load bats-jq
 }
 
 @test '3888 is MMMDCCCLXXXVIII' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run jq -r -f roman-numerals.jq <<< '{"number": 3888}'
     assert_success
     expected='MMMDCCCLXXXVIII'

@@ -1,17 +1,9 @@
 {
-  "authors": [
-    "glennj"
-  ],
+  "authors": ["glennj"],
   "files": {
-    "solution": [
-      "roman-numerals.jq"
-    ],
-    "test": [
-      "test-roman-numerals.bats"
-    ],
-    "example": [
-      ".meta/example.jq"
-    ]
+    "solution": ["roman-numerals.jq", "digits.jq"],
+    "test": ["test-roman-numerals.bats"],
+    "example": [".meta/example.jq"]
   },
   "blurb": "Convert modern Arabic numbers into Roman numerals.",
   "source": "The Roman Numeral Kata",
