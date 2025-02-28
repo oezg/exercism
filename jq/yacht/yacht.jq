@@ -1,13 +1,14 @@
 .category as $cat
 | .dice
 | def sum(die): map(select(. == die)) | add // 0;
+def groups_of(sizes): group_by(.) | map(select(length == sizes));
+def when(cond; value): if cond then value else 0 end;
 {
-    ones: sum(1), twos: sum(2), threes: sum(3), fours: sum(4), fives: sum(5), sixes: sum(6),
-    "full house":
-        (group_by(.) | map(select(length == (2, 3))) | if map(length) | add == 5 then add | add else 0 end),
-    "four of a kind": (group_by(.) | map(select(length == (4, 5)) | first) | (first // 0) * 4),
-    "little straight": (if sort == [1, 2, 3, 4, 5] then 30 else 0 end),
-    "big straight": (if sort == [2, 3, 4, 5, 6] then 30 else 0 end),
+    "full house": groups_of(2, 3) | add | when(length == 5; add),
+    "four of a kind": groups_of(4, 5) | when(length > 0; first | first * 4),
+    "little straight": when(sort == [1, 2, 3, 4, 5]; 30),
+    "big straight": when(sort == [2, 3, 4, 5, 6]; 30),
     choice: add,
-    yacht: (if unique | length == 1 then 50 else 0 end)
+    yacht: when(unique | length == 1; 50),
+    ones: sum(1), twos: sum(2), threes: sum(3), fours: sum(4), fives: sum(5), sixes: sum(6)
 }[$cat]
