@@ -1,37 +1,30 @@
-reduce ((.instructions // "") / "")[] as $instruction
+reduce (.instructions // "" | splits("")) as $instruction
 (
     .robot;
-    if $instruction == "L" then
-        .direction |= 
-            if . == "north" then
-                "west"
-            elif . == "east" then
-                "north"
-            elif . == "south" then
-                "east"
-            elif . == "west" then
-                "south"
-            end
-    elif $instruction == "R" then
-        .direction |= 
-            if . == "north" then
-                "east"
-            elif . == "east" then
-                "south"
-            elif . == "south" then
-                "west"
-            elif . == "west" then
-                "north"
-            end
-    elif $instruction == "A" then
-        if .direction == "north" then
-            .robot.position.y += 1
-        elif .direction == "east" then
-            .robot.position.x += 1
-        elif .direction == "south" then
-            .robot.position.y -= 1
-        elif .direction == "west" then
-            .robot.position.x -= 1
-        end
-    end
+    {
+        L: (
+            .direction |= {
+                north: "west",
+                east: "north",
+                south: "east",
+                west: "south"
+            }[.]
+        ),
+        R: (
+            .direction |= {
+                north: "east",
+                east: "south",
+                south: "west",
+                west: "north"
+            }[.]
+        ),
+        A: (
+            {
+                north: (.position.y += 1),
+                east: (.position.x += 1),
+                south: (.position.y -= 1),
+                west: (.position.x -= 1)
+            }[.direction]
+        )
+    }[$instruction] // .
 )
