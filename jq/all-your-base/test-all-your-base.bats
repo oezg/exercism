@@ -20,7 +20,7 @@ END_INPUT
 }
 
 @test 'binary to single decimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -36,7 +36,7 @@ END_INPUT
 }
 
 @test 'single decimal to binary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -52,7 +52,7 @@ END_INPUT
 }
 
 @test 'binary to multiple decimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -68,7 +68,7 @@ END_INPUT
 }
 
 @test 'decimal to binary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -84,7 +84,7 @@ END_INPUT
 }
 
 @test 'trinary to hexadecimal' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -100,7 +100,7 @@ END_INPUT
 }
 
 @test 'hexadecimal to trinary' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -116,7 +116,7 @@ END_INPUT
 }
 
 @test '15-bit integer' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -132,7 +132,7 @@ END_INPUT
 }
 
 @test 'empty list' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -148,7 +148,7 @@ END_INPUT
 }
 
 @test 'single zero' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -164,7 +164,7 @@ END_INPUT
 }
 
 @test 'multiple zeros' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -180,7 +180,7 @@ END_INPUT
 }
 
 @test 'leading zeros' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -196,7 +196,7 @@ END_INPUT
 }
 
 @test 'input base is one' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -212,7 +212,7 @@ END_INPUT
 }
 
 @test 'input base is zero' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -228,7 +228,7 @@ END_INPUT
 }
 
 @test 'input base is negative' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -244,7 +244,7 @@ END_INPUT
 }
 
 @test 'negative digit' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {

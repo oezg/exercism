@@ -4,7 +4,8 @@
   ],
   "files": {
     "solution": [
-      "robot-simulator.jq"
+      "robot-simulator.jq",
+      "robot-movement.jq"
     ],
     "test": [
       "test-robot-simulator.bats"
