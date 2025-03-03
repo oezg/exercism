@@ -1,23 +1,13 @@
-reduce (.instructions // "" | splits("")) as $instruction
+def directions: ["north", "east", "south", "west", "north"];
+def follow(find; next): directions | find | directions[next];
+
+reduce ((.instructions // "C") / "")[] as $instruction
 (
     .robot;
     {
-        L: (
-            .direction |= {
-                north: "west",
-                east: "north",
-                south: "east",
-                west: "south"
-            }[.]
-        ),
-        R: (
-            .direction |= {
-                north: "east",
-                east: "south",
-                south: "west",
-                west: "north"
-            }[.]
-        ),
+        C: (.),  # C for Creation
+        L: (.direction |= . as $dir | follow(rindex($dir); . - 1)),
+        R: (.direction |= . as $dir | follow(index($dir); . + 1)),
         A: (
             {
                 north: (.position.y += 1),
@@ -26,5 +16,5 @@ reduce (.instructions // "" | splits("")) as $instruction
                 west: (.position.x -= 1)
             }[.direction]
         )
-    }[$instruction] // .
+    }[$instruction]
 )
