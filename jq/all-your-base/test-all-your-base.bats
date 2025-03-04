@@ -260,7 +260,7 @@ END_INPUT
 }
 
 @test 'invalid positive digit' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -276,7 +276,7 @@ END_INPUT
 }
 
 @test 'output base is one' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -292,7 +292,7 @@ END_INPUT
 }
 
 @test 'output base is zero' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -308,7 +308,7 @@ END_INPUT
 }
 
 @test 'output base is negative' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {
@@ -324,7 +324,7 @@ END_INPUT
 }
 
 @test 'both bases are negative' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f all-your-base.jq << 'END_INPUT'
         {

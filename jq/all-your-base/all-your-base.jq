@@ -1,8 +1,11 @@
-def fail_when(cond; msg): if cond then msg | halt_error end;
 def validate:
-    .inputBase as $ib
-    | fail_when(.inputBase < 2; "input base must be >= 2")
-    | fail_when((.digits | any(. < 0 and $ib <= .)); "all digits must satisfy 0 <= d < input base");
+    reduce 
+    (
+        {message: "input base must be >= 2", condition: (.inputBase < 2)},
+        {message: "all digits must satisfy 0 <= d < input base", 
+        condition: (.inputBase as $inputBase | .digits | any(. < 0 or $inputBase <= .))},
+        {message: "output base must be >= 2", condition: (.outputBase < 2)}
+    ) as $error (.; if $error.condition then $error.message | halt_error end);
 
 def undigits:
     .inputBase as $base
