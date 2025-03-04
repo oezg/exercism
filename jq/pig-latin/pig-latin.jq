@@ -1,5 +1,5 @@
 .phrase / " "
-| map(([index("aeiou" | splits("")) // empty] | min) as $i
+| map(([index("aeiou" | splits("")) // empty] | min // 0) as $i
 | if test("^[^aeiou]*qu") then
     .[$i + 1:] + .[:$i + 1]  # + 1 for 'u'
 elif test("^[^aeiou]+y") then
