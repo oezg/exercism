@@ -1,5 +1,8 @@
+def index_vowel:
+    [index("a", "e", "i", "o", "u") // empty] | min // 0;
+
 .phrase / " "
-| map(([index("aeiou" | splits("")) // empty] | min // 0) as $i
+| map(index_vowel as $i
 | if test("^[^aeiou]*qu") then
     .[$i + 1:] + .[:$i + 1]  # + 1 for 'u'
 elif test("^[^aeiou]+y") then
