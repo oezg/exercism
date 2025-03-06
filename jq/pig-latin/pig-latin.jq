@@ -1,13 +1,14 @@
 def index_vowel:
     [index("a", "e", "i", "o", "u") // empty] | min // 0;
 
+def rotate_when(regex; idx): 
+    if test(regex) then (.[idx:] + .[:idx]) end;
+
 .phrase / " "
-| map(index_vowel as $i
-| if test("^[^aeiou]*qu") then
-    .[$i + 1:] + .[:$i + 1]  # + 1 for 'u'
-elif test("^[^aeiou]+y") then
-    index("y") as $y | .[$y:] + .[:$y]
-elif test("^(?!xr|yt)[^aeiou]") then
-    .[$i:] + .[:$i]
-end + "ay")
+| map(
+    rotate_when("^[^aeiou]*qu"; index("u") + 1)
+    | rotate_when("^[^aeiou]+y"; index("y"))
+    | rotate_when("^(?!xr|yt)[^aeiou]"; index_vowel)
+    | . + "ay"
+) 
 | join(" ")
