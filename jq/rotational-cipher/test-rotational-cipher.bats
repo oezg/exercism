@@ -64,7 +64,7 @@ END_INPUT
 }
 
 @test 'rotate n by 13 with wrap around alphabet' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
@@ -79,7 +79,7 @@ END_INPUT
 }
 
 @test 'rotate capital letters' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
@@ -94,7 +94,7 @@ END_INPUT
 }
 
 @test 'rotate spaces' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
@@ -109,7 +109,7 @@ END_INPUT
 }
 
 @test 'rotate numbers' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
@@ -124,7 +124,7 @@ END_INPUT
 }
 
 @test 'rotate punctuation' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
@@ -139,7 +139,7 @@ END_INPUT
 }
 
 @test 'rotate all letters' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f rotational-cipher.jq << 'END_INPUT'
         {
