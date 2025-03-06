@@ -1,8 +1,8 @@
 def find_anagrams(word, candidates):
-    return list(
-        filter(
-            lambda candidate: candidate.lower() != word.lower()
-            and sorted(list(candidate.lower())) == sorted(list(word.lower())),
-            candidates,
-        )
-    )
+    wala = word.lower()
+    bala = sorted(wala)
+    return [
+        candidate
+        for candidate in candidates
+        if candidate.lower() != wala and sorted(candidate.lower()) == bala
+    ]
