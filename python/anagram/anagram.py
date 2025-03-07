@@ -1,8 +1,10 @@
-def find_anagrams(word, candidates):
-    wala = word.lower()
-    bala = sorted(wala)
+def find_anagrams(word: str, candidates: list[str]) -> list[str]:
+    """Given a target word and one or more candidate words, return the candidates that are anagrams of the target."""
+    word_lower = word.lower()
+    word_sorted = sorted(word_lower)
     return [
         candidate
         for candidate in candidates
-        if candidate.lower() != wala and sorted(candidate.lower()) == bala
+        if (candidate_lower := candidate.lower()) != word_lower
+        if sorted(candidate_lower) == word_sorted
     ]
