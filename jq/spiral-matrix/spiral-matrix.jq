@@ -7,6 +7,6 @@ def matrix($size):
         col: [range(.colstart; .colstart + .step)]
     };
 
-def append(column): [., column] | transpose | map(first + [last]);
+def append(column): [., column] | transpose[] | [first[], last];
 
-reduce matrix(.size) as $item ([]; reverse | map(reverse) | [$item.row, append($item.col)[]])
+reduce matrix(.size) as $item ([]; reverse | map(reverse) | [$item.row, append($item.col)])
