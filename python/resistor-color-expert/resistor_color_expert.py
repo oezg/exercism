@@ -1,5 +1,4 @@
 import enum
-from functools import reduce
 
 
 class ResistorColor(enum.Enum):
@@ -36,24 +35,25 @@ class Prefix(enum.Enum):
     UNIT = 1
 
     def __str__(self) -> str:
-        match self:
-            case Prefix.UNIT:
-                return ""
-            case _:
-                return self.name.lower()
+        return "" if self == Prefix.UNIT else self.name.lower()
 
 
 def resistor_label(colors: list[str]) -> str:
-    try:
+    if len(colors) > 1:
         *values, exponent, tolerance = colors
-    except:
-        return label(color_code(colors[0]))
-    return f"{label(resistance_val(colors=values) * multiplier(exponent))} {Tolerance[tolerance.upper()]}"
+        resistor_value = resistance_val(colors=values) * multiplier(exponent)
+        tolerance = Tolerance[tolerance.upper()]
+        resistor_label = f"{label(resistor_value)} {tolerance}"
+    else:
+        resistor_label = label(color_code(colors[0]))
+    return resistor_label
 
 
 def resistance_val(colors: list[str]) -> int:
+    maximum_exponent = len(colors) - 1
     return sum(
-        10 ** (len(colors) - i) * color_code(color) for i, color in enumerate(colors, 1)
+        value * 10 ** (maximum_exponent - index)
+        for index, value in enumerate(color_code(color) for color in colors)
     )
 
 
@@ -66,7 +66,11 @@ def color_code(color: str) -> int:
 
 
 def label(resistance: int) -> str:
-    for prefix in Prefix:
-        if resistance >= prefix.value:
-            return f"{(resistance / prefix.value):n} {prefix}ohms"
-    return "0 ohms"
+    return next(
+        (
+            f"{(resistance / prefix.value):n} {prefix}ohms"
+            for prefix in Prefix
+            if resistance >= prefix.value
+        ),
+        "0 ohms",
+    )
