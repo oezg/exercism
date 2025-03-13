@@ -1,15 +1,15 @@
-COLOR = {
-    "black": 0,
-    "brown": 1,
-    "red": 2,
-    "orange": 3,
-    "yellow": 4,
-    "green": 5,
-    "blue": 6,
-    "violet": 7,
-    "grey": 8,
-    "white": 9,
-}
+COLOR = [
+    "black",
+    "brown",
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "violet",
+    "grey",
+    "white",
+]
 
 TOLERANCE = {
     "grey": 0.05,
@@ -26,20 +26,24 @@ TOLERANCE = {
 def resistor_label(colors: list[str]) -> str:
     *codes, last = colors
     if not codes:
-        return f"{COLOR[last]} ohms"
+        return f"{COLOR.index(last)} ohms"
 
-    *values, exponent = [COLOR[color] for color in codes]
-    value = int("".join([str(code) for code in values]))
+    *values, exponent = [COLOR.index(color) for color in codes]
+    value = values[-1] + values[-2] * 10 + access(values, -3, 0) * 100
     return f"{resistance(value * 10**exponent)}ohms ±{TOLERANCE[last]}%"
 
 
 def resistance(value: int) -> tuple[float, str]:
-    if value >= 1e9:
-        label, prefix = value / 1e9, "giga"
-    elif value >= 1e6:
-        label, prefix = value / 1e6, "mega"
-    elif value >= 1e3:
-        label, prefix = value / 1e3, "kilo"
-    else:
-        label, prefix = value, ""
+    label, prefix = value, ""
+    for v, p in [(1e9, "giga"), (1e6, "mega"), (1e3, "kilo")]:
+        if value >= v:
+            label, prefix = value / v, p
+            break
     return f"{label:n} {prefix}"
+
+
+def access(list: list[int], index: int, default: int = 0) -> int:
+    try:
+        return list[index]
+    except IndexError:
+        return default
