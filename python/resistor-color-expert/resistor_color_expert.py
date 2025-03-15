@@ -22,6 +22,8 @@ TOLERANCE = {
     "silver": 10,
 }
 
+PREFIX = [(1e9, "giga"), (1e6, "mega"), (1e3, "kilo"), (0, "")]
+
 
 def resistor_label(colors: list[str]) -> str:
     *codes, last = colors
@@ -29,21 +31,15 @@ def resistor_label(colors: list[str]) -> str:
         return f"{COLOR.index(last)} ohms"
 
     *values, exponent = [COLOR.index(color) for color in codes]
-    value = values[-1] + values[-2] * 10 + access(values, -3, 0) * 100
-    return f"{resistance(value * 10**exponent)}ohms ±{TOLERANCE[last]}%"
+    result, factor = 0, 1
+    for value in reversed(values):
+        result += value * factor
+        factor *= 10
+
+    return f"{resistance(result * 10**exponent)}ohms ±{TOLERANCE[last]}%"
 
 
 def resistance(value: int) -> tuple[float, str]:
-    label, prefix = value, ""
-    for v, p in [(1e9, "giga"), (1e6, "mega"), (1e3, "kilo")]:
-        if value >= v:
-            label, prefix = value / v, p
-            break
-    return f"{label:n} {prefix}"
-
-
-def access(list: list[int], index: int, default: int = 0) -> int:
-    try:
-        return list[index]
-    except IndexError:
-        return default
+    for factor, qualifier in PREFIX:
+        if value >= factor:
+            return f"{value / max(factor, 1):n} {qualifier}"
