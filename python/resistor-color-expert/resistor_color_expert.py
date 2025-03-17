@@ -22,7 +22,7 @@ TOLERANCE = {
     "silver": 10,
 }
 
-PREFIX = [(1e9, "giga"), (1e6, "mega"), (1e3, "kilo"), (0, "")]
+PREFIX = ("kilo", "mega", "giga")
 
 
 def resistor_label(colors: list[str]) -> str:
@@ -30,16 +30,18 @@ def resistor_label(colors: list[str]) -> str:
     if not codes:
         return f"{COLOR.index(last)} ohms"
 
+    tolerance = TOLERANCE[last]
     *values, exponent = [COLOR.index(color) for color in codes]
-    result, factor = 0, 1
-    for value in reversed(values):
-        result += value * factor
-        factor *= 10
+    result = 0
+    for value in values:
+        result = result * 10 + value
+    result *= 10**exponent
 
-    return f"{resistance(result * 10**exponent)}ohms ±{TOLERANCE[last]}%"
+    prefix = ""
+    for label in PREFIX:
+        if result < 1000:
+            break
+        result /= 1000
+        prefix = label
 
-
-def resistance(value: int) -> tuple[float, str]:
-    for factor, qualifier in PREFIX:
-        if value >= factor:
-            return f"{value / max(factor, 1):n} {qualifier}"
+    return f"{result:n} {prefix}ohms ±{tolerance}%"
