@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "yzAlvin"
+  ],
+  "files": {
+    "solution": [
+      "JedliksToys.cs"
+    ],
+    "test": [
+      "JedliksToysTests.cs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.cs"
+    ],
+    "invalidator": [
+      "JedliksToys.csproj"
+    ]
+  },
+  "blurb": "Learn about classes by working on a remote controlled car."
+}

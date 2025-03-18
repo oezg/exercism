@@ -6,9 +6,8 @@ def find(search_list: list[int], value: int) -> int:
         center = search_list[middle]
         if center == value:
             return middle
-        elif center < value:
+        if center < value:
             return _find(middle + 1, right)
-        else:
-            return _find(left, middle)
+        return _find(left, middle)
 
     return _find(0, len(search_list))
