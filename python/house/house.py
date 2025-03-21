@@ -1,11 +1,4 @@
-def recite(start_verse, end_verse: int) -> list[str]:
-    return [
-        f"This is {verse(i)} that Jack built."
-        for i in range(start_verse - 1, end_verse)
-    ]
-
-
-house = [
+HOUSE: list[str] = [
     "malt that lay in",
     "rat that ate",
     "cat that killed",
@@ -20,7 +13,14 @@ house = [
 ]
 
 
-def verse(i):
-    if i == 0:
+def recite(start_verse, end_verse: int) -> list[str]:
+    return [
+        f"This is {verse(i)} that Jack built."
+        for i in range(start_verse - 1, end_verse)
+    ]
+
+
+def verse(index: int) -> str:
+    if index == 0:
         return "the house"
-    return f"the {house[i-1]} {verse(i-1)}"
+    return f"the {HOUSE[index-1]} {verse(index-1)}"
