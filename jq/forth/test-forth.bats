@@ -324,7 +324,7 @@ END_INPUT
 }
 
 @test 'combined arithmetic:addition and subtraction' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -340,7 +340,7 @@ END_INPUT
 }
 
 @test 'combined arithmetic:multiplication and division' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -356,7 +356,7 @@ END_INPUT
 }
 
 @test 'combined arithmetic:multiplication and addition' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -372,7 +372,7 @@ END_INPUT
 }
 
 @test 'combined arithmetic:addition and multiplication' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -388,7 +388,7 @@ END_INPUT
 }
 
 @test 'dup:copies a value on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -404,7 +404,7 @@ END_INPUT
 }
 
 @test 'dup:copies the top value on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -420,7 +420,7 @@ END_INPUT
 }
 
 @test 'dup:errors if there is nothing on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -436,7 +436,7 @@ END_INPUT
 }
 
 @test 'drop:removes the top value on the stack if it is the only one' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -452,7 +452,7 @@ END_INPUT
 }
 
 @test 'drop:removes the top value on the stack if it is not the only one' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -468,7 +468,7 @@ END_INPUT
 }
 
 @test 'drop:errors if there is nothing on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -484,7 +484,7 @@ END_INPUT
 }
 
 @test 'swap:swaps the top two values on the stack if they are the only ones' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -500,7 +500,7 @@ END_INPUT
 }
 
 @test 'swap:swaps the top two values on the stack if they are not the only ones' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -516,7 +516,7 @@ END_INPUT
 }
 
 @test 'swap:errors if there is nothing on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -532,7 +532,7 @@ END_INPUT
 }
 
 @test 'swap:errors if there is only one value on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -548,7 +548,7 @@ END_INPUT
 }
 
 @test 'over:copies the second element if there are only two' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -564,7 +564,7 @@ END_INPUT
 }
 
 @test 'over:copies the second element if there are more than two' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -580,7 +580,7 @@ END_INPUT
 }
 
 @test 'over:errors if there is nothing on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -596,7 +596,7 @@ END_INPUT
 }
 
 @test 'over:errors if there is only one value on the stack' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
