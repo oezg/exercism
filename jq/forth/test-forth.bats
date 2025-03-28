@@ -612,7 +612,7 @@ END_INPUT
 }
 
 @test 'user-defined words:can consist of built-in words' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -629,7 +629,7 @@ END_INPUT
 }
 
 @test 'user-defined words:execute in the right order' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {
@@ -646,7 +646,7 @@ END_INPUT
 }
 
 @test 'user-defined words:can override other user-defined words' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
+  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f forth.jq << 'END_INPUT'
         {

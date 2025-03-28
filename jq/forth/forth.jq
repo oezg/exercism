@@ -1,25 +1,21 @@
-def dup:
-    if length == 0 then
-        "empty stack" | halt_error
-    else
-        .[:1] + .[:2]
-    end;
-
-def drop: .[1:2];
-def swap: [.[1], .[0]];
-def over: [.[1], .[0], .[1]];
-def addition: [.[1] + .[0]];
-def subtraction: [.[1] - .[0]];
-def multiplication: [.[1] * .[0]];
-def division: if .[0] == 0 then "divide by zero" | halt_error else [.[1] / .[0] | floor] end;
-
+def one: if length == 0 then "empty stack" | halt_error end;
+def two: one | if length == 1 then "only one value on the stack" | halt_error end;
+def zero: two | if .[0] == 0 then "divide by zero" | halt_error end;
+def dup: one | .[:1] + .[:2];
+def drop: one | .[1:2];
+def swap: two | [.[1], .[0]];
+def over: two | [.[1], .[0], .[1]];
+def addition: two | [.[1] + .[0]];
+def subtraction: two | [.[1] - .[0]];
+def multiplication: two | [.[1] * .[0]];
+def division: zero | [.[1] / .[0] | floor];
 
 def table:
     {
-        dup: dup,
-        drop: drop,
-        over: over,
-        swap: swap,
+        "dup": dup,
+        "drop": drop,
+        "over": over,
+        "swap": swap,
         "+": addition,
         "-": subtraction,
         "*": multiplication,
@@ -27,33 +23,51 @@ def table:
     };
 
 def x:
-    reduce splits(" ") as $instruction ([];
-    if $instruction | IN("+", "-", "*", "/", "dup", "drop", "swap", "over") then
-        if length == 0 then
-            "empty stack" | halt_error
-        elif $instruction == "dup" then
+    reduce splits(" ") as $word ([];
+    if $word | IN("+", "-", "*", "/", "dup", "drop", "swap", "over", "dup-twice", "countup") then
+        if $word == "dup" then
             dup
-        elif $instruction == "drop" then
+        elif $word == "dup-twice" then
+            dup | dup
+        elif $word == "drop" then
             drop
-        elif length == 1 then
-            "only one value on the stack" | halt_error
-        elif $instruction == "swap" then
+        elif $word == "swap" then
             swap
-        elif $instruction == "over" then
+        elif $word == "over" then
             over
-        elif $instruction == "+" then
+        elif $word == "+" then
             addition
-        elif $instruction == "-" then
+        elif $word == "-" then
             subtraction
-        elif $instruction == "*" then
+        elif $word == "*" then
             multiplication
-        else
+        elif $word == "/" then
             division
+        elif $word == "countup" then
+            [3,2,1] + .[:2]
         end
     else
-        [$instruction | tonumber] + .[:2]
-    end + .[2:])
-    | reverse;
+        [$word | tonumber] + .[:2]
+    end + .[2:]);
 
-.instructions[0]
-| x
+
+# .instructions[-1]
+# | x
+# | reverse
+
+reduce .instructions[] as $instruction (table;
+    ($instruction | split(" ")) as $words
+    | if $instruction | startswith(":") then
+        . + {($words[1]): $words[2:-1]}
+    else
+        . as $table
+        | reduce ($instruction | splits(" ")) as $word ([];
+                debug |
+            if $word | in($table) then
+                $table[$word]
+            else
+                [$word | tonumber] + .[:2]
+            end + .[2:]
+        )
+    end
+)
