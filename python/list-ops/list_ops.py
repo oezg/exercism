@@ -1,5 +1,5 @@
 def append(list1, list2):
-    return list1 + list2
+    return concat([list1, list2])
 
 
 def concat(lists):
@@ -11,7 +11,9 @@ def filter(predicate, list):
 
 
 def length(list):
-    return len(list)
+    if list == []:
+        return 0
+    return 1 + length(list[1:])
 
 
 def map(function, list):
@@ -30,4 +32,6 @@ def foldr(function, list, initial):
 
 
 def reverse(list):
-    return list[::-1]
+    if list == []:
+        return []
+    return append(reverse(list[1:]), [list[0]])
