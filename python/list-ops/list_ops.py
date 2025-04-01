@@ -3,7 +3,6 @@ from typing import TypeVar
 
 E = TypeVar("E")
 A = TypeVar("A")
-T = TypeVar("T")
 
 
 def append(list1: list[E], list2: list[E]) -> list[E]:
@@ -22,7 +21,7 @@ def length(list: list[E]) -> int:
     return sum(1 for _ in list)
 
 
-def map(function: Callable[[E], T], list: list[E]) -> list[T]:
+def map(function: Callable[[E], A], list: list[E]) -> list[A]:
     return [function(item) for item in list]
 
 
