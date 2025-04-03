@@ -1,5 +1,7 @@
 module Allergies exposing (Allergy(..), isAllergicTo, toList)
 
+import Bitwise
+
 
 type Allergy
     = Eggs
@@ -42,39 +44,26 @@ allergyScore allergen =
 
 isAllergicTo : Allergy -> Int -> Bool
 isAllergicTo allergen score =
-    List.member allergen (toList score)
+    let
+        allergy =
+            allergyScore allergen
+    in
+    Bitwise.and allergy score == allergy
 
 
 toList : Int -> List Allergy
 toList score =
     let
-        allergens =
-            List.reverse
-                [ Eggs
-                , Peanuts
-                , Shellfish
-                , Strawberries
-                , Tomatoes
-                , Chocolate
-                , Pollen
-                , Cats
-                ]
+        allergic =
+            \allergy -> isAllergicTo allergy score
     in
-    elm allergens [] (remainderBy 256 score)
-
-
-elm allergens acc n =
-    case allergens of
-        [] ->
-            acc
-
-        head :: tail ->
-            let
-                score =
-                    allergyScore head
-            in
-            if n < score then
-                elm tail acc n
-
-            else
-                elm tail (head :: acc) (n - score)
+    [ Eggs
+    , Peanuts
+    , Shellfish
+    , Strawberries
+    , Tomatoes
+    , Chocolate
+    , Pollen
+    , Cats
+    ]
+        |> List.filter allergic

@@ -1,6 +1,13 @@
-def sum_of_multiples(limit: int, multiples: list[int]) -> int:
+from collections.abc import Iterable
+
+
+def sum_of_multiples(limit: int, multiples: Iterable[int]) -> int:
     """
-    Returns the sum of numbers less than the limit divisible by one of the multiples
+    Returns the sum of numbers less than the limit divisible by one of the multiples.
+
+    :param limit: the exclusive upper bound
+    :param multiples: iterable of numbers whose multiples it sums
+    :returns: the sum of the unique multiples
     """
     return sum(
         {

@@ -38,6 +38,7 @@
 
 /python/*/__pycache__/
 /python/.pytest_cache/
+/python/*/.mypy_cache
 
 node_modules/
 /**/bin/configlet

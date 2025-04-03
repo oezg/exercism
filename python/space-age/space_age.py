@@ -2,8 +2,8 @@ from functools import partial
 
 
 class SpaceAge:
-    SECONDS = 31_557_600  # Earth year in seconds
-    PLANETS = {
+    SECONDS: int = 31_557_600  # Earth year in seconds
+    PLANETS: dict[str, float] = {
         "earth": 1.0,
         "mercury": 0.2408467,
         "venus": 0.61519726,
@@ -14,7 +14,7 @@ class SpaceAge:
         "neptune": 164.79132,
     }
 
-    def __init__(self, seconds):
+    def __init__(self, seconds: int) -> None:
         to_year = lambda orbit: round(seconds / SpaceAge.SECONDS / orbit, 2)
 
         for planet, orbit in SpaceAge.PLANETS.items():
