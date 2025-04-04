@@ -1,4 +1,4 @@
-from functools import partial
+from collections.abc import Callable
 
 
 class SpaceAge:
@@ -15,7 +15,15 @@ class SpaceAge:
     }
 
     def __init__(self, seconds: int) -> None:
-        to_year = lambda orbit: round(seconds / SpaceAge.SECONDS / orbit, 2)
+        self.earth_years = seconds / SpaceAge.SECONDS
 
-        for planet, orbit in SpaceAge.PLANETS.items():
-            setattr(self, f"on_{planet}", partial(to_year, orbit))
+
+def on_planet(orbit: float) -> Callable[[SpaceAge], int]:
+    def clojure(self: SpaceAge) -> int:
+        return round(self.earth_years / orbit, 2)
+
+    return clojure
+
+
+for planet, orbit in SpaceAge.PLANETS.items():
+    setattr(SpaceAge, f"on_{planet}", on_planet(orbit))
