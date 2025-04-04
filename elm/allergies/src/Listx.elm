@@ -1,11 +1,11 @@
 module Listx exposing (..)
 
 
-find_index : (a -> Bool) -> List a -> Maybe Int
-find_index predicate list =
+findIndex : (a -> Bool) -> List a -> Maybe Int
+findIndex predicate list =
     let
-        find_index_help idx inner_list =
-            case inner_list of
+        findIndexHelp idx innerList =
+            case innerList of
                 [] ->
                     Nothing
 
@@ -14,11 +14,11 @@ find_index predicate list =
                         Just idx
 
                     else
-                        find_index_help (idx + 1) tl
+                        findIndexHelp (idx + 1) tl
     in
-    find_index_help 0 list
+    findIndexHelp 0 list
 
 
 index : a -> List a -> Maybe Int
 index element list =
-    find_index (\x -> x == element) list
+    findIndex (\x -> x == element) list
