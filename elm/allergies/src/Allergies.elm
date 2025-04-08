@@ -1,7 +1,7 @@
 module Allergies exposing (Allergy(..), isAllergicTo, toList)
 
 import Bitwise
-import Listx exposing (..)
+import Listx
 
 
 type Allergy
@@ -30,25 +30,19 @@ allergies =
 
 allergyScore : Allergy -> Int
 allergyScore allergen =
-    index allergen allergies
-        |> Maybe.withDefault 0
-        |> (^) 2
+    case Listx.index allergen allergies of
+        Nothing ->
+            0
+
+        Just idx ->
+            Bitwise.shiftLeftBy idx 1
 
 
 isAllergicTo : Allergy -> Int -> Bool
 isAllergicTo allergen score =
-    let
-        allergy =
-            allergyScore allergen
-    in
-    Bitwise.and allergy score == allergy
+    Bitwise.and (allergyScore allergen) score > 0
 
 
 toList : Int -> List Allergy
 toList score =
-    let
-        allergic allergy =
-            isAllergicTo allergy score
-    in
-    allergies
-        |> List.filter allergic
+    List.filter (\arg -> isAllergicTo arg score) allergies

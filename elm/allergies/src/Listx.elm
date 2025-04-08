@@ -4,7 +4,7 @@ module Listx exposing (..)
 findIndex : (a -> Bool) -> List a -> Maybe Int
 findIndex predicate list =
     let
-        findIndexHelp idx innerList =
+        helpFindIndex idx innerList =
             case innerList of
                 [] ->
                     Nothing
@@ -14,9 +14,9 @@ findIndex predicate list =
                         Just idx
 
                     else
-                        findIndexHelp (idx + 1) tl
+                        helpFindIndex (idx + 1) tl
     in
-    findIndexHelp 0 list
+    helpFindIndex 0 list
 
 
 index : a -> List a -> Maybe Int
