@@ -15,6 +15,7 @@
 /clojure/*/.lein-failures
 /clojure/*/.lein-repl-history
 /clojure/*/.nrepl-port
+/clojure/*/.calva/
 
 /csharp/*/bin/
 /csharp/*/obj/
