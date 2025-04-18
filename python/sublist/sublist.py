@@ -1,19 +1,36 @@
-UNEQUAL, SUPERLIST, SUBLIST, EQUAL = 0, 1, 2, 3
+from enum import Flag, auto
+from typing import TypeVar
 
 
-def sublist(a: list, b: list) -> int:
-    """
-    Given any two lists A and B, determine whether
-    * A is equal to B,
-    * A is a sublist of B,
-    * A is a superlist of B,
-    * otherwise they are unequal.
-    """
-    return int(f"{contains(a, b)}{contains(b, a)}", 2)
+class TwoLists(Flag):
+    UNEQUAL = 0
+    SUBLIST = auto()
+    SUPERLIST = auto()
+    EQUAL = SUBLIST | SUPERLIST
 
 
-def contains(a: list, b: list) -> int:
+T = TypeVar("T")
+
+UNEQUAL, SUBLIST, SUPERLIST, EQUAL = TwoLists.__members__.values()
+
+
+def sublist(list_one: list[T], list_two: list[T]) -> TwoLists:
     """
-    List A is a sublist of B if B contains a contiguous sub-sequence of values equal to A
+    Determine whether the two lists are equal, the first is a sublist
+    or a superlist of the second, or they are unequal.
     """
-    return int(any(b[i : i + len(a)] == a for i in range(len(b) - len(a) + 1)))
+    compare = lambda a, b, result: result if contains(a, b) else TwoLists.UNEQUAL
+    return compare(list_one, list_two, TwoLists.SUBLIST) | compare(
+        list_two, list_one, TwoLists.SUPERLIST
+    )
+
+
+def contains(list_one: list[T], list_two: list[T]) -> bool:
+    """
+    List A is a sublist of B if B contains a contiguous sub-sequence of values equal to A.
+    """
+    list_one_len = len(list_one)
+    return any(
+        list_two[start : start + list_one_len] == list_one
+        for start in range(len(list_two) - list_one_len + 1)
+    )
