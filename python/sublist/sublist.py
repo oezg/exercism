@@ -1,28 +1,23 @@
-from enum import Flag, auto
-from typing import TypeVar
+import typing
 
 
-class TwoLists(Flag):
-    UNEQUAL = 0
-    SUBLIST = auto()
-    SUPERLIST = auto()
-    EQUAL = SUBLIST | SUPERLIST
+T = typing.TypeVar("T")
+
+UNEQUAL, SUBLIST, SUPERLIST, EQUAL = range(4)
 
 
-T = TypeVar("T")
-
-UNEQUAL, SUBLIST, SUPERLIST, EQUAL = TwoLists.__members__.values()
-
-
-def sublist(list_one: list[T], list_two: list[T]) -> TwoLists:
+def sublist(list_one: list[T], list_two: list[T]) -> typing.Literal[0, 1, 2, 3]:
     """
     Determine whether the two lists are equal, the first is a sublist
     or a superlist of the second, or they are unequal.
     """
-    compare = lambda a, b, result: result if contains(a, b) else TwoLists.UNEQUAL
-    return compare(list_one, list_two, TwoLists.SUBLIST) | compare(
-        list_two, list_one, TwoLists.SUPERLIST
-    )
+    if list_one == list_two:
+        return EQUAL
+    if contains(list_two, list_one):
+        return SUPERLIST
+    if contains(list_one, list_two):
+        return SUBLIST
+    return UNEQUAL
 
 
 def contains(list_one: list[T], list_two: list[T]) -> bool:
@@ -30,7 +25,7 @@ def contains(list_one: list[T], list_two: list[T]) -> bool:
     List A is a sublist of B if B contains a contiguous sub-sequence of values equal to A.
     """
     list_one_len = len(list_one)
-    return any(
-        list_two[start : start + list_one_len] == list_one
-        for start in range(len(list_two) - list_one_len + 1)
-    )
+    for start in range(len(list_two) - list_one_len + 1):
+        if list_two[start : start + list_one_len] == list_one:
+            return True
+    return False
