@@ -3,6 +3,5 @@
 (defn to-rna
   "Returns the RNA complement of the given DNA string sequence."
   [dna]
-  (->> dna
-       (map {\G \C \C \G \T \A \A \U})
-       (apply str)))
+  (let [rna (map {\G \C \C \G \T \A \A \U} dna)]
+    (when-not (some nil? rna) (apply str rna))))
