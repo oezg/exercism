@@ -6,4 +6,6 @@
 (defn color-code
   "Returns the numerical value associated with the given color"
   [color]
-  (.indexOf colors color))
+  (->> colors
+       (keep-indexed #(when (= color %2) %1))
+       first))
