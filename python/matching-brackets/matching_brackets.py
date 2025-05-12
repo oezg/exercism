@@ -11,11 +11,12 @@ def is_paired(input_string: str) -> bool:
 
 def brack(brackets: list[str], stack: list[str]) -> bool:
     for bracket in brackets:
-        try:
-            if CLOSING_BRACKETS[bracket] != stack.pop():
+        if bracket in CLOSING_BRACKETS:
+            if not stack:
                 return False
-        except KeyError:
-            stack.append(bracket)
-        except IndexError:
-            return False
+            if CLOSING_BRACKETS[bracket] != stack[-1]:
+                return False
+            stack = stack[:-1]
+        else:
+            stack = stack + [bracket]
     return stack == []
