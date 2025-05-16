@@ -1,13 +1,19 @@
 import string
 
-def encode(plain_text: str):
-    x = [x for x in plain_text if x.isalnum()]
-    y = map(atbash, x)
+SIZE = 5
+CIPHER = string.ascii_lowercase[::-1]
+TABLE = str.maketrans(
+    string.ascii_lowercase, CIPHER, string.whitespace + string.punctuation
+)
 
-def atbash(x: str):
-    origin = string.ascii_uppercase + string.lo + string.digits
 
-    str.maketrans(string.ascii_lowercase + s, string.ascii_lowercase[::-1])
+def encode(plain_text: str) -> str:
+    return " ".join(batch(decode(plain_text.lower())))
 
-def decode(ciphered_text):
-    pass
+
+def decode(ciphered_text: str) -> str:
+    return ciphered_text.translate(TABLE)
+
+
+def batch(iterable: str) -> list[str]:
+    return [iterable[i : i + SIZE] for i in range(0, len(iterable), SIZE)]
