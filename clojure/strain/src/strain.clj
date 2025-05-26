@@ -2,12 +2,13 @@
 
 (defn retain
   "Keeps the items in coll for which (pred item) returns true."
-  [pred coll]
-  (letfn [(retain' [[head & tail] acc]
-            (if (nil? head)
-              acc
-              (retain' tail (if (pred head) (conj acc head) acc))))]
-    (retain' coll [])))
+  [pred [head & tail :as coll]]
+  (if (empty? coll)
+    '()
+    (lazy-seq
+     (if (pred head)
+       (cons head (retain pred tail))
+       (retain pred tail)))))
 
 (defn discard
   "Removes the items in coll for which (pred item) returns true."
