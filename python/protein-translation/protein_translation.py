@@ -1,8 +1,7 @@
-from itertools import takewhile
+from collections.abc import Generator
+
 
 CODON_SIZE = 3
-
-STOP_CODONS = ("UAA", "UAG", "UGA")
 
 AMINOACIDS = {
     "AUG": "Methionine",
@@ -19,14 +18,24 @@ AMINOACIDS = {
     "UGU": "Cysteine",
     "UGC": "Cysteine",
     "UGG": "Tryptophan",
+    "UAA": None,
+    "UAG": None,
+    "UGA": None,
 }
 
 
 def proteins(strand: str) -> list[str]:
-    return [
-        AMINOACIDS[codon]
-        for codon in takewhile(
-            lambda codon: codon not in STOP_CODONS,
-            (strand[i : i + CODON_SIZE] for i in range(0, len(strand), CODON_SIZE)),
-        )
-    ]
+    return list(takewhile(batch(strand)))
+
+
+def batch(strand: str) -> Generator[str, None, None]:
+    for i in range(0, len(strand), CODON_SIZE):
+        yield strand[i : i + CODON_SIZE]
+
+
+def takewhile(codons: Generator[str, None, None]) -> Generator[str, None, None]:
+    for codon in codons:
+        amino_acid = AMINOACIDS[codon]
+        if amino_acid is None:
+            break
+        yield amino_acid
