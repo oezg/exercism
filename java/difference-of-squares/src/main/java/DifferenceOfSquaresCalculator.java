@@ -6,12 +6,10 @@ class DifferenceOfSquaresCalculator {
   }
 
   int computeSumOfSquaresTo(int input) {
-    throw new UnsupportedOperationException(
-        "Delete this statement and write your own implementation.");
+    return input * (input + 1) * (input * 2 + 1) / 6;
   }
 
   int computeDifferenceOfSquares(int input) {
-    throw new UnsupportedOperationException(
-        "Delete this statement and write your own implementation.");
+    return computeSquareOfSumTo(input) - computeSumOfSquaresTo(input);
   }
 }

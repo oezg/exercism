@@ -1,7 +1,6 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class DifferenceOfSquaresCalculatorTest {
@@ -27,7 +26,6 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
   @Test
   public void testSquareOfSumUpToHundred() {
     int expected = 25502500;
@@ -35,7 +33,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testSumOfSquaresUpToOne() {
     int expected = 1;
@@ -43,7 +41,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testSumOfSquaresUpToFive() {
     int expected = 55;
@@ -51,7 +49,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testSumOfSquaresUpToHundred() {
     int expected = 338350;
@@ -59,7 +57,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testDifferenceOfSquaresUpToOne() {
     int expected = 0;
@@ -67,7 +65,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testDifferenceOfSquaresUpToFive() {
     int expected = 170;
@@ -75,7 +73,7 @@ public class DifferenceOfSquaresCalculatorTest {
     assertThat(actual).isEqualTo(expected);
   }
 
-  @Disabled("Remove to run test")
+  // @Disabled("Remove to run test")
   @Test
   public void testDifferenceOfSquaresUpToHundred() {
     int expected = 25164150;
