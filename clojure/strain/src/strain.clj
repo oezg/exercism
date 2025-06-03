@@ -4,11 +4,11 @@
   "Keeps the items in coll for which (pred item) returns true."
   [pred coll]
   (if (seq coll)
-    (let [head (first coll)
-          tail (rest coll)]
-      (if (pred head)
-        (lazy-seq (cons head (retain pred tail)))
-        (recur pred tail)))
+    (lazy-seq
+     (let [[head & tail] coll]
+       (if (pred head)
+         (cons head (retain pred tail))
+         (retain pred tail))))
     '()))
 
 (defn discard
