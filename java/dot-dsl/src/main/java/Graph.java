@@ -1,16 +1,15 @@
-import static java.util.Collections.emptyMap;
-
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 public class Graph {
-  private Collection<Node> nodes;
-  private Collection<Edge> edges;
-  private Map<String, String> attributes;
+  private final Collection<Node> nodes;
+  private final Collection<Edge> edges;
+  private final Map<String, String> attributes;
 
   public Graph() {
-    this(emptyMap());
+    this(Map.of());
   }
 
   public Graph(Map<String, String> attributes) {
@@ -20,11 +19,11 @@ public class Graph {
   }
 
   public Collection<Node> getNodes() {
-    return nodes;
+    return Collections.unmodifiableCollection(nodes);
   }
 
   public Collection<Edge> getEdges() {
-    return edges;
+    return Collections.unmodifiableCollection(edges);
   }
 
   public Graph node(String name) {
@@ -48,6 +47,6 @@ public class Graph {
   }
 
   public Map<String, String> getAttributes() {
-    return attributes;
+    return Collections.unmodifiableMap(attributes);
   }
 }
