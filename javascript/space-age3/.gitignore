@@ -1,5 +1,5 @@
 /node_modules
 /bin/configlet
 /bin/configlet.exe
-/package-lock.json
+/pnpm-lock.yaml
 /yarn.lock
