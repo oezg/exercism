@@ -2,7 +2,7 @@ module Tests exposing (tests)
 
 import Allergies exposing (Allergy(..))
 import Expect
-import Test exposing (Test, describe, skip, test)
+import Test exposing (Test, describe, test)
 
 
 tests : Test

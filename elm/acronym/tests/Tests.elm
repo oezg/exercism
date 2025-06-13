@@ -2,7 +2,7 @@ module Tests exposing (tests)
 
 import Acronym exposing (abbreviate)
 import Expect
-import Test exposing (Test, describe, skip, test)
+import Test exposing (Test, describe, test)
 
 
 tests : Test
@@ -13,19 +13,19 @@ tests =
                 Expect.equal "PNG"
                     (abbreviate "Portable Network Graphics")
         , test "lowercase words" <|
-                \_ ->
-                    Expect.equal "ROR"
-                        (abbreviate "Ruby on Rails")
+            \_ ->
+                Expect.equal "ROR"
+                    (abbreviate "Ruby on Rails")
         , test "punctuation" <|
-                \_ ->
-                    Expect.equal "FIFO"
-                        (abbreviate "First In, First Out")
+            \_ ->
+                Expect.equal "FIFO"
+                    (abbreviate "First In, First Out")
         , test "all caps word" <|
-                \_ ->
-                    Expect.equal "GIMP"
-                        (abbreviate "GNU Image Manipulation Program")
+            \_ ->
+                Expect.equal "GIMP"
+                    (abbreviate "GNU Image Manipulation Program")
         , test "punctuation without whitespace" <|
-                \_ ->
-                    Expect.equal "CMOS"
-                        (abbreviate "Complementary metal-oxide semiconductor")
+            \_ ->
+                Expect.equal "CMOS"
+                    (abbreviate "Complementary metal-oxide semiconductor")
         ]
