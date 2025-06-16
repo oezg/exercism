@@ -22,3 +22,4 @@ if [ $# -eq 0 ]; then
 else
   enable_all_tests
 fi
+./gradlew test
