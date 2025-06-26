@@ -1,101 +1,103 @@
-import static java.util.Map.entry;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Say {
-  private static final LinkedHashMap<Long, String> levels;
+  private static final String[] scales = new String[] {null, "thousand", "million", "billion"};
+  private static final String[] toTwenty =
+      new String[] {
+        null,
+        "one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "six",
+        "seven",
+        "eight",
+        "nine",
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen"
+      };
+  private static final String[] toHundred =
+      new String[] {
+        null, null, "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
+      };
 
-  static {
-    levels = new LinkedHashMap<>();
-    levels.put(1_000_000_000L, "billion");
-    levels.put(1_000_000L, "million");
-    levels.put(1_000L, "thousand");
+  String say(long number) {
+    validate(number);
+    if (number == 0L) return "zero";
+    List<String> chunks = chunk(number);
+    return String.join(" ", intersperse(chunks));
   }
 
-  public String say(long number) {
-    if (number < 0 || number > 999_999_999_999L) {
-      throw new IllegalArgumentException();
+  private static Deque<String> intersperse(List<String> chunks) {
+    Deque<String> out = new LinkedList<>();
+    for (int i = 0; i < chunks.size(); i++) {
+      String chunk = chunks.get(i);
+      String scale = scales[i];
+      if (chunk == null) {
+        continue;
+      }
+      out.push(scale == null ? chunk : chunk + " " + scale);
     }
-    if (number == 0) {
-      return "zero";
-    }
-
-    return translate(number);
+    return out;
   }
 
-  private static String translate(long number) {
-    for (Entry<Long, String> entry : levels.entrySet()) {
-      var data = number % entry.getKey();
-      number = number / entry.getKey();
-    }
-    var result = "";
-    while (number > 0) {
-      var last_three_digits = number % 1000;
-      number /= 1000;
-      result += underThousand(last_three_digits);
-    }
-    return result;
+  private static String translate(int number) {
+    String hundredString = getHundred(number);
+    String tenString = getTen(number);
+    return join(hundredString, tenString, " ");
   }
 
-  private static String underThousand(int number) {
-    var hundred = number / 100;
-    var hundreds = hundred == 0 ? "" : digitNames.get(hundred) + " hundred ";
-    return hundreds + underHundred(number % 100);
+  private static String join(String first, String second, String delimiter) {
+    if (first == null) {
+      if (second == null) return null;
+      return second;
+    }
+    if (second == null) {
+      return first;
+    }
+    return first + delimiter + second;
   }
 
-  private static String underHundred(int number) {
+  private static String getHundred(int number) {
+    if (number < 100) return null;
+    String countHundred = toTwenty[number / 100];
+    return String.format("%s hundred", countHundred);
+  }
+
+  private static String getTen(int number) {
+    number %= 100;
     if (number < 20) {
-      return digitNames.get(number);
+      return toTwenty[number];
     }
-    var ten = number / 10;
-    var tens = tenNames.get(ten);
-    return tens + "-" + digitNames.get(number % 10);
+    String countTen = toHundred[number / 10];
+    String countOne = toTwenty[number % 10];
+    return join(countTen, countOne, "-");
   }
 
-  public static int pow10(int x) {
-    var result = 1;
-    while (x > 0) {
-      result *= 10;
+  static List<String> chunk(long number) {
+    List<String> out = new ArrayList<String>();
+    while (number > 0) {
+      out.add(translate((int) (number % 1000)));
+      number /= 1000;
     }
-    return result;
+    return out;
   }
 
-  private static final Map<Integer, String> digitNames =
-      Map.ofEntries(
-          entry(1, "one"),
-          entry(2, "two"),
-          entry(3, "three"),
-          entry(4, "four"),
-          entry(5, "five"),
-          entry(6, "six"),
-          entry(7, "seven"),
-          entry(8, "eight"),
-          entry(9, "nine"),
-          entry(10, "ten"),
-          entry(11, "eleven"),
-          entry(12, "twelve"),
-          entry(13, "thirteen"),
-          entry(14, "fourteen"),
-          entry(15, "fifteen"),
-          entry(16, "sixteen"),
-          entry(17, "seventeen"),
-          entry(18, "eighteen"),
-          entry(19, "nineteen"));
-
-  private static final Map<Integer, String> tenNames =
-      Map.ofEntries(
-          entry(2, "twenty"),
-          entry(3, "thirty"),
-          entry(4, "forty"),
-          entry(5, "fifty"),
-          entry(6, "sixty"),
-          entry(7, "seventy"),
-          entry(8, "eighty"),
-          entry(9, "ninety"),
-          entry(100, "hundred"),
-          entry(1_000, "thousand"),
-          entry(1_000_000, "million"),
-          entry(1_000_000_000, "billion"));
+  private static void validate(long number) {
+    if (number < 0 || number > 999_999_999_999L) {
+      throw new IllegalArgumentException("number must be in range [0, 1_000_000_000_000)");
+    }
+  }
 }
