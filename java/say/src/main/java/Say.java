@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Deque;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,21 +35,20 @@ public class Say {
   String say(long number) {
     validate(number);
     if (number == 0L) return "zero";
-    List<String> chunks = chunk(number);
-    return String.join(" ", intersperse(chunks));
+    List<String> nouns = new LinkedList<>(Arrays.asList(scales));
+    return recSay(number, nouns, new LinkedList<String>());
   }
 
-  private static Deque<String> intersperse(List<String> chunks) {
-    Deque<String> out = new LinkedList<>();
-    for (int i = 0; i < chunks.size(); i++) {
-      String chunk = chunks.get(i);
-      String scale = scales[i];
-      if (chunk == null) {
-        continue;
-      }
-      out.push(scale == null ? chunk : chunk + " " + scale);
+  private static String recSay(long number, List<String> nouns, List<String> result) {
+    if (number == 0) {
+      return String.join(" ", result);
     }
-    return out;
+    String scale = nouns.removeFirst();
+    String abc = translate((int) (number % 1000));
+    if (abc != null) {
+      result.addFirst(join(abc, scale, " "));
+    }
+    return recSay(number / 1000, nouns, result);
   }
 
   private static String translate(int number) {
@@ -84,15 +82,6 @@ public class Say {
     String countTen = toHundred[number / 10];
     String countOne = toTwenty[number % 10];
     return join(countTen, countOne, "-");
-  }
-
-  static List<String> chunk(long number) {
-    List<String> out = new ArrayList<String>();
-    while (number > 0) {
-      out.add(translate((int) (number % 1000)));
-      number /= 1000;
-    }
-    return out;
   }
 
   private static void validate(long number) {
