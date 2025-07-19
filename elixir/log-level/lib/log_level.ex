@@ -1,12 +1,13 @@
 defmodule LogLevel do
-  @levels %{0 => :trace, 1 => :debug, 2 => :info, 3 => :warning, 4 => :error, 5 => :fatal}
   def to_label(level, legacy?) do
     cond do
-      (level == 0 or level == 5) and legacy? ->
-        :unknown
-
-      true ->
-        Map.get(@levels, level, :unknown)
+      level == 0 and not legacy? -> :trace
+      level == 1 -> :debug
+      level == 2 -> :info
+      level == 3 -> :warning
+      level == 4 -> :error
+      level == 5 and not legacy? -> :fatal
+      true -> :unknown
     end
   end
 
@@ -14,7 +15,7 @@ defmodule LogLevel do
     label = to_label(level, legacy?)
 
     cond do
-      label == :error or label == :fatal -> :ops
+      label in [:error, :fatal] -> :ops
       label == :unknown and legacy? -> :dev1
       label == :unknown -> :dev2
       true -> false
