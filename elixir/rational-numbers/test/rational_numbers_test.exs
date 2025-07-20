@@ -97,6 +97,10 @@ defmodule RationalNumbersTest do
     test "Divide a rational number by 1" do
       assert RationalNumbers.divide_by({1, 2}, {1, 1}) == {1, 2}
     end
+
+    test "Divide a positive rational number by itself" do
+      assert RationalNumbers.divide_by({4, 5}, {4, 5}) == {1, 1}
+    end
   end
 
   describe "Absolute value" do
