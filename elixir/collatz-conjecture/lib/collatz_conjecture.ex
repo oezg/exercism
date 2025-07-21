@@ -10,7 +10,6 @@ defmodule CollatzConjecture do
   @spec calc(input :: pos_integer()) :: non_neg_integer()
   def calc(1), do: 0
 
-  def calc(n) when is_integer(n) and n > 1 do
-    1 + calc(if(rem(n, 2) == 0, do: div(n, 2), else: 3 * n + 1))
-  end
+  def calc(n) when rem(n, 2) == 1, do: 1 + calc(3 * n + 1)
+  def calc(n) when is_integer(n) and n > 1, do: 1 + calc(div(n, 2))
 end
