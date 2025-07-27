@@ -11,19 +11,10 @@ defmodule ResistorColorTrio do
   Calculate the resistance value in ohms from resistor colors
   """
   @spec label(colors :: [color]) :: {integer, ohms}
-  def label(colors) do
-    [
-      &(10 * &1),
-      &(&1 + &2),
-      &(10 ** &1 * &2),
-      &with_ohms/1
-    ]
-    |> apply_to(Enum.map(colors, &code/1))
+  def label([first, second, third | _rest]) do
+    value = (10 * code(first) + code(second)) * 10 ** code(third)
+    with_ohms(value)
   end
-
-  defp apply_to([f | fs], [x | xs]), do: apply_to(fs, xs, f.(x))
-  defp apply_to([f], _values, acc), do: f.(acc)
-  defp apply_to([f | fs], [x | xs], acc), do: apply_to(fs, xs, f.(x, acc))
 
   @spec with_ohms(value :: number) :: {integer, ohms}
   defp with_ohms(value) when value >= @giga, do: {div(value, @giga), :gigaohms}
