@@ -1,18 +1,24 @@
-import java.util.Arrays;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 class Scrabble {
+    private final String word;
 
-    Map<String, Long> freq;
     Scrabble(String word) {
-        freq = Arrays.stream(word.toLowerCase().split("")).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-
+        this.word = word.toLowerCase();
     }
 
     int getScore() {
-        return 1;
+        return word.chars().reduce(0, (acc, c) -> acc + score((char) c));
     }
 
+    int score(char letter) {
+        return switch (letter) {
+            case 'a',  'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't' -> 1;
+            case 'd', 'g' -> 2;
+            case 'b', 'c', 'm', 'p' -> 3;
+            case 'f', 'h', 'v', 'w', 'y' -> 4;
+            case 'k' -> 5;
+            case 'j', 'x'-> 8;
+            case 'q', 'z' -> 10;
+            default -> throw new IllegalArgumentException("Invalid letter: " + letter);
+        };
+    }
 }
