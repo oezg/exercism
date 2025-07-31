@@ -1,6 +1,8 @@
 defmodule FlattenArray do
   @moduledoc """
   Take a nested array of any depth and return a fully flattened array.
+
+  Use work stack algorithm, Time Complexity: O(N).
   """
 
   @doc """
@@ -17,9 +19,14 @@ defmodule FlattenArray do
   """
 
   @spec flatten(list) :: list
-  def flatten(list, acc \\ [])
-  def flatten([], acc), do: Enum.reverse(acc)
-  def flatten([nil | tail], acc), do: flatten(tail, acc)
-  def flatten([head | tail], acc) when is_list(head), do: flatten(head ++ tail, acc)
-  def flatten([head | tail], acc), do: flatten(tail, [head | acc])
+  def flatten(list), do: flatten(list, [], [])
+
+  defp flatten([], [], acc), do: Enum.reverse(acc)
+  defp flatten([], [top | stack], acc), do: flatten(top, stack, acc)
+  defp flatten([nil | tail], stack, acc), do: flatten(tail, stack, acc)
+
+  defp flatten([head | tail], stack, acc) when is_list(head),
+    do: flatten(head, [tail | stack], acc)
+
+  defp flatten([head | tail], stack, acc), do: flatten(tail, stack, [head | acc])
 end

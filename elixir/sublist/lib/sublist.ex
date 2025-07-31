@@ -10,20 +10,16 @@ defmodule Sublist do
   """
 
   @spec compare(a :: list, b :: list) :: list_comparison
-  def compare(a, b) do
-    len_a = length(a)
-    len_b = length(b)
+  def compare(list, list), do: :equal
 
+  def compare(a, b) do
     cond do
-      len_a == len_b -> if a === b, do: :equal, else: :unequal
-      len_a > len_b -> if sublist?(b, a, len_a - len_b), do: :superlist, else: :unequal
-      true -> if sublist?(a, b, len_b - len_a), do: :sublist, else: :unequal
+      sublist?(a, b) -> :sublist
+      sublist?(b, a) -> :superlist
+      :else -> :unequal
     end
   end
 
-  defp sublist?(a, b, 0), do: a === b
-
-  defp sublist?(a, b, diff) do
-    List.starts_with?(b, a) || sublist?(a, tl(b), diff - 1)
-  end
+  defp sublist?(_a, []), do: false
+  defp sublist?(a, [_h | t] = b), do: List.starts_with?(b, a) or sublist?(a, t)
 end
