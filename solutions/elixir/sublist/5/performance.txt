@@ -1,0 +1,19 @@
+------------------
+  * Enum Functions Results
+1119 ms: huge sublist not in huge list 
+493 ms: superlist early in huge list 
+415 ms: sublist early in huge list 
+
+
+------------------------
+  * Non TCO Sublist? Results
+128 ms: huge sublist not in huge list 
+35 ms: superlist early in huge list 
+33 ms: sublist early in huge list 
+
+
+------------------------
+  * TCO Sublist? Results
+139 ms: huge sublist not in huge list 
+57 ms: superlist early in huge list 
+40 ms: sublist early in huge list 
