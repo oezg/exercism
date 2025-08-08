@@ -19,15 +19,9 @@
     "waiting-for-dev"
   ],
   "files": {
-    "solution": [
-      "lib/sublist.ex"
-    ],
-    "test": [
-      "test/sublist_test.exs"
-    ],
-    "example": [
-      ".meta/example.ex"
-    ]
+    "solution": ["lib/sublist.ex", "performance.txt"],
+    "test": ["test/sublist_test.exs"],
+    "example": [".meta/example.ex"]
   },
   "blurb": "Write a function to determine if a list is a sublist of another list."
 }
