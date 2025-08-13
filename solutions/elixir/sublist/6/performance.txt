@@ -1,0 +1,30 @@
+sham TCO with IF results from hardest tests:
+
+1. 139 ms: huge sublist not in huge list
+2. 71 ms: superlist early in huge list
+3. 38 ms: sublist early in huge list
+4. 34 ms: comparing massive equal lists
+
+Tested at 12:14:31 on 2025-08-13
+--------------------------------
+
+Enum.chunk_every results from hardest tests:
+
+1. 959 ms: huge sublist not in huge list
+2. 467 ms: superlist early in huge list
+3. 439 ms: sublist early in huge list
+4. 33 ms: comparing massive equal lists
+
+Tested at 12:15:21 on 2025-08-13
+--------------------------------
+
+idiomatic with OR results from hardest tests:
+
+1. 138 ms: huge sublist not in huge list
+2. 39 ms: superlist early in huge list
+3. 36 ms: sublist early in huge list
+4. 34 ms: comparing massive equal lists
+
+Tested at 12:16:37 on 2025-08-13
+--------------------------------
+
