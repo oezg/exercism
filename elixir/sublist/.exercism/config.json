@@ -19,7 +19,7 @@
     "waiting-for-dev"
   ],
   "files": {
-    "solution": ["lib/sublist.ex", "performance.txt"],
+    "solution": ["lib/sublist.ex", "performance.txt", "hard_tests.sh"],
     "test": ["test/sublist_test.exs"],
     "example": [".meta/example.ex"]
   },

@@ -21,12 +21,5 @@ defmodule Sublist do
   end
 
   defp sublist?(_a, []), do: false
-  defp sublist?(a, [_h | t] = b), do: if(List.starts_with?(b, a), do: true, else: sublist?(a, t))
-
-  # defp sublist?([], _b), do: true
-
-  # defp sublist?(a, b) do
-  #   Enum.chunk_every(b, length(a), 1, :discard)
-  #   |> Enum.any?(&(&1 === a))
-  # end
+  defp sublist?(a, [_h | t] = b), do: List.starts_with?(b, a) or sublist?(a, t)
 end
