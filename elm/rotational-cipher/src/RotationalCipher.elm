@@ -1,28 +1,32 @@
 module RotationalCipher exposing (rotate)
 
 
+lowerA : Int
+lowerA =
+    'a' |> Char.toCode
+
+
+upperA : Int
+upperA =
+    'A' |> Char.toCode
+
+
+rotateFrom : Int -> Int -> Char -> Char
+rotateFrom base shift c =
+    base + modBy 26 (Char.toCode c - base + shift) |> Char.fromCode
+
+
 rotate : String -> Int -> String
 rotate text shiftKey =
-    rotateData shiftKey text
-
-
-rotateFromBase : Char -> Int -> Char -> Char
-rotateFromBase a shift c =
-    Char.toCode a + modBy 26 (Char.toCode c - Char.toCode a + shift) |> Char.fromCode
-
-
-rotateData : Int -> String -> String
-rotateData shift =
     String.map
         (\c ->
-            (if Char.isLower c then
-                rotateFromBase 'a' shift
+            if Char.isLower c then
+                rotateFrom lowerA shiftKey c
 
-             else if Char.isUpper c then
-                rotateFromBase 'A' shift
+            else if Char.isUpper c then
+                rotateFrom upperA shiftKey c
 
-             else
-                identity
-            )
+            else
                 c
         )
+        text
