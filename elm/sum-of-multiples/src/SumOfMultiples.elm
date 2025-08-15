@@ -1,19 +1,19 @@
 module SumOfMultiples exposing (sumOfMultiples)
 
-import Set
-
-
-multiples : Int -> Int -> List Int
-multiples n limit =
-    (limit - 1)
-        // n
-        |> List.range 1
-        |> List.map (\x -> x * n)
-
 
 sumOfMultiples : List Int -> Int -> Int
 sumOfMultiples divisors limit =
-    List.concatMap (\d -> multiples d limit) divisors
-        |> Set.fromList
-        |> Set.toList
-        |> List.sum
+    List.range 1 (limit - 1)
+        |> List.foldl
+            (\n acc ->
+                let
+                    isMultiple =
+                        List.any (\d -> modBy d n == 0) divisors
+                in
+                if isMultiple then
+                    acc + n
+
+                else
+                    acc
+            )
+            0

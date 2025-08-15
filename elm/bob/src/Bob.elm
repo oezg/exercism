@@ -16,45 +16,38 @@ areAllLettersUpper =
     letters >> List.all Char.isUpper
 
 
-allTrue : List (b -> Bool) -> b -> Bool
-allTrue predicates arg =
-    List.all (\f -> f arg) predicates
-
-
-isQuestion : String -> Bool
-isQuestion =
-    String.trimRight
-        >> String.endsWith "?"
-
-
 isShout : String -> Bool
-isShout =
-    allTrue [ isThereAnyLetter, areAllLettersUpper ]
-
-
-isSilence : String -> Bool
-isSilence =
-    String.trim >> String.isEmpty
+isShout remark =
+    isThereAnyLetter remark && areAllLettersUpper remark
 
 
 isYellQuestion : String -> Bool
-isYellQuestion =
-    allTrue [ isShout, isQuestion ]
+isYellQuestion remark =
+    isShout remark && String.endsWith "?" remark
+
+
+whatToSay : List ( c -> Bool, a ) -> a -> c -> a
+whatToSay lisp default text =
+    case lisp of
+        [] ->
+            default
+
+        ( p, v ) :: rest ->
+            if p text then
+                v
+
+            else
+                whatToSay rest default text
 
 
 hey : String -> String
 hey remark =
-    if isSilence remark then
-        "Fine. Be that way!"
-
-    else if isYellQuestion remark then
-        "Calm down, I know what I'm doing!"
-
-    else if isShout remark then
-        "Whoa, chill out!"
-
-    else if isQuestion remark then
-        "Sure."
-
-    else
-        "Whatever."
+    remark
+        |> String.trimRight
+        |> whatToSay
+            [ ( String.isEmpty, "Fine. Be that way!" )
+            , ( isYellQuestion, "Calm down, I know what I'm doing!" )
+            , ( isShout, "Whoa, chill out!" )
+            , ( String.endsWith "?", "Sure." )
+            ]
+            "Whatever."
