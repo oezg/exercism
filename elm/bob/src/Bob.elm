@@ -21,33 +21,23 @@ isShout remark =
     isThereAnyLetter remark && areAllLettersUpper remark
 
 
-isYellQuestion : String -> Bool
-isYellQuestion remark =
-    isShout remark && String.endsWith "?" remark
-
-
-whatToSay : List ( c -> Bool, a ) -> a -> c -> a
-whatToSay lisp default text =
-    case lisp of
-        [] ->
-            default
-
-        ( p, v ) :: rest ->
-            if p text then
-                v
-
-            else
-                whatToSay rest default text
-
-
 hey : String -> String
 hey remark =
-    remark
-        |> String.trimRight
-        |> whatToSay
-            [ ( String.isEmpty, "Fine. Be that way!" )
-            , ( isYellQuestion, "Calm down, I know what I'm doing!" )
-            , ( isShout, "Whoa, chill out!" )
-            , ( String.endsWith "?", "Sure." )
-            ]
-            "Whatever."
+    let
+        trimmedRemark =
+            String.trimRight remark
+    in
+    if String.isEmpty trimmedRemark then
+        "Fine. Be that way!"
+
+    else if isShout remark && String.endsWith "?" trimmedRemark then
+        "Calm down, I know what I'm doing!"
+
+    else if isShout trimmedRemark then
+        "Whoa, chill out!"
+
+    else if String.endsWith "?" trimmedRemark then
+        "Sure."
+
+    else
+        "Whatever."
