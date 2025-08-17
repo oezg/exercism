@@ -1,6 +1,14 @@
 module Bob exposing (hey)
 
 
+type Remark
+    = Silence
+    | YellQuestion
+    | Yell
+    | Question
+    | AnythingElse
+
+
 letters : String -> List Char
 letters =
     String.toList >> List.filter Char.isAlpha
@@ -21,23 +29,49 @@ isShout remark =
     isThereAnyLetter remark && areAllLettersUpper remark
 
 
-hey : String -> String
-hey remark =
-    let
-        trimmedRemark =
-            String.trimRight remark
-    in
-    if String.isEmpty trimmedRemark then
-        "Fine. Be that way!"
+isSilence : String -> Bool
+isSilence =
+    String.isEmpty
 
-    else if isShout remark && String.endsWith "?" trimmedRemark then
-        "Calm down, I know what I'm doing!"
 
-    else if isShout trimmedRemark then
-        "Whoa, chill out!"
+isQuestion : String -> Bool
+isQuestion =
+    String.endsWith "?"
 
-    else if String.endsWith "?" trimmedRemark then
-        "Sure."
+
+triage : String -> Remark
+triage text =
+    if isSilence text then
+        Silence
+
+    else if isShout text then
+        if isQuestion text then
+            YellQuestion
+
+        else
+            Yell
+
+    else if isQuestion text then
+        Question
 
     else
-        "Whatever."
+        AnythingElse
+
+
+hey : String -> String
+hey remark =
+    case remark |> String.trimRight |> triage of
+        Silence ->
+            "Fine. Be that way!"
+
+        YellQuestion ->
+            "Calm down, I know what I'm doing!"
+
+        Yell ->
+            "Whoa, chill out!"
+
+        Question ->
+            "Sure."
+
+        AnythingElse ->
+            "Whatever."
