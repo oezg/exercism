@@ -12,7 +12,8 @@ sumOfMultiples divisors limit =
 
             else
                 List.range 1 ((limit - 1) // divisor)
-                    |> List.foldl (\index acc -> Set.insert (index * divisor) acc) uniques
+                    |> List.map ((*) divisor)
+                    |> List.foldl Set.insert uniques
     in
     List.foldl uniqueMultiples Set.empty divisors
         |> Set.foldl (+) 0
