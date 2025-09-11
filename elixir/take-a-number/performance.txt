@@ -1,0 +1,8 @@
+Results Capture private function:
+
+1. 200 ms: ignores unexpected messages and keeps working
+2. 100 ms: stops
+
+Tested at 11:40:16 on 2025-09-11
+--------------------------------
+

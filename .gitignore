@@ -21,7 +21,7 @@
 /csharp/*/obj/
 /csharp/*/*.sln
 
-/elm/*/elm-stuff/
+**/elm/**/elm-stuff/
 
 /fsharp/*/bin/
 /fsharp/*/obj/
@@ -29,9 +29,9 @@
 
 /haskell/*/.stack-work/
 
-/java/*/bin/
-/java/*/build/
-/java/*/.gradle/
+**/java/**/bin/
+**/java/*/build/
+**/java/**/.gradle/
 
 /kotlin/*bin/
 /kotlin/*/build
