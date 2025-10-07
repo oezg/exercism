@@ -1,7 +1,10 @@
-BEGIN { FPAT = "[[:alpha:]][[:alpha:]']*" }
+BEGIN {
+    FPAT = "[[:alpha:]][[:alpha:]']*"
+    OFS = ""
+}
 
 {
-    for (i = 1; i <= NF; i++) ret = ret substr($i, 1, 1)
-
-    print toupper(ret)
+    for (i = 1; i <= NF; i++) $i = toupper(substr($i, 1, 1))
 }
+
+1

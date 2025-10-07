@@ -6,5 +6,5 @@ typeof($1) == "strnum" && $1 < 1 {
 }
 
 function collatz(n) {
-    return n == 1 ? 0 : 1 + collatz(n % 2 ? 3 * n + 1 : n / 2)
+    return n > 1 ? 1 + collatz(and(n, 1) == 1 ? 3 * n + 1 : rshift(n, 1)) : 0
 }

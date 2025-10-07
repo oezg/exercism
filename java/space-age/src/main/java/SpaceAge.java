@@ -8,16 +8,18 @@ class SpaceAge {
     Saturn(29.447498),
     Uranus(84.016846),
     Neptune(164.79132);
-    private final double orbit;
+    private final double orbitalPeriod;
 
-    Planet(double orbit) {
-      this.orbit = orbit;
+    Planet(double orbitalPeriod) {
+      this.orbitalPeriod = orbitalPeriod;
     }
 
-    public double getOrbit() {
-      return orbit;
+    public double getorbitalPeriod() {
+      return orbitalPeriod;
     }
   }
+
+  static final double EARTH_YEAR_SECONDS = 31557600;
 
   private final double seconds;
 
@@ -62,6 +64,6 @@ class SpaceAge {
   }
 
   double onPlanet(Planet planet) {
-    return getSeconds() / 31557600 / planet.getOrbit();
+    return getSeconds() / EARTH_YEAR_SECONDS / planet.getorbitalPeriod();
   }
 }
