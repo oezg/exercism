@@ -1,20 +1,13 @@
-NR == 1 { strandA = $0 }
+NR == 1 { n = split($0, charsA, "") }
 
-NR == 2 { strandB = $0 }
+NR == 2 {
+    if (n != split($0, charsB, "")) fail("strands must be of equal length")
+}
 
 END {
-    if (length(strandA) != length(strandB)) {
-        fail("strands must be of equal length")
-    }
+    for (i = 1; i <= n; i++) distance += charsA[i] != charsB[i]
 
-    split(strandA, charsA, "")
-    split(strandB, charsB, "")
-    distance = 0
-
-    for (i = 1; i <= length(charsA); i++)
-    if (charsA[i] != charsB[i]) distance++
-
-    print distance
+    print +distance
 }
 
 function fail(message) {
