@@ -1,25 +1,16 @@
 class IsbnVerifier {
 
   boolean isValid(String stringToVerify) {
-    return isbn(stringToVerify.replace("-", "")) % 11 == 0;
-  }
+    int factor = 10;
+    int checkSum = 0;
 
-  static int isbn(String s) {
-    int result = 0;
-    var digits = s.toCharArray();
-    if (digits.length != 10) {
-      return -1;
+    for (char digit : stringToVerify.toCharArray()) {
+      if ('0' <= digit && digit <= '9') checkSum += factor-- * (digit - '0');
+      else if (digit == 'X' && factor-- == 1) checkSum += 10;
+      else if (digit == '-') continue;
+      else return false;
     }
-    for (int i = 0; i < digits.length; i++) {
-      char c = digits[i];
-      if (c == 'X') {
-        result += 10;
-      } else if (c < '0' || c > '9') {
-        return -1;
-      } else {
-        result += (10 - i) * (c - '0');
-      }
-    }
-    return result;
+
+    return factor == 0 && checkSum % 11 == 0;
   }
 }
