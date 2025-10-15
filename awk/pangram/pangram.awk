@@ -1,11 +1,17 @@
-BEGIN { n = split("abcdefghijklmnopqrstuvwxyz", alpha, "") }
+BEGIN { FPAT = "[[:alpha:]]" }
 
 {
-    flag = 0
     $0 = tolower($0)
+    delete letters
 
-    for (i = 1; i <= n && !flag; i++)
-    if (!index($0, alpha[i])) flag = 1
+    for (i = 1; i <= NF; i++) {
+        letters[$i]
 
-    print flag ? "false" : "true"
+        if (length(letters) == 26) {
+            print "true"
+            next
+        }
+    }
+
+    print "false"
 }
