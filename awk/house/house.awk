@@ -4,17 +4,24 @@ BEGIN {
         exit 1
     }
 
-    text = "malt-lay in-rat-ate-cat-killed-dog-worried-cow with the crumpled horn-"\
-        "tossed-maiden all forlorn-milked-man all tattered and torn-kissed-"\
-        "priest all shaven and shorn-married-rooster that crowed in the morn-woke-"\
-        "farmer sowing his corn-kept-horse and the hound and the horn-belonged to"
+    rhymes[1] = "house that Jack built."
+    rhymes[2] = "malt that lay in"
+    rhymes[3] = "rat that ate"
+    rhymes[4] = "cat that killed"
+    rhymes[5] = "dog that worried"
+    rhymes[6] = "cow with the crumpled horn that tossed"
+    rhymes[7] = "maiden all forlorn that milked"
+    rhymes[8] = "man all tattered and torn that kissed"
+    rhymes[9] = "priest all shaven and shorn that married"
+    rhymes[10] = "rooster that crowed in the morn that woke"
+    rhymes[11] = "farmer sowing his corn that kept"
+    rhymes[12] = "horse and the hound and the horn that belonged to"
 
-    split(text, a, "-")
+    while (start <= end) print line(start++, "This is")
+}
 
-    for (i = start; i <= end; i++) {
-        for (j = 2 * i - 2; j > 0; j -= 2) s = s " the " a[j - 1] " that " a[j]
+function line(idx,   result) {
+    while (idx) result = result " the " rhymes[idx--]
 
-        printf("This is%s the house that Jack built.\n", s)
-        s = ""
-    }
+    return result
 }
