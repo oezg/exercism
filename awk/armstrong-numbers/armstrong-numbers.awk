@@ -1,7 +1,7 @@
 BEGIN {
-    len = length(num)
+    for (temp = num; temp; temp = int(temp / 10)) digits[i++] = temp % 10
 
-    for (i = 1; i <= len; i++) sum += substr(num, i, 1) ^ len
+    for (j = 0; j < i; j++) temp += digits[j] ^ i
 
-    print num == sum ? "true" : "false"
+    print num == temp ? "true" : "false"
 }
