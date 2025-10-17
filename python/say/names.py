@@ -1,5 +1,3 @@
-LIMIT = 1_000_000_000_000
-
 OUT_OF_RANGE = "input out of range"
 
 ZERO = "zero"
