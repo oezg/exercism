@@ -4,7 +4,6 @@ load bats-extra
 load bats-jq
 
 @test 'finds the largest product if span equals length' {
-    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -19,7 +18,6 @@ END_INPUT
 }
 
 @test 'can find the largest product of 2 with numbers in order' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -34,7 +32,6 @@ END_INPUT
 }
 
 @test 'can find the largest product of 2' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -49,7 +46,6 @@ END_INPUT
 }
 
 @test 'can find the largest product of 3 with numbers in order' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -64,7 +60,6 @@ END_INPUT
 }
 
 @test 'can find the largest product of 3' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -79,7 +74,6 @@ END_INPUT
 }
 
 @test 'can find the largest product of 5 with numbers in order' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -94,7 +88,6 @@ END_INPUT
 }
 
 @test 'can get the largest product of a big number' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -109,7 +102,6 @@ END_INPUT
 }
 
 @test 'reports zero if the only digits are zero' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -124,7 +116,6 @@ END_INPUT
 }
 
 @test 'reports zero if all spans include zero' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -139,7 +130,6 @@ END_INPUT
 }
 
 @test 'rejects span longer than string length' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f largest-series-product.jq << 'END_INPUT'
         {
@@ -149,12 +139,11 @@ END_INPUT
 END_INPUT
 
     assert_failure
-    expected='span must be smaller than string length'
+    expected='span must not exceed string length'
     assert_equal "$output" "$expected"
 }
 
 @test 'reports 1 for empty string and empty product (0 span)' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -169,7 +158,6 @@ END_INPUT
 }
 
 @test 'reports 1 for nonempty string and empty product (0 span)' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -r -f largest-series-product.jq << 'END_INPUT'
         {
@@ -184,7 +172,6 @@ END_INPUT
 }
 
 @test 'rejects empty string and nonzero span' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f largest-series-product.jq << 'END_INPUT'
         {
@@ -194,12 +181,11 @@ END_INPUT
 END_INPUT
 
     assert_failure
-    expected='span must be smaller than string length'
+    expected='span must not exceed string length'
     assert_equal "$output" "$expected"
 }
 
 @test 'rejects invalid character in digits' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f largest-series-product.jq << 'END_INPUT'
         {
@@ -214,7 +200,6 @@ END_INPUT
 }
 
 @test 'rejects negative span' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f largest-series-product.jq << 'END_INPUT'
         {

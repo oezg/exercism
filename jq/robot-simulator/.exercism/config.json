@@ -1,18 +1,9 @@
 {
-  "authors": [
-    "glennj"
-  ],
+  "authors": ["glennj"],
   "files": {
-    "solution": [
-      "robot-simulator.jq",
-      "robot-movement.jq"
-    ],
-    "test": [
-      "test-robot-simulator.bats"
-    ],
-    "example": [
-      ".meta/example.jq"
-    ]
+    "solution": ["robot-simulator.jq"],
+    "test": ["test-robot-simulator.bats"],
+    "example": [".meta/example.jq"]
   },
   "blurb": "Write a robot simulator.",
   "source": "Inspired by an interview question at a famous company."

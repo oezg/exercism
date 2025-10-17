@@ -3,21 +3,7 @@
 load bats-extra
 load bats-jq
 
-assert_objects_equal() {
-    local result=$(
-        jq -n --argjson actual "$1" \
-              --argjson expected "$2" \
-            '$actual == $expected'
-    )
-    if [[ $result != "true" ]]; then
-        echo "expected: $2" >&2
-        echo "actual: $1" >&2
-        return 1
-    fi
-}
-
 @test 'Create robot:at origin facing north' {
-    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -37,7 +23,6 @@ END_INPUT
 }
 
 @test 'Create robot:at negative position facing south' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -57,7 +42,6 @@ END_INPUT
 }
 
 @test 'Rotating clockwise:changes north to east' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -78,7 +62,6 @@ END_INPUT
 }
 
 @test 'Rotating clockwise:changes east to south' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -99,7 +82,6 @@ END_INPUT
 }
 
 @test 'Rotating clockwise:changes south to west' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -120,7 +102,6 @@ END_INPUT
 }
 
 @test 'Rotating clockwise:changes west to north' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -141,7 +122,6 @@ END_INPUT
 }
 
 @test 'Rotating counter-clockwise:changes north to west' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -162,7 +142,6 @@ END_INPUT
 }
 
 @test 'Rotating counter-clockwise:changes west to south' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -183,7 +162,6 @@ END_INPUT
 }
 
 @test 'Rotating counter-clockwise:changes south to east' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -204,7 +182,6 @@ END_INPUT
 }
 
 @test 'Rotating counter-clockwise:changes east to north' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -225,7 +202,6 @@ END_INPUT
 }
 
 @test 'Moving forward one:facing north increments Y' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -246,7 +222,6 @@ END_INPUT
 }
 
 @test 'Moving forward one:facing south decrements Y' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -267,7 +242,6 @@ END_INPUT
 }
 
 @test 'Moving forward one:facing east increments X' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -288,7 +262,6 @@ END_INPUT
 }
 
 @test 'Moving forward one:facing west decrements X' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -309,7 +282,6 @@ END_INPUT
 }
 
 @test 'Follow series of instructions:moving east and north from README' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -330,7 +302,6 @@ END_INPUT
 }
 
 @test 'Follow series of instructions:moving west and north' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -351,7 +322,6 @@ END_INPUT
 }
 
 @test 'Follow series of instructions:moving west and south' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
@@ -372,7 +342,6 @@ END_INPUT
 }
 
 @test 'Follow series of instructions:moving east and north' {
-  # [[ $BATS_RUN_SKIPPED == "true" ]] || skip
 
     run jq -c -f robot-simulator.jq << 'END_INPUT'
       {
