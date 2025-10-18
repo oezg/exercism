@@ -17,13 +17,13 @@ def say(number: int) -> str:
 
 
 def chunks_of_thousands(number: int) -> list[str]:
-    assert 0 < number < LIMIT
+    assert ZERO < number < LIMIT
     result = []
     for tillion in names.TILLIONS:
         mode_thousand = number % THOUSAND
-        if mode_thousand > ZERO:
+        if mode_thousand:
             hundreds = chunk_hundreds(mode_thousand)
-            if tillion is not None:
+            if tillion:
                 hundreds.append(tillion)
             result = hundreds + result  # reverse order
         number //= THOUSAND
@@ -31,23 +31,23 @@ def chunks_of_thousands(number: int) -> list[str]:
 
 
 def chunk_hundreds(mode_thousand: int) -> list[str]:
-    assert 0 < mode_thousand < 1000
+    assert ZERO < mode_thousand < THOUSAND
     result = []
     if mode_thousand >= HUNDRED:
         result.append(names.TENS[mode_thousand // HUNDRED])
         result.append(names.HUNDRED)
     mode_hundred = mode_thousand % HUNDRED
-    if mode_hundred > ZERO:
+    if mode_hundred:
         result.append(chunk_tens(mode_hundred))
     return result
 
 
 def chunk_tens(mode_hundred: int) -> str:
-    assert 0 < mode_hundred < 100
+    assert ZERO < mode_hundred < HUNDRED
     if mode_hundred < TEN:
         return names.TENS[mode_hundred]
     if mode_hundred < TWENTY:
         return names.TEEN[mode_hundred]
-    if mode_hundred % TEN > ZERO:
-        return f"{names.TIES[mode_hundred//TEN]}-{names.TENS[mode_hundred%TEN]}"
-    return names.TIES[mode_hundred // TEN]
+    if mode_hundred % TEN == ZERO:
+        return names.TIES[mode_hundred // TEN]
+    return f"{names.TIES[mode_hundred//TEN]}-{names.TENS[mode_hundred%TEN]}"
