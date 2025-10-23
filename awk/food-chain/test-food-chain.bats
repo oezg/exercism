@@ -2,7 +2,6 @@
 load bats-extra
 
 @test 'fly' {
-    #[[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.
@@ -14,7 +13,6 @@ END_EXPECTED
 }
 
 @test 'spider' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a spider.
 It wriggled and jiggled and tickled inside her.
@@ -28,7 +26,6 @@ END_EXPECTED
 }
 
 @test 'bird' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a bird.
 How absurd to swallow a bird!
@@ -43,7 +40,6 @@ END_EXPECTED
 }
 
 @test 'cat' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a cat.
 Imagine that, to swallow a cat!
@@ -59,7 +55,6 @@ END_EXPECTED
 }
 
 @test 'dog' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a dog.
 What a hog, to swallow a dog!
@@ -76,7 +71,6 @@ END_EXPECTED
 }
 
 @test 'goat' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a goat.
 Just opened her throat and swallowed a goat!
@@ -94,7 +88,6 @@ END_EXPECTED
 }
 
 @test 'cow' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a cow.
 I don't know how she swallowed a cow!
@@ -113,7 +106,6 @@ END_EXPECTED
 }
 
 @test 'horse' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a horse.
 She's dead, of course!
@@ -125,7 +117,6 @@ END_EXPECTED
 }
 
 @test 'multiple verses' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.
@@ -148,7 +139,6 @@ END_EXPECTED
 }
 
 @test 'full song' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     expected=$(cat << END_EXPECTED
 I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.
