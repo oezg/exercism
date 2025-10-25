@@ -1,13 +1,23 @@
-/[^ATCG]/ {
-    print "Invalid nucleotide detected." > "/dev/stderr"
-    exit 1
-}
+BEGIN { OFS = FS = "" }
 
 {
-    gsub("A", "U")
-    gsub("T", "A")
-    gsub("C", "_")
-    gsub("G", "C")
-    gsub("_", "G")
-    print
+    for (dna = 1; dna <= NF; dna++) $dna = rna($dna)
+}
+
+1
+
+function rna(dna) {
+    switch (dna) {
+        case "A":
+            return "U"
+        case "T":
+            return "A"
+        case "C":
+            return "G"
+        case "G":
+            return "C"
+    }
+
+    print "Invalid nucleotide detected." > "/dev/stderr"
+    exit 1
 }
