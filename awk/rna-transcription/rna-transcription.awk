@@ -1,23 +1,18 @@
-BEGIN { OFS = FS = "" }
-
-{
-    for (dna = 1; dna <= NF; dna++) $dna = rna($dna)
+BEGIN {
+    OFS = FS = ""
+    transcription["A"] = "U"
+    transcription["T"] = "A"
+    transcription["C"] = "G"
+    transcription["G"] = "C"
 }
 
-1
-
-function rna(dna) {
-    switch (dna) {
-        case "A":
-            return "U"
-        case "T":
-            return "A"
-        case "C":
-            return "G"
-        case "G":
-            return "C"
-    }
-
+/[^ATCG]/ {
     print "Invalid nucleotide detected." > "/dev/stderr"
     exit 1
 }
+
+{
+    for (dna = 1; dna <= NF; dna++) $dna = transcription[$dna]
+}
+
+1

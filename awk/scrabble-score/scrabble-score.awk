@@ -1,20 +1,21 @@
 BEGIN {
     FPAT = "[[:alpha:]]"
-    elif["AEIOULNRST"] = 1
-    elif["DG"] = 2
-    elif["BCMP"] = 3
-    elif["FHVWY"] = 4
-    elif["K"] = 5
-    elif["JX"] = 8
-    elif["QZ"] = 10
+    OFS = ","
+    IGNORECASE = 1
 }
 
 {
-    $0 = toupper($0)
+    for (i = 1; i <= NF; i++) {
+        switch ($i) {
+            case /[AEIOULNRST]/ : points += 1; break
+            case /[DG]/         : points += 2; break
+            case /[BCMP]/       : points += 3; break
+            case /[FHVWY]/      : points += 4; break
+            case /[K]/          : points += 5; break
+            case /[JX]/         : points += 8; break
+            case /[QZ]/         : points += 10; break
+        }
+    }
 
-    for (i = 1; i <= NF; i++)
-    for (letters in elif)
-    if (letters ~ $i) points += elif[letters]
-
-    print $0 "," 0 + points
+    print toupper($0), +points
 }
