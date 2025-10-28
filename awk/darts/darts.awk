@@ -1,9 +1,9 @@
-{ d = sqrt($1 * $1 + $2 * $2) }
+{ distance = sqrt($1 * $1 + $2 * $2) }
 
-d <= 1 { print 10 }
+distance <= 1 { print 10 }
 
-1 < d && d <= 5 { print 5 }
+1 < distance && distance <= 5 { print 5 }
 
-5 < d && d <= 10 { print 1 }
+5 < distance && distance <= 10 { print 1 }
 
-10 < d { print 0 }
+10 < distance { print 0 }
