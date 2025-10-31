@@ -20,7 +20,10 @@ def rotate(text: str) -> str:
         return text
     if text.startswith("y"):
         return rotate(text[1:] + "y")
-    initial_consonants, rest = split_vowel(text)
+    try:
+        initial_consonants, rest = split_vowel(text)
+    except ValueError:
+        raise ValueError(f"No vowel found in '{text}'")
     if rest.startswith("u") and initial_consonants.endswith("q"):
         return rest[1:] + initial_consonants + "u"
     return rest + initial_consonants
