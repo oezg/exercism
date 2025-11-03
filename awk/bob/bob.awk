@@ -1,33 +1,26 @@
-BEGIN {
-    RS = "^$"
-    has_upper = "[[:upper:]]"
-    has_lower = "[[:lower:]]"
-    question = "\\?[[:space:]]*$"
-    silence = "^[[:space:]]*$"
+BEGIN { RS = "^$" }
+
+{
+    yelling = /[[:upper:]]/ && !/[[:lower:]]/
+    question = /\?[[:space:]]*$/
+    silence = /^[[:space:]]*$/
 }
 
-$0 ~ question && $0 ~ has_upper && $0 !~ has_lower {
-    print "Calm down, I know what I'm doing!"
-    next
-}
+question && yelling { say("Calm down, I know what I'm doing!") }
 
-$0 ~ question {
-    print "Sure."
-    next
-}
+question { say("Sure.") }
 
-$0 ~ has_upper && $0 !~ has_lower {
-    print "Whoa, chill out!"
-    next
-}
+yelling { say("Whoa, chill out!") }
 
-$0 ~ silence {
-    print "Fine. Be that way!"
-    next
-}
+silence { say("Fine. Be that way!") }
 
-{ print "Whatever." }
+{ say("Whatever.") }
 
 END {
-    if (NR == 0) print "Fine. Be that way!"
+    if (!NR) print "Fine. Be that way!"
+}
+
+function say(message) {
+    print message
+    next
 }
