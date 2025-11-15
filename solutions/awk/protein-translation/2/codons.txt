@@ -1,0 +1,17 @@
+UGC: Cysteine
+UGU: Cysteine
+UUA: Leucine
+UUG: Leucine
+AUG: Methionine
+UUC: Phenylalanine
+UUU: Phenylalanine
+UAA: STOP
+UAG: STOP
+UGA: STOP
+UCA: Serine
+UCC: Serine
+UCG: Serine
+UCU: Serine
+UGG: Tryptophan
+UAC: Tyrosine
+UAU: Tyrosine
