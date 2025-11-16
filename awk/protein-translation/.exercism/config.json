@@ -1,0 +1,19 @@
+{
+  "authors": [
+    "IsaacG"
+  ],
+  "files": {
+    "solution": [
+      "protein-translation.awk",
+      "codons.txt"
+    ],
+    "test": [
+      "test-protein-translation.bats"
+    ],
+    "example": [
+      ".meta/example.awk"
+    ]
+  },
+  "blurb": "Translate RNA sequences into proteins.",
+  "source": "Tyler Long"
+}
