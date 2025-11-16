@@ -1,9 +1,5 @@
 BEGIN { RS = ".{3}" }
 
-# RT ~ /(?!AUG|UUU|UUC|UUA|UUG|UCU|UCC|UCA|UCG|UAU|UAC|UGU|UGC|UGG|UAA|UAG|UGA)/ {
-#     error = 1
-#     exit 1
-# }
 RT ~ /AUG/ { translate("Methionine") }
 
 RT ~ /(UUU|UUC)/ { translate("Phenylalanine") }
@@ -25,11 +21,6 @@ RT || NF {
     exit 1
 }
 
-function translate(amino) {
-    protein[NR] = amino
-    next
-}
-
 END {
     if (error) {
         print "Invalid codon"
@@ -38,4 +29,9 @@ END {
 
     for (i = 1; i <= NR; i++)
     if (protein[i]) printf("%s%s", i > 1 ? " " : "", protein[i])
+}
+
+function translate(amino) {
+    protein[NR] = amino
+    next
 }
