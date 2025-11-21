@@ -1,11 +1,18 @@
-BEGIN { FPAT = "[^-]" }
+BEGIN { FPAT = "[[:digit:]X]" }
 
-{
-    print NF != 10 || /[^[:digit:]X-]/ || /X/ && $NF != "X" || isb() % 11 ? "false" : "true"
-}
+{ print isValidISBN() ? "true" : "false" }
 
-function isb(n) {
-    for (i = 1; i <= NF; i++) n += $i == "X" ? 10 : $i * (11 - i)
+function isValidISBN() {
+    if (/[^[:digit:]X-]/ || NF != 10) return 0
 
-    return n
+    for (i = 1; i <= 10; i++) {
+        if ($i == "X") {
+            if (i < 10) return 0
+
+            n += 10
+        }
+        else n += $i * (11 - i)
+    }
+
+    return n % 11 == 0
 }
