@@ -1,52 +1,39 @@
-# These variables are initialized on the command line (using '-v'):
-# - x
-# - y
-# - dir
 BEGIN {
-    if (!x) x = 0
+    x = +x
+    y = +y
+    dir = dir ? dir : "north"
 
-    if (!y) y = 0
+    if (dir !~ /(north|east|south|west)/) invalid("direction")
 
-    if (!dir) dir = "north"
-    if ("north east south west" !~ dir) {
-        invalid_direction = 1
+    simulate["north"]["L"] = "west"
+    simulate["north"]["R"] = "east"
+    simulate["north"]["A"] = "up"
+    simulate["east"]["L"] = "north"
+    simulate["east"]["R"] = "south"
+    simulate["east"]["A"] = "right"
+    simulate["south"]["L"] = "east"
+    simulate["south"]["R"] = "west"
+    simulate["south"]["A"] = "down"
+    simulate["west"]["L"] = "south"
+    simulate["west"]["R"] = "north"
+    simulate["west"]["A"] = "left"
+}
+
+!/^[LRA]$/ { invalid("instruction") }
+
+{
+    switch(direction = simulate[dir][$1]) {
+        case "right": x++; break;
+        case "left": x--; break;
+        case "up": y++; break;
+        case "down": y--; break;
+        default: dir = direction;
     }
 }
 
-/R/ {
-    switch(dir) {
-        case "north": dir = "east"; break;
-        case "east": dir = "south"; break;
-        case "south": dir = "west"; break;
-        case "west": dir = "north"; break;
-    }
-}
-/L/ {
-    switch(dir) {
-        case "north": dir = "west"; break;
-        case "east": dir = "north"; break;
-        case "south": dir = "east"; break;
-        case "west": dir = "south"; break;
-    }
-}
+END { print error ? error : x " " y " " dir }
 
-/A/ {
-    switch(dir) {
-        case "north": y++; break;
-        case "east": x++; break;
-        case "south": y--; break;
-        case "west": x--; break;
-    }
-}
-
-/[^LRA]/ {
-    print "invalid instruction" > "/dev/stderr"
+function invalid(cause) {
+    error = "invalid " cause
     exit 1
-}
-
-        print "invalid direction" > "/dev/stderr"
-        exit 1
-END {
-    if(invalid_direction) print "invalid direction" > "/dev/stderr"; exit 1
-    print x, y, dir 
 }

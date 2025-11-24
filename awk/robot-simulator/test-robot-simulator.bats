@@ -164,7 +164,6 @@ teardown() {
 }
 
 @test "invalid instructions" {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     write_instructions L R A X
     run gawk -f robot-simulator.awk instructions.txt
     assert_failure
