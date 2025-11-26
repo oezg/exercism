@@ -9,7 +9,11 @@ NF {
 
     factor = 3
 
+    bound = sqrt(n)
+
     while (n > 1) {
+        if (factor > bound) factor = n
+
         if (n % factor) factor += 2
         else {
             $++NF = factor
