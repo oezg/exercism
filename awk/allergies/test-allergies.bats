@@ -54,7 +54,6 @@ load bats-extra
 }
 
 @test 'shellfish: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,shellfish'
     assert_success
     assert_output "false"
@@ -81,7 +80,6 @@ load bats-extra
 }
 
 @test 'strawberries: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,strawberries'
     assert_success
     assert_output "false"
@@ -108,7 +106,6 @@ load bats-extra
 }
 
 @test 'tomatoes: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,tomatoes'
     assert_success
     assert_output "false"
@@ -135,7 +132,6 @@ load bats-extra
 }
 
 @test 'chocolate: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,chocolate'
     assert_success
     assert_output "false"
@@ -162,7 +158,6 @@ load bats-extra
 }
 
 @test 'pollen: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,pollen'
     assert_success
     assert_output "false"
@@ -189,7 +184,6 @@ load bats-extra
 }
 
 @test 'cats: not allergic to anything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,allergic_to,cats'
     assert_success
     assert_output "false"
@@ -216,70 +210,60 @@ load bats-extra
 }
 
 @test 'no_allergies_at_all' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '0,list'
     assert_success
     refute_output   # no output
 }
 
 @test 'allergic_to_just_eggs' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '1,list'
     assert_success
     assert_output "eggs"
 }
 
 @test 'allergic_to_just_peanuts' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '2,list'
     assert_success
     assert_output "peanuts"
 }
 
 @test 'allergic_to_just_strawberries' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '8,list'
     assert_success
     assert_output "strawberries"
 }
 
 @test 'allergic_to_eggs_and_peanuts' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '3,list'
     assert_success
     assert_output "eggs,peanuts"
 }
 
 @test 'allergic_to_more_than_eggs_but_not_peanuts' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '5,list'
     assert_success
     assert_output "eggs,shellfish"
 }
 
 @test 'allergic_to_lots_of_stuff' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '248,list'
     assert_success
     assert_output "strawberries,tomatoes,chocolate,pollen,cats"
 }
 
 @test 'allergic_to_everything' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '255,list'
     assert_success
     assert_output "eggs,peanuts,shellfish,strawberries,tomatoes,chocolate,pollen,cats"
 }
 
 @test 'ignore_non_allergen_score_parts' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '509,list'
     assert_success
     assert_output "eggs,shellfish,strawberries,tomatoes,chocolate,pollen,cats"
 }
 
 @test 'no allergen score parts without highest valid score' {
-    [[ $BATS_RUN_SKIPPED == "true" ]] || skip
     run gawk -f allergies.awk <<< '257,list'
     assert_success
     assert_output "eggs"
