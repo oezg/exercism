@@ -3,8 +3,8 @@ BEGIN {
     y = +y
     dir = dir ? dir : "north"
 
-    if (dir !~ /(north|east|south|west)/) invalid("direction")
-
+    if (dir !~ /(north|east|south|west)/) { error = "direction"; exit 1 }
+    
     simulate["north"]["L"] = "west"
     simulate["north"]["R"] = "east"
     simulate["north"]["A"] = "up"
@@ -19,21 +19,16 @@ BEGIN {
     simulate["west"]["A"] = "left"
 }
 
-!/^[LRA]$/ { invalid("instruction") }
+!/^[LRA]$/ { error = "instruction"; exit 1 }
 
 {
-    switch(direction = simulate[dir][$1]) {
-        case "right": x++; break;
-        case "left": x--; break;
-        case "up": y++; break;
-        case "down": y--; break;
-        default: dir = direction;
+    switch (direction = simulate[dir][$1]) {
+        case "right":   x++; break
+        case "left":    x--; break
+        case "up":      y++; break
+        case "down":    y--; break
+        default:        dir = direction
     }
 }
 
-END { print error ? error : x " " y " " dir }
-
-function invalid(cause) {
-    error = "invalid " cause
-    exit 1
-}
+END { print error ? "invalid " error : x " " y " " dir }
