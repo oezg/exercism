@@ -3,8 +3,11 @@
 BEGIN { OFS = FS = "" }
 
 {
-    for (i = 1; i <= NF; i++) 
-    printf $i ~ /[[:alpha:]]/ ? rotate(ord($i ~ /[[:lower:]]/ ? "a" : "A")) : $i
+    for (i = 1; i <= NF; i++)
+    if ($i ~ /[[:alpha:]]/) {
+        start = ord($i ~ /[[:lower:]]/ ? "a" : "A")
+        $i = chr((ord($i) + distance - start) % 26 + start)
+    }
 }
 
-function rotate(start) { return chr((ord($i) + distance - start) % 26 + start) }
+1
