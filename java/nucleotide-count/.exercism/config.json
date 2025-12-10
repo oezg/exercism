@@ -1,0 +1,49 @@
+{
+  "authors": [
+    "sit"
+  ],
+  "contributors": [
+    "c-thornton",
+    "di72nn",
+    "ErikSchierboom",
+    "FridaTveit",
+    "javaeeeee",
+    "jmrunkle",
+    "jtigger",
+    "kytrinyx",
+    "lemoncurry",
+    "matthewmorgan",
+    "mirkoperillo",
+    "morrme",
+    "msomji",
+    "muzimuzhi",
+    "odzeno",
+    "redshirt4",
+    "sjakobi",
+    "sjwarner-bp",
+    "SleeplessByte",
+    "Smarticles101",
+    "sshine",
+    "stkent",
+    "tshradheya",
+    "vdemeester",
+    "Zaldrick"
+  ],
+  "files": {
+    "solution": [
+      "src/main/java/NucleotideCounter.java"
+    ],
+    "test": [
+      "src/test/java/NucleotideCounterTest.java"
+    ],
+    "example": [
+      ".meta/src/reference/java/NucleotideCounter.java"
+    ],
+    "invalidator": [
+      "build.gradle"
+    ]
+  },
+  "blurb": "Given a DNA string, compute how many times each nucleotide occurs in the string.",
+  "source": "The Calculating DNA Nucleotides_problem at Rosalind",
+  "source_url": "https://rosalind.info/problems/dna/"
+}

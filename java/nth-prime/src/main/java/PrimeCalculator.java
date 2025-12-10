@@ -2,19 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 class PrimeCalculator {
-  List<Integer> primes = new ArrayList<>(List.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37));
+  List<Integer> primes = new ArrayList<>(List.of(2, 3));
 
-  int nth(int nth) {
-    if (nth < 1) throw new IllegalArgumentException("Nth must be positive");
+  int nth(int n) {
+    if (n < 1) throw new IllegalArgumentException("n must be positive");
 
-    final int n = nth - 1;
-    int nextPrime = primes.getLast();
-    while (primes.size() <= n) {
-      nextPrime = nextPrime(nextPrime);
-      primes.add(nextPrime);
-    }
+    while (primes.size() < n) primes.add(nextPrime(primes.getLast()));
 
-    return primes.get(n);
+    return primes.get(n - 1);
   }
 
   int nextPrime(int odd) {
