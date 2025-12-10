@@ -5,35 +5,29 @@ class PrimeCalculator {
   List<Integer> primes = new ArrayList<>(List.of(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37));
 
   int nth(int nth) {
-    if (nth < 1) {
-      throw new IllegalArgumentException("Nth must be positive");
+    if (nth < 1) throw new IllegalArgumentException("Nth must be positive");
+
+    final int n = nth - 1;
+    int nextPrime = primes.getLast();
+    while (primes.size() <= n) {
+      nextPrime = nextPrime(nextPrime);
+      primes.add(nextPrime);
     }
 
-    var count = primes.size();
-    if (nth <= count) {
-      return primes.get(nth - 1);
-    }
+    return primes.get(n);
+  }
 
-    while (count < nth) {
-      var candidate = primes.get(count - 1) + 2;
-      while (!isPrime(candidate)) {
-        candidate += 2;
-      }
-      primes.add(candidate);
-      count++;
-    }
-
-    return primes.get(nth - 1);
+  int nextPrime(int odd) {
+    do odd += 2;
+    while (!isPrime(odd));
+    return odd;
   }
 
   boolean isPrime(int candidate) {
-    for (Integer prime : primes) {
-      if (candidate % prime == 0) {
-        return false;
-      }
-      if (Math.sqrt(candidate) < prime) {
-        return true;
-      }
+    final int limit = (int) Math.sqrt(candidate);
+    for (int prime : primes) {
+      if (candidate % prime == 0) return false;
+      if (limit < prime) return true;
     }
     return true;
   }
