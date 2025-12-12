@@ -3,37 +3,29 @@ import java.util.List;
 
 class LargestSeriesProductCalculator {
   List<Integer> digits = new ArrayList<>();
-  int inputLength;
 
   LargestSeriesProductCalculator(String inputNumber) {
-    for (char character : inputNumber.toCharArray()) {
-      var digit = Character.digit(character, 10);
-      if (digit < 0) {
-        throw new IllegalArgumentException("String to search may only contain digits.");
-      }
-      digits.add(digit);
-    }
-    inputLength = digits.size();
+    int digit;
+    for (char character : inputNumber.toCharArray())
+      if ((digit = Character.digit(character, 10)) < 0)
+        fail("String to search may only contain digits.");
+      else digits.add(digit);
   }
 
-  long calculateLargestProductForSeriesLength(int numberOfDigits) {
-    if (numberOfDigits < 0) {
-      throw new IllegalArgumentException("Series length must be non-negative.");
-    }
-    if (inputLength < numberOfDigits) {
-      throw new IllegalArgumentException(
-          "Series length must be less than or equal to the length of the string to search.");
-    }
+  long calculateLargestProductForSeriesLength(int span) {
+    if (span < 0) fail("Series length must be non-negative.");
+    if (digits.size() < span)
+      fail("Series length must be less than or equal to the length of the string to search.");
     long maximum = 0;
-    for (int i = 0; i <= inputLength - numberOfDigits; i++) {
+    for (int start = 0; start <= digits.size() - span; start++) {
       long product = 1;
-      for (int j = 0; j < numberOfDigits; j++) {
-        product *= digits.get(i + j);
-      }
-      if (maximum < product) {
-        maximum = product;
-      }
+      for (int i = 0; i < span; i++) product *= digits.get(start + i);
+      if (maximum < product) maximum = product;
     }
     return maximum;
+  }
+
+  private static void fail(String message) {
+    throw new IllegalArgumentException(message);
   }
 }
