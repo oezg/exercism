@@ -1,0 +1,46 @@
+{
+  "authors": [
+    "sit"
+  ],
+  "contributors": [
+    "anurag-rai",
+    "austinlyons",
+    "c-thornton",
+    "FridaTveit",
+    "jagdish-15",
+    "jmrunkle",
+    "jtigger",
+    "kytrinyx",
+    "lemoncurry",
+    "matthewmorgan",
+    "matthewstyler",
+    "mirkoperillo",
+    "msomji",
+    "muzimuzhi",
+    "sjwarner-bp",
+    "SleeplessByte",
+    "Smarticles101",
+    "sshine",
+    "stkent",
+    "vdemeester",
+    "yoseftanaka",
+    "Zaldrick"
+  ],
+  "files": {
+    "solution": [
+      "src/main/java/Bob.java"
+    ],
+    "test": [
+      "src/test/java/BobTest.java"
+    ],
+    "example": [
+      ".meta/src/reference/java/Bob.java"
+    ],
+    "invalidator": [
+      "build.gradle"
+    ]
+  },
+  "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
+  "source": "Inspired by the 'Deaf Grandma' exercise in Chris Pine's Learn to Program tutorial.",
+  "source_url": "https://pine.fm/LearnToProgram/?Chapter=06"
+}
