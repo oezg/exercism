@@ -1,19 +1,24 @@
 class Triangle {
+  double a;
+  double b;
+  double c;
 
-    Triangle(double side1, double side2, double side3) throws TriangleException {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
+  Triangle(double side1, double side2, double side3) throws TriangleException {
+    a = side1;
+    b = side2;
+    c = side3;
+    if (a + b <= c || a + c <= b || b + c <= a) throw new TriangleException();
+  }
 
-    boolean isEquilateral() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
+  boolean isEquilateral() {
+    return a == b && b == c;
+  }
 
-    boolean isIsosceles() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
+  boolean isIsosceles() {
+    return a == b || a == c || b == c;
+  }
 
-    boolean isScalene() {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
-    }
-
+  boolean isScalene() {
+    return !isIsosceles();
+  }
 }

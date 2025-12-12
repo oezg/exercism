@@ -2,7 +2,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 
 public class TriangleTest {
@@ -15,7 +14,6 @@ public class TriangleTest {
         assertThat(triangle.isEquilateral()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("any side is unequal")
     public void trianglesWithOneUnequalSideAreNotEquilateral() throws TriangleException {
@@ -24,7 +22,6 @@ public class TriangleTest {
         assertThat(triangle.isEquilateral()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("no sides are equal")
     public void trianglesWithNoEqualSidesAreNotEquilateral() throws TriangleException {
@@ -33,14 +30,12 @@ public class TriangleTest {
         assertThat(triangle.isEquilateral()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("all zero sides is not a triangle")
     public void trianglesWithNoSizeAreIllegal() {
         assertThatExceptionOfType(TriangleException.class).isThrownBy(() -> new Triangle(0, 0, 0));
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("sides may be floats")
     public void verySmallTrianglesCanBeEquilateral() throws TriangleException {
@@ -49,7 +44,6 @@ public class TriangleTest {
         assertThat(triangle.isEquilateral()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("last two sides are equal")
     public void isoscelesTrianglesHaveLastTwoSidesEqual() throws TriangleException {
@@ -58,7 +52,6 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("first two sides are equal")
     public void isoscelesTrianglesHaveTwoFirstSidesEqual() throws TriangleException {
@@ -67,7 +60,6 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("first and last sides are equal")
     public void isoscelesTrianglesHaveFirstAndLastSidesEqual() throws TriangleException {
@@ -76,7 +68,6 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("equilateral triangles are also isosceles")
     public void equilateralTrianglesAreAlsoIsosceles() throws TriangleException {
@@ -85,7 +76,6 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("no sides are equal")
     public void noSidesAreEqualCantBeIsoceles() throws TriangleException {
@@ -94,28 +84,24 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("first triangle inequality violation")
     public void firstTriangleInequalityViolation() {
         assertThatExceptionOfType(TriangleException.class).isThrownBy(() -> new Triangle(1, 1, 3));
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("second triangle inequality violation")
     public void secondTriangleInequalityViolation() {
         assertThatExceptionOfType(TriangleException.class).isThrownBy(() -> new Triangle(1, 3, 1));
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("third triangle inequality violation")
     public void thirdTriangleInequalityViolation() {
         assertThatExceptionOfType(TriangleException.class).isThrownBy(() -> new Triangle(3, 1, 1));
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("sides may be floats")
     public void verySmallTrianglesCanBeIsosceles() throws TriangleException {
@@ -124,7 +110,6 @@ public class TriangleTest {
         assertThat(triangle.isIsosceles()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("no sides are equal")
     public void scaleneTrianglesHaveNoEqualSides() throws TriangleException {
@@ -133,7 +118,6 @@ public class TriangleTest {
         assertThat(triangle.isScalene()).isTrue();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("all sides are equal")
     public void allSidesEqualAreNotScalene() throws TriangleException {
@@ -142,7 +126,6 @@ public class TriangleTest {
         assertThat(triangle.isScalene()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("first and second sides are equal")
     public void twoSidesEqualAreNotScalene() throws TriangleException {
@@ -151,7 +134,6 @@ public class TriangleTest {
         assertThat(triangle.isScalene()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("first and third sides are equal")
     public void firstAndThirdSidesAreEqualAreNotScalene() throws TriangleException {
@@ -160,7 +142,6 @@ public class TriangleTest {
         assertThat(triangle.isScalene()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("second and third sides are equal")
     public void secondAndThirdSidesAreEqualAreNotScalene() throws TriangleException {
@@ -169,14 +150,12 @@ public class TriangleTest {
         assertThat(triangle.isScalene()).isFalse();
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("may not violate triangle inequality")
     public void mayNotViolateTriangleInequality() {
         assertThatExceptionOfType(TriangleException.class).isThrownBy(() -> new Triangle(7, 3, 2));
     }
 
-    @Disabled("Remove to run test")
     @Test
     @DisplayName("sides may be floats")
     public void verySmallTrianglesCanBeScalene() throws TriangleException {
