@@ -1,7 +1,7 @@
 class Triangle {
-  double a;
-  double b;
-  double c;
+  private final double a;
+  private final double b;
+  private final double c;
 
   Triangle(double side1, double side2, double side3) throws TriangleException {
     a = side1;

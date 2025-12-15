@@ -1,21 +1,17 @@
-class Proverb {
-  static final String templateLine = "For want of a %s the %s was lost.\n";
-  static final String templateLast = "And all for the want of a %s.";
-  final String[] words;
-  final StringBuilder sb = new StringBuilder();
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-  Proverb(String[] words) {
-    this.words = words;
-  }
+record Proverb(String[] words) {
+  private static final String line = "For want of a %s the %s was lost.";
+  private static final String last = "And all for the want of a %s.";
 
-  String recite() {
-    for (int i = 0; i < words.length; i++) {
-      if (i == words.length - 1) {
-        sb.append(templateLast.formatted(words[0]));
-      } else {
-        sb.append(templateLine.formatted(words[i], words[i + 1]));
-      }
-    }
-    return sb.toString();
+  public String recite() {
+    return IntStream.range(0, words.length)
+        .mapToObj(
+            i ->
+                i < words.length - 1
+                    ? line.formatted(words[i], words[i + 1])
+                    : last.formatted(words[0]))
+        .collect(Collectors.joining("\n"));
   }
 }

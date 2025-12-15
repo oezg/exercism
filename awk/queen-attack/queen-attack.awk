@@ -13,7 +13,6 @@ function abs(x) { return x < 0 ? -x : x }
 
 function invalid() {
     for (i = 1; i <= NF; i++)
-    if ($i < 0 || $i > 7) return 1
-
+        if ($i < 0 || $i > 7) return 1
     return $1 == $3 && $2 == $4
 }
