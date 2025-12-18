@@ -1,18 +1,37 @@
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Map;
-import java.util.function.Predicate;
-import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
-record NucleotideCounter(String sequence) {
-  private static final Predicate<String> isValid = Pattern.compile("[ACGT]*").asMatchPredicate();
+final class NucleotideCounter {
+  enum Nucleotide {
+    A,
+    C,
+    G,
+    T;
 
-  NucleotideCounter {
-    if (!isValid.test(sequence)) throw new IllegalArgumentException();
+    static Nucleotide fromInt(int codpepoint) {
+      return switch ((char) codpepoint) {
+        case 'A' -> A;
+        case 'C' -> C;
+        case 'G' -> G;
+        case 'T' -> T;
+        default -> throw new IllegalArgumentException();
+      };
+    }
+
+    void update(int[] counts) {
+      counts[ordinal()]++;
+    }
+  }
+
+  private final int[] counts = new int[Nucleotide.values().length];
+
+  NucleotideCounter(String sequence) {
+    sequence.chars().mapToObj(Nucleotide::fromInt).forEach(n -> n.update(counts));
   }
 
   Map<Character, Integer> nucleotideCounts() {
-    Map<Character, Integer> counter = new HashMap<>(Map.of('A', 0, 'C', 0, 'G', 0, 'T', 0));
-    sequence.chars().mapToObj(i -> (char) i).forEach(c -> counter.merge(c, 1, Integer::sum));
-    return counter;
+    return Arrays.stream(Nucleotide.values())
+        .collect(Collectors.toMap(n -> n.name().charAt(0), n -> counts[n.ordinal()]));
   }
 }
