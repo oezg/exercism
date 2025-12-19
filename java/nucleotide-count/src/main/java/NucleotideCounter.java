@@ -1,37 +1,48 @@
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 final class NucleotideCounter {
-  enum Nucleotide {
-    A,
-    C,
-    G,
-    T;
+  private final Map<Character, Integer> counts;
 
-    static Nucleotide fromInt(int codpepoint) {
-      return switch ((char) codpepoint) {
-        case 'A' -> A;
-        case 'C' -> C;
-        case 'G' -> G;
-        case 'T' -> T;
-        default -> throw new IllegalArgumentException();
-      };
-    }
-
-    void update(int[] counts) {
-      counts[ordinal()]++;
-    }
-  }
-
-  private final int[] counts = new int[Nucleotide.values().length];
+  private static final Map<Character, Integer> origin = Map.of('A', 0, 'C', 0, 'G', 0, 'T', 0);
 
   NucleotideCounter(String sequence) {
-    sequence.chars().mapToObj(Nucleotide::fromInt).forEach(n -> n.update(counts));
+    counts =
+        sequence
+            .chars()
+            .mapToObj(cp -> Character.valueOf((char) cp))
+            .reduce(origin, NucleotideCounter::accumulator, NucleotideCounter::combiner);
   }
 
   Map<Character, Integer> nucleotideCounts() {
-    return Arrays.stream(Nucleotide.values())
-        .collect(Collectors.toMap(n -> n.name().charAt(0), n -> counts[n.ordinal()]));
+    return counts;
+  }
+
+  private static final Map<Character, Integer> accumulator(
+      Map<Character, Integer> acc, Character cur) {
+    return Stream.concat(
+            acc.entrySet().stream(),
+            Stream.of(
+                Map.entry(cur, increment(acc, cur).orElseThrow(IllegalArgumentException::new))))
+        .collect(
+            Collectors.toUnmodifiableMap(
+                Map.Entry::getKey, Map.Entry::getValue, NucleotideCounter::second));
+  }
+
+  private static final Map<Character, Integer> combiner(
+      Map<Character, Integer> left, Map<Character, Integer> right) {
+    return Stream.concat(left.entrySet().stream(), right.entrySet().stream())
+        .collect(
+            Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue, Integer::sum));
+  }
+
+  private static final <E> E second(E ignore, E updated) {
+    return updated;
+  }
+
+  private static final Optional<Integer> increment(Map<Character, Integer> m, Character c) {
+    return m.get(c) instanceof Integer x ? Optional.of(x + 1) : Optional.empty();
   }
 }
