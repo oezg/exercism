@@ -2,14 +2,9 @@ import itertools
 
 
 def combinations(target, size, exclude):
-    return list(
-        map(
-            list,
-            filter(
-                lambda t: sum(t) == target,
-                itertools.combinations(
-                    filter(lambda n: n not in exclude, range(1, 10)), size
-                ),
-            ),
-        )
-    )
+    include = (digit for digit in range(1, 10) if digit not in exclude)
+    return [
+        list(combination)
+        for combination in itertools.combinations(include, size)
+        if sum(combination) == target
+    ]
