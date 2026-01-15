@@ -3,7 +3,7 @@ class Matrix {
   private int[][] columns;
 
   Matrix(String matrixAsString) {
-    String[] rows = matrixAsString.split("\n");
+    String[] rows = matrixAsString.lines().toArray(String[]::new);
 
     for (int row = 0; row < rows.length; row++) {
       String[] cells = rows[row].split("\s+");

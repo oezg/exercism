@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -14,16 +13,21 @@ public class KillerSudokuHelper {
     return combinationsInCage(cageSum, cageSize, List.of());
   }
 
-  static Stream<List<Integer>> combinationsWithSum(
+  private static final Stream<List<Integer>> combinationsWithSum(
       List<Integer> input, int k, int subtotal, List<Integer> acc) {
+    // Base conditions
     if (k == 0 && subtotal == 0) return Stream.of(acc);
-    if (k == 0 || input.isEmpty()) return Stream.empty();
-    var head = input.getFirst();
+    Integer head;
+    if (k == 0 || input.isEmpty() || subtotal < (head = input.getFirst())) return Stream.empty();
+
+    // Combinations without the first element
     var tail = input.stream().skip(1).toList();
-    var newacc = new ArrayList<>(acc);
-    newacc.add(head);
-    var withHead = combinationsWithSum(tail, k - 1, subtotal - head, newacc);
     var withoutHead = combinationsWithSum(tail, k, subtotal, acc);
+
+    // Combinations with the first element
+    var newacc = Stream.concat(acc.stream(), Stream.of(head)).toList();
+    var withHead = combinationsWithSum(tail, k - 1, subtotal - head, newacc);
+
     return Stream.concat(withHead, withoutHead);
   }
 }
