@@ -1,30 +1,17 @@
-{
-    var = $1
+/[[:digit:]]+/ { scores[++counter] = $1 }
 
-    isnumber() ? scores[++counter] = var : @var()
-}
-
-function isnumber() { return /^[+-]?[[:digit:]]+$/ }
-
-function list() {
-    PROCINFO["sorted_in"] = "@ind_num_asc"
-
+/list/ {
     for (idx in scores) print scores[idx]
 }
 
-function latest() { print scores[length(scores)] }
+/latest/ { print scores[counter] }
 
-function personalBest() {
-    n = asort(scores, temp, "@val_num_desc")
+/personalBest/ { top(1) }
 
-    for (idx in temp) {
-        print temp[idx]
-        break
-    }
-}
+/personalTopThree/ { top(3) }
 
-function personalTopThree() {
-    n = asort(scores, temp, "@val_num_desc")
+function top(x) {
+    asort(scores, temp, "@val_num_desc")
 
-    for (idx = 1; idx <= 3 && idx <= n; idx++) print temp[idx]
+    while (idx < x) print temp[++idx]
 }
