@@ -9,28 +9,30 @@ class KindergartenGarden {
     "Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph",
     "Kincaid", "Larry"
   };
-  Map<String, List<Plant>> plants = new HashMap<>();
+  Map<String, Plant[]> plants = new HashMap<>();
 
   KindergartenGarden(String garden) {
-    assert garden.matches("[GCRV]{2,}\n[GCRV]{2,}");
-    var rows = garden.split("\n");
+    if (!garden.matches("[GCRV]{2,}\n[GCRV]{2,}"))
+      throw new IllegalArgumentException();
+    var rows = garden.split("\n", 2);
     var firstRow = rows[0];
-    var secondRow = rows[1];
+    var secondRow = rows[1];;
     var rowLength = firstRow.length();
-    assert rowLength == secondRow.length();
-    assert rowLength % 2 == 0;
+    if  (rowLength != secondRow.length() || rowLength % 2 != 0)
+      throw new IllegalArgumentException();
 
-    for (int i = 0; i < rowLength; i += 2) {
-      List<Plant> studentPlants = new ArrayList<>();
-      var letters = firstRow.substring(i, i + 2) + secondRow.substring(i, i + 2);
-      for (char letter : letters.toCharArray()) {
-        studentPlants.add(Plant.getPlant(letter));
-      }
-      plants.put(students[i / 2], studentPlants);
+    for (int i = 0; i < rowLength / 2; i++) {
+      var idx = 2 * i;
+      Plant[] studentPlants = new Plant[4];
+      studentPlants[0] = Plant.getPlant(firstRow.charAt(idx));
+      studentPlants[1] = Plant.getPlant(firstRow.charAt(idx + 1));
+      studentPlants[2] = Plant.getPlant(secondRow.charAt(idx));
+      studentPlants[3] = Plant.getPlant(secondRow.charAt(idx + 1));
+      plants.put(students[i], studentPlants);
     }
   }
 
-  List<Plant> getPlantsOfStudent(String student) {
+  Plant[] getPlantsOfStudent(String student) {
     return plants.get(student);
   }
 }

@@ -1,5 +1,5 @@
 BEGIN {
-    if (verse != "" || verse != 0) print strophe(verse)
+    if (verse) print strophe(verse)
     else for (i = start; i >= stop; i--) print strophe(i)
 }
 

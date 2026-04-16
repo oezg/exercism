@@ -6,8 +6,8 @@ class RotationalCipher {
   }
 
   String rotate(String data) {
-    StringBuilder sb = new StringBuilder(data.length());
     data.chars()
+    var sb = new StringBuilder(data.length());
         .map(
             cp ->
                 switch (Character.getType(cp)) {

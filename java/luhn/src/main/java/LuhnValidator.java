@@ -1,31 +1,23 @@
+import java.nio.charset.StandardCharsets;
+
 class LuhnValidator {
 
   boolean isValid(String candidate) {
-    var trimmed = candidate.replace(" ", "");
-    var length = trimmed.length();
-    if (length < 2) {
-      return false;
-    }
-
     var total = 0;
-
-    for (int i = 1; i <= length; i++) {
-      var character = trimmed.charAt(length - i);
-      var value = Character.digit(character, 10);
-      if (value < 0) {
-        return false;
-      }
-
-      if (i % 2 == 0) {
-        value *= 2;
-        if (value > 9) {
-          value -= 9;
-        }
-      }
-
-      total += value;
+    var bytes = candidate.getBytes(StandardCharsets.US_ASCII);
+    var idx = 0;
+    for (int i = bytes.length - 1; i >= 0; i--) {
+      if (bytes[i] == ' ') continue;
+      var digit =  bytes[i] - 48;
+      if (digit < 0 || digit > 9) return false;
+      idx++;
+      total += luhnValue(idx, digit);
     }
-
-    return total % 10 == 0;
+    return idx > 1 && total % 10 == 0;
+  }
+  int luhnValue(int index, int digit) {
+    if (index % 2  == 0)  digit *= 2;
+    if (digit > 9) digit -= 9;
+    return digit;
   }
 }
