@@ -1,0 +1,1 @@
+fun reverse(input: String): String = StringBuilder(input).reverse().toString()
