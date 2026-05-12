@@ -1,12 +1,8 @@
 object CollatzCalculator {
-    fun computeStepCount(start: Int): Int {
-        tailrec fun go(n: Int, acc: Int): Int =
-            if (n == 1) acc else go(n.collatzStep, acc + 1)
+    val collatzStep = { x: Int -> if (x % 2 == 0) x / 2 else x * 3 + 1 }
 
+    fun computeStepCount(start: Int): Int {
         require(start > 0) { "Only natural numbers are allowed"}
-        return go(start, 0)
+        return generateSequence(start, collatzStep).takeWhile { it != 1 } .count()
     }
 }
-
-private val Int.collatzStep: Int
-    get() = if (mod(2) == 0) div(2) else times(3).plus(1)
