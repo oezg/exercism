@@ -4,8 +4,8 @@ object Board {
 
     fun getGrainCountForSquare(number: Int): BigInteger {
         require(number in 1..64)
-        return BigInteger.ONE shl number.dec()
+        return BigInteger.ONE.shiftLeft(number.dec())
     }
 
-    fun getTotalGrainCount() = (BigInteger.ONE shl 64).dec()
+    fun getTotalGrainCount() = BigInteger.ONE.shiftLeft(64).dec()
 }
