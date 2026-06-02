@@ -1,9 +1,12 @@
 object Isogram {
 
     fun isIsogram(input: String) =
-        input.lowercase()
-            .filter { it.isLowerCase() }
-            .groupingBy { it }
-            .eachCount()
-            .all { it.value == 1}
+        input
+            .asSequence()
+            .filter(Char::isLetter)
+            .map(Char::lowercaseChar)
+            .runningFold<Char, Set<Char>?>(emptySet()) { seen, curr ->
+                seen?.takeIf { curr !in seen }?.plus(curr)
+            }
+            .none { it == null}
 }
