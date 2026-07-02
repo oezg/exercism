@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "lathspell"
+  ],
+  "contributors": [
+    "eparovyshnaya",
+    "uzilan"
+  ],
+  "files": {
+    "solution": [
+      "src/main/kotlin/ArmstrongNumber.kt"
+    ],
+    "test": [
+      "src/test/kotlin/ArmstrongNumberTest.kt"
+    ],
+    "example": [
+      ".meta/src/reference/kotlin/ArmstrongNumber.kt"
+    ]
+  },
+  "blurb": "Determine if a number is an Armstrong number.",
+  "source": "Wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Narcissistic_number"
+}
