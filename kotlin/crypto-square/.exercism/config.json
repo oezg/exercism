@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "lathspell"
+  ],
+  "contributors": [
+    "eparovyshnaya",
+    "uzilan"
+  ],
+  "files": {
+    "solution": [
+      "src/main/kotlin/CryptoSquare.kt"
+    ],
+    "test": [
+      "src/test/kotlin/CryptoSquareTest.kt"
+    ],
+    "example": [
+      ".meta/src/reference/kotlin/CryptoSquare.kt"
+    ]
+  },
+  "blurb": "Implement the classic method for composing secret messages called a square code.",
+  "source": "J Dalbey's Programming Practice problems",
+  "source_url": "https://users.csc.calpoly.edu/~jdalbey/103/Projects/ProgrammingPractice.html"
+}
