@@ -1,0 +1,71 @@
+2026.08.30 11:35:02 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/two-fer' for client Neovim 0.12.1+v0.12.1.[0m
+2026.08.30 11:35:02 INFO  Memory monitor started[0m
+2026.08.30 11:35:02 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:35:03 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:09 INFO  running '/home/ozg/.local/share/coursier/bin/sbt -Dbloop.export-jar-classifiers=sources -Dbloop.export-meta-build=true bloopInstall'[0m
+2026.08.30 11:35:10 INFO  [info] welcome to sbt 1.10.1 (Ubuntu Java 21.0.12)[0m
+2026.08.30 11:35:12 INFO  [info] loading settings for project two-fer-build-build from metals.sbt ...[0m
+2026.08.30 11:35:12 INFO  [info] loading project definition from /home/ozg/code/xrcism/scala/two-fer/project/project[0m
+2026.08.30 11:35:13 INFO  [info] loading settings for project two-fer-build from metals.sbt ...[0m
+2026.08.30 11:35:13 INFO  [info] loading project definition from /home/ozg/code/xrcism/scala/two-fer/project[0m
+2026.08.30 11:35:14 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:14 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:15 INFO  [success] Generated .bloop/two-fer-build.json[0m
+2026.08.30 11:35:15 INFO  [success] Total time: 1 s, completed Aug 30, 2026, 11:35:15 AM[0m
+2026.08.30 11:35:15 INFO  [info] loading settings for project two-fer from build.sbt ...[0m
+2026.08.30 11:35:15 INFO  [info] set current project to two-fer (in build file:/home/ozg/code/xrcism/scala/two-fer/)[0m
+2026.08.30 11:35:16 INFO  [success] Generated .bloop/two-fer.json[0m
+2026.08.30 11:35:16 INFO  [success] Generated .bloop/two-fer-test.json[0m
+2026.08.30 11:35:16 INFO  [success] Total time: 0 s, completed Aug 30, 2026, 11:35:16 AM[0m
+2026.08.30 11:35:17 INFO  time: ran 'sbt bloopInstall' in 7.57s[0m
+2026.08.30 11:35:17 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:35:17 INFO  No running Bloop server found, starting one.[0m
+2026.08.30 11:35:17 INFO  Starting compilation server[0m
+2026.08.30 11:35:17 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:17 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:18 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/main/scala/Twofer.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:35:18 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/two-fer/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:35:18 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:35:18 INFO  Found a Bloop server running[0m
+2026.08.30 11:35:18 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/two-fer/project/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:35:18 INFO  time: Connected to build server in 1.87s[0m
+2026.08.30 11:35:18 INFO  Connected to Build server: Bloop v2.1.1[0m
+2026.08.30 11:35:19 INFO  time: Imported build in 0.11s[0m
+2026.08.30 11:35:20 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:35:24 INFO  time: indexed workspace in 5.88s[0m
+2026.08.30 11:35:25 INFO  compiling two-fer (1 scala source)[0m
+2026.08.30 11:35:27 INFO  compiling two-fer-test (1 scala source)[0m
+2026.08.30 11:35:27 INFO  time: compiled two-fer in 2.31s[0m
+2026.08.30 11:35:27 INFO  time: compiled two-fer-test in 0.67s[0m
+2026.08.30 11:37:19 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/two-fer' for client Neovim 0.12.1+v0.12.1.[0m
+2026.08.30 11:37:19 INFO  Memory monitor started[0m
+2026.08.30 11:37:19 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:37:19 INFO  no build target found for /home/ozg/code/xrcism/scala/two-fer/src/test/scala/TwoferTest.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:37:19 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:37:19 INFO  Found a Bloop server running[0m
+2026.08.30 11:37:20 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/two-fer/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:37:20 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:37:20 INFO  Found a Bloop server running[0m
+2026.08.30 11:37:20 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/two-fer/project/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:37:20 INFO  time: Connected to build server in 0.33s[0m
+2026.08.30 11:37:20 INFO  Connected to Build server: Bloop v2.1.1[0m
+2026.08.30 11:37:22 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:37:24 INFO  time: indexed workspace in 3.63s[0m
+2026.08.30 11:37:24 INFO  compiling two-fer-test (1 scala source)[0m
+2026.08.30 11:37:24 INFO  time: compiled two-fer-test in 0.4s[0m
+2026.08.30 11:38:45 INFO  Shutting down server[0m
+2026.08.30 11:38:45 INFO  Memory monitor stopped[0m
+2026.08.30 11:38:45 INFO  shutting down Metals[0m
+2026.08.30 11:38:45 INFO  Shut down connection with build server.[0m
+2026.08.30 11:38:45 INFO  Shut down connection with build server.[0m
+2026.08.30 11:38:45 INFO  Cancelling compilation on Bloop server[0m
+2026.08.30 11:38:45 INFO  Deduplicating compilation of two-fer from bsp client 'Metals 1.6.8' (since 3m 26.746s)[0m
+2026.08.30 11:38:45 INFO  Exiting server[0m
+2026.08.30 11:38:45 INFO  compiling two-fer (1 scala source)[0m
+2026.08.30 11:38:45 INFO  time: compiled two-fer in 66ms[0m
+2026.08.30 11:38:46 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/two-fer' for client Neovim 0.12.1+v0.12.1.[0m
+2026.08.30 11:55:21 INFO  Shutting down server[0m
+2026.08.30 11:55:21 INFO  Memory monitor stopped[0m
+2026.08.30 11:55:21 INFO  shutting down Metals[0m
+2026.08.30 11:55:21 INFO  Shut down connection with build server.[0m
+2026.08.30 11:55:21 INFO  Shut down connection with build server.[0m

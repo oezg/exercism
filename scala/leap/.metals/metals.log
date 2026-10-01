@@ -1,0 +1,127 @@
+2026.08.30 11:42:54 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/leap' for client Neovim 0.12.1+v0.12.1.[0m
+2026.08.30 11:42:54 INFO  Memory monitor started[0m
+2026.08.30 11:42:54 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:42:55 INFO  no build target found for /home/ozg/code/xrcism/scala/leap/src/test/scala/LeapTest.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:42:59 INFO  running '/home/ozg/.local/share/coursier/bin/sbt -Dbloop.export-jar-classifiers=sources -Dbloop.export-meta-build=true bloopInstall'[0m
+2026.08.30 11:43:00 INFO  [info] welcome to sbt 1.10.1 (Ubuntu Java 21.0.12)[0m
+2026.08.30 11:43:02 INFO  [info] loading settings for project leap-build-build from metals.sbt ...[0m
+2026.08.30 11:43:02 INFO  [info] loading project definition from /home/ozg/code/xrcism/scala/leap/project/project[0m
+2026.08.30 11:43:03 INFO  [info] loading settings for project leap-build from metals.sbt ...[0m
+2026.08.30 11:43:03 INFO  [info] loading project definition from /home/ozg/code/xrcism/scala/leap/project[0m
+2026.08.30 11:43:05 INFO  [success] Generated .bloop/leap-build.json[0m
+2026.08.30 11:43:05 INFO  [success] Total time: 1 s, completed Aug 30, 2026, 11:43:05 AM[0m
+2026.08.30 11:43:05 INFO  [info] loading settings for project leap from build.sbt ...[0m
+2026.08.30 11:43:05 INFO  [info] set current project to leap (in build file:/home/ozg/code/xrcism/scala/leap/)[0m
+2026.08.30 11:43:06 INFO  [success] Generated .bloop/leap.json[0m
+2026.08.30 11:43:06 INFO  [success] Generated .bloop/leap-test.json[0m
+2026.08.30 11:43:06 INFO  [success] Total time: 0 s, completed Aug 30, 2026, 11:43:06 AM[0m
+2026.08.30 11:43:06 INFO  time: ran 'sbt bloopInstall' in 7.37s[0m
+2026.08.30 11:43:06 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:43:06 INFO  Found a Bloop server running[0m
+2026.08.30 11:43:07 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/leap/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:43:06 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:43:06 INFO  Found a Bloop server running[0m
+2026.08.30 11:43:07 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/leap/project/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:43:07 INFO  time: Connected to build server in 0.29s[0m
+2026.08.30 11:43:07 INFO  Connected to Build server: Bloop v2.1.1[0m
+2026.08.30 11:43:09 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:43:13 INFO  time: indexed workspace in 5.75s[0m
+2026.08.30 11:43:13 INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:43:13 INFO  time: compiled leap in 0.27s[0m
+2026.08.30 11:43:13 INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:43:15 INFO  time: compiled leap-test in 1.7s[0m
+2026.08.30 11:43:18 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/leap' for client Neovim 0.12.1+v0.12.1.[0m
+2026.08.30 11:43:18 INFO  Memory monitor started[0m
+2026.08.30 11:43:18 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:43:19 INFO  no build target found for /home/ozg/code/xrcism/scala/leap/src/main/scala/Leap.scala. Using presentation compiler with project's scala-library version: 3.3.8[0m
+2026.08.30 11:43:19 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:43:19 INFO  Found a Bloop server running[0m
+2026.08.30 11:43:19 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/leap/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:43:19 INFO  Attempting to connect to the build server...[0m
+2026.08.30 11:43:19 INFO  Found a Bloop server running[0m
+2026.08.30 11:43:19 INFO  Tracing is disabled for protocol BSP. To enable tracing of incoming and outgoing JSON messages, create an empty file at /home/ozg/code/xrcism/scala/leap/project/.metals/bsp.trace.json or /home/ozg/.cache/metals/bsp.trace.json[0m
+2026.08.30 11:43:19 INFO  time: Connected to build server in 0.31s[0m
+2026.08.30 11:43:19 INFO  Connected to Build server: Bloop v2.1.1[0m
+2026.08.30 11:43:21 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.[0m
+2026.08.30 11:43:23 INFO  time: indexed workspace in 3.58s[0m
+2026.08.30 11:46:09 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 3m 2.907s)[0m
+2026.08.30 11:46:09 INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:46:09 INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:46:09 INFO  time: compiled leap in 0.17s[0m
+2026.08.30 11:46:09 INFO  time: compiled leap in 0.18s[0m
+2026.08.30 11:46:39 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 3m 19.702s)[0m
+2026.08.30 11:46:39 INFO  Deduplicating compilation of leap-test from bsp client 'Metals 1.6.8' (since 3m 19.711s)[0m
+2026.08.30 11:46:39 INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:46:39 INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:46:39 INFO  time: compiled leap-test in 0.69s[0m
+2026.08.30 11:46:39 INFO  time: compiled leap-test in 0.69s[0m
+2026.08.30 11:49:54 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 6m 47.178s)[0m
+2026.08.30 11:49:54 INFO  Deduplicating compilation of leap-test from bsp client 'Metals 1.6.8' (since 6m 34.86s)[0m
+2026.08.30 11:49:54 INFO  compiling leap-test (1 scala source)[0m2026.08.30 11:49:54
+ INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:49:54 INFO  time: compiled leap-test in 0.64s[0m
+2026.08.30 11:49:54 INFO  time: compiled leap-test in 0.65s[0m
+2026.08.30 11:51:29 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 8m 22.622s)[0m
+2026.08.30 11:51:29 INFO  compiling leap (1 scala source)[0m2026.08.30 11:51:29
+ INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:51:29 INFO  time: compiled leap in 0.15s[0m
+2026.08.30 11:51:29 INFO  time: compiled leap in 0.16s[0m
+2026.08.30 11:52:09 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 9m 2.328s)[0m
+2026.08.30 11:52:09 INFO  Deduplicating compilation of leap-test from bsp client 'Metals 1.6.8' (since 8m 50.007s)[0m
+2026.08.30 11:52:09 INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:52:09 INFO  compiling leap-test (1 scala source)[0m
+2026.08.30 11:52:09 INFO  time: compiled leap-test in 0.54s[0m
+2026.08.30 11:52:09 INFO  time: compiled leap-test in 0.55s[0m
+2026.08.30 11:54:58 INFO  Deduplicating compilation of leap from bsp client 'Metals 1.6.8' (since 11m 38.855s)[0m
+2026.08.30 11:54:58 INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:54:58 INFO  compiling leap (1 scala source)[0m
+2026.08.30 11:54:58 INFO  time: compiled leap in 0.13s[0m
+2026.08.30 11:54:58 INFO  time: compiled leap in 0.14s[0m
+2026.08.30 11:55:21 INFO  Shutting down server[0m
+2026.08.30 11:55:21 INFO  Memory monitor stopped[0m
+2026.08.30 11:55:21 INFO  shutting down Metals[0m
+2026.08.30 11:55:21 INFO  Shut down connection with build server.[0m
+2026.08.30 11:55:21 INFO  Shut down connection with build server.[0m
+2026.08.30 11:55:21 INFO  Exiting server[0m
+2026.08.30 11:55:22 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/leap' for client Neovim 0.12.1+v0.12.1.[0m
+Aug 30, 2026 11:55:22 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint fallbackResponseError
+SEVERE: Internal error: java.util.concurrent.RejectedExecutionException: Task Future(<not completed>) rejected from java.util.concurrent.ThreadPoolExecutor@34cd072c[Shutting down, pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 4]
+java.util.concurrent.CompletionException: java.util.concurrent.RejectedExecutionException: Task Future(<not completed>) rejected from java.util.concurrent.ThreadPoolExecutor@34cd072c[Shutting down, pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 4]
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:332)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:347)
+	at java.base/java.util.concurrent.CompletableFuture$UniAccept.tryFire(CompletableFuture.java:708)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture.completeExceptionally(CompletableFuture.java:2194)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:29)
+	at scala.concurrent.java8.FuturesConvertersImpl$CF.apply(FutureConvertersImpl.scala:26)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:517)
+	at scala.concurrent.ExecutionContext$parasitic$.execute(ExecutionContext.scala:222)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:462)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:371)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:295)
+	at scala.concurrent.impl.Promise$Transformation.handleFailure(Promise.scala:477)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:468)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:371)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:295)
+	at scala.concurrent.impl.Promise$Transformation.handleFailure(Promise.scala:477)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:468)
+	at scala.concurrent.impl.Promise$DefaultPromise.submitWithValue(Promise.scala:371)
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete0(Promise.scala:295)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:537)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.util.concurrent.RejectedExecutionException: Task Future(<not completed>) rejected from java.util.concurrent.ThreadPoolExecutor@34cd072c[Shutting down, pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 4]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2081)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:841)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1376)
+	at scala.concurrent.impl.ExecutionContextImpl.execute(ExecutionContextImpl.scala:21)
+	at scala.concurrent.impl.Promise$Transformation.submitWithValue(Promise.scala:462)
+	... 10 more
+
+2026.08.30 13:47:51 INFO  Shutting down server[0m
+2026.08.30 13:47:51 INFO  Memory monitor stopped[0m
+2026.08.30 13:47:51 INFO  shutting down Metals[0m
+2026.08.30 13:47:51 INFO  Shut down connection with build server.[0m
+2026.08.30 13:47:51 INFO  Shut down connection with build server.[0m
+2026.08.30 13:47:52 INFO  Started: Metals version 1.6.8 in folders '/home/ozg/code/xrcism/scala/leap' for client Neovim 0.12.1+v0.12.1.[0m

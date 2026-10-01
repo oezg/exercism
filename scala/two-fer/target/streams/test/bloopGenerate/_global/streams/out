@@ -1,0 +1,4 @@
+[debug] [two-fer-test] Classpath dependencies List()
+[debug] [two-fer-test] Dependencies from configurations List(two-fer)
+[debug] Bloop wrote the configuration of project 'two-fer-test' to '/home/ozg/code/xrcism/scala/two-fer/.bloop/two-fer-test.json'
+[success] Generated .bloop/two-fer-test.json

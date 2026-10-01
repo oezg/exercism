@@ -1,0 +1,13 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(LeapTest, org.scalatest.tools.Framework$$anon$1@2546b1bd, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mLeapTest:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- year not divisible by 4: common year[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- year divisible by 4, not divisible by 100: leap year[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- year divisible by 100, not divisible by 400: common year[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- year divisible by 400: leap year[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 63 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 4[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 4, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LeapTest[0m

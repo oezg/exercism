@@ -1,0 +1,4 @@
+[debug] [leap-build] Classpath dependencies List()
+[debug] [leap-build] Dependencies from configurations List()
+[debug] Bloop wrote the configuration of project 'leap-build' to '/home/ozg/code/xrcism/scala/leap/project/.bloop/leap-build.json'
+[success] Generated .bloop/leap-build.json

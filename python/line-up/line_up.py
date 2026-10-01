@@ -1,15 +1,23 @@
 """Make the customers feel special by printing a message with their name on it"""
 
 
-def line_up(name, number):
-    """Given a name and a number, your task is to produce a sentence using that name and that number as an ordinal numeral."""
+def line_up(name: str, number: int) -> str:
+    """Given a name and a number, return a message containing the name and the ordinal position."""
+    return f"{name}, you are the {ordinal(number)} customer we serve today. Thank you!"
+
+
+def ordinal(number: int) -> str:
+    return str(number) + suffix(number)
+
+
+def suffix(number: int) -> str:
+    """Return the ordinal suffix in English"""
     match number % 10:
         case 1 if number % 100 != 11:
-            suffix = "st"
+            return "st"
         case 2 if number % 100 != 12:
-            suffix = "nd"
+            return "nd"
         case 3 if number % 100 != 13:
-            suffix = "rd"
+            return "rd"
         case _:
-            suffix = "th"
-    return f"{name}, you are the {number}{suffix} customer we serve today. Thank you!"
+            return "th"

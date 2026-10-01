@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /home/ozg/code/xrcism/scala/leap/target/scala-3.4.2/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mAbout to delete class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mWe backup class files:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRegistering generated classes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap$.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Leap.tasty[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /home/ozg/code/xrcism/scala/leap/target/scala-3.4.2/classes.bak[0m
